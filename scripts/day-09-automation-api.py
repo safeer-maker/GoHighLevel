@@ -2,6 +2,11 @@
 Day 9 API Lab: Automation & Workflows via GHL API
 ==================================================
 Trigger workflows, add contacts to workflows, and webhook handling.
+
+NOTE: Run day-02's test_api_connection() first to verify API access.
+The webhook_receiver_example() requires Flask (pip install flask) and
+optionally ngrok for external access. These are Phase 3 topics - in
+Phase 1, focus on list_workflows() and add_contact_to_workflow().
 """
 
 import requests

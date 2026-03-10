@@ -2,6 +2,9 @@
 Day 5 API Lab: Opportunities & Pipelines via GHL API
 =====================================================
 Manage pipelines, create/move/track opportunities.
+
+NOTE: Run day-02's test_api_connection() first to verify API access.
+If you get 401/403, see config.py.example for setup instructions.
 """
 
 import requests

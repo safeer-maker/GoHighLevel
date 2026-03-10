@@ -2,6 +2,10 @@
 Day 7 API Lab: Marketing & Campaigns via GHL API
 =================================================
 Campaign management, email sending, and tracking.
+
+NOTE: Run day-02's test_api_connection() first to verify API access.
+send_marketing_email() uses the conversations endpoint to send individual emails.
+For actual bulk campaigns, use GHL's built-in campaign feature (UI-based).
 """
 
 import requests

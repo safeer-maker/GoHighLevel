@@ -1,13 +1,31 @@
 # GoHighLevel API Configuration
 # Copy this file to config.py and fill in your credentials
 #
-# To get your API key:
-# 1. Go to Settings > Business Profile > API Keys in your GHL sub-account
-# 2. Or use the GHL Developer Marketplace for OAuth2 access
+# HOW TO GET YOUR API KEY (try these in order):
 #
-# To find your Location ID:
-# 1. Go to Settings > Business Profile
-# 2. The Location ID is displayed in the URL or in the account info
+# Option 1 - Sub-Account API Key:
+#   Go to Settings > Business Profile (or Company) > look for "API Key" section
+#   Not all sub-accounts have this - it depends on agency permissions
+#
+# Option 2 - Developer Marketplace (recommended):
+#   1. Go to https://marketplace.gohighlevel.com/
+#   2. Create a free developer account
+#   3. Create a "Private App" for your sub-account
+#   4. Use the generated API key or OAuth2 credentials
+#
+# Option 3 - Ask your agency admin:
+#   If you're on a practice sub-account, the agency admin may need to
+#   enable API access or provide you with an API key
+#
+# HOW TO FIND YOUR LOCATION ID:
+#   1. Log into your GHL sub-account
+#   2. Look at the URL - it contains the location ID
+#      Example: app.gohighlevel.com/v2/location/abc123xyz -> "abc123xyz" is your Location ID
+#   3. Or go to Settings > Business Profile - it may be displayed there
+#
+# IMPORTANT: If you get 401/403 errors, your sub-account may not have API access.
+# This is normal for practice accounts. Focus on the UI exercises in the lessons,
+# and return to the API labs when you have API access (Phase 3 covers this in depth).
 
 GHL_API_KEY = "your-api-key-here"
 GHL_LOCATION_ID = "your-location-id-here"

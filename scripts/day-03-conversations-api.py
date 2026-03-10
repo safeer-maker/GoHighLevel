@@ -2,6 +2,12 @@
 Day 3 API Lab: Conversations & Messaging via GHL API
 =====================================================
 Send SMS, emails, and retrieve conversation history.
+
+IMPORTANT - Access Notes:
+- send_sms() requires a phone number on your sub-account. If you don't have one,
+  skip SMS exercises and focus on send_email() and conversation retrieval.
+- send_email() works if your sub-account has email configured (most do).
+- get_conversations() and get_messages() are read-only and should always work.
 """
 
 import requests
@@ -210,8 +216,10 @@ if __name__ == "__main__":
     print("GHL API Lab - Day 3: Conversations & Messaging")
     print("=" * 60)
 
-    # --- Exercise 1: Send SMS ---
+    # --- Exercise 1: Send SMS (requires phone number on sub-account) ---
     print("\n--- Exercise 1: Send SMS ---")
+    # NOTE: This will fail with an error if no phone number is configured.
+    # If so, skip to Exercise 2 (email) which works without a phone number.
     # send_sms("CONTACT_ID_HERE", "Hi! This is a test message from the GHL API.")
 
     # --- Exercise 2: Send Email ---
@@ -230,8 +238,10 @@ if __name__ == "__main__":
     print("\n--- Exercise 4: Get Messages ---")
     # get_messages("CONVERSATION_ID_HERE")
 
-    # --- Exercise 5: Bulk SMS ---
+    # --- Exercise 5: Bulk SMS (requires phone number) ---
     print("\n--- Exercise 5: Bulk SMS to Tagged Contacts ---")
+    # NOTE: Requires a phone number. Alternative: modify send_bulk_sms_to_tagged()
+    # to use send_email() instead for a "bulk email to tagged contacts" version.
     # send_bulk_sms_to_tagged("new-lead", "Hi {{contact.first_name}}, welcome aboard!")
 
     print("\n" + "=" * 60)

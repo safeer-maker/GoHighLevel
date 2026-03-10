@@ -2,6 +2,13 @@
 Day 6 API Lab: Payments & Invoicing via GHL API
 ================================================
 List products, create invoices, check transactions.
+
+IMPORTANT - Access Notes:
+- list_products() works if you've created products in the GHL UI.
+- create_invoice() may require a payment processor (Stripe) to be connected.
+  If you get errors, focus on list_products() and list_invoices() (read-only).
+- list_transactions() requires payment processing to have occurred.
+  On a fresh account, this may return empty results - that's expected.
 """
 
 import requests

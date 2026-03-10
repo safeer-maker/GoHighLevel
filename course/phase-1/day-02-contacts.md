@@ -279,35 +279,38 @@ After studying the script:
 
 ### Case Scenario 1: Gym Member Import
 
-**Situation:** PowerFit Gym has 500 members in a Google Sheet. They need them imported into GHL with proper segmentation.
+**Situation:** You're configuring your sub-account as "PowerFit Gym." Import sample members and segment them.
 
 **Given Data Structure:**
-- Name, Email, Phone, Membership (Monthly/Annual/Day Pass), Start Date, Trainer Assigned, Location (Downtown/Westside)
+- Name, Email, Phone, Membership (Monthly/Annual/Day Pass), Start Date, Trainer Name (text field), Location (Downtown/Westside)
 
 **Your Task:**
-1. Design the custom field structure needed
-2. Prepare the CSV with proper formatting
+1. Design the custom field structure (Membership Type, Start Date, Trainer Name as **text** field, Location as dropdown)
+2. Prepare a CSV with **20-30 fake contacts** with varied data across all fields
 3. Import with duplicate handling (some members may already exist as leads)
 4. Create Smart Lists:
    - "Annual Members" (for renewal campaigns)
    - "Day Pass Users" (for conversion campaigns)
    - "Downtown Location" and "Westside Location"
-   - "Unassigned to Trainer" (need trainer assignment)
+   - "No Trainer Assigned" (Trainer Name field is empty)
 5. Tag all imported contacts with "powergym-member"
+
+**Tip:** Use "Trainer Name" as a text custom field instead of assigning to real staff users. This gives you the same segmentation and filtering practice.
 
 ### Case Scenario 2: Marketing Agency Contact Segmentation
 
-**Situation:** A marketing agency has contacts from multiple campaigns across Facebook, Google Ads, and organic website traffic. They need to segment for personalized follow-up.
+**Situation:** You're configuring your sub-account as a marketing agency. Create the custom field structure and segmentation for leads from multiple sources.
 
 **Your Task:**
 1. Create custom fields for:
-   - Campaign Source, Ad Set, Landing Page URL, Lead Magnet Downloaded, Industry
-2. Create Smart Lists for:
-   - "Facebook Leads - Last 30 Days" (for retargeting)
-   - "High-Intent" (visited pricing page or downloaded case study)
-   - "Industry: Healthcare" (for industry-specific nurture)
-   - "No Response in 7 Days" (for re-engagement)
-3. Design a tagging strategy:
+   - Campaign Source (dropdown: Facebook, Google Ads, Organic, Referral), Ad Set (text), Landing Page URL (text), Lead Magnet Downloaded (dropdown), Industry (dropdown)
+2. Import or manually create **15 contacts** with varied values across these fields
+3. Create Smart Lists for:
+   - "Facebook Leads - Last 30 Days" (filter by Campaign Source + Created Date)
+   - "High-Intent" (Lead Magnet = "Case Study" or "Pricing Guide")
+   - "Industry: Healthcare" (filter by Industry field)
+   - "No Response in 7 Days" (filter by last activity date)
+4. Design a tagging strategy:
    - What tags would you use?
    - When should tags be applied (manual vs automated)?
 

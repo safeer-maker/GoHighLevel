@@ -292,13 +292,14 @@ Navigate to **Settings > Email Services**:
 Navigate to **Marketing > Social Planner**:
 
 1. Review the interface and capabilities
-2. Connect social accounts (if available): Facebook, Instagram, Google Business, LinkedIn
-3. Create a test social post:
+2. **If you have business social accounts:** Connect them (Facebook, Instagram, Google Business, LinkedIn)
+3. **If no social accounts to connect:** Explore the connection interface, note what platforms are supported, and understand the setup flow. You can still explore the post composer and calendar view without connected accounts.
+4. Create a test social post (draft mode):
    - Write post copy
    - Add an image
    - Schedule for a future time
-   - Select platforms to publish on
-4. Review the social calendar view
+   - Select platforms (or note which you'd select)
+5. Review the social calendar view
 
 ---
 
@@ -332,33 +333,33 @@ python scripts/day-07-marketing-api.py
 
 ### Case Scenario 2: Real Estate Newsletter
 
-**Situation:** A real estate agent sends a monthly newsletter to their database of 500 leads and past clients.
+**Situation:** Build a newsletter template as if you were a real estate agent. Use placeholder/sample data.
 
 **Your Task:**
 1. Build a newsletter template with:
-   - 3 featured listings (image, price, beds/baths, link)
-   - Market update section (with stats)
+   - 3 featured listings (use placeholder images from free stock photo sites, make up prices/details)
+   - Market update section (use sample stats)
    - "Just Sold" section
    - Agent bio/contact section
 2. Each listing should have a trigger link: "I'm interested in this property"
-   - When clicked: Add tag "interested-{property-id}"
-3. Create the campaign targeting "All Contacts" Smart List
-4. Set up tracking: after the campaign, which contacts clicked which properties?
-5. Design the follow-up: What happens when someone clicks a property trigger link?
+   - When clicked: Add tag "interested-listing-1", "interested-listing-2", etc.
+3. Create the campaign targeting your existing contacts (even if only 5-20 contacts)
+4. Send a test to yourself, click the trigger links, verify tags are applied
+5. Design the follow-up: What workflow SHOULD trigger when someone clicks a property trigger link?
 
 ### Case Scenario 3: Re-Engagement Campaign
 
-**Situation:** A business has 200 contacts who haven't opened an email in 60+ days.
+**Situation:** Build a re-engagement email campaign. Even with few contacts, the template and flow design is what matters.
 
 **Your Task:**
-1. Create a Smart List: "Disengaged - 60 Days" (no email opens in 60 days, still subscribed)
+1. Create a Smart List: "Disengaged - 60 Days" (no email opens in 60 days, still subscribed). With a new account this may return 0 results - that's fine, the filter logic is the learning goal.
 2. Build a re-engagement email:
    - Subject line ideas: "We miss you!", "Still interested?", "Should we stop emailing?"
    - Include a clear CTA: "Yes, keep me subscribed" (trigger link)
    - Include: "No thanks, unsubscribe me" (trigger link unsubscribe)
-3. Send the campaign
-4. After 7 days, create a Smart List of disengaged contacts who didn't click
-5. Decide: Remove them from future campaigns? Send one final attempt?
+3. Send a test campaign to yourself and 2-3 test contacts
+4. Click the trigger links and verify they work
+5. Document: In production, what would you do with contacts who don't click after 7 days?
 
 ---
 

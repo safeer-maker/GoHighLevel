@@ -268,15 +268,16 @@ Create a workflow triggered by survey completion:
 
 ### Case Scenario 1: Dentist Lead Generation Funnel
 
-**Situation:** A dental clinic wants a "Free Whitening Consultation" funnel for their Facebook ad campaign.
+**Situation:** Build a "Free Whitening Consultation" funnel in your sub-account. No Facebook ads needed - you'll test it by visiting the funnel URL directly.
 
 **Your Task:**
 1. Build a 2-step funnel:
-   - **Landing Page:** Compelling headline, benefits of whitening, before/after photos, form
+   - **Landing Page:** Compelling headline, benefits of whitening, before/after photos (use free stock images), form
    - **Thank You Page:** Confirmation, what to expect, calendar embed for booking
 2. Form fields: Name, Phone, Email, "Have you had teeth whitening before?" (Yes/No), "What's your biggest concern about whitening?" (Dropdown)
-3. Workflow: Form submission → SMS confirmation → Email with whitening info → Tag "whitening-interest" → Create opportunity in pipeline
-4. Mobile-optimize the entire funnel (most FB ad clicks are mobile)
+3. Workflow: Form submission → Email with whitening info → Tag "whitening-interest" → Create opportunity in pipeline (add SMS step if you have a phone number)
+4. Mobile-optimize the entire funnel - preview on mobile view in the builder
+5. **Test:** Open the funnel URL in an incognito window, fill out the form, verify the workflow fires
 
 ### Case Scenario 2: Client Intake Survey
 
@@ -290,26 +291,25 @@ Create a workflow triggered by survey completion:
    - Page 4: Goals and success metrics
 2. Each service branch should ask different qualifying questions
 3. On submission:
-   - Route to the correct team member based on service interest
+   - Tag the contact based on service interest (e.g., "interest-seo", "interest-ppc")
    - Create an opportunity with estimated value based on budget answer
    - Send a "thank you + next steps" email
-4. The survey should work embedded on their website AND as a standalone link
+4. Test the survey as a standalone link (open in incognito, fill it out, verify contact is created with correct tags)
 
 ### Case Scenario 3: Complete Lead Gen System
 
 **Situation:** Build a complete lead generation system that combines everything from this lesson.
 
 **Your Task:**
-1. Landing page funnel with form (from Facebook ads)
+1. Landing page funnel with form (you'll visit the URL directly to test - no paid ads needed)
 2. Survey for detailed qualification (sent after initial contact)
 3. Workflow that:
    - Captures the lead from the funnel form
-   - Sends an immediate SMS + email
+   - Sends an immediate email (+ SMS if phone number available)
    - Creates a pipeline opportunity
-   - After 2 hours, sends the detailed survey link
-   - When survey is completed, updates the opportunity with details
-   - Notifies the assigned sales rep
-4. Test the entire flow end-to-end
+   - After 2 hours, sends the detailed survey link via email
+   - When survey is completed, updates the opportunity with details via tags
+4. **Test the entire flow end-to-end:** Fill out the funnel form → verify email arrives → wait for survey link → fill out survey → verify all tags and opportunity are correct
 
 ---
 

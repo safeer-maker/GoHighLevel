@@ -355,35 +355,39 @@ The script covers:
 
 ### Case Scenario 2: Real Estate Speed-to-Lead
 
-**Situation:** A real estate agent needs to contact leads within 60 seconds of inquiry.
+**Situation:** Build a fast-response workflow for incoming leads.
 
 **Your Task:**
 1. Build a "speed-to-lead" workflow:
-   - Form submitted → Instant SMS → Wait 30 seconds → Attempt phone call → If no answer → Voicemail drop → Wait 5 min → Email with property details
+   - Form submitted → Instant email (+ SMS if phone available) → Wait 30 seconds → Manual Action: "Call this lead now" → Wait 5 min → Email with property details + booking link
 2. Build a follow-up nurture:
-   - If no response in 24hr → SMS → 48hr → Email → 72hr → SMS with urgency
-3. Build a lead reassignment:
-   - If assigned agent doesn't respond in 2hr → Reassign to backup agent → Notify manager
+   - If no response in 24hr → Email follow-up → 48hr → Another email → 72hr → Final email with urgency
+   - (Add SMS steps if you have a phone number)
+3. Build a lead escalation (single-user version):
+   - If no activity after 2hr → Internal notification email to yourself → Add tag "urgent-followup" → Create task "Follow up ASAP"
+   - **Design note:** In production with multiple agents, this would reassign to a backup agent. Document how you'd modify the workflow for a team.
 
 ### Case Scenario 3: Speed-to-Lead (Full Build)
 
-**Situation:** Build the fastest possible response system.
+**Situation:** Build the fastest possible response system using the channels available to you.
 
 **Your Task:**
 ```
 Lead submits form
-  → [0 seconds] SMS: "Got your message! Calling you now..."
-  → [30 seconds] Auto-call (if available) or Manual Action: "Call now"
-  → [If no answer after 2 min] SMS: "Couldn't reach you. Book a time: [link]"
+  → [0 seconds] Email: "Got your message! We'll be in touch shortly."
+  → [0 seconds] Internal notification to yourself
+  → [30 seconds] Manual Action: "Call this lead now"
   → [5 min] Email: Detailed info + booking link
-  → [2 hours] If no response → Reassign to next available agent
-  → [24 hours] Day 2 nurture SMS
-  → [48 hours] Day 3 nurture email
-  → [72 hours] Final SMS with special offer
-  → [7 days] Move to "long-term nurture" workflow
+  → [2 hours] If no response → Add tag "urgent-followup", create task
+  → [24 hours] Day 2 nurture email
+  → [48 hours] Day 3 nurture email with social proof
+  → [72 hours] Final email with special offer
+  → [7 days] Add tag "long-term-nurture" (in production, this would move to a separate workflow)
 ```
 
-Build, test, and document this entire flow.
+If you have a phone number, add SMS steps alongside each email step.
+
+Build, test (shorten wait times to 1 min for testing), and document this entire flow.
 
 ---
 

@@ -7,7 +7,17 @@ GHL API Docs: https://highlevel.stoplight.io/docs/integrations
 
 Before running:
 1. cp config.py.example config.py
-2. Fill in your GHL_API_KEY and GHL_LOCATION_ID
+2. Fill in your GHL_API_KEY and GHL_LOCATION_ID (see config.py.example for instructions)
+
+IMPORTANT - Sub-Account API Access:
+- Not all sub-accounts have API access enabled by default.
+- If you get 401 (Unauthorized) or 403 (Forbidden) errors, your account may
+  need API access enabled by the agency admin, or you may need to create a
+  Private App via the GHL Developer Marketplace.
+- If API access isn't available yet, READ through this script to understand the
+  concepts. The UI exercises in the lesson are the priority. You'll get deep
+  into API work during Phase 3 (Days 18-20).
+- Run the "test_api_connection()" function first to verify your setup.
 """
 
 import requests
@@ -26,6 +36,52 @@ def get_headers():
         "Content-Type": "application/json",
         "Version": API_VERSION,
     }
+
+
+# --- 0. Test API Connection ---
+
+def test_api_connection():
+    """
+    Test that your API key and Location ID are working.
+    Run this FIRST before any other exercises.
+    """
+    url = f"{GHL_BASE_URL}/contacts/"
+    params = {"locationId": GHL_LOCATION_ID, "limit": 1}
+
+    print("Testing API connection...")
+    print(f"  Base URL: {GHL_BASE_URL}")
+    print(f"  Location ID: {GHL_LOCATION_ID[:8]}..." if len(GHL_LOCATION_ID) > 8 else f"  Location ID: {GHL_LOCATION_ID}")
+
+    try:
+        response = requests.get(url, headers=get_headers(), params=params)
+
+        if response.status_code == 200:
+            data = response.json()
+            count = len(data.get("contacts", []))
+            print(f"\n  SUCCESS! API connection working.")
+            print(f"  Found contacts in account: {'Yes' if count > 0 else 'No (empty account)'}")
+            return True
+        elif response.status_code == 401:
+            print(f"\n  FAILED: 401 Unauthorized")
+            print("  Your API key is invalid or expired.")
+            print("  Check config.py and verify your GHL_API_KEY.")
+            return False
+        elif response.status_code == 403:
+            print(f"\n  FAILED: 403 Forbidden")
+            print("  Your sub-account may not have API access enabled.")
+            print("  Options:")
+            print("    1. Ask your agency admin to enable API access")
+            print("    2. Create a Private App at marketplace.gohighlevel.com")
+            print("    3. Skip API labs for now - focus on UI exercises")
+            return False
+        else:
+            print(f"\n  UNEXPECTED: Status {response.status_code}")
+            print(f"  Response: {response.text[:200]}")
+            return False
+    except requests.exceptions.ConnectionError:
+        print(f"\n  FAILED: Cannot connect to {GHL_BASE_URL}")
+        print("  Check your internet connection.")
+        return False
 
 
 # --- 1. Create a Contact ---
@@ -344,6 +400,14 @@ if __name__ == "__main__":
     print("=" * 60)
     print("GHL API Lab - Day 2: Contact Management")
     print("=" * 60)
+
+    # --- Exercise 0: Test connection (RUN THIS FIRST) ---
+    print("\n--- Exercise 0: Test API Connection ---")
+    test_api_connection()
+    # If this fails, fix your config.py before proceeding.
+    # If you get 403, API access may not be available on your sub-account.
+    # In that case, read through the script to understand the concepts,
+    # and focus on the UI exercises in the lesson.
 
     # --- Exercise 1: Create a single contact ---
     print("\n--- Exercise 1: Create Contact ---")

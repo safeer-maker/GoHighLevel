@@ -27,22 +27,21 @@ Reputation Management in GHL helps businesses:
 
 Positive reviews are critical for local businesses - 93% of consumers say online reviews impact their purchasing decisions.
 
-### Hands-On Exercise 10.1: Set Up Reputation Management
+### Hands-On Exercise 10.1: Explore Reputation Management
 
 Navigate to **Reputation** (left sidebar):
 
-1. **Connect review platforms:**
-   - Connect Google Business Profile (if available)
-   - Connect Facebook Page (if available)
-   - Review what other platforms are supported
+1. **Explore the interface:**
+   - Review what platforms can be connected (Google Business Profile, Facebook, etc.)
+   - **If you have a Google Business Profile or Facebook Page:** Connect it and explore the live review data
+   - **If you don't have these:** Explore the connection flow to understand what's required, then focus on the review request template and workflow exercises below (these work independently of connected platforms)
 2. **Review dashboard:**
-   - View overall rating
-   - See recent reviews
-   - Filter by platform, rating, date
-3. **Reply to reviews:**
-   - Find a review (or simulate one)
-   - Write a professional reply
+   - Explore the dashboard layout: overall rating, recent reviews, filters
+   - Note the available filter options (platform, rating, date range)
+3. **Reply functionality:**
+   - Explore how the reply interface works
    - Understand the difference between public and private replies
+   - **Key certification knowledge:** Know how GHL handles review responses even if you can't test with real reviews
 
 ### Hands-On Exercise 10.2: Create Review Request Templates
 
@@ -299,36 +298,38 @@ Phase 2 starts with combining everything you learned:
 
 ### Case Scenario 1: Restaurant Review System
 
-**Situation:** "The Garden Table" restaurant wants automated review requests.
+**Situation:** Build an automated review request system in your sub-account (works regardless of whether Google/Facebook is connected).
 
 **Your Task:**
-1. Set up reputation management for the restaurant
-2. Create a workflow:
-   - After a reservation time passes (simulate with appointment "Showed")
+1. Create the review request workflow (this is the core skill):
+   - Trigger: Appointment Status = "Showed"
    - Wait 2 hours
-   - Send SMS review request with direct Google review link
-   - If no review in 3 days, send a follow-up
-   - Track: who received requests, who left reviews
-3. Create a response template for:
+   - Send email review request with a placeholder review link (use `[REVIEW_LINK]` - in production this would be your Google review URL)
+   - Add tag "review-requested"
+   - Wait 3 days → If tag "review-left" not present → Send follow-up email
+   - Track via tags: "review-requested", "review-left", "review-sequence-complete"
+2. Create written response templates for (save as text documents or email templates):
    - 5-star reviews: Thank them, invite back
    - 1-3 star reviews: Apologize, offer to make it right, take offline
-4. Set up a notification when any review below 4 stars comes in
+3. **Test the workflow:** Create a test appointment, mark it as "Showed", verify the workflow fires and emails are sent on schedule (shorten wait times for testing)
 
 ### Case Scenario 2: Coaching Community with 3 Tiers
 
-**Situation:** "Elevate Coaching" offers a membership community with 3 access levels.
+**Situation:** Build a membership community in your sub-account with tiered access.
 
 **Your Task:**
-1. Build the community with proper branding
+1. Build the community with proper branding (name, logo, description, colors)
 2. Create groups for each tier:
    - **Free:** Welcome group, basic resources
-   - **Standard ($97/mo):** Bi-weekly coaching calls, templates, Q&A
-   - **Premium ($297/mo):** Everything in Standard + 1-on-1 calls, VIP group, premium resources
+   - **Standard:** Templates group, Q&A group
+   - **Premium:** VIP group, premium resources group
 3. Create an onboarding workflow:
-   - New member signs up → Welcome email → Tag with tier → Grant community access → Post intro prompt
-4. Create upgrade prompts:
-   - After 30 days in Free tier → SMS: "Ready to level up? Standard members get..."
-5. Create content for each group (at least 3 posts per group)
+   - Trigger: Tag "member-free" / "member-standard" / "member-premium" added
+   - Send welcome email appropriate to their tier
+   - (Community access granting may be manual depending on your setup)
+4. Create an upgrade prompt workflow:
+   - Trigger: Tag "member-free" added → Wait 30 days → Send email: "Ready to level up? Standard members get..."
+5. Create content: At least 2 posts per group (introductions, sample resources, a discussion starter)
 
 ### Case Scenario 3: Comprehensive Reporting Setup
 

@@ -44,9 +44,24 @@ cp config.py.example config.py  # Add your API key
 4. Complete the API lab (if applicable)
 5. Review with the recap questions at the end
 
+## Practice Environment
+
+This course is designed for a **single GHL sub-account** (no agency/admin access required). Here's how we handle common constraints:
+
+| Constraint | How We Handle It |
+|-----------|-----------------|
+| **Single user (no team members)** | You practice all features solo. Multi-user features (Round Robin, permissions) are explored for interface knowledge + documented for when you manage real teams. |
+| **No phone number** | SMS exercises are optional. All core workflows have email alternatives. Templates are still created for practice. |
+| **No Stripe/payment processor** | Products, invoices, and order forms can be built without processing real payments. Payment dashboards explored for interface familiarity. |
+| **No Google Business / Facebook Page** | Reputation interface explored. Review request workflows built using tags + email (work independently of connected platforms). |
+| **No custom domain** | GHL's default subdomain is used for funnels/websites. |
+| **No paid ads** | Funnels tested by visiting URLs directly in incognito - no Facebook/Google Ads needed. |
+
+Each lesson marks exercises that depend on optional resources, so you always know what's fully testable vs. what's a design/planning exercise.
+
 ## Prerequisites
 
-- Active GHL sub-account with full feature access
+- Active GHL sub-account (even practice/limited access works)
 - Python 3.8+ installed
 - Basic understanding of CRM/marketing automation concepts
 - Companion: HighLevel Certifications Program by Michael Johnson

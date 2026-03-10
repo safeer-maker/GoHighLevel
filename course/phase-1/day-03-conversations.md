@@ -43,26 +43,28 @@ The Conversations tab is GHL's unified inbox. All communication channels converg
    - Starred conversations
 4. Try the search function - search by name, email, phone, or message content
 
-### Hands-On Exercise 3.2: Purchase & Configure a Phone Number
+### Hands-On Exercise 3.2: Explore Phone Number Configuration
 
 Navigate to **Settings > Phone Numbers**:
 
-1. Click **"Buy Number"** or **"Add Number"**
-2. Select your country and area code
-3. Purchase a local number (or toll-free if available)
-4. Configure the number:
-   - Assign a friendly name (e.g., "Main Business Line")
-   - Set forwarding rules (where calls go when not answered in GHL)
-   - Enable call recording (if needed)
-5. Test the number:
-   - Send a test SMS from your personal phone TO the GHL number
-   - Check if it appears in Conversations
-   - Reply from GHL and verify it's received on your personal phone
+**If your sub-account already has a phone number:**
+1. Review the existing number configuration
+2. Check the assigned friendly name, forwarding rules, and call recording settings
+3. Test: Send an SMS from your personal phone to the GHL number
+4. Check if it appears in Conversations
+5. Reply from GHL and verify it's received on your personal phone
 
-**LC Trust Center (Cert Topic):**
+**If no phone number exists (and you can't purchase one):**
+1. Explore the "Buy Number" interface - note the options (local, toll-free, area code selection)
+2. Review the configuration options you WOULD set (friendly name, forwarding, recording)
+3. **Focus on email-based exercises** for the rest of this lesson - you can still practice templates, webchat, and conversations via email
+4. SMS-specific exercises become optional/theoretical - document what you WOULD configure
+
+**LC Trust Center (Cert Topic) - explore regardless of phone number:**
 - Navigate to Settings > Phone Numbers > Trust Center
 - Understand A2P 10DLC registration (required for US SMS)
 - Review compliance requirements for SMS messaging
+- Document what registration steps are required (important for certification)
 
 ### Hands-On Exercise 3.3: Send Your First Messages
 
@@ -297,10 +299,10 @@ The script demonstrates:
 
 ### Case Scenario 1: Law Firm Communication Setup
 
-**Situation:** A law firm needs standardized communication across their team of 5 attorneys.
+**Situation:** Configure your sub-account's communication templates as if it were a law firm. Focus on template creation and webchat setup (no additional staff needed).
 
 **Your Task:**
-1. Create SMS templates for:
+1. Create SMS templates for (even if no phone number, practice writing them):
    - Initial inquiry response (under 2 minutes)
    - Consultation scheduling confirmation
    - Case status update notification
@@ -314,18 +316,17 @@ The script demonstrates:
    - Legal disclaimer in the greeting
    - After-hours message with emergency contact info
    - Pre-chat form requiring name, email, phone, and case type (dropdown)
-4. Configure missed call text back with a professional legal tone
+4. If you have a phone number: configure missed call text back with a professional legal tone. If not: document what the message WOULD say.
 
 ### Case Scenario 2: Restaurant Communication System
 
-**Situation:** "The Garden Table" restaurant needs a communication system for reservations and promotions.
+**Situation:** Configure your sub-account's templates and webchat as if it were "The Garden Table" restaurant.
 
 **Your Task:**
-1. Set up all communication channels:
-   - Purchase a local phone number
-   - Configure webchat for the restaurant website
-   - Set up missed call text back
-2. Create SMS templates:
+1. Set up available communication channels:
+   - Configure webchat widget with a restaurant greeting and reservation inquiry flow
+   - If phone number available: set up missed call text back
+2. Create SMS templates (practice writing them even if no phone number):
    - Reservation confirmation
    - Day-of reminder (2 hours before)
    - Waitlist notification ("Your table is ready!")
@@ -334,11 +335,10 @@ The script demonstrates:
    - Weekly specials newsletter
    - Birthday/anniversary special offer
    - Event invitation (wine tasting, live music, etc.)
-4. Test the complete flow:
-   - Customer sends a webchat message asking about reservations
-   - You respond and collect their details
-   - Send a confirmation SMS
-   - Send a reminder the day of
+4. Test what you can:
+   - Open the webchat widget and send a test message
+   - Reply from GHL Conversations
+   - Send an email to a test contact using your templates
 
 ---
 

@@ -2,6 +2,9 @@
 Day 4 API Lab: Calendars & Appointments via GHL API
 ====================================================
 List calendars, check availability, create/manage appointments.
+
+NOTE: Run day-02's test_api_connection() first to verify API access.
+If you get 401/403, see config.py.example for setup instructions.
 """
 
 import requests

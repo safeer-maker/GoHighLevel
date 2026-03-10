@@ -178,7 +178,7 @@ Navigate to **Sites > Funnels** (you'll create a full funnel on Day 8, but let's
    - Configure the checkout form fields
    - Add the coupon field (allow coupon entry)
 4. Preview the page and test the order form flow
-5. If Stripe is connected, attempt a test payment (use Stripe test mode)
+5. **Payment processor note:** If Stripe/PayPal is connected, test a payment in test mode. If no payment processor is connected, you can still build the entire order form - it just won't process actual payments. Explore Settings > Payments to see integration options and understand what's required.
 
 ---
 

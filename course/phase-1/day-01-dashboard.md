@@ -186,28 +186,32 @@ Navigate to **Settings > Templates** (or related section):
    - Hours: "Mon-Thu 8AM-5PM, Fri 8AM-2PM"
    - Emergency number
    - New patient offer: "Free Dental Exam & X-Rays for New Patients"
-3. Set up user notification preferences so:
-   - Front desk gets ALL notifications (calls, messages, appointments)
-   - Dentists only get appointment notifications
-   - Hygienist gets appointment reminders only
-4. Document what you configured and why
+3. **Plan** the notification preferences for each role (document what you'd configure):
+   - Front desk: ALL notifications (calls, messages, appointments)
+   - Dentists: appointment notifications only
+   - Hygienist: appointment reminders only
+4. Configure YOUR notification preferences as if you were the front desk (full notifications)
+5. Document what you configured and why
 
 **Deliverable:** Screenshot or document your complete settings configuration.
 
-### Case Scenario 2: Real Estate Team User Roles
+### Case Scenario 2: Real Estate Team User Roles (Planning Exercise)
 
 **Situation:** A real estate team "Metro Homes Realty" has:
 - 1 Team Lead (needs full access + reporting)
 - 3 Agents (need conversations, contacts, and their own pipelines only)
 - 1 Admin Assistant (needs to manage calendars and send messages, but not see financial data)
 
-**Your Task:**
-1. Plan the permission structure for each role
-2. Create the team members with appropriate permissions
-3. Test "Only Assigned Data" - when an agent logs in, can they see other agents' contacts?
-4. Document the permission matrix you created
+**Your Task (document-based - no extra accounts needed):**
+1. Navigate to Settings > My Staff and explore the available permission options
+2. **Plan** the permission structure for each role - document what you WOULD enable/disable for each
+3. Create a permission matrix table showing each role vs. each GHL feature (access level: Full / View Only / No Access)
+4. Explore the "Only Assigned Data" toggle and document what it does
+5. If you have a secondary email, optionally create ONE test user to see how permissions look from their side
 
-**Deliverable:** A table showing each role and their permission levels for each GHL feature.
+**Note:** You don't need to create all 5 users. The learning goal is understanding GHL's permission system and designing role-based access.
+
+**Deliverable:** A permission matrix table showing each role and their access levels for each GHL feature.
 
 ---
 

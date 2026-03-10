@@ -53,12 +53,12 @@ Navigate to **Calendars > + Create Calendar > Group**:
 - Minimum scheduling notice: 2 hours (prevent last-minute bookings)
 
 **Step 2: Team Members**
-- Add yourself as a team member
-- If you have other users, add them too
-- Set individual availability for each member:
+- Add yourself as the team member
+- **Single-user note:** Round Robin with one person still works - all bookings go to you. The goal here is to learn the interface, settings, and how distribution WOULD work. When you manage a real team later, you'll add multiple members here.
+- Set your availability:
   - Mon-Fri: 9:00 AM - 5:00 PM
   - Exclude lunch: 12:00 PM - 1:00 PM
-- Set round-robin distribution: "Optimize for equal distribution"
+- Explore the round-robin distribution settings: "Optimize for equal distribution" vs "Availability-based"
 
 **Step 3: Booking Form**
 - Required fields: Name, Email, Phone
@@ -219,15 +219,12 @@ The script covers:
 
 ### Case Scenario 1: Fitness Studio Booking System
 
-**Situation:** A fitness studio needs booking for 3 different services:
-- Personal Training (4 trainers, round robin)
-- Group Classes (HIIT, Yoga, Pilates - max 20 per class)
-- Nutrition Consultation (1 nutritionist, basic calendar)
+**Situation:** Configure your sub-account's calendars as a fitness studio with 3 service types.
 
 **Your Task:**
 1. Create a Round Robin calendar: "Personal Training Session"
    - 60-minute sessions, 15-min buffer
-   - 4 trainers (use test accounts or yourself)
+   - Add yourself as the sole team member (in production you'd add 4 trainers)
    - Mon-Sat availability
    - Custom question: "What are your fitness goals?"
 2. Create 3 Class Booking calendars:
@@ -238,22 +235,24 @@ The script covers:
    - 45-minute sessions
    - Tue/Thu 9AM-3PM only
    - Custom intake form with dietary restrictions dropdown
-4. Test booking on all calendars
-5. Create a confirmation workflow outline (which messages send when)
+4. Test booking on all 5 calendars (open each link in incognito, book a slot)
+5. Document: What confirmation messages SHOULD send at each step? (You'll build these workflows on Day 9)
 
-### Case Scenario 2: Consulting Firm - Lead-Specific Booking
+**Key learning:** You now have all 3 calendar types configured. The Class Booking and Basic calendars work perfectly with a single user. The Round Robin demonstrates the interface - with a real team, you'd simply add more members.
 
-**Situation:** A consulting firm assigns leads to specific consultants via automation. When following up, the lead should ONLY book with their assigned consultant.
+### Case Scenario 2: Consulting Firm - Lead-Specific Booking (Design Exercise)
+
+**Situation:** A consulting firm assigns leads to specific consultants. Design how this WOULD work.
 
 **Your Task:**
-1. Create a Round Robin calendar for initial lead assignment
-2. Set up the `{{user.calendar}}` link system
-3. Design the flow:
+1. Create a Round Robin calendar (with yourself as the only member)
+2. Explore the `{{user.calendar}}` merge field - find where it's available in templates/workflows
+3. **Design and document** the flow (you can build the pieces, but full testing requires multiple users):
    - Lead fills out inquiry form
    - Automation assigns to a consultant (round robin)
    - Follow-up SMS/email includes `{{user.calendar}}` so they book with their assigned consultant
-4. Test the complete flow with 2 different contacts
-5. Document what happens if the assigned consultant is unavailable
+4. Test what you can: Create the form, create the workflow structure, verify `{{user.calendar}}` resolves for YOUR user
+5. Document: What would happen if the assigned consultant is unavailable?
 
 ---
 
