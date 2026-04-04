@@ -6,301 +6,599 @@
 
 ---
 
-## Learning Objectives
+## Today's Mission
 
-1. Create and manage products (one-time and recurring)
-2. Generate invoices with taxes, discounts, and recurring billing
-3. Set up Text2Pay links and coupon codes
-4. Navigate Orders, Subscriptions, and Transactions dashboards
+Sunrise Wellness Studio has leads flowing through the pipeline (Day 5), but none of that matters if the studio cannot collect money. Today you will build the entire payment infrastructure for the studio: every product the business sells (memberships, sessions, supplements, packages), invoices for collecting payments, coupons for promotions, and Text2Pay for sending payment links via SMS.
+
+Here is the real-world scenario: David Kim just moved to "Closed - Member" in your sales pipeline yesterday. He chose the Premium membership at $149/mo. You need to charge him an activation fee, his first month's membership, and he wants to grab the Protein Starter Kit. That means you need products created, an invoice built, and a way to send it to him. That is what today is all about.
+
+**Important note about Stripe:** Many of today's exercises involve creating products, invoices, and payment structures. If you do not have Stripe (or another payment processor) connected to your sub-account, you can still complete almost everything. You will build all the products, invoices, and coupons -- they just will not process live payments. The infrastructure will be fully ready for when a payment processor is connected. Exercises that specifically require Stripe will be clearly marked.
 
 ---
 
-## Part 1: Products Setup (30 min)
+## Learning Objectives
 
-### Theory Recap
+1. Understand the GHL payment ecosystem: products, invoices, coupons, and payment links
+2. Create all Sunrise Wellness products (one-time and recurring)
+3. Build and send invoices (one-time and recurring)
+4. Configure sales tax
+5. Set up promotional coupons tied to the studio's marketing offers
+6. Explore Text2Pay for mobile-first payment collection
+7. Navigate the Orders, Subscriptions, and Transactions dashboards
 
-Products are the foundation of GHL's payment system. Before creating invoices or order forms, you need products defined. Products can be:
-- **One-time:** Single purchase (e.g., consultation fee, setup fee)
-- **Recurring:** Subscription-based (e.g., monthly membership, retainer)
+---
 
-### Hands-On Exercise 6.1: Create Products
+## Part 1: Products (40 min)
 
-Navigate to **Payments > Products** (or Products section):
+### What is a Product?
 
-Create these products:
+A **product** in GHL is anything your business sells that has a price attached to it. It is the foundational building block of the entire payment system -- before you can create an invoice, order form, or payment link, you need products defined.
 
-| Product Name | Type | Price | Description |
-|-------------|------|-------|-------------|
-| Initial Consultation | One-time | $150.00 | 60-minute initial consultation |
-| Basic Membership | Recurring/Monthly | $99.00/mo | Basic monthly membership |
-| Premium Membership | Recurring/Monthly | $199.00/mo | Premium monthly membership with all features |
-| VIP Day Package | One-time | $2,500.00 | Full-day VIP intensive session |
-| Setup Fee | One-time | $500.00 | One-time onboarding and setup |
-| Annual Plan | Recurring/Yearly | $999.00/yr | Annual membership (discounted) |
+Think of it like a restaurant menu. Before a waiter can take an order, the menu needs to exist with items and prices listed. Products are your menu.
 
-For each product:
-1. Set the name and description
-2. Set the price and billing frequency
-3. Add a product image (optional but recommended)
-4. Save and note the product ID
+Products come in two types:
 
-### Hands-On Exercise 6.2: Import Products (if applicable)
+- **One-time products** -- The customer pays once and the transaction is complete. Examples: a single PT session, a supplement purchase, a setup fee.
+- **Recurring products** -- The customer pays on a schedule (monthly, yearly, weekly) until they cancel. Examples: a monthly membership, an annual plan.
 
-If GHL supports product import:
-1. Prepare a CSV with product data
-2. Import products
-3. Verify all products imported correctly
+### Why Set Up Products First?
+
+Products are referenced everywhere in GHL:
+- **Invoices** pull from your product list
+- **Order forms** on funnels and websites display your products
+- **Text2Pay links** can include specific products
+- **Coupons** can be restricted to specific products
+- **Subscription management** tracks recurring products
+
+If you skip product setup and manually type prices into invoices, you will have inconsistent pricing, no reporting by product, and no way to attach coupons. Define your products once, use them everywhere.
+
+### Hands-On Exercise 6.1: Create All Sunrise Wellness Products
+
+*This exercise teaches you to set up a complete product catalog for a business.*
+
+Navigate to **Payments > Products** and click **+ Add Product** (or **Create Product**).
+
+You will create 10 products. For each one, follow these steps:
+1. Enter the **product name**
+2. Set the **price** and **billing type** (one-time or recurring)
+3. For recurring products, set the **billing interval** (monthly, yearly)
+4. Add a **description** that explains what the customer is buying
+5. Optionally upload a **product image**
+6. Save the product
+
+**Recurring Products (Memberships):**
+
+| Product Name | Price | Type | Billing Interval | Description |
+|-------------|-------|------|------------------|-------------|
+| Free Trial - 7 Day Pass | $0.00 | One-time | N/A | Complimentary 7-day access to all classes and facilities. No payment required. |
+| Basic Membership | $79.00 | Recurring | Monthly | Access to all group fitness classes (HIIT, Yoga, Pilates). Mon-Sat during studio hours. |
+| Premium Membership | $149.00 | Recurring | Monthly | Everything in Basic plus 2 PT sessions/month and priority class booking. |
+| VIP Membership | $249.00 | Recurring | Monthly | Unlimited everything: all classes, unlimited PT, nutrition coaching, guest passes, and retail discounts. |
+| Annual Plan | $790.00 | Recurring | Yearly | Full Premium access billed annually. Save over $1,000 compared to monthly Premium pricing. |
+
+**One-Time Products (Services & Retail):**
+
+| Product Name | Price | Type | Description |
+|-------------|-------|------|-------------|
+| PT Session - Single | $75.00 | One-time | One 60-minute Personal Training session with a certified trainer. |
+| 10-Class Pack | $120.00 | One-time | Pack of 10 group fitness class credits. Use for any class (HIIT, Yoga, Pilates). No expiration. |
+| Nutrition Plan | $200.00 | One-time | Personalized nutrition plan including initial consultation, meal plan, and 2-week follow-up. |
+| Protein Starter Kit | $45.00 | One-time | Starter kit with protein powder, shaker bottle, and sample supplements. |
+| Setup / Activation Fee | $25.00 | One-time | One-time account activation and orientation fee for new members. |
+
+**After creating all 10 products:**
+1. View your complete product list -- all 10 should appear
+2. Verify the pricing is correct for each one
+3. Check that recurring products show the correct billing interval
+4. Note how GHL organizes products -- this list is what you will pull from when creating invoices and order forms
+
+> **Pro Tip:** The Free Trial at $0 might seem unnecessary as a product, but creating it serves a purpose. It allows you to track trial sign-ups in the Orders dashboard, attach it to order forms, and run reports on how many trials convert to paid memberships. A $0 product is still a product.
 
 ---
 
 ## Part 2: Invoicing (60 min)
 
-### Hands-On Exercise 6.3: Create a One-Time Invoice
+### What is an Invoice?
 
-Navigate to **Payments > Invoices > + Create Invoice**:
+An **invoice** is a formal payment request you send to a customer. It lists what they owe, the amounts, any taxes or discounts, and provides a way for them to pay (usually a link to an online payment page).
 
-1. **Select contact:** Choose a test contact
-2. **Add line items:**
-   - Initial Consultation: $150.00 x 1
-   - Setup Fee: $500.00 x 1
-3. **Add tax** (Exercise 6.4 below first, then come back)
-4. **Set due date:** 7 days from today
-5. **Add notes:** "Thank you for choosing our services!"
-6. **Set payment terms:** Net 7
-7. **Preview** the invoice
-8. **Send** the invoice via email
+In GHL, invoices can be:
+- **One-time** -- A single bill for specific products/services (e.g., "Here is your bill for the PT session and Protein Kit")
+- **Recurring** -- An automatic repeating charge (e.g., "$149/mo for Premium Membership, charged on the 1st of every month")
 
-**Observe:** Check the contact's conversation - did they receive the invoice email?
+Think of a one-time invoice like a restaurant bill (you pay once and you are done), and a recurring invoice like a utility bill (it shows up every month automatically).
 
-### Hands-On Exercise 6.4: Set Up Taxes
+### Why Use Invoices Instead of Just Charging People?
 
-Navigate to **Payments > Settings > Taxes** (or Invoices > Tax Settings):
+Invoices create a paper trail. They are professional, trackable, and give the customer a clear breakdown of what they are paying for. They also:
+- Show up in the customer's conversation history (Day 3)
+- Can be tracked by status (Draft, Sent, Viewed, Paid, Overdue, Void)
+- Generate records in the Transactions dashboard
+- Can include taxes, discounts, and multiple line items
 
-1. Create a tax rate:
-   - Name: "Sales Tax"
-   - Rate: 8.25% (or your local rate)
-   - Type: Percentage
-2. Create a second tax (if applicable):
-   - Name: "Service Tax"
-   - Rate: 5%
-3. Set a default tax for invoices
-4. Go back to your invoice and apply the tax
+### Hands-On Exercise 6.2: Create a One-Time Invoice for a New VIP Member
 
-### Hands-On Exercise 6.5: Create a Recurring Invoice (Auto-Pay)
+*This exercise teaches you to build a multi-line invoice with different products.*
 
-1. Create a new invoice
-2. Select a contact
-3. Add line item: "Premium Membership - $199.00/mo"
-4. Enable **Recurring/Auto-Pay:**
-   - Billing frequency: Monthly
-   - Start date: Today
-   - End date: None (ongoing) or set a term (12 months)
-5. Send the invoice
-6. Verify the recurring schedule is set up correctly
+**Scenario:** David Kim just signed up for VIP membership. His first invoice includes the activation fee, first month's VIP membership, and the Protein Starter Kit he wants to purchase.
 
-### Hands-On Exercise 6.6: Invoice Management
+Navigate to **Payments > Invoices** and click **+ Create Invoice**.
 
-1. View all invoices in the Invoices list
-2. Filter by status: Draft, Sent, Paid, Overdue, Void
-3. Open a sent invoice:
-   - Check if the client has viewed it
-   - Record a manual payment (mark as paid)
-   - Void an invoice
-4. Resend an unpaid invoice with a reminder message
+**Step 1: Select the contact**
+- Search for David Kim (or whichever contact you used for the "Closed - Member" opportunity in Day 5)
 
----
+**Step 2: Add line items**
+Click "Add Item" and select from your product catalog:
 
-## Part 3: Text2Pay (30 min)
+| Line Item | Qty | Price | Subtotal |
+|-----------|-----|-------|----------|
+| Setup / Activation Fee | 1 | $25.00 | $25.00 |
+| VIP Membership (first month) | 1 | $249.00 | $249.00 |
+| Protein Starter Kit | 1 | $45.00 | $45.00 |
 
-### Theory Recap
+**Step 3: Review the subtotal**
+- Subtotal should be: **$319.00**
 
-Text2Pay sends a payment link via SMS. The customer clicks the link, enters their card info, and pays - all from their phone. Great for:
-- Service-based businesses (pay after service)
-- Quick invoicing without email
-- Mobile-first customers
+**Step 4: Set invoice details**
+- **Due date:** 7 days from today
+- **Notes to customer:** "Welcome to Sunrise Wellness Studio, David! This invoice covers your activation fee, first month of VIP membership, and the Protein Starter Kit. We are excited to have you on board!"
+- **Payment terms:** Net 7
 
-### Hands-On Exercise 6.7: Send a Text2Pay Link
+**Step 5: Preview the invoice**
+- Click Preview to see how it will look to David
+- Verify all line items, amounts, and totals are correct
 
-Navigate to **Payments > Text2Pay** (or create from Invoices):
+**Step 6: Send the invoice**
+- Send via email
+- Check David's conversation record in GHL -- the invoice email should appear in his timeline
 
-1. Select a contact
-2. Set the amount: $150.00
-3. Add a description: "Initial Consultation - Jan 2024"
-4. Choose products or enter custom amount
-5. Send the Text2Pay SMS
-6. Check the contact's conversation for the payment link
-7. Click the link yourself (in incognito) to see the payment page
-8. Review the payment page appearance and branding
+> **Pro Tip:** If you do not have a payment processor connected, the invoice will still be created and can be sent, but the customer will not be able to pay online. They would need to pay in person or via another method, and you would manually mark the invoice as paid.
 
----
+### Hands-On Exercise 6.3: Create a Recurring Invoice
 
-## Part 4: Coupons & Discounts (20 min)
+*This exercise teaches you to set up automatic monthly billing.*
 
-### Hands-On Exercise 6.8: Create Coupons
+**Scenario:** Priya Sharma (from your onboarding pipeline) has a Premium membership at $149/mo. She needs a recurring invoice that charges her automatically every month.
 
-Navigate to **Payments > Coupons** (or Marketing > Coupons):
+Navigate to **Payments > Invoices > + Create Invoice**.
 
-Create these coupons:
+1. **Select contact:** Priya Sharma
+2. **Add line item:** Premium Membership - $149.00
+3. **Enable Recurring / Auto-Pay:**
+   - **Billing frequency:** Monthly
+   - **Start date:** Today (or the 1st of the month)
+   - **End date:** Leave blank for ongoing (or set to 12 months if you want a fixed term)
+4. **Send the invoice**
+5. **Verify:** Check that the recurring schedule appears correctly -- GHL should show the next billing date
 
-| Coupon Code | Type | Value | Restrictions |
-|------------|------|-------|-------------|
-| WELCOME20 | Percentage | 20% off | First-time customers only, single use |
-| SAVE50 | Fixed Amount | $50 off | Orders over $200, unlimited uses |
-| ANNUAL10 | Percentage | 10% off | Annual plans only, expires in 30 days |
-| VIPFRIEND | Percentage | 15% off | Referral coupon, 50 total uses |
+**Understanding recurring invoice behavior:**
+- The first invoice is sent immediately (or on the start date)
+- Subsequent invoices are generated and sent automatically on the billing cycle
+- If a payment fails, GHL tracks it as "Failed" and can retry
+- The customer can cancel or you can void the recurring invoice to stop future charges
 
-For each coupon:
-1. Set the code, type, and value
-2. Configure restrictions (minimum order, specific products, expiry date)
-3. Set usage limits (per customer, total)
-4. Test the coupon on an order form or invoice
+### Hands-On Exercise 6.4: Invoice Management
 
-### Hands-On Exercise 6.9: Apply Coupon to an Invoice
+*This exercise teaches you to handle the day-to-day administration of invoices.*
 
-1. Create a new invoice with a VIP Day Package ($2,500)
-2. Apply the WELCOME20 coupon
-3. Verify the discount is calculated correctly ($2,500 - 20% = $2,000)
-4. Add tax to the discounted amount
-5. Review the final total
+Go to **Payments > Invoices** and explore the invoice list:
+
+1. **Filter by status** -- Click the status filters to view:
+   - **Draft** -- Created but not yet sent (still editable)
+   - **Sent** -- Delivered to the customer, awaiting payment
+   - **Viewed** -- The customer opened the invoice email or clicked the payment link
+   - **Paid** -- Payment received (automatically marked if processor is connected, or manually marked)
+   - **Overdue** -- Past the due date and still unpaid
+   - **Void** -- Cancelled invoice (use this if an invoice was sent in error)
+
+2. **Record a manual payment** -- Open David's invoice and mark it as "Paid" manually. This is how you handle cash, check, or in-person card payments that do not go through GHL's online payment system.
+
+3. **Void an invoice** -- Create a test invoice, then void it. Note how voided invoices remain in the system for record-keeping but are clearly marked as void.
+
+4. **Resend an invoice** -- Open Priya's invoice and click "Resend." Add a note: "Friendly reminder -- your Premium membership invoice is ready for payment!" This is useful for overdue invoices.
 
 ---
 
-## Part 5: Order Forms & Funnel Integration (30 min)
+## Part 3: Taxes (15 min)
 
-### Hands-On Exercise 6.10: Add Product to a Funnel Order Form
+### What Are Taxes in GHL?
 
-Navigate to **Sites > Funnels** (you'll create a full funnel on Day 8, but let's preview):
+If your business is required to collect sales tax (most are, depending on your state/country and what you sell), GHL lets you define tax rates and apply them to invoices and products. This ensures every invoice automatically calculates the correct tax amount.
 
-1. Create a simple funnel page or find an existing one
-2. Add an **Order Form** element to the page
-3. Connect a product to the order form:
-   - Select "Basic Membership - $99/mo"
-   - Configure the checkout form fields
-   - Add the coupon field (allow coupon entry)
-4. Preview the page and test the order form flow
-5. **Payment processor note:** If Stripe/PayPal is connected, test a payment in test mode. If no payment processor is connected, you can still build the entire order form - it just won't process actual payments. Explore Settings > Payments to see integration options and understand what's required.
+### Why Set This Up?
+
+Without tax configuration, you would need to manually calculate tax for every invoice -- error-prone and time-consuming. Setting it up once means every future invoice automatically includes the correct tax.
+
+### Hands-On Exercise 6.5: Configure Sales Tax
+
+*This exercise teaches you to set up tax rates that auto-apply to invoices.*
+
+Navigate to **Payments > Settings > Taxes** (or look for Tax Settings within the Invoices section):
+
+1. **Create a tax rate:**
+   - **Name:** "Sales Tax"
+   - **Rate:** 8.25% (or use your actual local rate)
+   - **Type:** Percentage
+   - Save the tax rate
+
+2. **Set as default** (if the option exists) -- This auto-applies the tax to new invoices so you do not have to add it manually each time.
+
+3. **Apply tax to David's invoice:**
+   - Go back to David's invoice (or create a new test invoice)
+   - Apply the Sales Tax to the line items
+   - Verify the calculation:
+     - Subtotal: $319.00
+     - Tax (8.25%): $26.32
+     - **Total: $345.32**
+
+> **Pro Tip:** Not all products may be taxable. In many jurisdictions, services (like PT sessions) are taxed differently from physical goods (like the Protein Starter Kit). Check your local tax laws. GHL allows you to apply tax selectively per line item if needed.
 
 ---
 
-## Part 6: Payment Dashboards (20 min)
+## Part 4: Text2Pay (20 min)
 
-### Hands-On Exercise 6.11: Review Payment Dashboards
+### What is Text2Pay?
+
+**Text2Pay** is exactly what it sounds like: you send a payment link via text message (SMS), and the customer taps the link on their phone, enters their card info, and pays. Done.
+
+Think of it like Venmo or Cash App, but professional and tied to your business. The customer does not need to download anything -- they just tap a link in a text message.
+
+### Why Use Text2Pay?
+
+- **Speed** -- Faster than emailing an invoice. The customer pays in 30 seconds from their phone.
+- **Higher payment rates** -- People open texts faster than emails (98% open rate for SMS vs. ~20% for email).
+- **Perfect for in-the-moment charges** -- A member just finished a PT session? Text them the payment link before they leave the parking lot.
+- **Mobile-first customers** -- Many Sunrise Wellness members are active, on-the-go people who live on their phones.
+
+### Hands-On Exercise 6.6: Send a Text2Pay Link
+
+*This exercise teaches you to create and send a mobile payment link. If you do not have a phone number configured in your sub-account, read through the steps to understand the process -- you will still learn the concept.*
+
+**Scenario:** James Rodriguez just completed a drop-in PT session ($75). Instead of making him wait at the front desk, you text him a payment link.
+
+Navigate to **Payments > Text2Pay** (or create one from the contact's conversation):
+
+1. **Select the contact:** James Rodriguez
+2. **Set the amount:** $75.00
+3. **Select the product:** PT Session - Single (from your product catalog)
+4. **Add a description:** "Personal Training Session - [today's date]"
+5. **Send the Text2Pay SMS**
+6. **Check the contact's conversation** -- the payment link message should appear in the SMS thread
+7. If possible, **open the payment link** in an incognito browser to see the payment page from the customer's perspective. Note the branding, amount, and payment form.
+
+**When to use Text2Pay vs. Invoice:**
+
+| Situation | Use Text2Pay | Use Invoice |
+|-----------|-------------|-------------|
+| Quick, simple payment (one item) | Yes | Overkill |
+| Multiple line items with breakdown | No | Yes |
+| Need a formal document for records | No | Yes |
+| Customer prefers mobile/SMS | Yes | Maybe also |
+| Recurring monthly charges | No | Yes (recurring) |
+| After an in-person service | Yes | Too slow |
+
+> **Pro Tip:** Text2Pay is perfect for Sunrise Wellness's drop-in services. PT sessions, single class purchases, and retail product sales can all be collected via Text2Pay right after the service is delivered. No awkward "please check your email" -- just a quick text.
+
+---
+
+## Part 5: Coupons & Promotions (25 min)
+
+### What is a Coupon?
+
+A **coupon** (also called a discount code or promo code) is a code that customers enter to receive a discount on their purchase. In GHL, coupons can offer percentage discounts or fixed dollar amounts, and they can be restricted to specific products, usage limits, and expiration dates.
+
+### Why Do You Need Coupons?
+
+Coupons drive specific business behaviors:
+- **Acquire new members** -- "20% off your first month" lowers the barrier to sign up
+- **Reward referrals** -- "Free PT session for referring a friend" incentivizes word-of-mouth
+- **Reduce price sensitivity** -- "10% off annual plan" nudges people toward a higher-commitment (and higher-value) plan
+- **Re-engage lapsed leads** -- "$20 off first month for trial members" converts people sitting in the "Closed - Not Now" stage
+
+### Hands-On Exercise 6.7: Create Sunrise Wellness Coupons
+
+*This exercise teaches you to create coupons with different discount types and restrictions.*
+
+Navigate to **Payments > Coupons** and click **+ Create Coupon** (or **Add Coupon**).
+
+Create these 4 coupons:
+
+**Coupon 1: WELCOME20**
+
+| Setting | Value |
+|---------|-------|
+| **Code** | WELCOME20 |
+| **Discount type** | Percentage |
+| **Discount value** | 20% |
+| **Applies to** | All membership products (Basic, Premium, VIP) |
+| **Usage limit per customer** | 1 (single use) |
+| **Total usage limit** | Unlimited |
+| **Expiration** | None (always available) |
+| **Description** | 20% off your first month -- our standard welcome offer |
+
+This is the coupon that matches the `{{offer.discount}}` custom value you created on Day 1. When the studio runs a "20% Off Your First Month" campaign, this is the code customers use.
+
+**Coupon 2: REFERRAL**
+
+| Setting | Value |
+|---------|-------|
+| **Code** | REFERRAL |
+| **Discount type** | Fixed amount |
+| **Discount value** | $75.00 |
+| **Applies to** | PT Session - Single only |
+| **Usage limit per customer** | 1 |
+| **Total usage limit** | Unlimited |
+| **Expiration** | None |
+| **Description** | Free PT session for members who refer a new member |
+
+This ties into a referral program: when a current member refers someone who signs up, the referring member gets a free PT session. The coupon covers the full $75 cost.
+
+**Coupon 3: ANNUAL10**
+
+| Setting | Value |
+|---------|-------|
+| **Code** | ANNUAL10 |
+| **Discount type** | Percentage |
+| **Discount value** | 10% |
+| **Applies to** | Annual Plan only |
+| **Usage limit per customer** | 1 |
+| **Total usage limit** | 50 (limited promotion) |
+| **Expiration** | 30 days from today |
+| **Description** | 10% off the annual plan -- limited-time promotion to drive annual commitments |
+
+The Annual Plan is already a great deal ($790/yr vs. $1,788/yr for monthly Premium). This coupon stacks an extra 10% to create urgency during a promotional period.
+
+**Coupon 4: TRIALCONVERT**
+
+| Setting | Value |
+|---------|-------|
+| **Code** | TRIALCONVERT |
+| **Discount type** | Fixed amount |
+| **Discount value** | $20.00 |
+| **Applies to** | Basic Membership, Premium Membership, VIP Membership |
+| **Usage limit per customer** | 1 |
+| **Total usage limit** | Unlimited |
+| **Expiration** | None |
+| **Description** | $20 off first month for members converting from a free trial |
+
+This coupon is specifically for people in the "Trial Follow-Up" stage of your pipeline. When you are trying to convert Emma Thompson or James Rodriguez from their trial to a paid membership, offering $20 off the first month can tip the decision.
+
+**After creating all 4 coupons:**
+1. Review your coupon list -- all 4 should appear with their codes, discount values, and statuses
+2. Verify the restrictions are set correctly (product-specific, usage limits, expiration)
+3. Test a coupon: create a test invoice, add a membership product, and apply the WELCOME20 coupon to see the discount calculate correctly
+
+> **Pro Tip:** Track coupon usage over time. If WELCOME20 is used 100 times but ANNUAL10 is used 3 times, that tells you the annual promotion needs better visibility or a bigger discount. Coupons are not just discounts -- they are data.
+
+---
+
+## Part 6: Order Forms Preview (15 min)
+
+### What is an Order Form?
+
+An **order form** is an embedded checkout experience on a website or funnel page. Instead of sending an invoice to a specific person, an order form is public-facing -- anyone who visits the page can purchase.
+
+Think of invoices as "you go to the customer" and order forms as "the customer comes to you."
+
+### Why Does This Matter?
+
+On Day 8 (Sites & Funnels), you will build full funnel pages with embedded order forms for Sunrise Wellness. Today is a preview so you understand how products connect to order forms.
+
+### Hands-On Exercise 6.8: Preview Order Form Setup
+
+*This exercise gives you a preview of how products connect to funnels. You will build the full funnel on Day 8.*
+
+Navigate to **Sites > Funnels** (or **Funnels** in the left sidebar):
+
+1. **Create a simple test funnel** (or open an existing one if available)
+2. Look for the **Order Form** element in the page builder
+3. If you can add one, connect it to a product:
+   - Select "Basic Membership - $79/mo"
+   - Note how the price, name, and billing type auto-populate from your product catalog
+   - Toggle the "Coupon" field on -- this allows visitors to enter a coupon code at checkout
+4. **Preview the page** to see the checkout form from the customer's perspective
+5. **Do not publish** -- this is just a preview for today. You will build the real funnel on Day 8.
+
+**Key takeaway:** This is why you created products first. The order form pulls from your product catalog. If you had not defined your products, you would have to manually enter pricing on every order form, which creates inconsistency and errors.
+
+> **Pro Tip:** If you do not have a payment processor connected, the order form will display correctly but will not process payments. You can still build and preview the entire checkout experience. Connect Stripe later and it works immediately because the infrastructure is already built.
+
+---
+
+## Part 7: Payment Dashboards (20 min)
+
+### What Are the Payment Dashboards?
+
+GHL provides three dashboards that give you visibility into all payment activity. Think of them as three different lenses for viewing the same financial data:
+
+- **Orders** -- Individual purchases (who bought what, when, and for how much)
+- **Subscriptions** -- Recurring payment tracking (who is on a monthly plan, is it active or cancelled)
+- **Transactions** -- Raw payment records (charges, refunds, failures -- the bank-level view)
+
+### Why Do These Matter?
+
+Without dashboards, you would need to log into Stripe (or your payment processor) separately to check payment status. GHL centralizes this so you can see everything alongside your contacts, conversations, and pipeline data.
+
+### Hands-On Exercise 6.9: Explore the Payment Dashboards
+
+*This exercise teaches you to navigate the three payment views and understand what each one shows.*
 
 Navigate to **Payments** and explore each tab:
 
-**Orders:**
-- View all completed orders
-- Filter by date range, product, status
-- Check order details (products, customer, payment method)
+**Orders Tab:**
+- View all completed orders (if you have any from test payments)
+- Filter by date range, product, and status
+- Click into an order to see: which products were purchased, the customer, payment method, and timestamp
+- In production, this is where the front desk would check if a member's payment went through
 
-**Subscriptions:**
-- View active subscriptions
-- Check subscription status (active, paused, cancelled)
-- Understand subscription management options
+**Subscriptions Tab:**
+- View all active subscriptions (recurring invoices you created show up here)
+- Check subscription statuses:
+  - **Active** -- Payments are current, membership is running
+  - **Paused** -- Member requested a temporary hold (e.g., vacation, injury)
+  - **Cancelled** -- Member cancelled, no more charges
+  - **Past Due** -- Payment failed, needs attention
+- This tab answers the question: "How many paying members do we have right now?"
 
-**Transactions:**
-- View all payment transactions
-- Filter by type (charge, refund, failed)
-- Understand transaction details (amount, fee, net)
+**Transactions Tab:**
+- View all payment transactions at the raw level
+- Filter by type:
+  - **Charge** -- Successful payment collected
+  - **Refund** -- Money returned to customer
+  - **Failed** -- Payment attempt that did not go through
+- Each transaction shows: amount, processing fee, net amount received, and date
+- This tab answers the question: "How much money actually came in today/this week/this month?"
 
-### Hands-On Exercise 6.12: Payment Settings
+### Hands-On Exercise 6.10: Payment Settings Review
 
-Navigate to **Payments > Settings** (or Settings > Payments):
+*This exercise teaches you to configure the business-level payment settings.*
 
-1. Review payment processor integration (Stripe, PayPal, etc.)
-2. Check business information (appears on receipts)
-3. Review notification settings (payment received, failed, refunded)
-4. Understand currency settings
-5. Check payout schedule (when you receive the money)
+Navigate to **Payments > Settings** (or **Settings > Payments**):
+
+1. **Payment processor integration** -- Check if Stripe, PayPal, or another processor is connected. If not, review what is required to connect one. (You do not need to connect one for this course.)
+2. **Business information** -- Verify the business name and details that appear on receipts and invoices. This should match the Sunrise Wellness Studio branding from Day 1.
+3. **Notification settings** -- Configure who gets notified when:
+   - A payment is received (the owner wants to know)
+   - A payment fails (someone needs to follow up)
+   - A refund is issued
+4. **Currency settings** -- Verify the correct currency is set (USD, or your local currency)
 
 ---
 
-## Part 7: API Lab - Payment Operations
+## Part 8: API Lab - Payment Operations
+
+### Run the Payments API Lab
 
 ```bash
 python scripts/day-06-payments-api.py
 ```
 
 The script covers:
-1. List products
+1. List all products in your sub-account
 2. Create an invoice via API
 3. Get invoice details and status
 4. List transactions
+
+### API Exercises
+
+1. **Invoice generator** -- Build a script that creates a "New Member Welcome Invoice" given a contact ID and membership type. It should automatically add the activation fee + first month's membership + Protein Starter Kit and calculate the total.
+
+2. **Subscription monitor** -- Write a function that lists all active subscriptions and flags any that are past due. This is the kind of script the studio owner would run weekly.
+
+3. **Revenue report** -- Create a script that pulls all transactions for the current month and calculates: total revenue, number of transactions, average transaction value, and total refunds.
 
 ---
 
 ## Case Scenarios
 
-### Case Scenario 1: Coaching Business Setup
+### Case Scenario 1: BrightSmile Dental - Patient Billing
 
-**Situation:** "Elevate Coaching" offers:
-- VIP Day: $5,000 (one-time, includes lunch and materials)
-- Group Coaching: $497/month (recurring, 6-month minimum)
-- 1-on-1 Coaching: $997/month (recurring, 3-month minimum)
-- Strategy Session: $250 (one-time consultation)
-- Course Access: $1,997 (one-time, lifetime access)
+**Situation:** BrightSmile Dental Clinic (2 dentists, 1 hygienist, 1 front desk) needs to set up their payment infrastructure. Dental billing is different from fitness: it involves per-procedure pricing, insurance copays, and payment plans for expensive treatments.
 
 **Your Task:**
-1. Create all 5 products with correct pricing
-2. Create a coupon: "EARLYBIRD" - 20% off, valid for next 14 days, applies to Group and 1-on-1 only
-3. Create an invoice for a client:
-   - 1-on-1 Coaching setup: $997/mo recurring
-   - Strategy Session: $250 one-time
-   - Apply EARLYBIRD coupon to the coaching line
-   - Add 8% tax
-4. Calculate the first invoice total manually and verify against GHL
-5. Send the invoice and send a Text2Pay as backup
 
-### Case Scenario 2: Landscaping Company
+**1. Create BrightSmile's products:**
 
-**Situation:** "Green Thumb Landscaping" provides:
-- Lawn Mowing: $75/visit
-- Full Service (mow + edge + blow): $125/visit
-- Weekly Maintenance Contract: $400/month
-- One-time Cleanup: $500-$2,000 (variable)
-- Spring/Fall Aeration: $250
+| Product Name | Price | Type | Description |
+|-------------|-------|------|-------------|
+| Dental Exam | $200 | One-time | Comprehensive dental examination with X-rays |
+| Professional Cleaning | $150 | One-time | Dental hygienist cleaning and polishing |
+| Teeth Whitening Package | $450 | One-time | Professional in-office whitening treatment (2 sessions) |
+| Crown / Cap | $1,200 | One-time | Porcelain crown restoration per tooth |
+| Emergency Visit | $300 | One-time | Same-day emergency dental assessment and initial treatment |
+
+**2. Create an invoice for a whitening patient with insurance:**
+
+Maria Garcia (from the Day 5 dental pipeline) wants the Whitening Package. Her insurance covers 50% of cosmetic procedures.
+
+| Line Item | Amount |
+|-----------|--------|
+| Teeth Whitening Package | $450.00 |
+| Insurance Adjustment (50% covered) | -$225.00 |
+| **Patient Responsibility** | **$225.00** |
+
+Create this invoice, noting how you handle the insurance adjustment. (GHL does not have a native insurance module -- you would add a negative line item or manually adjust the amount.)
+
+**3. Create a payment plan for orthodontics:**
+
+Bob Wilson needs full orthodontics at $4,500. He cannot pay that in one lump sum. Design a payment plan:
+- **Option:** $375/mo for 12 months
+- Create a recurring invoice for $375/mo
+- Add a note to the invoice: "Orthodontic treatment plan -- month [X] of 12"
+- How would you track whether Bob has completed all 12 payments?
+
+**Reflection questions:**
+- How does dental billing differ from fitness billing? (Hint: insurance, per-procedure vs. subscription, payment plans)
+- Why might a dental clinic need both invoices AND Text2Pay? (Think: routine billing vs. after an emergency visit)
+
+---
+
+### Case Scenario 2: Elevate Digital Agency - Client Invoicing
+
+**Situation:** Elevate Digital Agency needs to set up billing for their clients. Agency billing typically involves monthly retainers (recurring), one-time project fees, and setup costs for new clients.
 
 **Your Task:**
-1. Create products for standard services
-2. After a job, send a Text2Pay to the customer for $125 (Full Service)
-3. Set up a recurring invoice for a Weekly Maintenance client ($400/mo)
-4. Create a coupon: "NEIGHBOR" - $25 off first service (for referrals)
-5. Design the payment flow: How does the crew mark a job done and trigger payment?
 
-### Case Scenario 3: Multi-Product Invoice
+**1. Create Elevate Digital's products:**
 
-**Situation:** A client is purchasing a bundled package:
-- VIP Day Package: $2,500
-- 3 months of Premium Membership: $199/mo x 3 = $597
-- Setup Fee: $500
-- Coupon: VIPFRIEND (15% off total)
-- Tax: 8.25%
+| Product Name | Price | Type | Billing | Description |
+|-------------|-------|------|---------|-------------|
+| SEO Retainer | $3,000 | Recurring | Monthly | Monthly SEO management: keyword research, content optimization, link building, reporting |
+| PPC Management | $4,000 | Recurring | Monthly | Google Ads + Meta Ads management, optimization, and monthly reporting |
+| Social Media Management | $2,000 | Recurring | Monthly | Content creation, scheduling, engagement, and analytics for 3 platforms |
+| Website Build | $8,000 | One-time | N/A | Custom website design and development (WordPress or Shopify) |
+| Brand Audit | $1,500 | One-time | N/A | Comprehensive brand positioning, competitor analysis, and strategy report |
 
-**Your Task:**
-1. Create the invoice with all line items
-2. Apply the coupon
-3. Calculate the expected total:
-   - Subtotal: $3,597
-   - Discount (15%): -$539.55
-   - After discount: $3,057.45
-   - Tax (8.25%): $252.24
-   - **Total: $3,309.69**
-4. Verify your calculation matches GHL
-5. Send the invoice and document the experience
+**2. Create a new client onboarding invoice:**
+
+FitGear Online (from the Day 5 agency pipeline) just signed a PPC management contract. Their first invoice includes:
+
+| Line Item | Amount |
+|-----------|--------|
+| Brand Audit (one-time onboarding) | $1,500.00 |
+| PPC Management - First Month | $4,000.00 |
+| **Total** | **$5,500.00** |
+
+After the first invoice, set up a recurring invoice for $4,000/mo for the ongoing PPC management.
+
+**3. Create a referral partner coupon:**
+
+| Setting | Value |
+|---------|-------|
+| **Code** | PARTNER |
+| **Discount type** | Percentage |
+| **Discount value** | 15% |
+| **Applies to** | All one-time products (Website Build, Brand Audit) |
+| **Usage limit per customer** | 1 |
+| **Total usage limit** | 20 |
+| **Expiration** | 90 days from today |
+| **Description** | 15% off project fees for clients referred by agency partners |
+
+**Reflection questions:**
+- Elevate Digital sends invoices to businesses (B2B), not individuals. How might invoice formatting and payment terms differ? (Hint: Net 30 vs. Net 7, purchase order numbers, company name on invoice)
+- Would Text2Pay make sense for an agency? Why or why not? (Think: $4,000/mo charges via text vs. formal invoice)
+- How would you handle a client who wants to pay for 3 months upfront at a discount?
 
 ---
 
 ## Day 6 Recap Questions
 
-1. What's the difference between a one-time product and a recurring product?
-2. How do you set up auto-pay for a recurring invoice?
-3. What is Text2Pay and when would you use it instead of a regular invoice?
-4. How do coupon restrictions work (usage limits, minimum order, product-specific)?
-5. Where do you view all transactions and their statuses?
-6. A client says "my payment failed." Where do you look in GHL to investigate?
+1. What is the difference between a one-time product and a recurring product? Give one Sunrise Wellness example of each.
+2. When would you use Text2Pay instead of a formal invoice? Give a specific Sunrise Wellness scenario.
+3. You created 4 coupons today. Which one specifically targets people in the "Trial Follow-Up" pipeline stage, and why is that strategically important?
+4. A member says "my payment failed." Walk through the steps you would take in GHL to investigate (which dashboard, what to look for, what actions to take).
+5. Why did we create the Setup / Activation Fee as a separate $25 product instead of just adding $25 to the first month's membership price?
+6. How do the products you created today connect to the order forms you will build on Day 8?
 
 ---
 
 ## Next Day Preview
 
-**Day 7: Marketing - Email Campaigns** - You'll build email templates, launch campaigns to Smart Lists, set up trigger links, and use the API for marketing automation.
+**Day 7: Marketing - Email Campaigns** -- You will build email campaigns, send them to the Smart Lists you created on Day 2, set up trigger links for tracking engagement, and learn how marketing connects to your pipeline. The WELCOME20 coupon you created today will feature in your first promotional email campaign.
+
+Make sure you have:
+- All 10 products created with correct pricing and billing types
+- At least 2 invoices created (one-time and recurring)
+- All 4 coupons configured and tested
+- Sales tax set up and applied to at least one invoice
+- A clear understanding of the Orders, Subscriptions, and Transactions dashboards

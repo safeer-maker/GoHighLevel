@@ -1,334 +1,689 @@
 # Day 8: Sites - Funnels & Websites
 
 **Time Required:** 3-4 hours
-**Certification Alignment:** Funnel vs Website Builder, Domain Setup, Page Builder, Forms, Surveys (with conditional logic), Workflow Triggers from Forms/Surveys
-**API Lab:** No dedicated API lab (Sites are primarily visual; API work integrates via forms + workflows)
+**Certification Alignment:** Funnel vs Website Builder, Domain Setup, Page Builder, Forms, Surveys (with Conditional Logic)
+**API Lab:** No dedicated script (Sites are visual builders; forms connect to workflows on Day 9)
+
+---
+
+## Today's Mission
+
+Everything you have built for Sunrise Wellness Studio so far lives "inside" GHL - contacts, templates, calendars, pipelines, products, email campaigns. But how do potential members actually find you and sign up? Today you will build the studio's online presence: a **lead capture funnel** that turns website visitors into contacts, a detailed **intake form** that collects member information, and a **qualifying survey** that helps you understand what each prospect wants before they ever walk through the door. The form you build today will feed directly into the pipeline from Day 5 and trigger the templates from Day 3 - all automated on Day 9.
 
 ---
 
 ## Learning Objectives
 
-1. Understand when to use a Funnel vs a Website
-2. Build a multi-step funnel with landing pages and thank-you pages
-3. Create forms and surveys with custom fields and conditional logic
-4. Connect forms and surveys to workflows for automated follow-up
+1. Understand when to use a Funnel vs a Website and why the distinction matters
+2. Build a multi-step lead capture funnel with landing and thank-you pages
+3. Create forms with custom fields that map to contact records
+4. Build surveys with conditional logic (branching paths based on answers)
+5. Connect forms and surveys to workflow triggers (preview for Day 9)
 
 ---
 
-## Part 1: Funnel vs Website (20 min)
+## Part 1: Funnel vs Website - When to Use Which (20 min)
 
-### Theory Recap
+### What is a Funnel?
 
-| Feature | Funnel | Website |
-|---------|--------|---------|
-| **Purpose** | Specific goal (lead capture, sales, booking) | General business presence |
-| **Structure** | Linear steps (Page 1 > Page 2 > ...) | Multi-page with navigation menu |
-| **Navigation** | No menu bar, minimal distractions | Full navigation, multiple pages |
-| **SEO** | Limited SEO focus | Full SEO capabilities |
-| **Use Case** | Ad campaigns, launch pages, opt-ins | Company website, blog, resource center |
+A **funnel** is a focused set of web pages designed around ONE specific goal - usually getting someone to take a single action like signing up, booking a call, or buying something. Funnels are linear: Page 1 leads to Page 2, which leads to Page 3. There is no navigation menu, no sidebar, no "About Us" link - nothing to distract the visitor from the one thing you want them to do.
 
-### When to use what:
-- **Funnel:** When you have ONE clear goal (get the lead, make the sale, book the call)
-- **Website:** When you need a full business presence with multiple sections
+Think of a funnel like a hallway with one door at the end. The visitor walks in and the only way forward is through that door (your call-to-action). There are no side rooms to wander into.
 
-### Hands-On Exercise 8.1: Explore Both Builders
+**Example for Sunrise Wellness:** A "Free 7-Day Trial" funnel from a Facebook ad. The visitor lands on a page that sells the free trial, fills out a form, and lands on a thank-you page. Two pages, one goal: get the signup.
 
-Navigate to **Sites**:
+### What is a Website?
 
-1. Click **Funnels** - note the interface and options
-2. Click **Websites** - compare with funnels
-3. Open an existing template (if available) for each
-4. Note the differences in layout, navigation options, and structure
+A **website** is a full multi-page online presence with navigation, multiple sections, and various purposes. Visitors can browse around - read about your services, check the schedule, view pricing, read the blog, find your location.
+
+Think of a website like a building with many rooms. Visitors can explore at their own pace and find what they are looking for.
+
+**Example for Sunrise Wellness:** The full SunriseWellness.com site with pages for Home, Classes, Trainers, Pricing, Schedule, Blog, and Contact.
+
+### When to Use Which?
+
+| | Funnel | Website |
+|---|--------|---------|
+| **Goal** | ONE specific action (sign up, buy, book) | General business presence and information |
+| **Structure** | Linear steps (Page 1 > Page 2 > Done) | Multi-page with navigation menu |
+| **Navigation** | No menu - minimal distractions | Full nav bar with links to all pages |
+| **Traffic Source** | Paid ads, email links, social media CTAs | Organic search (Google), direct visits |
+| **SEO** | Limited - not designed for search ranking | Full SEO capabilities for search ranking |
+| **Conversion Focus** | Very high - everything points to one CTA | Lower - visitors may browse without acting |
+| **Best For** | Ad campaigns, promotions, lead magnets | Company presence, credibility, content |
+
+**For Sunrise Wellness, we will use both:**
+- **Funnel** for the "Free 7-Day Trial" offer (linked from ads, emails, social posts)
+- **Website** for the full business presence (linked from Google, business cards, etc.)
+
+Today we will focus on building the **funnel** because it directly captures leads and feeds your pipeline. Websites follow the same page builder - once you can build a funnel, you can build a website.
+
+### Exercise 8.1: Explore Both Builders
+
+**Purpose:** See the difference between the Funnel and Website builders before you start building.
+
+Navigate to **Sites** in the left sidebar:
+
+1. Click **Funnels** - note the interface:
+   - Funnels are organized as a list of funnel projects
+   - Each funnel contains one or more "steps" (pages)
+   - Steps are sequential - there is a clear flow from one to the next
+   
+2. Click **Websites** - compare:
+   - Websites have a global navigation that appears on every page
+   - You can add unlimited pages with different purposes
+   - There is a site-wide header and footer
+
+3. If any templates are available, open one of each to see the structural difference
+
+4. Note: Both use the same drag-and-drop **Page Builder** for actually designing pages. The builder is the same - the difference is in how the pages are organized and connected.
 
 ---
 
-## Part 2: Build a Lead Capture Funnel (60 min)
+## Part 2: Build the "Free Trial" Funnel (60 min)
 
-### Hands-On Exercise 8.2: Create a 2-Step Funnel
+### What is a Landing Page?
+
+A **landing page** is the first page someone "lands on" when they click your ad, email link, or social media post. It is the front door of your funnel. A good landing page does three things: (1) immediately tells the visitor what they will get, (2) explains why they should want it, and (3) makes it easy to take action.
+
+The landing page you are about to build for Sunrise Wellness will be used in email campaigns (you built those yesterday), social media posts, and potentially paid ads.
+
+---
+
+### Exercise 8.2: Build a 2-Step Lead Capture Funnel
+
+**Purpose:** Create a complete funnel that captures Free Trial signups for Sunrise Wellness Studio. This is the page you would link to from your promotional emails (Day 7), social posts, and any advertising.
 
 Navigate to **Sites > Funnels > + Create Funnel**:
 
-**Funnel Name:** "Free Consultation Funnel"
+1. Select **"Start from Scratch"** (or pick a simple lead capture template and modify it)
+2. **Funnel Name:** "Sunrise Wellness - Free Trial"
 
 **Step 1: Landing Page**
 
-Build this layout:
-```
-[HERO SECTION]
-  - Headline: "Get Your Free 30-Minute Strategy Consultation"
-  - Subheadline: "Discover how we can help grow your business"
-  - Background: Gradient or high-quality image
+Click into the first step (or add one) and name it "Free Trial Landing Page". Open the page builder.
 
-[BENEFITS SECTION - 3 columns]
-  - Column 1: Icon + "Personalized Strategy"
-  - Column 2: Icon + "Expert Guidance"
-  - Column 3: Icon + "Proven Results"
+Build the following sections by dragging elements from the builder sidebar:
 
-[FORM SECTION]
-  - Headline: "Claim Your Free Consultation"
-  - Form (built in Exercise 8.4)
-  - Submit button: "Get My Free Consultation"
+**Hero Section (the first thing visitors see):**
+1. Add a **Section** with a full-width background (use a fitness-related stock image or a solid brand color - warm orange or gold)
+2. Drag a **Headline** element:
+   - Text: "Get Your Free 7-Day Trial at Sunrise Wellness Studio"
+   - Style: Large (32-40px), bold, white text if on a dark background
+3. Add a **Sub-headline:**
+   - Text: "Unlimited group classes. Free fitness assessment. No commitment required."
+4. Add a **Button** element:
+   - Text: "Claim Your Free Trial"
+   - Link: Set this to scroll down to the form section (anchor link) or link to `#form`
+   - Style: Large, high-contrast color (e.g., bright white button on orange background)
 
-[SOCIAL PROOF]
-  - 3 testimonials with photos
-  - Star ratings
-  - "Trusted by 500+ businesses"
+**Benefits Section (3 columns):**
+1. Add a new **Section** with a white or light background
+2. Add a **Heading:** "Why Sunrise Wellness?"
+3. Drag a **Columns** element - select 3 columns
+4. Fill each column:
+   - **Column 1:** 
+     - Icon or small image (a dumbbell icon or trainer image)
+     - Heading: "Expert Training"
+     - Text: "Our certified personal trainers create customized programs for your specific goals - whether you are a total beginner or a seasoned athlete."
+   - **Column 2:**
+     - Icon or small image (a group class image)
+     - Heading: "Group Classes"
+     - Text: "HIIT, Yoga, Pilates, Spin - choose from 30+ weekly classes. The group energy keeps you motivated and accountable."
+   - **Column 3:**
+     - Icon or small image (a nutrition image)
+     - Heading: "Nutrition Coaching"
+     - Text: "Exercise is only half the equation. Our nutrition coaches help you fuel your results with a plan that fits your life."
 
-[FAQ SECTION]
-  - 4-5 common questions with answers
-  - Accordion style if available
+**Form Section:**
+1. Add a new **Section** with a slightly different background color to make it stand out
+2. Add a **Heading:** "Start Your Free 7-Day Trial"
+3. Add a **Sub-heading:** "Fill out the form below and we will get you set up. It takes less than 2 minutes."
+4. Add a **Form** element - you will build the actual form in Part 3 (Exercise 8.4) and come back to embed it here
+5. For now, leave a placeholder or add a temporary simple form
 
-[FOOTER]
-  - Business info
-  - Privacy policy link
-  - Terms of service link
-```
+**Social Proof Section:**
+1. Add a new **Section**
+2. Add a **Heading:** "Trusted by 500+ Members"
+3. Add 2-3 **testimonial blocks** (use placeholder text):
+   - *"I was nervous to start, but the trainers made me feel right at home. I have been coming 4 times a week for 3 months and I have never felt better!"* - Maria R.
+   - *"The group classes are addictive. HIIT on Monday, Yoga on Wednesday, Pilates on Friday - it is the best part of my week."* - David K.
+   - *"I tried other gyms but nothing stuck. Sunrise Wellness is different because of the community. People actually know your name here."* - James T.
 
-**Build steps:**
-1. Choose a blank template or starter
-2. Add sections using the page builder
-3. Add elements: Text, Image, Button, Form, Columns
-4. Style each element (fonts, colors, spacing)
-5. Set the page URL path (e.g., /free-consultation)
-6. Preview on Desktop, Tablet, and Mobile
+**FAQ Section:**
+1. Add a new **Section**
+2. Add a **Heading:** "Frequently Asked Questions"
+3. Add text blocks for each FAQ (or use an accordion element if available):
+   - **"What is included in the free trial?"** - "Full access to all group classes, one free fitness assessment with a trainer, and use of all studio amenities for 7 days."
+   - **"Do I need to bring anything?"** - "Just wear comfortable workout clothes and bring a water bottle. We provide towels, mats, and all equipment."
+   - **"What happens after the 7 days?"** - "No automatic charges. If you love it (and we think you will), your trial host will walk you through membership options. No pressure."
+   - **"I am a total beginner. Is this for me?"** - "Absolutely. Over 40% of our members started with zero gym experience. Every class offers modifications for all fitness levels."
+
+**Footer:**
+1. Add a minimal footer:
+   - Sunrise Wellness Studio | `{{business.address}}`
+   - `{{business.phone}}` | `{{business.email}}`
+   - Hours: Mon-Fri 6AM-9PM, Sat 8AM-4PM, Sun 9AM-1PM
+   - Privacy Policy link (placeholder is fine)
+
+**Final Landing Page Steps:**
+1. Set the page **URL path** (e.g., `/free-trial`)
+2. Set the **SEO title:** "Free 7-Day Trial | Sunrise Wellness Studio"
+3. Set the **Meta description:** "Try Sunrise Wellness Studio free for 7 days. Unlimited group classes, free fitness assessment, no commitment."
+4. **Preview** on Desktop, Tablet, and Mobile - adjust any elements that look off on smaller screens
+5. Save
+
+---
 
 **Step 2: Thank You Page**
 
-```
-[CONFIRMATION]
-  - Headline: "You're All Set, {{contact.first_name}}!"
-  - Subtext: "We'll be in touch within 24 hours to schedule your consultation."
+Add a second step to your funnel and name it "Thank You". Open the page builder.
 
-[NEXT STEPS]
-  - "While you wait, here are some resources:"
-  - Link to blog/resources
-  - Social media follow buttons
+**Confirmation Section:**
+1. Add a **Heading:** "You are All Set, {{contact.first_name}}!"
+   - The `{{contact.first_name}}` merge field will display the name they just entered in the form
+2. Add text: "Your Free 7-Day Trial pass is confirmed. Here is what happens next:"
 
-[CALENDAR EMBED]
-  - Optionally embed your calendar widget
-  - "Or skip the wait - book your slot now!"
-```
+**Next Steps Section:**
+1. Use a numbered list or icon list:
+   - **Step 1:** "Check your email - we just sent your trial confirmation and a welcome guide."
+   - **Step 2:** "Book your free fitness assessment below (this is the best way to start)."
+   - **Step 3:** "Show up! Bring workout clothes and a water bottle. We handle the rest."
 
-### Hands-On Exercise 8.3: Set Up a Custom Domain
+**Calendar Embed:**
+1. Add a **Calendar widget** or **iframe** element
+2. Embed your Sunrise Wellness calendar from Day 4 (the one for initial assessments or PT consultations)
+   - In the element settings, paste your GHL calendar link or use the calendar embed widget
+3. Add text above: "Book Your Free Fitness Assessment"
+4. If the calendar embed is not available in the builder, add a large button: "Book Your First Session" linked to your calendar URL
+
+**Social Links:**
+1. Add: "Follow us for daily motivation and class updates:"
+2. Add social media icon links (Facebook, Instagram, YouTube - placeholder URLs are fine)
+
+**Footer:** Same as the landing page.
+
+Save the Thank You page.
+
+> **Pro Tip:** The Thank You page is underrated. Most people build a boring "Thanks, we'll be in touch" page and waste the moment when the prospect is MOST excited. Use it to get them to take the next action (book a session) while their motivation is high.
+
+---
+
+### Exercise 8.3: Domain Setup
+
+**Purpose:** Understand how custom domains work with GHL funnels so you can set this up for real clients.
 
 Navigate to **Sites > Domains** (or Settings > Domains):
 
-1. Add a custom domain or subdomain
-2. Follow the DNS setup instructions:
-   - Add CNAME record pointing to GHL
-   - Wait for DNS propagation (can take 5-60 minutes)
-3. Assign the domain to your funnel
-4. Test: Visit your custom domain and verify the funnel loads
-5. Enable SSL (should be automatic)
+**For this course, use the GHL default subdomain.** When you created your funnel, GHL automatically assigned it a URL like `yoursubdomain.msgsndr.com/free-trial` or similar. This works perfectly for testing.
 
-**If you don't have a domain:** Use the default GHL subdomain for practice.
+**Understanding custom domains (for reference):**
+
+In a real business, you would connect a custom domain so the funnel URL looks like `offer.sunrisewellness.com/free-trial` instead of a generic GHL subdomain. Here is the process:
+
+1. **Purchase a domain** (or use a subdomain of one you own) from a registrar like Namecheap, GoDaddy, or Cloudflare
+2. **Add the domain in GHL** - go to Sites > Domains > Add Domain
+3. **Add a CNAME DNS record** at your domain registrar:
+   - Host/Name: The subdomain (e.g., `offer` for `offer.sunrisewellness.com`)
+   - Points to: The GHL CNAME target (GHL will show you the exact value)
+4. **Wait for DNS propagation** (usually 5-30 minutes, sometimes up to 48 hours)
+5. **Assign the domain** to your funnel in the funnel settings
+6. **SSL certificate** is automatically provisioned by GHL (your site will load over HTTPS)
+
+For now, use the default GHL subdomain. Test your funnel by opening the funnel URL in an **incognito/private browser window** (this simulates a new visitor who is not logged into GHL).
 
 ---
 
 ## Part 3: Forms (45 min)
 
-### Theory Recap
+### What is a Form?
 
-Forms are the primary way to capture lead information in GHL. Forms can be:
-- Embedded in funnels/websites
-- Standalone (shared via link)
-- Triggered to fire workflows on submission
+A **form** is the primary way you capture contact information from people who visit your funnels, websites, or any web page. When someone fills out a form and clicks submit, GHL automatically:
 
-### Hands-On Exercise 8.4: Build a Lead Capture Form
+1. Creates a new contact (or updates an existing one if the email/phone matches)
+2. Maps the form fields to contact record fields
+3. Can trigger a workflow (which you will build on Day 9)
 
-Navigate to **Sites > Forms > + Create Form**:
+Forms are the bridge between "anonymous website visitor" and "contact in your CRM." Without forms, your funnel is just a pretty page that does not generate leads.
 
-**Form Name:** "Free Consultation Request"
+**Why spend time on form design?**
 
-**Fields:**
+The fields you include (and exclude) directly impact two things:
+- **Conversion rate:** More fields = fewer completions. Only ask for what you truly need.
+- **Lead quality:** More qualifying questions = better information for follow-up.
 
-| Field | Type | Required | Notes |
-|-------|------|----------|-------|
-| First Name | Text | Yes | Standard field |
-| Last Name | Text | Yes | Standard field |
-| Email | Email | Yes | Standard field |
-| Phone | Phone | Yes | Standard field |
-| Company Name | Text | No | Maps to Company custom field |
-| Service Interest | Dropdown | Yes | Options: Marketing, Sales, Operations, Other |
-| Budget Range | Dropdown | No | Options: <$1K, $1K-$5K, $5K-$10K, $10K+ |
-| How did you hear about us? | Dropdown | No | Options: Google, Social Media, Referral, Other |
-| Message | Textarea | No | "Tell us about your needs" |
+The art is balancing these two forces. For a free trial, you want it easy (fewer fields). For a $249/month VIP membership application, you can ask more because the prospect is already committed.
 
-**Configure:**
-1. Set each field as required or optional
-2. Map fields to GHL contact fields (standard + custom)
-3. Set the submit button text: "Request My Free Consultation"
-4. Set the success message: "Thank you! We'll contact you within 24 hours."
-5. Style the form (colors, font, button style)
+---
 
-### Hands-On Exercise 8.5: Embed the Form in Your Funnel
+### Exercise 8.4: Build the "Free Trial Request" Form
 
-1. Go back to your "Free Consultation Funnel" landing page
-2. Find the form section you created
-3. Add a Form element and select your "Free Consultation Request" form
-4. Adjust the form styling to match the funnel page
-5. Preview and test:
-   - Fill out the form with test data
-   - Submit
-   - Verify the contact is created in Contacts
-   - Verify custom fields are populated
-   - Check that you're redirected to the Thank You page
+**Purpose:** Create the form that captures Free Trial signups on your funnel landing page. This form creates a contact record and will trigger an automated welcome sequence on Day 9.
 
-### Hands-On Exercise 8.6: Form Workflow Trigger
+Navigate to **Sites > Forms > + Create Form** (some GHL versions put forms under Sites, others under Forms/Surveys):
+
+1. Click **+ Create Form**
+2. **Form Name:** "Free Trial Request - Sunrise Wellness"
+
+**Add the following fields:**
+
+| Field Label | Field Type | Required? | Maps To | Why Include It |
+|------------|-----------|-----------|---------|----------------|
+| First Name | Text (Short) | Yes | `contact.first_name` | Personalization in all future communication |
+| Last Name | Text (Short) | Yes | `contact.last_name` | Full name for records |
+| Email | Email | Yes | `contact.email` | Primary communication channel |
+| Phone | Phone | Yes | `contact.phone` | SMS follow-ups and appointment reminders |
+| Fitness Goals | Multi-Select Checkbox | No | Custom Field | Helps trainers prepare; enables segmentation |
+| | | | | Options: Weight Loss, Muscle Gain, Flexibility & Mobility, Endurance & Cardio, General Health & Wellness |
+| Experience Level | Dropdown | No | Custom Field | Determines which classes to recommend |
+| | | | | Options: Complete Beginner, Some Experience (worked out occasionally), Regular Exerciser (2-3x/week), Athlete/Advanced |
+| How did you hear about us? | Dropdown | No | Custom Field | Tracks which marketing channels are working |
+| | | | | Options: Google Search, Instagram, Facebook, Friend or Referral, Walked/Drove By, Other |
+| Preferred Class Time | Dropdown | No | Custom Field | Helps with scheduling and class demand planning |
+| | | | | Options: Early Morning (6-8 AM), Mid-Morning (8-10 AM), Midday (11 AM-1 PM), Afternoon (3-5 PM), Evening (5-8 PM) |
+
+**Configure the form:**
+
+1. **Field mapping:** For standard fields (First Name, Last Name, Email, Phone), GHL automatically maps them. For the custom fields (Fitness Goals, Experience Level, etc.), you will need to create corresponding **Custom Fields** in Settings > Custom Fields if you have not already, then map each form field to the matching custom field.
+
+2. **Submit button text:** "Start My Free Trial"
+
+3. **Success/Thank You action:** 
+   - Select "Redirect to URL" or "Go to next funnel step"
+   - If in a funnel, set it to redirect to your Thank You page (Step 2)
+   - If standalone, set a success message: "You are in! Check your email for next steps."
+
+4. **Form styling:**
+   - Match the colors to your Sunrise Wellness brand
+   - Make the submit button large and high-contrast
+   - Ensure adequate spacing between fields (cramped forms feel overwhelming)
+
+5. **Save** the form
+
+> **Pro Tip:** Notice we made the qualifying fields (Fitness Goals, Experience Level, etc.) optional while keeping contact fields required. This is intentional. If someone is in a hurry, they can submit with just name/email/phone and you still get the lead. The extra info is a bonus, not a barrier.
+
+---
+
+### Exercise 8.5: Embed the Form in Your Funnel
+
+**Purpose:** Connect your form to the funnel landing page so visitors can actually sign up.
+
+1. Go back to **Sites > Funnels** and open your "Sunrise Wellness - Free Trial" funnel
+2. Open the **Landing Page** (Step 1) in the page builder
+3. Scroll to the Form Section you created in Exercise 8.2
+4. If you placed a temporary placeholder, delete it
+5. Drag a **Form** element into the section (or click the form placeholder to configure it)
+6. Select your "Free Trial Request - Sunrise Wellness" form
+7. The form fields should appear on the page
+8. Adjust styling to match the page design:
+   - Field label colors
+   - Input field border style
+   - Button color and size
+   - Spacing and alignment
+9. **Preview** the page and make sure the form looks good on both desktop and mobile
+10. **Save** the funnel page
+
+**Test the complete flow:**
+1. Open your funnel URL in an **incognito/private browser window**
+2. Fill out the form with test data (use a real email you can check):
+   - First Name: Test
+   - Last Name: Member
+   - Email: your test email
+   - Phone: your phone number
+   - Select some fitness goals and an experience level
+3. Click "Start My Free Trial"
+4. Verify you are redirected to the Thank You page
+5. Go back to GHL and check:
+   - Does a new contact appear in **Contacts** with the name "Test Member"?
+   - Are the custom fields (Fitness Goals, Experience Level) populated on the contact record?
+   - Did the contact get the correct tags (if any were configured)?
+
+If the contact was created with all the correct data, your funnel-to-CRM pipeline is working.
+
+---
+
+### Exercise 8.6: Preview the Form-to-Workflow Connection
+
+**Purpose:** Understand how form submissions will trigger automated follow-up. You will build the full workflow on Day 9, but let us set up the trigger now so you understand the connection.
 
 Navigate to **Automation > Workflows > + Create Workflow**:
 
-Create a workflow triggered by form submission:
+1. Name the workflow: "Free Trial - New Signup"
+2. **Set the trigger:** 
+   - Trigger type: "Form Submitted"
+   - Select form: "Free Trial Request - Sunrise Wellness"
+3. Add a few placeholder steps (you will flesh these out on Day 9):
+   - **Add Tag:** `new-trial-member`
+   - **Send Email:** Select your "Sunrise Welcome Email" template from Day 7
+   - **Create Opportunity:** Add to your Sunrise Wellness pipeline (from Day 5) at the "New Lead" stage with a value of $79 (Basic membership as the initial target)
+   - **Internal Notification:** Send an email to yourself: "New trial signup: {{contact.first_name}} {{contact.last_name}} - {{contact.email}}"
+4. **Save** the workflow (keep it in Draft mode - you will activate it on Day 9)
 
-**Trigger:** Form Submitted > "Free Consultation Request"
+This preview shows you the power of connecting everything: a stranger visits your funnel (Day 8) > fills out a form (Day 8) > gets a welcome email (Day 7 template) > becomes a pipeline opportunity (Day 5) > all automatically (Day 9).
 
-**Steps:**
-1. **Wait 1 minute** (gives time for contact record to populate)
-2. **Send SMS:** "Hi {{contact.first_name}}, thanks for requesting a consultation with {{business.name}}! We'll be in touch within 24 hours. Reply to this text if you have any immediate questions."
-3. **Send Email:** Use your "Welcome Email" template
-4. **Internal notification:** Send email to admin: "New consultation request from {{contact.first_name}} {{contact.last_name}} - {{contact.email}}"
-5. **Add tag:** "consultation-requested"
-6. **Create opportunity:** Add to Sales Pipeline > "New Lead" stage
-
-Save and activate the workflow. Test by submitting the form again.
+> **Pro Tip:** Notice we added the tag `new-trial-member` as the first step. Tags are the thread that connects everything in GHL. On Day 9 you will build more sophisticated workflows that branch based on tags, but this simple tagging step is the foundation.
 
 ---
 
 ## Part 4: Surveys with Conditional Logic (45 min)
 
-### Theory Recap
+### What is a Survey?
 
-Surveys differ from forms in that they:
-- Can span multiple pages/steps
-- Support **conditional logic** (branching based on answers)
-- Are great for qualifying leads or gathering detailed information
-- Can be longer and more detailed than a simple form
+A **survey** in GHL is like a form's more sophisticated sibling. While a form is typically a single page with a set list of fields, a survey can:
 
-### Hands-On Exercise 8.7: Build a Survey with Conditional Logic
+- **Span multiple pages** (multi-step experience)
+- **Use conditional logic** (show different questions based on previous answers)
+- **Branch into different paths** (personalized experience for each respondent)
+- **Collect more detailed information** without feeling overwhelming (because it is broken into steps)
 
-Navigate to **Sites > Forms/Surveys > + Create Survey**:
+Think of it as a "choose your own adventure" form. If someone says they are interested in weight loss, they see weight loss questions. If they say muscle building, they see completely different questions. This means you collect relevant, specific information instead of forcing everyone through the same generic fields.
 
-**Survey Name:** "Client Needs Assessment"
+### Why Use Surveys Instead of (or In Addition to) Forms?
 
-**Page 1: Basic Info**
-- Name (text, required)
-- Email (email, required)
-- Phone (phone, required)
-- "What best describes your business?" (Dropdown: Service-Based, Product-Based, SaaS, Non-Profit, Other)
+- **Forms** are for quick capture: name, email, phone - get the lead fast
+- **Surveys** are for deep qualification: understand needs, goals, budget, timeline
 
-**Page 2: Service Interest (Conditional)**
+For Sunrise Wellness, the funnel form (Exercise 8.4) captures the lead quickly. The survey (this exercise) digs deeper to help trainers prepare the perfect first session. You might send the survey link in the welcome email or have new members fill it out on an iPad when they arrive.
 
-IF "Service-Based" was selected:
-- "What services do you offer?" (Multi-select)
-- "How many clients do you serve monthly?" (Dropdown: 1-10, 11-50, 51-100, 100+)
-- "What's your biggest challenge?" (Textarea)
+---
 
-IF "Product-Based" was selected:
-- "What products do you sell?" (Textarea)
-- "Average order value?" (Dropdown: <$50, $50-200, $200-500, $500+)
-- "Where do you sell? (Multi-select: Online, Retail, Wholesale, Marketplace)
+### Exercise 8.7: Build the "Member Needs Assessment" Survey
 
-IF "SaaS" was selected:
-- "Monthly recurring revenue?" (Dropdown: Pre-revenue, <$10K, $10K-$50K, $50K+)
-- "Number of active users?" (Number)
-- "Tech stack?" (Textarea)
+**Purpose:** Create a multi-page survey with conditional logic that gathers detailed information about each new member's goals, experience, and needs. This information helps trainers personalize the experience and helps you recommend the right membership tier.
 
-**Page 3: Budget & Timeline (All paths)**
-- "What's your marketing budget?" (Dropdown: <$1K/mo, $1K-$5K/mo, $5K-$10K/mo, $10K+/mo)
-- "When do you want to start?" (Dropdown: Immediately, 1-2 Weeks, 1 Month, Just Researching)
-- "Anything else we should know?" (Textarea)
+Navigate to **Sites > Forms/Surveys** (or wherever surveys live in your GHL version) > **+ Create Survey**:
 
-**Configure Conditional Logic:**
-1. On Page 1, set the branching based on "business type" answer
-2. Set which Page 2 variant shows based on the selection
-3. Ensure Page 3 shows for everyone regardless of path
-4. Set a thank-you message on completion
+**Survey Name:** "Sunrise Wellness - Member Needs Assessment"
 
-### Hands-On Exercise 8.8: Survey Workflow Trigger
+---
 
-Create a workflow triggered by survey completion:
+**Page 1: Basic Information** (everyone sees this)
 
-**Trigger:** Survey Submitted > "Client Needs Assessment"
+Add these fields:
 
-**Steps:**
-1. **Tag based on business type:** If/Else branch
-   - If Service-Based → add tag "biz-service"
-   - If Product-Based → add tag "biz-product"
-   - If SaaS → add tag "biz-saas"
-2. **Tag based on budget:**
-   - If $5K+/mo → add tag "high-budget", create opportunity with $5000 value
-   - If $1K-$5K → add tag "mid-budget", create opportunity with $2500 value
-   - If <$1K → add tag "low-budget", create opportunity with $500 value
-3. **Send personalized follow-up** based on tags
-4. **Notify sales team** with survey summary
+| Field | Type | Required |
+|-------|------|----------|
+| First Name | Text | Yes |
+| Last Name | Text | Yes |
+| Email | Email | Yes |
+| Phone | Phone | Yes |
+| **"What is your primary fitness goal?"** | Single Select (Radio Buttons) | Yes |
+| | Options: | |
+| | - Weight Loss | |
+| | - Muscle Building | |
+| | - Flexibility & Recovery | |
+| | - Sports Performance | |
+| | - General Wellness | |
+
+The last question is the **branching question** - the answer determines which Page 2 the respondent sees.
+
+---
+
+**Page 2: Goal-Specific Questions** (conditional - different questions based on Page 1 answer)
+
+Set up **conditional logic** so each version of Page 2 only appears for the matching answer:
+
+**IF "Weight Loss" was selected:**
+
+| Field | Type |
+|-------|------|
+| "What is your current activity level?" | Dropdown: Sedentary (little to no exercise), Lightly Active (1-2x/week), Moderately Active (3-4x/week), Very Active (5+/week) |
+| "Any dietary restrictions or preferences?" | Multi-Select: None, Vegetarian, Vegan, Gluten-Free, Dairy-Free, Keto, Other |
+| "What is your target timeline?" | Dropdown: 1-3 months, 3-6 months, 6-12 months, No specific timeline |
+| "Have you worked with a trainer or nutritionist before?" | Radio: Yes / No |
+
+**IF "Muscle Building" was selected:**
+
+| Field | Type |
+|-------|------|
+| "How long have you been strength training?" | Dropdown: Never, Less than 6 months, 6 months - 2 years, 2+ years |
+| "Do you have access to equipment at home?" | Radio: Yes (home gym), Some basics (dumbbells, bands), No - studio only |
+| "Any competition or specific physique goals?" | Dropdown: General muscle gain, Bodybuilding competition, Strength/Powerlifting, Athletic performance, Just want to look and feel stronger |
+| "Any current injuries or limitations?" | Text (optional) |
+
+**IF "Flexibility & Recovery" was selected:**
+
+| Field | Type |
+|-------|------|
+| "Any current injuries or chronic pain?" | Text (describe) |
+| "Have you practiced yoga or Pilates before?" | Dropdown: Never, A few times, Regularly (1-2x/week), Experienced practitioner |
+| "Any specific mobility concerns?" | Multi-Select: Lower back, Shoulders, Hips, Knees, Neck, Hamstrings, General stiffness |
+| "Are you recovering from a surgery or injury?" | Radio: Yes / No / Prefer not to say |
+
+**IF "Sports Performance" was selected:**
+
+| Field | Type |
+|-------|------|
+| "What sport(s) do you play?" | Text |
+| "What level do you compete at?" | Dropdown: Recreational, Club/League, College, Semi-Pro/Pro |
+| "What performance areas do you want to improve?" | Multi-Select: Speed, Power, Endurance, Agility, Injury prevention, Sport-specific skills |
+| "Do you have a coach or training program already?" | Radio: Yes / No |
+
+**IF "General Wellness" was selected:**
+
+| Field | Type |
+|-------|------|
+| "What does 'wellness' mean to you?" | Multi-Select: More energy, Better sleep, Stress relief, Improved mood, Healthy aging, Social connection |
+| "How often would you like to work out?" | Dropdown: 1-2x/week, 3-4x/week, 5+/week, Not sure yet |
+| "Any health conditions we should be aware of?" | Text (optional) |
+| "Are you interested in nutrition coaching as well?" | Radio: Yes / Maybe later / No |
+
+**Setting up the conditional logic:**
+1. In the survey builder, look for a **"Logic"** or **"Conditional"** setting on Page 2
+2. Set the condition: "Show this page IF [Primary Fitness Goal] = [specific answer]"
+3. You will need to create separate Page 2 variants OR use field-level conditional logic depending on your GHL version
+4. Some GHL versions handle this through "question logic" (show/hide individual fields) rather than "page logic" (show/hide entire pages). Either approach works.
+
+> **Pro Tip:** If your GHL version does not support page-level branching, you can achieve a similar result with field-level conditional logic: put ALL the questions on one Page 2, but set each group to only show when the matching goal was selected on Page 1. The respondent only sees the relevant questions either way.
+
+---
+
+**Page 3: Preferences & Budget** (everyone sees this regardless of their path)
+
+| Field | Type |
+|-------|------|
+| "What membership level interests you?" | Dropdown: Free Trial (just exploring), Basic ($79/mo - 3 classes/week), Premium ($149/mo - unlimited classes + 1 PT session), VIP ($249/mo - unlimited everything + weekly PT + nutrition) |
+| "What times work best for you?" | Multi-Select: Early Morning (6-8 AM), Mid-Morning (8-10 AM), Midday (11-1 PM), Afternoon (3-5 PM), Evening (5-8 PM), Weekends |
+| "Is there anything else you would like us to know?" | Textarea (optional) |
+
+**Survey completion settings:**
+- Thank you message: "Thank you, {{contact.first_name}}! Your trainer will review your assessment before your first session so we can hit the ground running. See you at the studio!"
+- Redirect (optional): Back to your calendar booking page
+
+Save the survey.
+
+**Test your survey:**
+1. Copy the survey link (GHL generates a shareable URL)
+2. Open it in an incognito window
+3. Fill it out selecting "Weight Loss" as the goal - verify you see the weight loss questions on Page 2
+4. Go back and fill it out again selecting "Muscle Building" - verify you see different questions
+5. Check that the contact was created in GHL with the survey responses mapped to fields
+
+---
+
+### Exercise 8.8: Survey Workflow Trigger
+
+**Purpose:** Set up automation so that when someone completes the survey, they are automatically tagged based on their fitness goal and assigned to the right follow-up path.
+
+Navigate to **Automation > Workflows > + Create Workflow**:
+
+1. **Workflow Name:** "Needs Assessment - Auto-Tag"
+2. **Trigger:** Survey Submitted > "Sunrise Wellness - Member Needs Assessment"
+3. **Add an If/Else branch** based on the "Primary Fitness Goal" answer:
+
+   **Branch 1: Weight Loss**
+   - Add tag: `goal-weight-loss`
+   - Add tag: `recommend-nutrition-coaching`
+   - (In a real setup, you might also notify the nutrition coaching team)
+
+   **Branch 2: Muscle Building**
+   - Add tag: `goal-muscle-building`
+   - Add tag: `recommend-personal-training`
+
+   **Branch 3: Flexibility & Recovery**
+   - Add tag: `goal-flexibility`
+   - Add tag: `recommend-yoga-pilates`
+
+   **Branch 4: Sports Performance**
+   - Add tag: `goal-sports-performance`
+   - Add tag: `recommend-personal-training`
+
+   **Branch 5: General Wellness**
+   - Add tag: `goal-general-wellness`
+
+4. **After all branches converge**, add:
+   - Internal notification to the appropriate trainer/coach
+   - (Optional) Send the member a follow-up email: "We have reviewed your assessment and are preparing a personalized plan for you."
+
+5. **Save** the workflow (keep in Draft mode - activate on Day 9)
+
+This workflow means that when a new member fills out the survey, they are automatically categorized. You can then build Smart Lists (like on Day 2) based on these tags - for example, all members tagged `recommend-nutrition-coaching` could receive targeted nutrition content.
 
 ---
 
 ## Case Scenarios
 
-### Case Scenario 1: Dentist Lead Generation Funnel
+### Case Scenario 1: BrightSmile Dental
 
-**Situation:** Build a "Free Whitening Consultation" funnel in your sub-account. No Facebook ads needed - you'll test it by visiting the funnel URL directly.
-
-**Your Task:**
-1. Build a 2-step funnel:
-   - **Landing Page:** Compelling headline, benefits of whitening, before/after photos (use free stock images), form
-   - **Thank You Page:** Confirmation, what to expect, calendar embed for booking
-2. Form fields: Name, Phone, Email, "Have you had teeth whitening before?" (Yes/No), "What's your biggest concern about whitening?" (Dropdown)
-3. Workflow: Form submission → Email with whitening info → Tag "whitening-interest" → Create opportunity in pipeline (add SMS step if you have a phone number)
-4. Mobile-optimize the entire funnel - preview on mobile view in the builder
-5. **Test:** Open the funnel URL in an incognito window, fill out the form, verify the workflow fires
-
-### Case Scenario 2: Client Intake Survey
-
-**Situation:** A marketing agency needs a detailed client intake survey with conditional logic for different service needs.
+**Situation:** BrightSmile Dental (2 dentists, general and cosmetic procedures from $150 cleanings to $3,000 cosmetic work) needs a "Free Dental Exam" funnel to attract new patients, plus an intake form that collects essential medical and dental history, and a survey that routes patients to the right dentist based on their needs.
 
 **Your Task:**
-1. Build a multi-page survey:
-   - Page 1: Contact info + business overview
-   - Page 2: Service interest (conditional branches for SEO, PPC, Social Media, Email Marketing)
-   - Page 3: Budget + timeline + competitor info
-   - Page 4: Goals and success metrics
-2. Each service branch should ask different qualifying questions
-3. On submission:
-   - Tag the contact based on service interest (e.g., "interest-seo", "interest-ppc")
-   - Create an opportunity with estimated value based on budget answer
-   - Send a "thank you + next steps" email
-4. Test the survey as a standalone link (open in incognito, fill it out, verify contact is created with correct tags)
 
-### Case Scenario 3: Complete Lead Gen System
+**Build a 2-Step "Free Dental Exam" Funnel:**
 
-**Situation:** Build a complete lead generation system that combines everything from this lesson.
+*Landing Page:*
+- Hero: "Your First Dental Exam is On Us - New Patients Only"
+- Benefits section: "Gentle, Modern Care" / "Two Experienced Dentists" / "Family-Friendly Office"
+- Patient intake form (see below)
+- Social proof: "Serving 2,000+ happy patients since [year]"
+- FAQ: "Does it really cost nothing?", "What does the exam include?", "Do you accept my insurance?"
+- Footer with office hours and address
 
-**Your Task:**
-1. Landing page funnel with form (you'll visit the URL directly to test - no paid ads needed)
-2. Survey for detailed qualification (sent after initial contact)
-3. Workflow that:
-   - Captures the lead from the funnel form
-   - Sends an immediate email (+ SMS if phone number available)
-   - Creates a pipeline opportunity
-   - After 2 hours, sends the detailed survey link via email
-   - When survey is completed, updates the opportunity with details via tags
-4. **Test the entire flow end-to-end:** Fill out the funnel form → verify email arrives → wait for survey link → fill out survey → verify all tags and opportunity are correct
+*Thank You Page:*
+- "Welcome to the BrightSmile Family, {{contact.first_name}}!"
+- What to bring to your first appointment (ID, insurance card, list of medications)
+- Calendar embed to book the exam appointment
+- Map/directions to the office
+
+**Build the Patient Intake Form:**
+
+| Field | Type | Required |
+|-------|------|----------|
+| First Name | Text | Yes |
+| Last Name | Text | Yes |
+| Email | Email | Yes |
+| Phone | Phone | Yes |
+| Date of Birth | Date | Yes |
+| Insurance Provider | Dropdown: Aetna, Blue Cross Blue Shield, Cigna, Delta Dental, MetLife, United Healthcare, No Insurance, Other | No |
+| When was your last dental visit? | Dropdown: Within 6 months, 6-12 months ago, 1-2 years ago, 2+ years ago, I cannot remember | No |
+| Any current dental concerns? | Textarea | No |
+| Medical conditions we should know about? | Textarea ("e.g., diabetes, heart conditions, medications, allergies") | No |
+
+Embed this form in the funnel landing page.
+
+**Build a "Patient Needs" Survey with Conditional Logic:**
+
+*Page 1:* Contact info + "What brings you in today?" (Radio: General Checkup & Cleaning, Cosmetic Improvement, Pain or Emergency, Orthodontics/Alignment)
+
+*Page 2 (conditional):*
+- IF General Checkup: "How often do you floss?", "Any sensitivity to hot or cold?", "Interested in whitening?"
+- IF Cosmetic: "What would you like to improve?" (multi-select: Whitening, Veneers, Bonding, Gum Reshaping), "Budget range for cosmetic work?" (dropdown: Under $500, $500-$1,500, $1,500-$3,000, Flexible)
+- IF Pain/Emergency: "Where is the pain?" (diagram or dropdown), "How long has this been going on?", "Rate the pain 1-10", "Are you currently taking anything for it?"
+- IF Orthodontics: "Who is the patient?" (Me, My child), "Have you had braces before?", "Main concern?" (Crowding, Spacing, Bite alignment, Appearance)
+
+*Page 3 (all paths):* "Preferred appointment times?", "How did you hear about BrightSmile?", "Anything else?"
+
+Set up a workflow trigger that tags patients based on their needs (e.g., `needs-cosmetic`, `needs-orthodontics`) and creates an opportunity in a dental pipeline.
 
 ---
 
-## Day 8 Recap Questions
+### Case Scenario 2: Elevate Digital Agency
 
-1. When would you choose a Funnel over a Website, and vice versa?
-2. What DNS record type do you need to connect a custom domain to GHL?
-3. How do you map form fields to custom fields in GHL contacts?
-4. Explain conditional logic in surveys - how do you create branching paths?
-5. How do you trigger a workflow when a form is submitted?
-6. What's the difference between a Form and a Survey in GHL?
+**Situation:** Elevate Digital Agency (SEO, PPC, Social Media Management, Email Marketing, Web Design, retainers from $2,000-$10,000/month) needs a "Free Strategy Session" funnel to capture qualified business leads, a client intake form, and a needs assessment survey that routes prospects to the right service team.
+
+**Your Task:**
+
+**Build a 2-Step "Free Strategy Session" Funnel:**
+
+*Landing Page:*
+- Hero: "Get a Free Digital Marketing Strategy Session - See Exactly Where You are Leaving Money on the Table"
+- Results section with placeholder metrics: "Average client sees 3.2x ROI in 90 days"
+- 3 benefit columns: "Custom Strategy (not a cookie-cutter template)" / "Data-Driven Insights (we audit your current performance)" / "No Obligation (walk away with actionable ideas either way)"
+- Intake form (see below)
+- Case study snippet: placeholder client success story
+- Footer with agency info
+
+*Thank You Page:*
+- "Great Move, {{contact.first_name}}. Your Strategy Session is Almost Ready."
+- "Before our call, we will audit your website and current marketing. Here is what to prepare..."
+- Calendar embed to book the strategy session
+- "While you wait:" links to agency blog posts or case studies
+
+**Build the Client Intake Form:**
+
+| Field | Type | Required |
+|-------|------|----------|
+| First Name | Text | Yes |
+| Last Name | Text | Yes |
+| Email | Email | Yes |
+| Phone | Phone | Yes |
+| Business Name | Text | Yes |
+| Website URL | URL/Text | No |
+| Industry | Dropdown: E-commerce, SaaS, Professional Services, Healthcare, Real Estate, Hospitality, Manufacturing, Nonprofit, Other | No |
+| Monthly Revenue Range | Dropdown: Pre-revenue/Startup, Under $10K, $10K-$50K, $50K-$200K, $200K-$1M, $1M+ | No |
+| Current Marketing Channels | Multi-Select: SEO, Google Ads (PPC), Facebook/Instagram Ads, Social Media (organic), Email Marketing, Content Marketing, None yet | No |
+
+**Build a "Marketing Needs Assessment" Survey with Conditional Logic:**
+
+*Page 1:* Business info + "What is your PRIMARY marketing goal?" (Radio: More Website Traffic, More Leads/Sales, Better Brand Awareness, Improve Existing Campaigns, Full Marketing Overhaul)
+
+*Page 2 (conditional):*
+- IF More Traffic: "Current monthly website visitors?", "Do you have a blog/content strategy?", "Have you done any SEO work before?", "Top 3 keywords you want to rank for?" (text)
+- IF More Leads/Sales: "Current cost per lead?", "Monthly ad spend?" (dropdown ranges), "Which platforms are you advertising on?", "What is your target cost per lead?"
+- IF Brand Awareness: "Target audience description" (textarea), "Which social platforms matter most?" (multi-select), "Current social following size?" (dropdown ranges), "Content creation capacity?" (dropdown)
+- IF Improve Existing: "What is working?" (textarea), "What is not working?" (textarea), "Current monthly marketing spend?", "Who manages marketing now?" (In-house, Freelancer, Another agency, Nobody)
+- IF Full Overhaul: "Why are you looking for a change?" (textarea), "Biggest marketing frustration?", "How soon do you need results?", "Budget range for full-service?" (dropdown: $2K-$5K/mo, $5K-$10K/mo, $10K+/mo)
+
+*Page 3 (all paths):* "Decision timeline?" (Dropdown: ASAP, 1-2 weeks, 1 month, Just researching), "Who else is involved in this decision?", "What would make this engagement a success for you?" (textarea)
+
+Set up a workflow trigger that tags prospects based on their goal (e.g., `goal-more-traffic` maps to the SEO team, `goal-more-leads` maps to the PPC team) and creates a pipeline opportunity with estimated value based on the budget range answer.
+
+---
+
+## Day 8 Recap
+
+**What You Built Today:**
+- A 2-step lead capture funnel for Sunrise Wellness Studio (Landing Page + Thank You Page)
+- A "Free Trial Request" form with qualifying custom fields
+- Embedded the form in your funnel and tested the complete flow
+- A "Member Needs Assessment" survey with conditional logic branching by fitness goal
+- Workflow triggers for both form and survey (ready to activate on Day 9)
+
+**Key Concepts to Remember:**
+1. **Funnels** are focused (one goal, no distractions); **Websites** are comprehensive (many pages, full navigation)
+2. **Forms** capture leads quickly; **Surveys** qualify leads deeply with branching logic
+3. Every form field should map to a contact field in GHL - this is how visitor data becomes CRM data
+4. The Thank You page is a conversion opportunity, not an afterthought - use it to get the next action
+5. Form submissions and survey completions can trigger workflows that automate your entire follow-up process
+6. Always test in an incognito window to see what a real visitor experiences
+
+**Recap Questions:**
+1. When would you choose a Funnel over a Website for a client, and why?
+2. What is the trade-off between having more form fields vs fewer form fields?
+3. How does conditional logic in surveys improve the data you collect?
+4. What happens in GHL when someone submits a form - what is automatically created?
+5. How do you connect a form submission to a workflow so follow-up happens automatically?
+6. Why should you test your funnel in an incognito browser window instead of the preview mode?
 
 ---
 
 ## Next Day Preview
 
-**Day 9: Automation & Workflows** - The most powerful feature in GHL. You'll build complete automated sequences, implement workflow recipes, and create complex conditional automation.
+**Day 9: Automation & Workflows** - The most powerful feature in GHL. Tomorrow you will activate the workflow triggers you previewed today and build complete automated sequences: welcome series, appointment reminders, lead nurture drips, and missed-call follow-ups. Everything you have built over the last 8 days comes together into hands-free automation.
 
-Make sure you have:
-- At least 5 contacts with varied data (from Day 2)
-- Your form and survey from today (we'll trigger workflows from them)
-- Templates from Day 3 (we'll use them in workflows)
+**Before Day 9, make sure you have:**
+- At least 5 contacts with varied data (from Day 2) - you need real contacts for workflows to act on
+- Your funnel form and survey from today (you will activate their workflow triggers)
+- Your email templates from Day 3 and Day 7 (workflows will send these automatically)
+- Your pipeline from Day 5 (workflows will create and move opportunities)
+- Your calendar from Day 4 (workflows will reference booking links)
