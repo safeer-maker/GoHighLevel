@@ -96,8 +96,8 @@ You're building the data model for Sunrise Wellness Studio. Every member, lead, 
 3. Fill in standard fields:
    - First Name: **Maria**
    - Last Name: **Chen**
-   - Email: **maria.chen@example.com**
-   - Phone: **+15551234001**
+   - Email: **maria.ch482@yopmail.com**
+   - Phone: **+12024567001**
 4. Scroll down to find your custom field folders and fill in:
    - Membership Type: **Premium ($149/mo)**
    - Join Date: **(today's date)**
@@ -129,17 +129,19 @@ Create a CSV file (`sunrise-wellness-members.csv`) with 25+ contacts representin
 
 ```csv
 First Name,Last Name,Email,Phone,Membership Type,Join Date,Membership Status,Fitness Goals,Experience Level,Preferred Time,Preferred Classes,Assigned Trainer,Lead Source,Monthly Rate
-Maria,Chen,maria.chen@example.com,+15551234001,Premium ($149/mo),2025-01-15,Active,"Weight Loss,Flexibility",Intermediate,Morning (8-10AM),"Yoga,Pilates",Alex (Lead Trainer),Instagram,149
-David,Park,david.park@example.com,+15551234002,VIP ($249/mo),2024-06-01,Active,"Muscle Gain,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training",Alex (Lead Trainer),Referral,249
-Emma,Rodriguez,emma.r@example.com,+15551234003,Basic ($79/mo),2025-03-01,Active,General Health,Beginner,Evening (5-9PM),Yoga,Jordan (Trainer),Website,79
-James,Wilson,james.w@example.com,+15551234004,Free Trial,,Trial,"Weight Loss,Muscle Gain",Beginner,Afternoon (2-5PM),,Unassigned,Facebook,0
-Aisha,Patel,aisha.p@example.com,+15551234005,Premium ($149/mo),2024-11-20,Active,"Stress Relief,Flexibility",Intermediate,Midday (10AM-2PM),"Yoga,Pilates",Jordan (Trainer),Google,149
-Tom,Baker,tom.baker@example.com,+15551234006,Basic ($79/mo),2025-02-10,Active,Weight Loss,Beginner,Morning (8-10AM),HIIT,Unassigned,Walk-in,79
-Lisa,Nguyen,lisa.n@example.com,+15551234007,VIP ($249/mo),2024-03-15,Active,"Muscle Gain,Flexibility,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training,Yoga",Alex (Lead Trainer),Referral,249
-Carlos,Rivera,carlos.r@example.com,+15551234008,Premium ($149/mo),2025-01-05,Paused,Weight Loss,Intermediate,Evening (5-9PM),HIIT,Jordan (Trainer),Instagram,149
-Priya,Sharma,priya.s@example.com,+15551234009,Basic ($79/mo),2024-09-01,Active,General Health,Beginner,Morning (8-10AM),Pilates,Unassigned,Flyer,79
-Marcus,Thompson,marcus.t@example.com,+15551234010,,,,"Weight Loss,Endurance",Beginner,Evening (5-9PM),,Unassigned,Website,
+Maria,Chen,maria.ch482@yopmail.com,+12024567001,Premium ($149/mo),2025-01-15,Active,"Weight Loss,Flexibility",Intermediate,Morning (8-10AM),"Yoga,Pilates",Alex (Lead Trainer),Instagram,149
+David,Park,david.pa917@yopmail.com,+12024567002,VIP ($249/mo),2024-06-01,Active,"Muscle Gain,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training",Alex (Lead Trainer),Referral,249
+Emma,Rodriguez,emma.ro358@yopmail.com,+12024567003,Basic ($79/mo),2025-03-01,Active,General Health,Beginner,Evening (5-9PM),Yoga,Jordan (Trainer),Website,79
+James,Wilson,james.wi641@yopmail.com,+12024567004,Free Trial,,Trial,"Weight Loss,Muscle Gain",Beginner,Afternoon (2-5PM),,Unassigned,Facebook,0
+Aisha,Patel,aisha.pa273@yopmail.com,+12024567005,Premium ($149/mo),2024-11-20,Active,"Stress Relief,Flexibility",Intermediate,Midday (10AM-2PM),"Yoga,Pilates",Jordan (Trainer),Google,149
+Tom,Baker,tom.ba805@yopmail.com,+12024567006,Basic ($79/mo),2025-02-10,Active,Weight Loss,Beginner,Morning (8-10AM),HIIT,Unassigned,Walk-in,79
+Lisa,Nguyen,lisa.ng194@yopmail.com,+12024567007,VIP ($249/mo),2024-03-15,Active,"Muscle Gain,Flexibility,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training,Yoga",Alex (Lead Trainer),Referral,249
+Carlos,Rivera,carlos.ri726@yopmail.com,+12024567008,Premium ($149/mo),2025-01-05,Paused,Weight Loss,Intermediate,Evening (5-9PM),HIIT,Jordan (Trainer),Instagram,149
+Priya,Sharma,priya.sh438@yopmail.com,+12024567009,Basic ($79/mo),2024-09-01,Active,General Health,Beginner,Morning (8-10AM),Pilates,Unassigned,Flyer,79
+Marcus,Thompson,marcus.th562@yopmail.com,+12024567010,,,,"Weight Loss,Endurance",Beginner,Evening (5-9PM),,Unassigned,Website,
 ```
+
+A complete 25-contact CSV file is available at `course/phase-1/sample-contacts.csv` with all the contacts you need, including the ones referenced in later lessons (David Kim, Lisa Chen, James Rodriguez, Emma Thompson, Raj Patel, Ana Martinez, etc.).
 
 **Create at least 25 rows** with these distribution guidelines:
 - 3-4 VIP members, 6-8 Premium, 8-10 Basic, 3-4 Free Trial, 2-3 leads (no membership)
