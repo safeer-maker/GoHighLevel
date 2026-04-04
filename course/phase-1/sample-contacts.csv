@@ -1,23 +1,26 @@
-First Name,Last Name,Email,Phone,Company,Lead Source,Membership Type,Join Date,Fitness Goals,Experience Level
-John,Smith,john.sm381@yopmail.com,+12024567001,Smith Corp,Website,Basic,2024-01-15,Weight Loss,Beginner
-Jane,Doe,jane.do492@yopmail.com,+12024567002,,Facebook,Premium,2024-02-01,"Weight Loss,Muscle Gain",Intermediate
-Mike,Johnson,mike.jo837@yopmail.com,+12024567003,Johnson LLC,Referral,Free Trial,,General Health,Beginner
-Sarah,Williams,sarah.wi205@yopmail.com,+12024567004,,Instagram,VIP,2023-06-15,"Flexibility,Endurance",Advanced
-David,Brown,david.br764@yopmail.com,+12024567005,Brown Fitness,Google,Basic,2024-03-12,Muscle Gain,Intermediate
-Emily,Davis,emily.da159@yopmail.com,+12024567006,,Walk-in,Free Trial,2024-03-20,General Health,Beginner
-Chris,Miller,chris.mi624@yopmail.com,+12024567007,Miller Group,Website,Premium,2023-11-08,"Weight Loss,Endurance",Intermediate
-Olivia,Wilson,olivia.wi308@yopmail.com,+12024567008,,Facebook,Basic,2024-01-28,Flexibility,Beginner
-Daniel,Moore,daniel.mo517@yopmail.com,+12024567009,Moore Tech,Referral,VIP,2023-09-03,"Muscle Gain,Endurance",Advanced
-Sophia,Taylor,sophia.ta940@yopmail.com,+12024567010,,Instagram,Premium,2024-02-14,Weight Loss,Intermediate
-James,Anderson,james.an273@yopmail.com,+12024567011,Anderson Co,Website,Basic,2023-12-01,General Health,Beginner
-Isabella,Thomas,isabella.th682@yopmail.com,+12024567012,,Google,Free Trial,2024-03-01,"Weight Loss,Flexibility",Beginner
-Matthew,Jackson,matthew.ja556@yopmail.com,+12024567013,Jackson Logistics,Referral,Premium,2023-10-19,Muscle Gain,Advanced
-Ava,White,ava.wh134@yopmail.com,+12024567014,,Walk-in,Basic,2024-02-25,Endurance,Intermediate
-Joseph,Harris,joseph.ha721@yopmail.com,+12024567015,Harris Holdings,Facebook,VIP,2023-08-22,"General Health,Flexibility",Advanced
-Mia,Martin,mia.ma468@yopmail.com,+12024567016,,Website,Basic,2024-03-10,Weight Loss,Advanced
-Andrew,Thompson,andrew.th295@yopmail.com,+12024567017,Thompson Labs,Google,Basic,2024-01-05,Muscle Gain,Intermediate
-Charlotte,Garcia,charlotte.ga857@yopmail.com,+12024567018,,Instagram,Premium,2023-11-30,"Endurance,Flexibility",Intermediate
-Joshua,Martinez,joshua.ma613@yopmail.com,+12024567019,Martinez Realty,Referral,Basic,2024-02-07,General Health,Beginner
-Amelia,Robinson,amelia.ro480@yopmail.com,+12024567020,,Facebook,VIP,2023-07-17,"Weight Loss,Muscle Gain",Advanced
-Ethan,Clark,ethan.cl792@yopmail.com,+12024567021,Clark Studio,Walk-in,Premium,2024-03-03,Endurance,Intermediate
-Harper,Lewis,harper.le509@yopmail.com,+12024567999,,Website,Basic,2024-02-18,Flexibility,Beginner
+First Name,Last Name,Email,Phone,Membership Type,Join Date,Membership Status,Fitness Goals,Experience Level,Preferred Time,Preferred Classes,Assigned Trainer,Lead Source,Monthly Rate
+Maria,Chen,maria.chen@yopmail.com,+12024567001,Premium ($149/mo),2025-01-15,Active,"Weight Loss,Flexibility",Intermediate,Morning (8-10AM),"Yoga,Pilates",Alex (Lead Trainer),Instagram,149
+David,Park,david.park@yopmail.com,+12024567002,VIP ($249/mo),2024-06-01,Active,"Muscle Gain,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training",Alex (Lead Trainer),Referral,249
+Emma,Rodriguez,emma.r@yopmail.com,+12024567003,Basic ($79/mo),2025-03-01,Active,General Health,Beginner,Evening (5-9PM),Yoga,Jordan (Trainer),Website,79
+James,Wilson,james.w@yopmail.com,+12024567004,Free Trial,,Trial,"Weight Loss,Muscle Gain",Beginner,Afternoon (2-5PM),,Unassigned,Facebook,0
+Aisha,Patel,aisha.p@yopmail.com,+12024567005,Premium ($149/mo),2024-11-20,Active,"Stress Relief,Flexibility",Intermediate,Midday (10AM-2PM),"Yoga,Pilates",Jordan (Trainer),Google,149
+Tom,Baker,tom.baker@yopmail.com,+12024567006,Basic ($79/mo),2025-02-10,Active,Weight Loss,Beginner,Morning (8-10AM),HIIT,Unassigned,Walk-in,79
+Lisa,Nguyen,lisa.n@yopmail.com,+12024567007,VIP ($249/mo),2024-03-15,Active,"Muscle Gain,Flexibility,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training,Yoga",Alex (Lead Trainer),Referral,249
+Carlos,Rivera,carlos.r@yopmail.com,+12024567008,Premium ($149/mo),2025-01-05,Paused,Weight Loss,Intermediate,Evening (5-9PM),HIIT,Jordan (Trainer),Instagram,149
+Priya,Sharma,priya.s@yopmail.com,+12024567009,Basic ($79/mo),2024-09-01,Active,General Health,Beginner,Morning (8-10AM),Pilates,Unassigned,Flyer,79
+Marcus,Thompson,marcus.t@yopmail.com,+12024567010,,,,"Weight Loss,Endurance",Beginner,Evening (5-9PM),,Unassigned,Website,
+Sarah,Williams,sarah.w@yopmail.com,+12024567011,Premium ($149/mo),2024-08-15,Active,"Weight Loss,Flexibility",Intermediate,Morning (8-10AM),"Yoga,HIIT",Jordan (Trainer),Instagram,149
+Mike,Johnson,mike.j@yopmail.com,+12024567012,VIP ($249/mo),2024-04-20,Active,"Muscle Gain,Endurance",Advanced,Early Morning (6-8AM),"HIIT,Strength Training",Alex (Lead Trainer),Website,249
+David,Kim,david.kim@yopmail.com,+12024567013,Premium ($149/mo),2025-03-25,Active,"General Health,Endurance",Intermediate,Afternoon (2-5PM),"HIIT,Yoga",Jordan (Trainer),Referral,149
+Raj,Patel,raj.patel@yopmail.com,+12024567014,Basic ($79/mo),2024-07-10,Expired,General Health,Beginner,Morning (8-10AM),Yoga,Unassigned,Walk-in,79
+Ana,Martinez,ana.martinez@yopmail.com,+12024567015,Free Trial,,Trial,"Flexibility,Stress Relief",Beginner,Midday (10AM-2PM),Yoga,Unassigned,Instagram,0
+Lisa,Chen,lisa.chen@yopmail.com,+12024567016,Basic ($79/mo),2025-03-18,Trial,"Weight Loss,General Health",Beginner,Morning (8-10AM),,Unassigned,Facebook,79
+James,Rodriguez,james.r@yopmail.com,+12024567017,Free Trial,,Trial,"Muscle Gain,Endurance",Intermediate,Evening (5-9PM),HIIT,Unassigned,Google,0
+Emma,Thompson,emma.t@yopmail.com,+12024567018,,,,"Weight Loss,Nutrition",Beginner,Afternoon (2-5PM),,Unassigned,Website,
+Sophie,Kim,sophie.kim@yopmail.com,+12024567019,Basic ($79/mo),2024-12-01,Active,Weight Loss,Beginner,Evening (5-9PM),Pilates,Unassigned,Facebook,79
+Nathan,Clark,nathan.clark@yopmail.com,+12024567020,Premium ($149/mo),2024-10-15,Active,"Muscle Gain,Flexibility",Intermediate,Early Morning (6-8AM),"HIIT,Yoga",Alex (Lead Trainer),Referral,149
+Olivia,Foster,olivia.f@yopmail.com,+12024567021,VIP ($249/mo),2024-05-22,Active,"Weight Loss,Nutrition,Flexibility",Advanced,Morning (8-10AM),"Yoga,Pilates,HIIT",Alex (Lead Trainer),Website,249
+Jasmine,Lee,jasmine.l@yopmail.com,+12024567022,Basic ($79/mo),2025-02-28,Active,General Health,Beginner,Midday (10AM-2PM),Pilates,Jordan (Trainer),Walk-in,79
+Ryan,Brooks,ryan.b@yopmail.com,+12024567023,Premium ($149/mo),2024-11-10,Paused,"Endurance,Muscle Gain",Intermediate,Afternoon (2-5PM),"HIIT,Strength Training",Jordan (Trainer),Google,149
+Amara,Okafor,amara.o@yopmail.com,+12024567024,,,,"Weight Loss,Stress Relief",Beginner,Evening (5-9PM),,Unassigned,Instagram,
+Kevin,Wright,kevin.w@yopmail.com,+12024567025,Basic ($79/mo),2025-01-20,Active,General Health,Beginner,Morning (8-10AM),HIIT,Unassigned,Facebook,79
