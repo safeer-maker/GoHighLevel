@@ -209,6 +209,24 @@ Save the Thank You page.
 
 ---
 
+### How a Visitor Moves From Step 1 to Step 2 (Important Concept)
+
+You have now built both pages in your funnel, but they are not yet connected. There is no automatic rule that says "Step 1 leads to Step 2." A visitor only moves from the Landing Page to the Thank You Page when ONE of two things happens:
+
+**1. The form on Step 1 is submitted.** This is the main mechanism for lead capture funnels. Every GHL form has an "On Submit" setting (sometimes called "After Submit" or "Thank You Action") that controls what happens next. The option you want is **"Go to next step in funnel"** - this tells GHL to automatically advance the visitor to Step 2 as soon as they click submit. You will configure this setting in Exercise 8.4.
+
+**2. A button or link is clicked.** Buttons can be configured to go to the next funnel step, an external URL, or scroll to a section on the same page (anchor link).
+
+**For your Free Trial funnel, here is the actual flow:**
+- The **hero button** at the top of the landing page scrolls DOWN to the form section (anchor link on the same page). It does NOT go to Step 2.
+- The **form submission** is what takes the visitor to Step 2 (Thank You Page).
+
+**Common student confusion:** "My hero button does not take users to Step 2!" It does not need to. The button's job is to get the visitor to the form. The form's job is to capture their info AND send them to Step 2. You are building a chain: **button → form → next step**.
+
+**Where the setting lives:** The "Go to next step" option is NOT in the funnel settings or the page builder. It is inside the **form's own settings** (the form you built in Exercise 8.4). This trips up almost every new user - they look in the funnel settings and cannot find it.
+
+---
+
 ### Exercise 8.3: Domain Setup
 
 **Purpose:** Understand how custom domains work with GHL funnels so you can set this up for real clients.
@@ -288,10 +306,17 @@ Navigate to **Sites > Forms > + Create Form** (some GHL versions put forms under
 
 2. **Submit button text:** "Start My Free Trial"
 
-3. **Success/Thank You action:** 
-   - Select "Redirect to URL" or "Go to next funnel step"
-   - If in a funnel, set it to redirect to your Thank You page (Step 2)
-   - If standalone, set a success message: "You are in! Check your email for next steps."
+3. **On-Submit action (this is what actually moves the visitor to Step 2):**
+   
+   Open the form settings and find the section labeled **"On Submit"**, **"After Submit"**, or **"Thank You Action"** (the label varies by GHL version - it may be a tab, an accordion, or a button in the form builder toolbar). You will see three possible options:
+   
+   - **"Go to next step in funnel"** (sometimes shown as "Open next step" or "Navigate to next funnel step") - **CHOOSE THIS ONE.** GHL will automatically advance the visitor to Step 2 (Thank You Page) when they submit. This option is smart: if you ever rename or rearrange your funnel steps later, the link updates automatically. You do NOT need to paste any URL.
+   
+   - **"Redirect to URL"** - only use this if you want submissions to go somewhere OTHER than the next step (e.g., to a different funnel or an external page). If you pick this option, paste the full public URL of your Thank You page.
+   
+   - **"Show a message"** / **"Open message"** - displays a text message on the same page instead of redirecting. Do NOT use this inside a funnel - it defeats the entire purpose of having a Thank You page as Step 2. Only use this for standalone forms that are not part of a funnel.
+   
+   > **Troubleshooting:** If you cannot find the "Go to next step" option, it usually means you are editing the form from the standalone form builder (Sites > Forms) rather than from inside the funnel. You can still select "Redirect to URL" and paste your Thank You page URL - the result is the same, just less elegant. Or, you can save the form, embed it into the funnel step (Exercise 8.5), and then edit the on-submit setting from within the funnel context, which will show the "Go to next step" option.
 
 4. **Form styling:**
    - Match the colors to your Sunrise Wellness brand
@@ -315,13 +340,18 @@ Navigate to **Sites > Forms > + Create Form** (some GHL versions put forms under
 5. Drag a **Form** element into the section (or click the form placeholder to configure it)
 6. Select your "Free Trial Request - Sunrise Wellness" form
 7. The form fields should appear on the page
-8. Adjust styling to match the page design:
+8. **Verify the form's on-submit action points to Step 2** (this is the transition wiring):
+   - Click on the embedded form element to open its settings panel (it may appear on the right side or in a popup)
+   - Look for the **"On Submit"** / **"After Submit"** / **"Thank You Action"** setting
+   - Confirm it is set to **"Go to next step in funnel"** (or "Redirect to URL" with your Thank You page URL pasted in)
+   - If it is set to "Show a message," change it now - otherwise the visitor will never reach Step 2
+9. Adjust styling to match the page design:
    - Field label colors
    - Input field border style
    - Button color and size
    - Spacing and alignment
-9. **Preview** the page and make sure the form looks good on both desktop and mobile
-10. **Save** the funnel page
+10. **Preview** the page and make sure the form looks good on both desktop and mobile
+11. **Save** the funnel page
 
 **Test the complete flow:**
 1. Open your funnel URL in an **incognito/private browser window**
