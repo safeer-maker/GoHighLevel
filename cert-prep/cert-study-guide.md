@@ -30,21 +30,56 @@ If you want a single practical you can run like a timed build, use:
 
 ## Exam Overview
 
-- **Provider:** HighLevel (via official certification portal)
-- **Format:** Online, multiple choice, some scenario-based
-- **Questions:** ~80-100 (verify current count at certification portal)
-- **Time limit:** Typically 2 hours (verify)
-- **Passing score:** 80% (verify)
-- **Retake policy:** Usually allowed after a waiting period (often 24-72 hours)
-- **Cost:** Check current pricing in the HighLevel certifications program
-- **Proctoring:** May be webcam-monitored — check requirements before scheduling
+> **You have passed Part A.** This guide's content sections (Sections 1–10) remain useful as reference for Part B navigation. Focus on knowing *where* things are, not just *what* they are.
 
-### Before You Start the Exam
-- Close all tabs except the exam
-- Read scenario questions TWICE before answering
-- Flag unclear questions, move on, return at end
-- Watch time — pace for roughly 1 minute per question
-- Don't second-guess; first instinct is usually right on factual items
+### Part A (You've Passed This)
+- ~100 multiple-choice questions, untimed
+- Passing score: 85% (95% on retake after failing Part B)
+- Requires 100% on all lesson quizzes before the final exam unlocks
+
+### Part B — What You're Preparing For
+- Live, on-camera, screen-sharing session with a HighLevel proctor
+- Time limit: **60 minutes** — aim to finish in **under 30 minutes**
+- Government-issued photo ID required
+- 3 attempts; fail all 3 → must retake Part A at 95% before re-attempting
+- Task: build a sub-account from scratch using a provided client brief
+- Known scenario type: "Build a sub-account for a client and move a lead through a pipeline"
+- ~51% fail on first attempt — mainly navigation slowness, not missing knowledge
+
+### Part B — Top Failure Reasons
+1. Navigation slowness — can't find settings fast enough
+2. Calendar + Zoom/Google Meet integration — most common missed task
+3. Workflow not Published (saved ≠ published)
+4. Agency level vs Sub-Account level confusion
+5. Time pressure anxiety
+
+### Certification Maintenance
+- Badge valid: **2 years**
+- Annual: earn **2+ skills badges/year** to stay active
+- Lapses if your HighLevel Agency subscription lapses
+
+### Specialization Badges (After Passing — Not Part B Content)
+These are separate badges earned after the base cert. They are NOT tested in Part B:
+
+| Badge | What It Covers |
+|---|---|
+| **A2P Compliance** | A2P 10DLC registration, LC Phone, Twilio, carrier compliance |
+| Course Creator | Communities, course creation, engagement |
+| SaaSPRENEUR "Local Hero" | SaaS pricing, white-label, client acquisition |
+| AI Employee | Voice AI, AI automation, pricing |
+| **HIPAA Compliance** | Healthcare data, PHI handling |
+| Paid Ads | Ad campaigns, lead sources, conversion analytics |
+| Social Media Manager | Social strategy, automation, engagement |
+| Automated Swag Store | Branded store, fulfillment automation |
+| Quick Wins | Rapid lead gen, deal closing tools |
+
+> **Telephony note:** A2P 10DLC registration, LC Phone provisioning, and Twilio setup are in the **A2P Compliance Badge only**. Do not study them for the base Admin cert Part B.
+
+### Before Your Part B Session
+- Test your camera, mic, and screen share before the appointment
+- Have government ID ready
+- Use a clean browser with a stable internet connection
+- Know exactly where to find: Agency Settings, Calendar Connections, Workflow Publish toggle, Snapshot creation
 
 ---
 
