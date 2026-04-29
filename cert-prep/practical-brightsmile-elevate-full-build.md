@@ -39,36 +39,202 @@ Use consistent prefixes so you can find things fast:
 
 ---
 
-## Section 0 — Agency Account Setup
+## Section 0 — Agency Account: Full Walkthrough
 
-> **Part B tests both agency-level AND sub-account-level navigation.** Practice switching between them until it's automatic.
+> **Do this entire section before touching Section A or B.** Everything in GHL starts at the agency level. You have only worked in sub-accounts before — this section teaches you the agency layer that wraps around them.
+>
+> Part B tests BOTH agency-level AND sub-account-level navigation. Mixing them up under pressure is the #4 reason people fail.
 
-### 0.1 Agency vs Sub-Account — Navigation Drill
+---
 
-Before building anything, do this drill 3 times:
-1. Log in → you are at the **Agency view** (top-left shows your agency name)
-2. Click into a sub-account → you are now in **Sub-Account view** (top-left shows client name)
-3. Return to Agency view via the switcher
-4. Find **Agency Settings** (gear icon at agency level)
-5. Find **Sub-Account Settings** (gear icon at sub-account level)
+### 0.1 Understanding the Two Levels
 
-These two panels look almost identical. Mixing them up under exam pressure is the #4 reason people fail.
+GHL has two completely separate levels. They have different left-nav menus, different settings panels, and different purposes:
 
-### 0.2 Agency Foundation Checklist
-- [ ] Agency business info accurate (name, address, timezone)
-- [ ] 2FA enabled for agency admin account
-- [ ] Default notification preferences configured
+| | Agency Level | Sub-Account Level |
+|---|---|---|
+| **What it is** | Your management dashboard | One client's workspace |
+| **Who works here** | You (the agency admin) | The client's staff |
+| **Left nav shows** | Accounts, Snapshots, SaaS tools | Contacts, Workflows, Calendars, etc. |
+| **Settings icon opens** | Agency-wide config | That client's business settings |
+| **URL pattern** | `.../agency/...` | `.../location/...` |
+| **How to get here** | Log in → you land here | Click your agency name → pick a sub-account |
 
-### 0.3 Create Both Sub-Accounts from Agency Dashboard
-From the **Agency view:**
-- [ ] Create "BrightSmile Dental Clinic" sub-account
-- [ ] Create "Elevate Digital Agency" sub-account
-- [ ] Verify both appear in the sub-account list before proceeding
+**The critical habit:** Always glance at the top-left corner before clicking anything. It shows which level you are in. If it shows your agency name, you are at agency level. If it shows a client name, you are inside that sub-account.
 
-### 0.4 Snapshot Strategy
-- [ ] After completing each major milestone (Days 3, 5, 7, 9), create a snapshot from the Agency view
-- [ ] Practice **loading a snapshot** into a test/blank sub-account — this is confirmed Part B content
-- [ ] Naming rule: `Snapshot - [Business] - v[N] [Description]`
+---
+
+### 0.2 Agency Dashboard Tour — Do This First
+
+Log in now and explore the **Agency view** left sidebar:
+
+| Left Nav Item | What It Is |
+|---|---|
+| **Dashboard** | Summary stats across all sub-accounts (conversations, leads, revenue) |
+| **Accounts** (or Sub-Accounts) | List of all client sub-accounts — this is where you create and manage them |
+| **Snapshots** | Saved configuration packages you can deploy to sub-accounts |
+| **Templates** | Agency-level shared templates (optional; sub-accounts have their own too) |
+| **Media** | Agency-level media library |
+| **Marketplace** | GHL apps and integrations |
+| **Settings** (gear icon) | Agency-wide settings — company info, team, billing |
+| **SaaS Configurator** | Pricing plans and rebilling (SaaS plans only — not relevant for Part B) |
+
+**Do this now:**
+- [ ] Find the Accounts list — count your existing sub-accounts
+- [ ] Find Snapshots — note if any exist already
+- [ ] Open Agency Settings (gear icon) → find Company Info — verify your agency name
+
+---
+
+### 0.3 Agency Settings — What's Inside
+
+Click the **gear icon (Settings)** while in Agency view. This is the AGENCY settings panel, not a sub-account's settings:
+
+| Section | What You'll Find |
+|---|---|
+| **Company** | Agency name, address, logo, timezone |
+| **Team** | Agency-level staff members (your employees, not client staff) |
+| **Email Services** | Default email sending setup for the agency |
+| **Integrations** | Stripe, PayPal, Facebook, etc. at agency level |
+| **API Keys** | Developer access |
+| **White Label** | Custom domain/branding for your agency |
+| **Billing** | Your GHL subscription |
+
+**Agency Team vs Sub-Account Team — this confuses everyone:**
+
+- **Agency Team** (here in Agency Settings): Your employees who manage the agency. They can access all sub-accounts. Example: your VA, account manager, yourself.
+- **Sub-Account Team** (inside a sub-account → Settings → Team): The client's staff. They can ONLY see that one sub-account. Example: dental receptionist, front desk.
+
+When you create a Dentist or Front Desk user in Day 1, you do that **inside the sub-account**, not here.
+
+**Checklist:**
+- [ ] Agency Company Info complete (name, address, timezone)
+- [ ] 2FA enabled for your agency admin account
+- [ ] You understand the difference between Agency Team and Sub-Account Team
+
+---
+
+### 0.4 Creating Sub-Accounts — Step by Step
+
+From **Agency view** (confirm you are NOT inside a sub-account):
+
+**Step 1:** Click **"Accounts"** in the left sidebar. You see a list of existing sub-accounts.
+
+**Step 2:** Click **"+ New Sub-Account"** or **"+ Create Sub-Account"** (button in top-right area).
+
+**Step 3:** Fill in the sub-account details:
+- **Business Name:** `BrightSmile Dental Clinic`
+- **Address / City / State / Zip**
+- **Timezone:** Your local timezone
+- **Phone:** Optional — can be added later inside the sub-account
+- **Email:** Optional — can be added later
+- **Snapshot to Load:** Leave blank for now (we will set this up fresh)
+
+**Step 4:** Click **Save** (or Create / Continue).
+
+**Step 5:** Verify the sub-account appears in your Accounts list.
+
+**Step 6:** Click into the new sub-account. You should now see the **sub-account dashboard** — the left nav completely changes (shows Contacts, Conversations, Calendars, etc.). This is the client's workspace.
+
+**Step 7:** Return to Agency view (click the sub-account name top-left → pick your agency).
+
+**Repeat for Elevate Digital Agency.**
+
+**Checklist:**
+- [ ] "BrightSmile Dental Clinic" sub-account created
+- [ ] "Elevate Digital Agency" sub-account created
+- [ ] Both appear in the Accounts list
+- [ ] You entered each one and confirmed the sub-account dashboard loaded
+- [ ] You successfully returned to Agency view from each one
+
+---
+
+### 0.5 Snapshots — Create + Load (Step by Step)
+
+Snapshots let you save the entire configuration of a sub-account and replicate it. This is confirmed Part B content. Practice until it takes under 3 minutes.
+
+**What a snapshot can contain:**
+- Workflows
+- Funnels and websites
+- Calendars
+- Email and SMS templates
+- Custom values
+- Forms and surveys
+- Pipelines
+- Tags
+
+**Creating a Snapshot from a Sub-Account:**
+
+1. Switch to **Agency view** (click sub-account name top-left → pick agency)
+2. Click **"Snapshots"** in the left sidebar
+3. Click **"+ New Snapshot"** or **"Create Snapshot"**
+4. **Select the source sub-account** from the dropdown (e.g. BrightSmile)
+5. **Select what to include** — check all boxes for a full snapshot, or be selective
+6. **Name it:** `Snapshot - BrightSmile - v1 Foundation (Day 3)`
+7. Click **Save / Create**
+8. Snapshot appears in your Snapshots list
+
+Alternative path (from inside the sub-account, if available in your GHL version):
+- Settings → Snapshots → Create Snapshot → name it → Save
+
+**Loading a Snapshot into a Sub-Account:**
+
+1. Switch to **Agency view**
+2. Click **"Snapshots"** in the left sidebar
+3. Find the snapshot → click the **three-dot menu (⋮)** → **"Push to Account"** or **"Load"**
+4. **Select the target sub-account** from the dropdown
+5. Choose merge behavior:
+   - **"Add / Merge"** — adds assets without deleting what's already there ✓ (use this)
+   - **"Replace"** — overwrites everything (use with caution)
+6. Click **Load** (or Push / Apply)
+7. Enter the target sub-account and verify the assets appeared (check Workflows, Funnels, etc.)
+
+**Practice drill — do this before starting Section A:**
+- [ ] Create a snapshot from ANY sub-account (even an empty one) — just to practice the flow
+- [ ] Load it into a DIFFERENT sub-account (create a temp "practice" sub-account if needed)
+- [ ] Verify it loaded
+- [ ] Time yourself: target < 3 minutes total for both steps combined
+
+**Rule:** Never overwrite a snapshot. Always create a new version number.
+
+---
+
+### 0.6 Agency-Level Navigation Speed Drill
+
+Do this 5 times before starting Section A. Time yourself — target < 30 seconds per step:
+
+1. Start at Agency view → open Agency Settings → click Company
+2. Enter BrightSmile sub-account → open Sub-Account Settings → click Business Info
+3. Return to Agency view → click Snapshots
+4. Enter Elevate sub-account → click Workflows in left nav
+5. Return to Agency view → click Accounts list
+
+If any of those steps took you more than 10 seconds to find, that is your drilling target.
+
+---
+
+### 0.7 Agency Context: What You Do at Each Level
+
+Use this as your reference throughout Sections A and B:
+
+| Task | Level | Where |
+|---|---|---|
+| Create sub-account | Agency | Accounts → + New |
+| Create/load snapshot | Agency | Snapshots |
+| Agency billing/settings | Agency | Settings (gear) |
+| Add agency team member | Agency | Settings → Team |
+| Sub-account business profile | Sub-account | Settings → Business Info |
+| Custom values | Sub-account | Settings → Custom Values |
+| Sub-account team/users | Sub-account | Settings → Team |
+| Contacts, CRM | Sub-account | Contacts menu |
+| Workflows | Sub-account | Automation → Workflows |
+| Calendars | Sub-account | Calendars menu |
+| Funnels/Sites | Sub-account | Sites menu |
+| Templates | Sub-account | Marketing → Templates |
+| Pipelines | Sub-account | Opportunities menu |
+| Payments | Sub-account | Payments menu |
+
+**Bottom line:** You are in Agency view only to create/manage sub-accounts and snapshots. Everything else is inside the sub-account.
 
 ---
 
@@ -117,6 +283,8 @@ Create at least: Admin + Front Desk (minimum 2 users).
 - [ ] All custom values created
 - [ ] At least 2 users created with correct permission levels
 - [ ] "Only Assigned Data" setting matches the table above
+
+> **Agency Context — Day 1:** The BrightSmile sub-account exists because you created it from Agency view (Section 0.4). Everything you just did (business profile, custom values, users) was done INSIDE the sub-account. If you accidentally ended up in Agency Settings instead of Sub-Account Settings at any point, that's the #4 Part B failure mode — notice it now so you catch it under pressure.
 
 ---
 
@@ -193,6 +361,18 @@ Create at least: Admin + Front Desk (minimum 2 users).
 - [ ] 3 email templates created
 - [ ] Webchat widget configured and embedded
 - [ ] Snapshot: `Snapshot - BrightSmile - v1 Foundation (Day 3)`
+
+> **Agency Step — Create Snapshot v1:**
+> 1. Click the sub-account name (top-left) → select your agency to return to Agency view
+> 2. Click **Snapshots** in the left sidebar
+> 3. Click **+ New Snapshot**
+> 4. Source sub-account: **BrightSmile Dental Clinic**
+> 5. Select all assets (custom values, templates, settings)
+> 6. Name: `Snapshot - BrightSmile - v1 Foundation (Day 3)`
+> 7. Click Save
+> 8. Return to BrightSmile sub-account (Accounts → BrightSmile)
+>
+> Target time: < 3 minutes. If it takes longer, re-read Section 0.5.
 
 ---
 
@@ -276,6 +456,11 @@ Create 5 sample opportunities across the Patient Treatment Pipeline with realist
 - [ ] 5+ opportunities created with values and notes
 - [ ] Snapshot: `Snapshot - BrightSmile - v3 Pipelines (Day 5)`
 
+> **Agency Step — Create Snapshot v3:**
+> Agency view → Snapshots → + New Snapshot → source: BrightSmile → name: `Snapshot - BrightSmile - v3 Pipelines (Day 5)` → Save → return to BrightSmile sub-account.
+>
+> You should now be doing this in under 2 minutes. If not, you need more snapshot reps.
+
 ---
 
 ## A6 — Day 6: Payments
@@ -323,6 +508,9 @@ Create 5 sample opportunities across the Patient Treatment Pipeline with realist
 - [ ] 2 trigger links created and tested (click → verify tag applied)
 - [ ] 1 campaign drafted targeting the Smart List
 - [ ] Snapshot: `Snapshot - BrightSmile - v4 Marketing (Day 7)`
+
+> **Agency Step — Create Snapshot v4:**
+> Agency view → Snapshots → + New Snapshot → source: BrightSmile → name: `Snapshot - BrightSmile - v4 Marketing (Day 7)` → Save → return to sub-account.
 
 ---
 
@@ -453,6 +641,11 @@ On submit → Workflow applies tags:
 - [ ] Each test checklist above completed
 - [ ] Snapshot: `Snapshot - BrightSmile - v5 Workflows (Day 9)`
 
+> **Agency Step — Create Snapshot v5:**
+> Agency view → Snapshots → + New Snapshot → source: BrightSmile → name: `Snapshot - BrightSmile - v5 Workflows (Day 9)` → Save → return to sub-account.
+>
+> **Extra practice:** After saving, load this snapshot into a blank test sub-account and verify the workflows appear there. This is the exact Part B snapshot task. (Delete the test sub-account or leave it for drilling.)
+
 ---
 
 ## A10 — Day 10: Reputation, Community, Reporting
@@ -481,6 +674,20 @@ On submit → Workflow applies tags:
 - [ ] Community created with groups + 2 sample posts
 - [ ] Weekly reporting checklist documented
 - [ ] Snapshot: `Snapshot - BrightSmile - v6 Complete (Day 10)`
+
+> **Agency Step — Final Snapshot + Agency-Level Review:**
+>
+> **Create the final snapshot:**
+> Agency view → Snapshots → + New Snapshot → source: BrightSmile → name: `Snapshot - BrightSmile - v6 Complete (Day 10)` → include ALL assets → Save.
+>
+> **Agency-level reporting review (do this once per build):**
+> While in Agency view, explore what visibility you have across sub-accounts:
+> 1. **Agency Dashboard** — check the overview stats (conversations, leads, appointments, revenue across all sub-accounts)
+> 2. **Accounts list** — find BrightSmile → click the three-dot menu (⋮) → explore: Edit, Pause, View Reports
+> 3. **Sub-account reporting** — enter BrightSmile → Reporting menu (left nav) → explore Attribution Report, Call Reporting, Appointment Report
+> 4. Return to Agency view
+>
+> Understanding this switch (agency-level overview vs sub-account-level detail) is often tested in Part B.
 
 ---
 
@@ -573,6 +780,8 @@ Create at least: Agency Owner + Account Manager.
 - [ ] All custom values created
 - [ ] At least 2 users created with correct permission levels
 
+> **Agency Context — Day 1:** You created this sub-account from Agency view (Section 0.4) before starting. "Agency Owner" in this table refers to a sub-account-level user role (someone who owns this client's workspace), not your agency-level admin. They are created here inside the sub-account → Settings → Team, not in Agency Settings → Team.
+
 ---
 
 ## B2 — Day 2: Contacts & CRM
@@ -648,6 +857,11 @@ Create at least: Agency Owner + Account Manager.
 - [ ] 3 email templates created
 - [ ] Webchat widget configured
 - [ ] Snapshot: `Snapshot - Elevate - v1 Foundation (Day 3)`
+
+> **Agency Step — Create Snapshot v1:**
+> Agency view → Snapshots → + New Snapshot → source: **Elevate Digital Agency** → name: `Snapshot - Elevate - v1 Foundation (Day 3)` → Save → return to Elevate sub-account.
+>
+> This is your second snapshot of the day — you should be doing this in well under 2 minutes now.
 
 ---
 
@@ -726,6 +940,9 @@ Create 5 sample opportunities across the Client Acquisition Pipeline using the i
 - [ ] 5+ opportunities created with values and notes
 - [ ] Snapshot: `Snapshot - Elevate - v3 Pipelines (Day 5)`
 
+> **Agency Step — Create Snapshot v3:**
+> Agency view → Snapshots → + New Snapshot → source: Elevate → name: `Snapshot - Elevate - v3 Pipelines (Day 5)` → Save → return to Elevate sub-account.
+
 ---
 
 ## B6 — Day 6: Payments
@@ -776,6 +993,9 @@ Create 5 sample opportunities across the Client Acquisition Pipeline using the i
 - [ ] 4 trigger links created and tested (click → tag applied)
 - [ ] 1 campaign drafted targeting the Smart List
 - [ ] Snapshot: `Snapshot - Elevate - v4 Marketing (Day 7)`
+
+> **Agency Step — Create Snapshot v4:**
+> Agency view → Snapshots → + New Snapshot → source: Elevate → name: `Snapshot - Elevate - v4 Marketing (Day 7)` → Save → return to sub-account.
 
 ---
 
@@ -903,6 +1123,14 @@ On submit → Workflow applies tags:
 - [ ] Each test checklist above completed
 - [ ] Snapshot: `Snapshot - Elevate - v5 Workflows (Day 9)`
 
+> **Agency Step — Create Snapshot v5 + Load Drill:**
+> Agency view → Snapshots → + New Snapshot → source: Elevate → name: `Snapshot - Elevate - v5 Workflows (Day 9)` → Save.
+>
+> **Then do the full load drill:**
+> Snapshots list → find Elevate v5 → three-dot menu → Push to Account → select a blank test sub-account → Add/Merge → Load → enter the test sub-account → verify workflows appeared → return to Agency view.
+>
+> This is the exact sequence for Part B snapshot tasks. By this point you should complete both steps in under 4 minutes total.
+
 ---
 
 ## B10 — Day 10: Reputation, Community, Reporting
@@ -931,6 +1159,20 @@ On submit → Workflow applies tags:
 - [ ] Community created with groups + 2 sample posts
 - [ ] Weekly reporting checklist documented
 - [ ] Snapshot: `Snapshot - Elevate - v6 Complete (Day 10)`
+
+> **Agency Step — Final Snapshot + Full Agency Review:**
+>
+> **Create final snapshot:**
+> Agency view → Snapshots → + New Snapshot → source: Elevate → name: `Snapshot - Elevate - v6 Complete (Day 10)` → include ALL assets → Save.
+>
+> **Full agency-level review (both sub-accounts):**
+> 1. Agency Dashboard — compare stats: BrightSmile vs Elevate (conversations, contacts added, appointments)
+> 2. Accounts list → BrightSmile → three-dot menu → what options appear? (Edit, Pause, Reports)
+> 3. Accounts list → Elevate → same
+> 4. Snapshots list — you should now have 12 snapshots (6 per business). Confirm naming is consistent.
+> 5. Agency Settings → Team — confirm your agency admin is the only person here
+>
+> **You have now practiced every agency-level task that could appear in Part B.** The Part B drill at the end of this section is the final exam simulation.
 
 ---
 
