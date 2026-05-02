@@ -29,12 +29,12 @@ Most GHL courses teach features in isolation. This course is different:
 
 ## Course Structure
 
-| Phase | Days | Focus | Level |
-|-------|------|-------|-------|
-| **Phase 1** | 1-10 | Core Platform Features | Beginner to Intermediate |
-| **Phase 2** | 11-17 | Integration & Combined Scenarios | Intermediate to Advanced |
-| **Phase 3** | 18-23 | Expert + API Programming | Advanced to Expert |
-| **Phase 4** | 24-28 | Certification Prep & Capstone | Certification Ready |
+| Phase | Days | Focus | Level | Status |
+|-------|------|-------|-------|--------|
+| **Phase 1** | 1-10 | Core Platform Features | Beginner to Intermediate | Complete |
+| **Phase 2** | 11-17 | Integration & Combined Scenarios | Intermediate to Advanced | Complete |
+| **Phase 3** | 18-23 | Expert + API Programming | Advanced to Expert | Complete |
+| **Phase 4** | 24-28 | Certification Prep & Capstone | Certification Ready | Complete |
 
 ## Phase 1: Core Platform Mastery
 
@@ -52,6 +52,75 @@ Each day builds on the last. By Day 10, Sunrise Wellness Studio is a fully autom
 | [Day 8](course/phase-1/day-08-sites.md) | Sites & Funnels | Free trial funnel, intake form, survey | - |
 | [Day 9](course/phase-1/day-09-automation.md) | Automation & Workflows | New lead, no-show, reminder workflows | [Script](scripts/day-09-automation-api.py) |
 | [Day 10](course/phase-1/day-10-reputation.md) | Reputation & Community | Review system, member community, reporting | - |
+
+## Phase 2: Integration & Combined Scenarios
+
+Phase 2 combines Phase 1 features into complete business systems. Each day wires 3-5 features together:
+
+| Day | Topic | Systems Combined | Level |
+|-----|-------|-----------------|-------|
+| [Day 11](course/phase-2/day-11-lead-capture-system.md) | Multi-Channel Lead Capture | Funnels + Forms + Contacts + Workflows + Pipeline | Intermediate |
+| [Day 12](course/phase-2/day-12-sales-pipeline-automation.md) | Automated Sales Pipeline | Pipeline + Workflows + Calendars + Templates | Intermediate |
+| [Day 13](course/phase-2/day-13-appointment-business-system.md) | Appointment Business System | Calendars + Payments + Reputation + Workflows | Intermediate |
+| [Day 14](course/phase-2/day-14-payment-funnel-system.md) | E-Commerce & Payment Funnels | Funnels + Products + Workflows + Pipeline | Intermediate |
+| [Day 15](course/phase-2/day-15-onboarding-retention.md) | Onboarding & Retention | Pipeline + Community + Workflows + Smart Lists | Intermediate-Advanced |
+| [Day 16](course/phase-2/day-16-marketing-campaign-system.md) | Marketing Campaign System | Email + Trigger Links + Funnels + Workflows | Intermediate-Advanced |
+| [Day 17](course/phase-2/day-17-full-business-audit.md) | Full Business Audit (Capstone) | ALL features - end-to-end testing + optimization | Advanced |
+
+## Advanced Challenges
+
+No hand-holding -- you get the business requirements and figure out how to build it:
+
+| Challenge | Topic | Time |
+|-----------|-------|------|
+| [Challenge 1](course/advanced/challenge-01-referral-engine.md) | Build a Complete Referral Engine | 4-6 hours |
+| [Challenge 2](course/advanced/challenge-02-seasonal-launch.md) | Seasonal Program Launch Campaign | 4-6 hours |
+
+## Phase 2 Testing Guide
+
+Step-by-step guide to verify every integrated system works end-to-end:
+
+| Guide | What It Covers |
+|-------|---------------|
+| [Testing Guide](course/testing/phase-2-testing-guide.md) | 7 test scenarios + troubleshooting + testing log template |
+
+## Phase 3: Expert & API Programming
+
+Phase 3 takes you from GHL power user to GHL developer. Python code, webhooks, AI agents, and advanced patterns:
+
+| Day | Topic | Focus |
+|-----|-------|-------|
+| [Day 18](course/phase-3/day-18-api-fundamentals.md) | GHL API Deep Dive - Auth & Contacts | Python + REST API fundamentals |
+| [Day 19](course/phase-3/day-19-api-calendars-opportunities.md) | API - Calendars, Opportunities, Conversations | Complex API surfaces + webhooks |
+| [Day 20](course/phase-3/day-20-webhooks-integrations.md) | Workflows, Campaigns & Custom Integrations | Flask middleware, Google Sheets sync, lead scoring |
+| [Day 21](course/phase-3/day-21-ai-agents.md) | AI Agents in GHL | Build AI receptionist with system prompts |
+| [Day 22](course/phase-3/day-22-advanced-automation.md) | Advanced Automation Patterns | Nested logic, goals, exponential backoff |
+| [Day 23](course/phase-3/day-23-marketplace-integrations.md) | App Marketplace & Advanced Integrations | 3-tool custom integration + white-label |
+
+## Phase 4: Certification Prep & Capstone
+
+Five days of focused review + real-world capstone + 100-question mock exam to verify you're ready for the HighLevel Admin Certification:
+
+| Day | Topic | Format |
+|-----|-------|--------|
+| [Day 24](course/phase-4/day-24-cert-review-agency.md) | Agency Features Review | Theory + 25 practice questions |
+| [Day 25](course/phase-4/day-25-cert-review-subaccount.md) | Sub-Account Mastery Review | Theory + 25 practice questions |
+| [Day 26](course/phase-4/day-26-cert-review-marketing-automation.md) | Marketing, Sites & Automation Review | Theory + 30 practice questions + mini build |
+| [Day 27](course/phase-4/day-27-capstone.md) | Capstone: Build Harmony Health Hub | 6-8 hour build, 50-point rubric |
+| [Day 28](course/phase-4/day-28-mock-exam-gap-analysis.md) | 100-Question Mock Exam + Gap Analysis | 2-hour timed exam + personalized study plan |
+
+## Certification Prep Reference
+
+Standalone references you can scan anytime - especially before the real exam:
+
+| Reference | Purpose |
+|-----------|---------|
+| [Complete Study Guide](cert-prep/cert-study-guide.md) | Every exam topic in one document |
+| [Best Practices](cert-prep/best-practices.md) | What experts do differently from beginners |
+| [Common Pitfalls](cert-prep/common-pitfalls.md) | Real mistakes to avoid + exam traps |
+| [Phase 1 Practical (BrightSmile + Elevate)](course/phase-1/practical-brightsmile-elevate-full-build.md) | Two-sub-account, Phase 1-only end-to-end exam build |
+
+---
 
 ## Practice Environment
 

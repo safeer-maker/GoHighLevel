@@ -332,3 +332,11 @@ Test your understanding:
 Make sure you have:
 - A sample CSV with 20+ fake wellness studio members ready (or you'll create one during the lesson)
 - Python environment set up if you want to try the API lab (`scripts/requirements.txt`)
+
+---
+
+## Extra Exam Practice (Optional)
+
+If you want a single end-to-end build that covers **all Phase 1 skills** using the two recurring case businesses, use this practical:
+
+- [course/phase-1/practical-brightsmile-elevate-full-build.md](course/phase-1/practical-brightsmile-elevate-full-build.md)
