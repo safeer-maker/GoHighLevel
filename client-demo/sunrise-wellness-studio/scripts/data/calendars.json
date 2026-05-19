@@ -1,0 +1,128 @@
+{
+  "_source": "client-demo/sunrise-wellness-studio/integration/build-order.md (Phase 2 Calendar Setup)",
+  "_count": 9,
+  "_notes": "GHL calendar types: 'round_robin' (rotates across team), 'class_booking' (capacity-limited), 'event' (one-on-one with specific person), 'service' (general service booking). The API may not support all types — script will detect and fall back to manual UI for blocked types. Times in HH:MM format, 24-hour. teamMembers references staff (need to map to user IDs at runtime).",
+  "calendars": [
+    {
+      "name": "Intro Consult - Free",
+      "description": "30-minute intro consult for trial members and prospects",
+      "calendarType": "round_robin",
+      "slotDuration": 30,
+      "slotDurationUnit": "mins",
+      "slotInterval": 30,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 1,
+      "openHours": [
+        { "daysOfTheWeek": [1, 2, 3, 4, 5], "hours": [{ "openHour": 6, "openMinute": 0, "closeHour": 21, "closeMinute": 0 }] },
+        { "daysOfTheWeek": [6], "hours": [{ "openHour": 8, "openMinute": 0, "closeHour": 16, "closeMinute": 0 }] },
+        { "daysOfTheWeek": [0], "hours": [{ "openHour": 9, "openMinute": 0, "closeHour": 13, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Personal Training - 60min",
+      "description": "1-on-1 personal training. Round robin across trainers.",
+      "calendarType": "round_robin",
+      "slotDuration": 60,
+      "slotDurationUnit": "mins",
+      "slotInterval": 60,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 1,
+      "openHours": [
+        { "daysOfTheWeek": [1, 2, 3, 4, 5], "hours": [{ "openHour": 6, "openMinute": 0, "closeHour": 21, "closeMinute": 0 }] },
+        { "daysOfTheWeek": [6], "hours": [{ "openHour": 8, "openMinute": 0, "closeHour": 16, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Nutrition Starter Consult",
+      "description": "45-minute nutrition consult with Sam (nutritionist).",
+      "calendarType": "round_robin",
+      "slotDuration": 45,
+      "slotDurationUnit": "mins",
+      "slotInterval": 60,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 1,
+      "openHours": [
+        { "daysOfTheWeek": [1, 2, 3, 4, 5], "hours": [{ "openHour": 9, "openMinute": 0, "closeHour": 18, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Goal Review",
+      "description": "Day-21 onboarding goal review with Morgan or Alex.",
+      "calendarType": "round_robin",
+      "slotDuration": 30,
+      "slotDurationUnit": "mins",
+      "slotInterval": 30,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 1,
+      "openHours": [
+        { "daysOfTheWeek": [1, 2, 3, 4, 5], "hours": [{ "openHour": 9, "openMinute": 0, "closeHour": 18, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Group Class - HIIT",
+      "description": "Sunrise HIIT - 60-minute high-intensity class. Capacity 20.",
+      "calendarType": "class_booking",
+      "slotDuration": 60,
+      "slotDurationUnit": "mins",
+      "slotInterval": 60,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 20,
+      "openHours": [
+        { "daysOfTheWeek": [1, 3, 5], "hours": [{ "openHour": 6, "openMinute": 0, "closeHour": 7, "closeMinute": 0 }, { "openHour": 17, "openMinute": 30, "closeHour": 18, "closeMinute": 30 }] }
+      ]
+    },
+    {
+      "name": "Group Class - Yoga",
+      "description": "Sunrise Flow Yoga - 60-minute yoga class. Capacity 25.",
+      "calendarType": "class_booking",
+      "slotDuration": 60,
+      "slotDurationUnit": "mins",
+      "slotInterval": 60,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 25,
+      "openHours": [
+        { "daysOfTheWeek": [2, 4], "hours": [{ "openHour": 7, "openMinute": 0, "closeHour": 8, "closeMinute": 0 }] },
+        { "daysOfTheWeek": [6], "hours": [{ "openHour": 9, "openMinute": 0, "closeHour": 10, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Group Class - Pilates",
+      "description": "Sunrise Pilates Reformer - 60-minute reformer class. Capacity 12.",
+      "calendarType": "class_booking",
+      "slotDuration": 60,
+      "slotDurationUnit": "mins",
+      "slotInterval": 60,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 12,
+      "openHours": [
+        { "daysOfTheWeek": [1, 3, 5], "hours": [{ "openHour": 9, "openMinute": 0, "closeHour": 10, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Group Class - Strength",
+      "description": "Sunrise Strength Lab - 60-minute strength training. Capacity 16.",
+      "calendarType": "class_booking",
+      "slotDuration": 60,
+      "slotDurationUnit": "mins",
+      "slotInterval": 60,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 16,
+      "openHours": [
+        { "daysOfTheWeek": [2, 4], "hours": [{ "openHour": 6, "openMinute": 0, "closeHour": 7, "closeMinute": 0 }, { "openHour": 18, "openMinute": 0, "closeHour": 19, "closeMinute": 0 }] }
+      ]
+    },
+    {
+      "name": "Group Class - Recovery",
+      "description": "Sunrise Recovery & Mobility - 45-minute recovery class. Capacity 15.",
+      "calendarType": "class_booking",
+      "slotDuration": 45,
+      "slotDurationUnit": "mins",
+      "slotInterval": 45,
+      "slotIntervalUnit": "mins",
+      "appoinmentPerSlot": 15,
+      "openHours": [
+        { "daysOfTheWeek": [0], "hours": [{ "openHour": 10, "openMinute": 0, "closeHour": 11, "closeMinute": 0 }] }
+      ]
+    }
+  ]
+}

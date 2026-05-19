@@ -1,0 +1,125 @@
+{
+  "_source": "client-demo/sunrise-wellness-studio/shared-foundation/products-and-pricing.md",
+  "_count_products": 10,
+  "_count_coupons": 7,
+  "_notes": "Products are created via POST /products/. Coupons may or may not be API-accessible depending on the GHL plan — the script will detect and fall back to manual UI instructions.",
+  "products": [
+    {
+      "name": "Basic Membership",
+      "description": "Unlimited group classes - HIIT, Yoga, Pilates, Strength, Recovery. Open gym access. Cancel anytime.",
+      "productType": "SERVICE",
+      "sku": "MEM-BASIC",
+      "prices": [
+        {
+          "name": "Basic Monthly",
+          "type": "recurring",
+          "currency": "USD",
+          "amount": 7900,
+          "recurring": { "interval": "month", "intervalCount": 1 }
+        }
+      ]
+    },
+    {
+      "name": "Premium Membership",
+      "description": "Everything in Basic + 2 personal training sessions per month + a nutrition starter consult. Built for members serious about results.",
+      "productType": "SERVICE",
+      "sku": "MEM-PREMIUM",
+      "prices": [
+        {
+          "name": "Premium Monthly",
+          "type": "recurring",
+          "currency": "USD",
+          "amount": 14900,
+          "recurring": { "interval": "month", "intervalCount": 1 }
+        }
+      ]
+    },
+    {
+      "name": "VIP Membership",
+      "description": "Unlimited PT, unlimited classes, monthly nutrition coaching, full recovery suite access. The flagship tier.",
+      "productType": "SERVICE",
+      "sku": "MEM-VIP",
+      "prices": [
+        {
+          "name": "VIP Monthly",
+          "type": "recurring",
+          "currency": "USD",
+          "amount": 24900,
+          "recurring": { "interval": "month", "intervalCount": 1 }
+        }
+      ]
+    },
+    {
+      "name": "Personal Training - Single Session",
+      "description": "One 60-minute personal training session with a Sunrise certified trainer. Drop-in option for non-members or extra session for Basic members.",
+      "productType": "SERVICE",
+      "sku": "PT-SINGLE",
+      "prices": [
+        { "name": "Single PT", "type": "one_time", "currency": "USD", "amount": 8500 }
+      ]
+    },
+    {
+      "name": "PT 5-Pack",
+      "description": "5 personal training sessions. Save $50 vs single sessions. Use within 90 days.",
+      "productType": "SERVICE",
+      "sku": "PT-PACK-5",
+      "prices": [
+        { "name": "5 PT Sessions", "type": "one_time", "currency": "USD", "amount": 37500 }
+      ]
+    },
+    {
+      "name": "PT 10-Pack",
+      "description": "10 personal training sessions. Save $150 vs single sessions. Use within 180 days.",
+      "productType": "SERVICE",
+      "sku": "PT-PACK-10",
+      "prices": [
+        { "name": "10 PT Sessions", "type": "one_time", "currency": "USD", "amount": 70000 }
+      ]
+    },
+    {
+      "name": "Nutrition Starter Consult",
+      "description": "45-minute one-on-one nutrition consult. Goal-setting, baseline assessment, food log review. Included free in Premium and VIP.",
+      "productType": "SERVICE",
+      "sku": "NUT-STARTER",
+      "prices": [
+        { "name": "Starter Consult", "type": "one_time", "currency": "USD", "amount": 5000 }
+      ]
+    },
+    {
+      "name": "4-Week Custom Nutrition Plan",
+      "description": "Personalized 4-week meal plan, weekly check-ins, and two consults with our nutritionist. Tailored to your goals and dietary preferences.",
+      "productType": "SERVICE",
+      "sku": "NUT-PLAN-4WK",
+      "prices": [
+        { "name": "4-Week Plan", "type": "one_time", "currency": "USD", "amount": 19900 }
+      ]
+    },
+    {
+      "name": "Free 7-Day All-Access Pass",
+      "description": "7 days of unlimited group classes and open gym access. No credit card required. Includes a complimentary intro consult on day 1.",
+      "productType": "SERVICE",
+      "sku": "TRIAL-7DAY",
+      "prices": [
+        { "name": "Free Trial", "type": "one_time", "currency": "USD", "amount": 0 }
+      ]
+    },
+    {
+      "name": "Spring Reset 30-Day Challenge",
+      "description": "30-day full studio access + meal plan + 2 PT sessions + nutritionist check-ins. Limited spots.",
+      "productType": "SERVICE",
+      "sku": "CAMP-SPRING",
+      "prices": [
+        { "name": "Spring Reset", "type": "one_time", "currency": "USD", "amount": 9900 }
+      ]
+    }
+  ],
+  "coupons": [
+    { "code": "TRIAL2PAID", "name": "Trial-to-Paid Conversion", "discountType": "percentage", "discountValue": 20, "appliesTo": "first_invoice", "validDays": 14, "notes": "20% off first month + waive $49 enrollment for trial converts. Applies to Basic, Premium, VIP." },
+    { "code": "WB30", "name": "Win-Back Day 30", "discountType": "percentage", "discountValue": 50, "appliesTo": "first_invoice", "validDays": 14, "notes": "50% off first month back for D30 win-back" },
+    { "code": "WB60", "name": "Win-Back Day 60", "discountType": "fixed", "discountValue": 4000, "appliesTo": "first_invoice", "validDays": 21, "notes": "First month $39 (was $79). Basic only. Currency cents." },
+    { "code": "WB90LAST", "name": "Win-Back Day 90 Last Call", "discountType": "fixed", "discountValue": 5000, "appliesTo": "first_invoice", "validDays": 7, "notes": "First month $29 (was $79). Basic only. 7-day urgency window. Currency cents." },
+    { "code": "REF20", "name": "Referral Friend Discount", "discountType": "fixed", "discountValue": 2000, "appliesTo": "first_invoice", "validDays": 30, "notes": "$20 off first month for referred friends. Currency cents." },
+    { "code": "UPGRADE10", "name": "Tier Upgrade Discount", "discountType": "percentage", "discountValue": 10, "appliesTo": "first_invoice", "validDays": 30, "notes": "10% off first month at tier upgrade (Basic-Premium or Premium-VIP)" },
+    { "code": "RETAIN-PT", "name": "At-Risk Save - Free PT", "discountType": "fixed", "discountValue": 8500, "appliesTo": "one_time", "validDays": 14, "notes": "Equivalent to free PT-SINGLE for retention save offer. Currency cents." }
+  ]
+}

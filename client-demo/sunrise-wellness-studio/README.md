@@ -33,9 +33,10 @@ Read in this order:
 
 1. **[integration/build-order.md](integration/build-order.md)** — what to build first, second, third.
 2. **[shared-foundation/](shared-foundation/)** — five files defining every custom field, tag, pipeline, custom value, and product. Build these once, reuse everywhere.
-3. Work through `problems/01-...` through `problems/10-...` in order. Each problem's `build.md` lists prerequisites (shared-foundation assets) and exact GHL clicks.
-4. **[integration/master-automation-graph.md](integration/master-automation-graph.md)** — how the ten isolated systems connect into one engine once everything is built.
-5. **[integration/end-to-end-scenario.md](integration/end-to-end-scenario.md)** — trace one lead's full journey through every system as a test.
+3. **[scripts/README.md](scripts/README.md)** — run the provisioning scripts to create custom fields, tags, pipelines, products, and calendars via API automatically. Takes ~5 minutes instead of hours in the UI.
+4. Work through `problems/01-...` through `problems/10-...` in order. Each problem's `build.md` lists prerequisites (shared-foundation assets) and exact GHL clicks.
+5. **[integration/master-automation-graph.md](integration/master-automation-graph.md)** — how the ten isolated systems connect into one engine once everything is built.
+6. **[integration/end-to-end-scenario.md](integration/end-to-end-scenario.md)** — trace one lead's full journey through every system as a test.
 
 ---
 
@@ -73,6 +74,18 @@ client-demo/sunrise-wellness-studio/
 │   ├── pipelines.md                   ← Membership Sales, Onboarding, Retention
 │   ├── custom-values.md               ← business-wide variables (hours, phone, etc.)
 │   └── products-and-pricing.md        ← memberships, PT, packages, retail
+├── scripts/                           ← API provisioning scripts (run these first)
+│   ├── README.md                      ← setup + execution instructions
+│   ├── .env.example                   ← copy to .env, add your API key
+│   ├── config.py / ghl_client.py      ← shared HTTP client with retry, dry-run, logging
+│   ├── 01_custom_values.py            ← provisions 72 custom values
+│   ├── 02_custom_fields.py            ← provisions 64 custom fields in 5 folders
+│   ├── 03_tags.py                     ← scaffolds 117-tag taxonomy
+│   ├── 04_pipelines.py                ← provisions 3 pipelines + stages
+│   ├── 05_products_and_coupons.py     ← provisions 10 products + 7 coupons
+│   ├── 06_calendars.py                ← provisions 9 calendars
+│   ├── 99_verify_foundation.py        ← verifies all assets match spec
+│   └── data/                          ← source-of-truth JSON for each asset type
 ├── problems/
 │   ├── 01-lead-capture-and-instant-response/
 │   ├── 02-trial-to-paid-conversion/

@@ -1,0 +1,57 @@
+{
+  "_source": "client-demo/sunrise-wellness-studio/shared-foundation/pipelines.md",
+  "_count_pipelines": 3,
+  "_count_stages": 31,
+  "_notes": "GHL pipelines and stages. Each stage has a position (order). Position is 1-indexed in the spec; the API may use 0-indexed - the script handles conversion.",
+  "pipelines": [
+    {
+      "name": "Membership Sales",
+      "showInFunnel": true,
+      "showInPieChart": true,
+      "stages": [
+        { "position": 1, "name": "New Lead" },
+        { "position": 2, "name": "Contacted" },
+        { "position": 3, "name": "Trial Booked" },
+        { "position": 4, "name": "Trial Active" },
+        { "position": 5, "name": "Conversion Offer Sent" },
+        { "position": 6, "name": "Won - Paid Member" },
+        { "position": 7, "name": "Lost - Trial Expired" },
+        { "position": 8, "name": "Lost - Never Engaged" }
+      ]
+    },
+    {
+      "name": "Onboarding",
+      "showInFunnel": true,
+      "showInPieChart": true,
+      "stages": [
+        { "position": 1, "name": "Welcome Sent (Day 0)" },
+        { "position": 2, "name": "First Visit Confirmed" },
+        { "position": 3, "name": "Week 1 Check-In" },
+        { "position": 4, "name": "Two-Week Milestone" },
+        { "position": 5, "name": "Goal Review (Day 21)" },
+        { "position": 6, "name": "Onboarded (Day 30)" },
+        { "position": 7, "name": "Onboarding At-Risk" },
+        { "position": 8, "name": "Early Churn Risk" }
+      ]
+    },
+    {
+      "name": "Retention",
+      "showInFunnel": true,
+      "showInPieChart": true,
+      "stages": [
+        { "position": 1, "name": "Healthy" },
+        { "position": 2, "name": "Watching" },
+        { "position": 3, "name": "At-Risk" },
+        { "position": 4, "name": "Critical" },
+        { "position": 5, "name": "Save In Progress" },
+        { "position": 6, "name": "Saved" },
+        { "position": 7, "name": "Lost - Cancelled" },
+        { "position": 8, "name": "Win-Back D30" },
+        { "position": 9, "name": "Win-Back D60" },
+        { "position": 10, "name": "Win-Back D90" },
+        { "position": 11, "name": "Reactivated" },
+        { "position": 12, "name": "Permanent Loss" }
+      ]
+    }
+  ]
+}

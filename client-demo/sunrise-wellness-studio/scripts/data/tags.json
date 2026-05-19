@@ -1,0 +1,40 @@
+{
+  "_source": "client-demo/sunrise-wellness-studio/shared-foundation/tags.md (including extensions)",
+  "_count": 88,
+  "_notes": "GHL creates tags on first application. This list is applied to a scaffold contact to materialize the taxonomy. The scaffold contact is then deleted or kept for testing.",
+  "scaffold_contact": {
+    "firstName": "Sunrise",
+    "lastName": "Tag Scaffold",
+    "email": "tag-scaffold@sunrisewellness-internal.local",
+    "phone": "+15557231900",
+    "notes": "Internal scaffold contact - tags applied here materialize the tag taxonomy. Safe to delete after foundation is verified, BUT keeping it makes tag list visible in Settings > Tags."
+  },
+  "tags": [
+    "lead-new", "lead-contacted", "lead-responded", "lead-cold", "lead-lost",
+    "trial-claimed", "trial-active", "trial-attended-1", "trial-attended-3plus", "trial-converted", "trial-expired", "trial-not-now",
+    "trial-warm", "trial-needs-personal-touch", "trial-high-engagement-no-convert",
+    "member-active", "member-onboarding", "member-paused", "member-cancelled", "member-lapsed", "member-reactivated", "member-vip-veteran",
+    "tier-basic", "tier-premium", "tier-vip",
+    "risk-healthy", "risk-watching", "risk-at-risk", "risk-critical",
+    "source-instagram", "source-facebook", "source-google", "source-walkin", "source-referral", "source-web", "source-event",
+    "apt-confirmed", "apt-completed", "apt-noshow", "apt-noshow-repeat", "apt-rescheduled",
+    "apt-pending", "apt-needs-reschedule", "apt-needs-response", "apt-front-desk-action", "apt-cancelled",
+    "interest-pt", "interest-nutrition", "interest-vip", "interest-classes-am", "interest-classes-pm",
+    "campaign-onboarding", "campaign-trial-nurture", "campaign-winback-d30", "campaign-winback-d60", "campaign-winback-d90", "campaign-review-ask", "campaign-referral-promoter",
+    "do-not-sms", "do-not-email", "do-not-call", "do-not-market", "vip-do-not-disturb",
+    "onboarding-attended-week1", "onboarding-needs-nudge", "onboarding-save-attempted", "onboarding-needs-response", "onboarding-front-desk-action",
+    "member-pause-requested", "member-cancel-requested", "owner-save-sms",
+    "transition-to-watching", "transition-to-at-risk", "transition-to-critical",
+    "save-watching-success", "save-at-risk-engaged", "save-at-risk-success-pending", "save-at-risk-failed", "save-critical-success-pending", "member-saved", "save-mature-30d",
+    "campaign-retention-watching", "retention-reply-received",
+    "campaign-upsell-basic-premium", "campaign-upsell-premium-vip", "campaign-upsell-nutrition-starter", "campaign-upsell-nutrition-plan",
+    "upsell-recent", "upsell-converted-basic-premium", "upsell-converted-premium-vip", "upsell-converted-nutrition-starter", "upsell-converted-nutrition-plan",
+    "upsell-declined-30d", "upsell-interest-confirmed", "upsell-decline-explicit",
+    "referral-prompt-ready", "email-engaged-30d", "sms-engaged-30d",
+    "review-submitted-google", "feedback-received-private", "do-not-ask-reviews", "review-skipped-cooldown", "review-no-response",
+    "feedback-phone-ok", "feedback-owner-resolved", "review-replied-positive", "feedback-conversational", "review-deferred", "review-needs-help",
+    "referral-code-generated", "payment-failed-pending", "payment-recovered", "member-permanent-loss",
+    "anniversary-1yr", "anniversary-2yr", "anniversary-3yr",
+    "test-contact"
+  ]
+}
