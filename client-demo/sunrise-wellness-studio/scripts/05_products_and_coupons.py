@@ -10,6 +10,7 @@ Coupons endpoint:   POST /payments/coupon          (may be blocked on some plans
 
 import json
 import sys
+from datetime import datetime, timezone
 from pathlib import Path
 
 from config import GHL_LOCATION_ID, print_config_summary
@@ -36,7 +37,7 @@ def fetch_existing_products() -> list:
 
 def fetch_existing_coupons() -> list:
     try:
-        data = client.get("/payments/coupon/list", params={"locationId": GHL_LOCATION_ID, "limit": 100})
+        data = client.get("/payments/coupon/list", params={"altId": GHL_LOCATION_ID, "altType": "location", "limit": 100})
         if isinstance(data, dict):
             return data.get("data", []) or data.get("coupons", []) or []
         return data if isinstance(data, list) else []
@@ -95,6 +96,7 @@ def create_price(product_id: str, price_spec: dict) -> bool:
 
 def create_coupon(coupon_spec: dict) -> str:
     """Create a coupon. Returns status string."""
+    start_date = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     payload = {
         "altId": GHL_LOCATION_ID,
         "altType": "location",
@@ -102,6 +104,7 @@ def create_coupon(coupon_spec: dict) -> str:
         "code": coupon_spec["code"],
         "discountType": coupon_spec["discountType"],
         "discountValue": coupon_spec["discountValue"],
+        "startDate": start_date,
     }
     try:
         client.post("/payments/coupon", json=payload)

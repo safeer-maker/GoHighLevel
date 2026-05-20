@@ -30,6 +30,18 @@ def load_spec() -> dict:
         return json.load(f)
 
 
+def fetch_location_users() -> list:
+    """Fetch users in this location to get IDs for team member assignment."""
+    try:
+        data = client.get("/users/", params={"locationId": GHL_LOCATION_ID})
+        if isinstance(data, dict):
+            return data.get("users", []) or []
+        return data if isinstance(data, list) else []
+    except GHLAPIError as e:
+        logger.warning(f"Could not fetch users: {e}")
+        return []
+
+
 def fetch_existing_calendars() -> list:
     try:
         data = client.get("/calendars/", params={"locationId": GHL_LOCATION_ID})
@@ -41,8 +53,12 @@ def fetch_existing_calendars() -> list:
         return []
 
 
-def create_calendar(cal_spec: dict) -> tuple:
+def create_calendar(cal_spec: dict, default_user_id: str = "") -> tuple:
     """Attempt to create the calendar via API. Returns (calendar_dict, status)."""
+    team_members = []
+    if default_user_id:
+        team_members = [{"userId": default_user_id, "priority": 0}]
+
     payload = {
         "locationId": GHL_LOCATION_ID,
         "name": cal_spec["name"],
@@ -53,9 +69,7 @@ def create_calendar(cal_spec: dict) -> tuple:
         "slotInterval": cal_spec.get("slotInterval", 30),
         "slotIntervalUnit": cal_spec.get("slotIntervalUnit", "mins"),
         "appoinmentPerSlot": cal_spec.get("appoinmentPerSlot", 1),
-        "openHours": cal_spec.get("openHours", []),
-        # Team members typically required — empty array allows API to accept; you assign in UI
-        "teamMembers": [],
+        "teamMembers": team_members,
     }
     try:
         resp = client.post("/calendars/", json=payload)
@@ -91,6 +105,13 @@ def main():
     target_calendars = spec["calendars"]
     logger.info(f"Loaded {len(target_calendars)} calendars from spec.")
 
+    users = fetch_location_users()
+    default_user_id = users[0].get("id", "") if users else ""
+    if default_user_id:
+        logger.info(f"Using user '{users[0].get('name', default_user_id)}' as placeholder team member.")
+    else:
+        logger.warning("No users found in location — calendars may fail (team member required by API).")
+
     existing = fetch_existing_calendars()
     existing_by_name = {c.get("name"): c for c in existing if c.get("name")}
     logger.info(f"Fetched {len(existing_by_name)} existing calendars from GHL.")
@@ -106,7 +127,7 @@ def main():
             continue
 
         logger.info(f"  CREATE {name}  ({cal_spec.get('calendarType', 'round_robin')})")
-        cal, status = create_calendar(cal_spec)
+        cal, status = create_calendar(cal_spec, default_user_id=default_user_id)
         if status == "created":
             created += 1
             logger.info(f"    ✅ Created (you still need to assign team members in UI)")

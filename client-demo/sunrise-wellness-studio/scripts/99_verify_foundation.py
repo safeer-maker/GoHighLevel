@@ -160,7 +160,7 @@ def verify_coupons():
     target_codes = {c["code"] for c in spec["coupons"]}
 
     try:
-        data = client.get("/payments/coupon/list", params={"locationId": GHL_LOCATION_ID, "limit": 100})
+        data = client.get("/payments/coupon/list", params={"altId": GHL_LOCATION_ID, "altType": "location", "limit": 100})
         existing = data.get("data", []) if isinstance(data, dict) else (data or [])
         existing_codes = {c.get("code") for c in existing if c.get("code")}
     except GHLAPIError:

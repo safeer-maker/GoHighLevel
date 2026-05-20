@@ -116,10 +116,10 @@
   "coupons": [
     { "code": "TRIAL2PAID", "name": "Trial-to-Paid Conversion", "discountType": "percentage", "discountValue": 20, "appliesTo": "first_invoice", "validDays": 14, "notes": "20% off first month + waive $49 enrollment for trial converts. Applies to Basic, Premium, VIP." },
     { "code": "WB30", "name": "Win-Back Day 30", "discountType": "percentage", "discountValue": 50, "appliesTo": "first_invoice", "validDays": 14, "notes": "50% off first month back for D30 win-back" },
-    { "code": "WB60", "name": "Win-Back Day 60", "discountType": "fixed", "discountValue": 4000, "appliesTo": "first_invoice", "validDays": 21, "notes": "First month $39 (was $79). Basic only. Currency cents." },
-    { "code": "WB90LAST", "name": "Win-Back Day 90 Last Call", "discountType": "fixed", "discountValue": 5000, "appliesTo": "first_invoice", "validDays": 7, "notes": "First month $29 (was $79). Basic only. 7-day urgency window. Currency cents." },
-    { "code": "REF20", "name": "Referral Friend Discount", "discountType": "fixed", "discountValue": 2000, "appliesTo": "first_invoice", "validDays": 30, "notes": "$20 off first month for referred friends. Currency cents." },
+    { "code": "WB60", "name": "Win-Back Day 60", "discountType": "amount", "discountValue": 4000, "appliesTo": "first_invoice", "validDays": 21, "notes": "First month $39 (was $79). Basic only. Currency cents." },
+    { "code": "WB90LAST", "name": "Win-Back Day 90 Last Call", "discountType": "amount", "discountValue": 5000, "appliesTo": "first_invoice", "validDays": 7, "notes": "First month $29 (was $79). Basic only. 7-day urgency window. Currency cents." },
+    { "code": "REF20", "name": "Referral Friend Discount", "discountType": "amount", "discountValue": 2000, "appliesTo": "first_invoice", "validDays": 30, "notes": "$20 off first month for referred friends. Currency cents." },
     { "code": "UPGRADE10", "name": "Tier Upgrade Discount", "discountType": "percentage", "discountValue": 10, "appliesTo": "first_invoice", "validDays": 30, "notes": "10% off first month at tier upgrade (Basic-Premium or Premium-VIP)" },
-    { "code": "RETAIN-PT", "name": "At-Risk Save - Free PT", "discountType": "fixed", "discountValue": 8500, "appliesTo": "one_time", "validDays": 14, "notes": "Equivalent to free PT-SINGLE for retention save offer. Currency cents." }
+    { "code": "RETAINPT", "name": "At-Risk Save - Free PT", "discountType": "amount", "discountValue": 8500, "appliesTo": "one_time", "validDays": 14, "notes": "Equivalent to free PT-SINGLE for retention save offer. Currency cents." }
   ]
 }
