@@ -25,13 +25,13 @@ Before any of this build. Verify or complete:
 |---|---|---|
 | 0.1 | Sub-account created and provisioned in your GHL agency account | Agency dashboard |
 | 0.2 | Business Profile set (name, address, timezone, phone, logo) | **Settings > Business Profile** |
-| 0.3 | At least one GHL phone number provisioned for SMS | **Settings > Phone Numbers** |
+| 0.3 | At least one GHL phone number provisioned for Email | **Settings > Phone Numbers** |
 | 0.4 | Sending domain set up with SPF/DKIM/DMARC for email deliverability | **Settings > Email Services** |
 | 0.5 | Stripe (or other payment processor) connected | **Payments > Integrations** |
 | 0.6 | Google Business Profile connected for review integration | **Reputation > Integrations** |
 | 0.7 | Meta + Google Ads pixels installed sitewide | **Sites > Tracking Codes** |
 
-**Verification:** Send a test SMS to your own number from Conversations. Send a test email to a real inbox. Both should arrive within seconds.
+**Verification:** Send a test Email to your own number from Conversations. Send a test email to a real inbox. Both should arrive within seconds.
 
 ---
 
@@ -173,7 +173,7 @@ Hand off at #05 — Person B's downstream systems (#06, #08) need #05 done first
 Once everything is live:
 
 1. **Owner training (30 min)** — walk the owner through the three pipelines, the dashboard, the Monday digest email, and how to read the at-risk alerts.
-2. **Front-desk training (30 min)** — Conversations inbox triage, how to handle replies to lead-capture SMS, how to escalate vs auto-respond.
+2. **Front-desk training (30 min)** — Conversations inbox triage, how to handle replies to lead-capture Email, how to escalate vs auto-respond.
 3. **Existing-member import (1 hour)** — import current member list with correct tier/start-date tags, slot into Retention pipeline at appropriate stages.
 4. **Ad pixel verification (15 min)** — submit a test lead from a Meta-tagged URL, confirm conversion event fires in Meta Events Manager.
 5. **First weekly digest sanity check (Monday after launch)** — review the first auto-sent digest. Numbers should match what owner expects intuitively. If wildly off, debug smart-list filters.
@@ -195,7 +195,7 @@ Once everything is live:
 ## Common Build Mistakes (across all 10 problems)
 
 1. **Building workflows before tags exist.** GHL accepts the action, then silently fails to apply non-existent tags. Always build the tag taxonomy in Phase 1.5 first.
-2. **Forgetting opt-out checks.** Every SMS-sending action must check `do-not-sms` tag and `sms_opt_in` field. Build a workflow snippet/template you reuse.
+2. **Forgetting opt-out checks.** Every Email-sending action must check `do-not-email` tag and `sms_opt_in` field. Build a workflow snippet/template you reuse.
 3. **Inconsistent state.** Workflow updates the pipeline stage but forgets to update the parallel tag (or vice versa). Always pair stage moves with tag updates in the same action sequence.
 4. **No quiet-hours respect on marketing.** Transactional messages (lead capture instant response, payment failure) ignore quiet hours; marketing messages (upsell offers, reviews, referrals) respect 8 AM – 9 PM contact-local time.
 5. **Testing in production.** Build a "Test" contact tag and exclude it from every marketing workflow. Use it for QA without polluting metrics or risking sending test messages to real members.

@@ -155,14 +155,14 @@ graph TD
 
 A new lead's ideal journey through the engine:
 
-1. **Lead arrives** (Instagram ad, walk-in, or referral link) → `#01` captures, tags by source, fires SMS in <5 min.
+1. **Lead arrives** (Instagram ad, walk-in, or referral link) → `#01` captures, tags by source, fires Email in <5 min.
 2. **Lead books trial** → handoff to `#02`. Lead added to Membership Sales pipeline "Trial Booked" stage.
-3. **Trial runs 7 days** → `#02` nurtures across email + SMS. Day-5 conversion offer fires.
+3. **Trial runs 7 days** → `#02` nurtures across emails. Day-5 conversion offer fires.
 4. **Trial converts to paid** → `#02` exits, `#04` activates. Onboarding pipeline opportunity created. Lead becomes Active Member.
 5. **Day 30 onboarding completes** → `#04` exits, `#05` watches. Retention pipeline opportunity created at "Healthy" stage.
 6. **Member stays 90+ days** → `#05` engagement score stays 70+. Member tagged `risk-healthy`.
 7. **Member attends 12+ classes/month** → `#06` fires "upgrade to Premium" offer.
-8. **Member has peak class moment** → `#07` fires post-class review SMS. 5-star → Google review.
+8. **Member has peak class moment** → `#07` fires post-class review Email. 5-star → Google review.
 9. **Member tagged top referrer** → `#08` quarterly recognition + referral link encouragement. Referee signs up → loops back to step 1.
 10. **Multi-year veteran** → `member-vip-veteran` tag, leveraged by `#06` for VIP upsell and `#08` for referral campaigns. Featured in `#10` reporting as anchor revenue.
 
@@ -174,13 +174,13 @@ Throughout: every appointment booked is protected by `#03` reminder cadence + no
 
 If a member's engagement drops:
 
-1. **Score falls below 70** → `#05` transitions tag to `risk-watching`. Light SMS check-in fires.
+1. **Score falls below 70** → `#05` transitions tag to `risk-watching`. Light Email check-in fires.
 2. **Score falls below 50** → `risk-at-risk`. Personal email from owner. Free PT session offer.
-3. **Score falls below 30** → `risk-critical`. Direct owner SMS. Saves opportunity moves to "Save In Progress" in Retention pipeline.
+3. **Score falls below 30** → `risk-critical`. Direct owner Email. Saves opportunity moves to "Save In Progress" in Retention pipeline.
 4. **Member re-engages** → score recovers. Tag updates upward. Pipeline opportunity moves to "Saved" (Won).
 5. **Member cancels anyway** → handoff to `#09`. Branches:
    - **Voluntary** → 90-day soft win-back (D1 goodbye → D30 check-in → D60 offer → D90 last call).
-   - **Involuntary (payment failure)** → 1-hour intervention SMS + email with payment-update link. 70% recovery rate.
+   - **Involuntary (payment failure)** → 1-hour intervention emails with payment-update link. 70% recovery rate.
 6. **Member reactivates** → tag `member-reactivated`. Re-enters `#04` onboarding to rebuild routine.
 7. **No reactivation by D120** → `member-permanent-loss`. Logged in `#10`. Lessons fed to ad-targeting exclusion.
 
