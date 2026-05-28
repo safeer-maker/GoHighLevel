@@ -8,7 +8,7 @@
 
 **Template name:** `01 — Welcome — Free 7-Day Pass`
 
-**Send timing:** 2 minutes after form submission (gives the SMS a head start)
+**Send timing:** 2 minutes after form submission (gives the Email a head start)
 
 **From:**
 - Name: `{{custom_values.team.owner_first}} from {{custom_values.business.short_name}}`

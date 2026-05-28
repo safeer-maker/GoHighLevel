@@ -171,12 +171,12 @@ Easier alternative if your GHL plan supports it: a single "Workflow Variable Map
 - **Value:** $948 (Basic LTV projection — overwritten on conversion)
 - **Status:** Open
 
-### 4.6 Action: Send SMS (the critical 5-minute response)
+### 4.6 Action: Send Email (the critical 5-minute response)
 
-- **Action:** Send SMS
+- **Action:** Send Email
 - **From:** `{{custom_values.business.sms_number}}`
 - **To:** Contact phone
-- **Body:** SMS body in [assets/sms.md](assets/sms.md) — message **A — Instant Response**
+- **Body:** Email body in [assets](assets) — message **A — Instant Response**
 - **Wait condition:** None (fires immediately on workflow entry)
 
 Set quiet-hours **bypass = OFF** for this message — transactional/responsive, not marketing. (For *marketing* messages later, quiet-hours respect is on.)
@@ -186,7 +186,7 @@ Set quiet-hours **bypass = OFF** for this message — transactional/responsive, 
 - **Action:** Send Email
 - **Template:** Email "Welcome — Free 7-Day Pass" from [assets/emails.md](assets/emails.md)
 - **Send via:** Business email
-- **Wait before:** 2 minutes (let the SMS land first, so they check their phone, then the email is waiting)
+- **Wait before:** 2 minutes (let the Email land first, so they check their phone, then the email is waiting)
 
 ### 4.8 Action: Stamp first-response timestamp
 
@@ -211,16 +211,16 @@ Quiet hours for owner: send email only between 7AM–10PM owner-local time. If o
 ### 4.11 Action: Wait 5 minutes → check reply
 
 - **Action:** Wait — 5 minutes
-- **Action:** If/Else — has contact replied to SMS?
+- **Action:** If/Else — has contact replied to Email?
   - **Yes branch:** Add tag `lead-responded`, exit workflow (the trial-booking workflow takes over)
   - **No branch:** Continue to next action
 
-### 4.12 Action: Wait 2 hours → second SMS nudge
+### 4.12 Action: Wait 2 hours → second Email nudge
 
 - **Action:** Wait — 2 hours
 - **Action:** If/Else — does contact have tag `trial-claimed` OR `lead-responded`?
   - **Yes branch:** Exit workflow
-  - **No branch:** Send SMS — message **B — 2hr Nudge** from [assets/sms.md](assets/sms.md)
+  - **No branch:** Send Email — message **B — 2hr Nudge** from [assets](assets)
 
 ### 4.13 Action: Wait 24 hours → final email + handoff to long nurture
 
@@ -271,8 +271,8 @@ Run this test sequence after publishing. **Do not declare done until all five pa
 2. Fill the form with test data (use your own real phone number).
 3. Submit.
 4. **Expected within 5 minutes:**
-   - SMS arrives on your phone (message A from [assets/sms.md](assets/sms.md)).
-   - Welcome email arrives (2 minutes after SMS).
+   - Email arrives on your phone (message A from [assets](assets)).
+   - Welcome email arrives (2 minutes after Email).
    - Owner email lands in `{{custom_values.business.owner_email}}` inbox.
 5. **Expected in GHL:**
    - Contact created.
@@ -294,17 +294,17 @@ Run this test sequence after publishing. **Do not declare done until all five pa
 
 ### Test 4 — No-reply nudge sequence
 
-1. Submit a fresh test lead. Do NOT reply to the SMS.
+1. Submit a fresh test lead. Do NOT reply to the Email.
 2. Wait 2 hours.
-3. **Expected:** SMS message B (2hr nudge) arrives.
+3. **Expected:** Email message B (2hr nudge) arrives.
 4. Wait 24 hours from original submission (test variant: use a 24-minute delay temporarily for testing).
 5. **Expected:** 24hr soft follow-up email arrives.
 
 ### Test 5 — Reply detection
 
 1. Submit a fresh test lead.
-2. Reply to the SMS within 5 minutes.
-3. **Expected:** No 2hr nudge SMS fires. Contact gets `lead-responded` tag.
+2. Reply to the Email within 5 minutes.
+3. **Expected:** No 2hr nudge Email fires. Contact gets `lead-responded` tag.
 
 ---
 
@@ -312,7 +312,7 @@ Run this test sequence after publishing. **Do not declare done until all five pa
 
 1. **Form not publishing.** If submissions don't trigger the workflow, confirm: the form is *published* (not draft), the workflow's trigger filter exactly matches the form name, and the workflow is *toggled on*.
 2. **Source tags not applying.** Hidden form fields default to `Web Search`, not blank. If you see `source-web` on Instagram traffic, your UTM isn't reaching the form — check the URL parameter name matches the hidden field name exactly.
-3. **SMS not firing.** Confirm the GHL phone number is provisioned and the contact's phone is in valid format. Test by sending a manual SMS first.
+3. **Email not firing.** Confirm the GHL phone number is provisioned and the contact's phone is in valid format. Test by sending a manual Email first.
 4. **Owner getting flooded.** Confirm the owner notification fires only ONCE per lead (not once per workflow re-entry). Use the "Contact does not have tag `lead-contacted`" filter on the trigger.
 5. **Duplicate opportunities.** If a lead fills the form twice, you get two opportunities. Add a workflow filter: "If contact already has an open opportunity in Membership Sales, skip the Create Opportunity step."
 

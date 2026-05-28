@@ -53,7 +53,7 @@ graph LR
 
     CRM --> WF[Instant Response Workflow<br/>fires within 60 seconds]
 
-    WF --> SMS[SMS in <5 min<br/>booking link + warm hello]
+    WF --> Email[Email in <5 min<br/>booking link + warm hello]
     WF --> Email[Welcome Email<br/>brand intro + booking link]
     WF --> Notif[Owner Notification<br/>new high-intent lead]
     WF --> Pipe[Pipeline: New Lead stage<br/>opportunity created]
@@ -64,14 +64,14 @@ graph LR
 
     class L1,L2,L3,L4,L5,L6 channel
     class Funnel,Form,CRM,WF system
-    class SMS,Email,Notif,Pipe action
+    class Email,Email,Notif,Pipe action
 ```
 
 **Three components:**
 
 1. **Lead Capture Funnel** — a 2-step, mobile-first funnel with strong social proof and a single CTA ("Claim Your Free 7-Day Pass"). Built so the same funnel works whether the lead arrives from Instagram, Google, or a referral link — just different UTM parameters.
 2. **Walk-In Quick Form** — a 4-field tablet form at the front desk for walk-ins. Same downstream wiring as the funnel.
-3. **Instant Response Workflow** — fires the moment a lead lands in GHL. Sends SMS in under 5 minutes, sends a welcome email, notifies the owner, creates a Membership Sales pipeline opportunity, and tags the lead by source.
+3. **Instant Response Workflow** — fires the moment a lead lands in GHL. Sends Email in under 5 minutes, sends a welcome email, notifies the owner, creates a Membership Sales pipeline opportunity, and tags the lead by source.
 
 ---
 
@@ -101,7 +101,7 @@ Before:
 After:
 
 - Every lead is in GHL within 60 seconds — including at 11 PM.
-- Every lead gets a personal-sounding SMS within 5 minutes — including at 11 PM.
+- Every lead gets a personal-sounding Email within 5 minutes — including at 11 PM.
 - The owner gets a single morning summary: *"You got 7 leads overnight. 4 already engaged. 2 booked trials. 1 needs your personal touch."*
 - The owner spends her time on the *one* lead that needs human attention, not the six that don't.
 
@@ -115,7 +115,7 @@ Production copy for every asset:
 
 - **[assets/funnel.md](assets/funnel.md)** — funnel page-by-page (headlines, body, CTAs, button microcopy)
 - **[assets/emails.md](assets/emails.md)** — welcome email
-- **[assets/sms.md](assets/sms.md)** — instant-response SMS variants
+- **[assets](assets)** — instant-response Email variants
 - **[assets/workflow.md](assets/workflow.md)** — workflow spec (trigger, every action, every condition)
 - **[assets/forms.md](assets/forms.md)** — form fields and validation
 

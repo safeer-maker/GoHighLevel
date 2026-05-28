@@ -97,16 +97,16 @@ After the branches reconverge, continue to Action 3.
 
 ---
 
-### Action 5 — Send Instant Response SMS
+### Action 5 — Send Instant Response Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
+| **Action type** | Send Email |
 | **From** | `{{custom_values.business.sms_number}}` |
 | **To** | `{{contact.phone}}` |
-| **Template** | `01 — Instant Lead Response` (from [sms.md](sms.md), message A) |
+| **Template** | `01 — Instant Lead Response` (from [](), message A) |
 | **Wait before** | None — fires immediately |
-| **Skip if** | Contact has tag `do-not-sms` OR `sms_opt_in` ≠ "Yes" |
+| **Skip if** | Contact has tag `do-not-email` OR `sms_opt_in` ≠ "Yes" |
 
 ---
 
@@ -140,7 +140,7 @@ After the branches reconverge, continue to Action 3.
 
 ---
 
-### Action 9 — Wait 2 Minutes (let SMS land first)
+### Action 9 — Wait 2 Minutes (let Email land first)
 
 | Property | Value |
 |---|---|
@@ -204,14 +204,14 @@ Open contact: {{contact_url}}
 
 ---
 
-### Action 13 — Wait 2 Hours, Send Nudge SMS
+### Action 13 — Wait 2 Hours, Send Nudge Email
 
 | Property | Value |
 |---|---|
 | **Action 13a** | Wait — until 2 hours after capture timestamp, **respecting contact-local time 8 AM – 9 PM** |
 | **Action 13b** | If/Else: Contact has tag `lead-responded` OR `trial-claimed` |
 | **YES branch** | Exit |
-| **NO branch** | Send SMS template `01 — 2hr Nudge` (from [sms.md](sms.md), message B) |
+| **NO branch** | Send Email template `01 — 2hr Nudge` (from [](), message B) |
 
 ---
 
@@ -226,14 +226,14 @@ Open contact: {{contact_url}}
 
 ---
 
-### Action 15 — Wait 48 Hours, Send Day-3 SMS Last Touch
+### Action 15 — Wait 48 Hours, Send Day-3 Email Last Touch
 
 | Property | Value |
 |---|---|
 | **Action 15a** | Wait — until 72 hours total after capture, contact-local time 8 AM – 8 PM |
 | **Action 15b** | If/Else: Contact has tag `lead-responded` OR `trial-claimed` |
 | **YES branch** | Exit |
-| **NO branch** | Send SMS template `01 — Day 3 Last Touch` (from [sms.md](sms.md), message C) |
+| **NO branch** | Send Email template `01 — Day 3 Last Touch` (from [](), message C) |
 
 ---
 
@@ -270,7 +270,7 @@ graph TD
     TWeb --> A3
 
     A3 --> A4[Create Opportunity]
-    A4 --> A5[Send Instant SMS]
+    A4 --> A5[Send Instant Email]
     A5 --> A6[Stamp lead_first_response_at]
     A6 --> A7[Update lead_status = Contacted]
     A7 --> A8[Add lead-contacted / Remove lead-new]
@@ -283,7 +283,7 @@ graph TD
     C12 -->|No| A13[Wait until 2hr mark]
     A13 --> C13{Responded?}
     C13 -->|Yes| EX2((Exit))
-    C13 -->|No| A13b[Send 2hr Nudge SMS]
+    C13 -->|No| A13b[Send 2hr Nudge Email]
     A13b --> A14[Wait until 24hr mark]
     A14 --> C14{Responded?}
     C14 -->|Yes| EX3((Exit))
@@ -291,7 +291,7 @@ graph TD
     A14b --> A15[Wait until 72hr mark]
     A15 --> C15{Responded?}
     C15 -->|Yes| EX4((Exit))
-    C15 -->|No| A15b[Send Day-3 SMS]
+    C15 -->|No| A15b[Send Day-3 Email]
     A15b --> A16[Add lead-cold + Enroll in long nurture]
     A16 --> EX5((Exit))
 
@@ -316,13 +316,13 @@ graph TD
 |---|---|
 | Contact already has `member-active` | Trigger filter blocks entry. No workflow runs. |
 | Contact already has open opportunity in Membership Sales | Action 4 skipped (no duplicate opportunity created); rest of workflow continues. |
-| Contact has `do-not-sms` | SMS actions (5, 13b, 15b) skip silently. Email actions still fire. |
-| Contact has `do-not-email` | Email actions (10, 14b) skip silently. SMS actions still fire. |
-| Contact has BOTH `do-not-sms` AND `do-not-email` | Only owner notification (Action 11) fires. Owner contacts manually. |
-| Form submitted at 3 AM contact-local | Instant SMS still fires (transactional). Owner notification queues for 7 AM. 2hr nudge respects 8 AM start. |
-| Contact replies to instant SMS within 5 min | Tag `lead-responded` applied by inbound-SMS handler workflow. Action 12 sees the tag, exits to #02. |
+| Contact has `do-not-email` | Email actions (5, 13b, 15b) skip silently. Email actions still fire. |
+| Contact has `do-not-email` | Email actions (10, 14b) skip silently. Email actions still fire. |
+| Contact has BOTH `do-not-email` AND `do-not-email` | Only owner notification (Action 11) fires. Owner contacts manually. |
+| Form submitted at 3 AM contact-local | Instant Email still fires (transactional). Owner notification queues for 7 AM. 2hr nudge respects 8 AM start. |
+| Contact replies to instant Email within 5 min | Tag `lead-responded` applied by inbound-email handler workflow. Action 12 sees the tag, exits to #02. |
 | Contact books trial within 5 min | Tag `trial-claimed` applied by booking trigger. Action 12 exits to #02. |
-| Contact replies "STOP" | GHL applies `do-not-sms` automatically. All future SMS actions skip. |
+| Contact replies "STOP" | GHL applies `do-not-email` automatically. All future Email actions skip. |
 
 ---
 
@@ -337,7 +337,7 @@ Build a smart list **"Lead Capture — Stuck Leads"** for owner inspection:
 Build a smart list **"Lead Capture — Workflow Failures"**:
 
 - Has tag `lead-new` for more than 1 hour (should have moved to `lead-contacted` within seconds)
-- Indicates the SMS/email step failed — investigate
+- Indicates the Email/email step failed — investigate
 
 Both lists feed the [#10 Owner Reporting](../../10-owner-reporting-and-visibility/) dashboard.
 
