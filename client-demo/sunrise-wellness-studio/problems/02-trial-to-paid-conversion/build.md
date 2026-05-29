@@ -93,18 +93,18 @@ For each: paste the subject, preview, body from `assets/emails.md`. Confirm all 
 
 ---
 
-## Step 3 — Build All SMS Templates (15 min)
+## Step 3 — Build All Email Templates (15 min)
 
-Navigate to **Marketing > Templates > SMS > + New Template**.
+Navigate to **Marketing > Templates > Email > + New Template**.
 
-Build each template in **[assets/sms.md](assets/sms.md)**:
+Build each template in **[assets](assets)**:
 
 | Template Name | Send Day | Used in workflow step |
 |---|---|---|
 | `02 — Day 1 — Booking Check` | Day 1 | Step 4.4 |
 | `02 — Day 4 — Class Nudge` | Day 4 | Step 4.7 |
 | `02 — Day 6 — Personal from Morgan` | Day 6 | Step 4.10 |
-| `02 — Day 7 — Last Call SMS` | Day 7 | Step 4.12 |
+| `02 — Day 7 — Last Call Email` | Day 7 | Step 4.12 |
 
 ---
 
@@ -132,18 +132,18 @@ Click **+ Add New Workflow Trigger**.
 - **Action:** Update Contact Field → `lead_status` = `Trial Active`
 - **Action:** Update Opportunity Stage → Pipeline `Membership Sales` → Stage `Trial Active`
 - **Action:** Send Email → Template `02 — Day 0 — Trial Welcome`
-- **Action:** Send SMS → Day-0 short welcome (uses Template from #01 SMS message A pattern, OR build a 02-Day-0 SMS — see [assets/sms.md](assets/sms.md))
+- **Action:** Send Email → Day-0 short welcome (uses Template from #01 Email message A pattern, OR build a 02-Day-0 Email — see [assets](assets))
 
 ### 4.3 Action: Wait until Day 1, 10 AM contact-local
 
 - **Action:** Wait — Until specific time
 - **Wait until:** `lead_captured_at + 1 day` at 10:00 AM contact-local
 
-### 4.4 Action: Day 1 SMS check-in (with branch)
+### 4.4 Action: Day 1 Email check-in (with branch)
 
 - **Action:** If/Else — has contact attended a class? (`last_visit_date` >= `lead_captured_at`)
-  - **Yes branch:** Send SMS `02 — Day 1 — Class Confirmation` ("loved having you in class!")
-  - **No branch:** Send SMS `02 — Day 1 — Booking Check` ("did you grab a class slot yet?")
+  - **Yes branch:** Send Email `02 — Day 1 — Class Confirmation` ("loved having you in class!")
+  - **No branch:** Send Email `02 — Day 1 — Booking Check` ("did you grab a class slot yet?")
 
 ### 4.5 Action: Wait until Day 2, 8 AM
 
@@ -156,13 +156,13 @@ Click **+ Add New Workflow Trigger**.
 
 - **Action:** Wait — Until specific time → Day 4 at 9 AM contact-local
 
-### 4.7 Action: Day 4 Email + SMS Nudge
+### 4.7 Action: Day 4 emails Nudge
 
 - **Action:** Send Email → Template `02 — Day 4 — Testimonial / Social Proof`
 - **Action:** Wait 4 hours
 - **Action:** If/Else — does contact have `trial-attended-3plus`?
-  - **Yes branch:** Skip the nudge SMS (they're already in love)
-  - **No branch:** Send SMS `02 — Day 4 — Class Nudge`
+  - **Yes branch:** Skip the nudge Email (they're already in love)
+  - **No branch:** Send Email `02 — Day 4 — Class Nudge`
 
 ### 4.8 Action: Wait until Day 5, 10 AM
 
@@ -175,27 +175,27 @@ Click **+ Add New Workflow Trigger**.
 
 The email contains the coupon code `TRIAL2PAID` and a direct CTA to the conversion funnel built in Step 1.
 
-### 4.10 Action: Wait until Day 6, 2 PM → Personal SMS from Morgan
+### 4.10 Action: Wait until Day 6, 2 PM → Personal Email from Morgan
 
 - **Action:** Wait — Until specific time → Day 6 at 2 PM contact-local
 - **Action:** If/Else — does contact have `trial-converted`?
   - **Yes branch:** Exit workflow (success)
-  - **No branch:** Send SMS `02 — Day 6 — Personal from Morgan`
+  - **No branch:** Send Email `02 — Day 6 — Personal from Morgan`
 
-This SMS is intentionally human-toned — "hey, just wanted to ask before your trial wraps — any questions or concerns I can answer?"
+This Email is intentionally human-toned — "hey, just wanted to ask before your trial wraps — any questions or concerns I can answer?"
 
 ### 4.11 Action: Wait until Day 7, 9 AM
 
 - **Action:** Wait — Until specific time → Day 7 at 9 AM contact-local
 
-### 4.12 Action: Day 7 Last Call (Email + SMS)
+### 4.12 Action: Day 7 Last Call (emails)
 
 - **Action:** If/Else — does contact have `trial-converted`?
   - **Yes branch:** Exit workflow
   - **No branch:**
     - Send Email → Template `02 — Day 7 — Last Call`
     - Wait 4 hours
-    - Send SMS `02 — Day 7 — Last Call SMS`
+    - Send Email `02 — Day 7 — Last Call Email`
 
 ### 4.13 Action: Wait 12 hours → Outcome Router
 
@@ -248,7 +248,7 @@ Build a small companion workflow to handle replies during the trial nurture.
 Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 
 - **Workflow Name:** `02 — Trial Reply Handler`
-- **Trigger:** Inbound SMS received
+- **Trigger:** Inbound Email received
 - **Filter:** Contact has tag `campaign-trial-nurture`
 
 **Actions:**
@@ -295,23 +295,23 @@ Run this sequence after publishing. **Do not declare done until all six pass.**
 1. On a test contact, manually add the tag `trial-claimed`.
 2. **Expected within 60 seconds:**
    - Day 0 welcome email arrives.
-   - Day 0 SMS arrives.
+   - Day 0 Email arrives.
    - Tag `campaign-trial-nurture` applied.
    - Contact field `lead_status` = `Trial Active`.
    - Opportunity moved to "Trial Active" stage in Membership Sales pipeline.
 
-### Test 2 — Day 1 SMS branch (attended vs not)
+### Test 2 — Day 1 Email branch (attended vs not)
 
 1. Test contact A: leave `last_visit_date` blank, fast-forward workflow to Day 1.
-2. **Expected:** SMS `02 — Day 1 — Booking Check` ("did you grab a class slot yet?")
+2. **Expected:** Email `02 — Day 1 — Booking Check` ("did you grab a class slot yet?")
 3. Test contact B: set `last_visit_date` = today, increment `total_visits_lifetime` to 1, fast-forward.
-4. **Expected:** SMS `02 — Day 1 — Class Confirmation` ("loved having you in class!")
+4. **Expected:** Email `02 — Day 1 — Class Confirmation` ("loved having you in class!")
 
 ### Test 3 — Day 4 attendance-based skip
 
 1. Test contact: simulate 3 class attendances; add tag `trial-attended-3plus`.
 2. Fast-forward to Day 4.
-3. **Expected:** Day 4 email arrives, but Day 4 nudge SMS does NOT fire (skipped by branch).
+3. **Expected:** Day 4 email arrives, but Day 4 nudge Email does NOT fire (skipped by branch).
 
 ### Test 4 — Conversion path (happy)
 
@@ -327,7 +327,7 @@ Run this sequence after publishing. **Do not declare done until all six pass.**
 
 ### Test 5 — Not-now reply
 
-1. Test contact: at Day 4 of the workflow, reply to any SMS with the text "not now thanks."
+1. Test contact: at Day 4 of the workflow, reply to any Email with the text "not now thanks."
 2. **Expected:**
    - Auto-reply from Morgan-voice script fires.
    - Tag `trial-not-now` applied.
@@ -349,9 +349,9 @@ Run this sequence after publishing. **Do not declare done until all six pass.**
 
 1. **Double-entry into the workflow.** If a contact gets `trial-claimed` re-applied (front desk re-clicks it), the workflow restarts. Use the trigger filter "Contact does NOT have tag `campaign-trial-nurture`" to prevent.
 2. **Conversion not firing.** If a trial buys via the funnel but the `trial-converted` tag never gets applied, check Step 6's wiring — the Order Submitted trigger must filter for the right products AND the `campaign-trial-nurture` tag.
-3. **Quiet hours violated on Day 6 personal SMS.** The Day 6 SMS is the most "human" message — sending it at 11 PM destroys the effect. Set the wait at Step 4.10 to specifically 2 PM contact-local.
+3. **Quiet hours violated on Day 6 personal Email.** The Day 6 Email is the most "human" message — sending it at 11 PM destroys the effect. Set the wait at Step 4.10 to specifically 2 PM contact-local.
 4. **Coupon already used.** If a contact attempts the conversion funnel twice, GHL rejects the coupon. Build the funnel with a fallback message: *"Coupon already redeemed — but you can still purchase at the regular price."*
-5. **Owner notification spam on Day 6.** Day 6 fires the personal SMS for every trial. If the owner wants to *approve* before send, change Step 4.10 to send an internal notification ("ready to send to {{first_name}} — approve in Conversations") instead of auto-firing.
+5. **Owner notification spam on Day 6.** Day 6 fires the personal Email for every trial. If the owner wants to *approve* before send, change Step 4.10 to send an internal notification ("ready to send to {{first_name}} — approve in Conversations") instead of auto-firing.
 
 ---
 

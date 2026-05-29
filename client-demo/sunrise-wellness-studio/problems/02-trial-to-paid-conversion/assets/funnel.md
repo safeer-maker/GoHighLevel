@@ -10,7 +10,7 @@
 - **Domain:** `book.sunrisewellness.com/join` (sub-path)
 - **Brand colors:** Sunrise Coral `#FF6B4A`, Gold `#F4B860`, Cream `#FFF8F0`, Deep Slate `#2D3142`
 - **Custom value to set after publish:** `offer.conversion_funnel_url` = the published URL
-- **Pre-fill behavior:** When opened via the trial nurture emails/SMS, URL includes `?contact_id={{contact.id}}` so name, email, phone auto-fill on the checkout step.
+- **Pre-fill behavior:** When opened via the trial nurture emails/Email, URL includes `?contact_id={{contact.id}}` so name, email, phone auto-fill on the checkout step.
 
 ---
 
@@ -288,7 +288,7 @@
 
 **Italic, deep slate, gold accent border:**
 
-> *"Welcome in, {{contact.first_name}}. I notice every single new member, and I take it personally that you chose us. Over the next 30 days I (or one of the team) will check in a couple of times to make sure you're getting what you came for. If at any point something isn't working, text me at {{custom_values.business.sms_number}} — I read everything."*
+> *"Welcome in, {{contact.first_name}}. I notice every single new member, and I take it personally that you chose us. Over the next 30 days I (or one of the team) will check in a couple of times to make sure you're getting what you came for. If at any point something isn't working, email me at {{custom_values.business.sms_number}} — I read everything."*
 >
 > *— Morgan Riley, Owner*
 
@@ -324,7 +324,7 @@ Test one at a time, run for 2 weeks each, target 30+ funnel views per variant.
 
 ## Mobile-First Notes
 
-- Most trial members will tap the funnel link from a phone after reading a Day 5 email or Day 7 SMS — optimize for one-thumb completion.
+- Most trial members will tap the funnel link from a phone after reading a Day 5 email or Day 7 Email — optimize for one-thumb completion.
 - Tier toggle: use big radio buttons (≥ 40px tap target).
 - Stripe card element: native iOS/Android keyboard for card number.
 - Sticky CTA bar on scroll: "Continue to Checkout →" stays at the bottom of the screen during the comparison table.

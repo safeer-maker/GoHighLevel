@@ -36,43 +36,54 @@ For a studio doing 60 trials/month, double everything. The trial nurture is the 
 
 ## What We Built
 
-A 7-day SMS + email nurture sequence that runs the moment a trial pass is claimed, branches based on attendance, and ends with a one-page conversion checkout funnel.
+A 7-day emails nurture sequence that runs the moment a trial pass is claimed, branches based on attendance, and ends with a one-page conversion checkout funnel.
 
 ```mermaid
 graph TD
-    Trigger[Trial Pass Claimed<br/>trial-claimed tag added] --> WF[7-Day Trial Nurture Workflow]
-
-    WF --> D0[Day 0: Welcome SMS + Email<br/>book first class]
-    D0 --> D1[Day 1: SMS check-in<br/>did you book yet?]
-    D1 --> D2[Day 2: First-class encouragement email<br/>what to expect]
-    D2 --> D4[Day 4: Testimonial email + SMS nudge<br/>social proof]
-    D4 --> D5[Day 5: Conversion offer email<br/>20% off + waived enrollment]
-    D5 --> D6[Day 6: Personal SMS from Morgan<br/>question or concern?]
-    D6 --> D7[Day 7: Last-call email + SMS<br/>offer expires tonight]
-
-    D7 --> Branch{Outcome by Day 7}
-    Branch -->|Converted| Won[trial-converted<br/>→ #04 Onboarding]
-    Branch -->|Not Now reply| NotNow[trial-not-now<br/>→ long-tail nurture]
-    Branch -->|Silent| Expired[trial-expired<br/>→ recap email + nurture]
-
-    Branch -.->|Branch logic on attendance| ABranch
-    ABranch[Attended 3+ classes<br/>→ confident-pitch path]
-    ABranch2[Attended 0 classes<br/>→ first-class-anxiety path]
-
-    classDef trigger fill:#FFE082,stroke:#F57F17
-    classDef action fill:#E0E7FF,stroke:#3F51B5
-    classDef branch fill:#FFD6D6,stroke:#D9534F
-    classDef exit fill:#D4F4DD,stroke:#2E7D32
-
-    class Trigger trigger
-    class WF,D0,D1,D2,D4,D5,D6,D7 action
-    class Branch,ABranch,ABranch2 branch
-    class Won,NotNow,Expired exit
+  T[Tag Added: trial-claimed] --> A1[Day 0 Setup and Welcome emails]
+  A1 --> A2[Wait until Day 1 at 10 AM]
+  A2 --> A3{Attended yet}
+  A3 -->|Yes| A3y[Class Confirmation]
+  A3 -->|No| A3n[Booking Check]
+  A3y --> A4[Wait until Day 2 at 8 AM]
+  A3n --> A4
+  A4 --> A5[First Class Encouragement]
+  A5 --> A6[Wait until Day 4 at 9 AM]
+  A6 --> A7[Social Proof Email]
+  A7 --> A7w[Wait 4 hours]
+  A7w --> A7c{Attended 3 or more classes}
+  A7c -->|Yes| A8[Wait until Day 5 at 10 AM]
+  A7c -->|No| A7n[Class Nudge]
+  A7n --> A8
+  A8 --> A9[Conversion Offer Email]
+  A9 --> A10[Wait until Day 6 at 2 PM]
+  A10 --> A10c{Converted}
+  A10c -->|Yes| EX1[Exit Converted]
+  A10c -->|No| A10n[Personal Email from Morgan]
+  A10n --> A11[Wait until Day 7 at 9 AM]
+  A11 --> A12c{Converted}
+  A12c -->|Yes| EX1
+  A12c -->|No| A12[Last Call Email]
+  A12 --> A12w[Wait 4 hours]
+  A12w --> A12cc{Converted}
+  A12cc -->|Yes| EX1
+  A12cc -->|No| A12n[Last Call Email]
+  A12n --> A13[Wait 12 hours]
+  A13 --> A14{Outcome}
+  A14 -->|trial-converted| P14a[Conversion Path]
+  A14 -->|trial-not-now| P14b[Not Now Path]
+  A14 -->|Silent| P14c[Silent Expiration Path]
+  P14a --> P14ax[Tag member-active and onboarding, enroll in onboarding]
+  P14b --> P14bx[Tag trial-not-now and long-tail nurture]
+  P14c --> P14cx[Tag trial-expired and recap email and long-tail nurture]
+  P14ax --> EX2[Exit]
+  P14bx --> EX3[Exit]
+  P14cx --> EX4[Exit]
 ```
 
 **Four components:**
 
-1. **7-Day Trial Nurture Workflow** — fires the moment `trial-claimed` is applied. Runs an email + SMS sequence across days 0, 1, 2, 4, 5, 6, 7 with attendance-aware branching.
+1. **7-Day Trial Nurture Workflow** — fires the moment `trial-claimed` is applied. Runs an emails sequence across days 0, 1, 2, 4, 5, 6, 7 with attendance-aware branching.
 2. **Conversion Offer Funnel** — a single-page checkout for the trial conversion offer (`20% off first month + waived $49 enrollment fee`). Pre-fills the contact's info; checkout in under 60 seconds.
 3. **Reply-handling micro-workflow** — when the trial replies "not now" or asks a question, route to Conversations + Morgan, exit the marketing branch.
 4. **Day-7 outcome router** — tags the contact based on what happened (`trial-converted`, `trial-not-now`, `trial-expired`) and hands off to either [#04 Onboarding](../04-new-member-onboarding/) or the long-tail lead nurture.
@@ -109,20 +120,20 @@ After:
 - The moment a trial pass is claimed, the 7-day machine fires.
 - Members who attend 3+ classes get a *confident pitch* email on day 5 ("you already love it — lock in 20% off").
 - Members who haven't been in by day 2 get a *first-class anxiety* email ("here's exactly what to expect, who you'll meet, what to wear").
-- Day 6 is the only message that asks the owner to do anything: a one-line SMS from Morgan saying "hey, any questions before your trial wraps?" — the owner reviews and approves in Conversations, then it sends.
+- Day 6 is the only message that asks the owner to do anything: a one-line Email from Morgan saying "hey, any questions before your trial wraps?" — the owner reviews and approves in Conversations, then it sends.
 - Day 7: every trial has either bought, said "not now" (and entered a longer drip), or silently expired (and entered the long-tail nurture). No trial dies in silence.
 
 ---
 
 ## Build It
 
-Full step-by-step build in **[build.md](build.md)** — workflow steps, funnel pages, every email and SMS in order.
+Full step-by-step build in **[build.md](build.md)** — workflow steps, funnel pages, every emails in order.
 
 Production copy for every asset:
 
 - **[assets/funnel.md](assets/funnel.md)** — conversion offer funnel (single-page checkout, prefilled)
 - **[assets/emails.md](assets/emails.md)** — 5+ emails across the 7-day sequence
-- **[assets/sms.md](assets/sms.md)** — 4+ SMS messages with branching variants
+- **[assets](assets)** — 4+ Email messages with branching variants
 - **[assets/workflow.md](assets/workflow.md)** — complete workflow spec with mermaid diagram
 
 ---

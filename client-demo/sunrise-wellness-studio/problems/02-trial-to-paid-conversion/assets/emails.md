@@ -462,7 +462,7 @@
 
 **Template name:** `02 — Recap — Trial Expired (Soft)`
 
-**Send timing:** Day 8 (12 hours after Day 7 last-call SMS), IF contact has `trial-expired` AND NOT `trial-converted` AND NOT `trial-not-now`.
+**Send timing:** Day 8 (12 hours after Day 7 last-call Email), IF contact has `trial-expired` AND NOT `trial-converted` AND NOT `trial-not-now`.
 
 **From:** Same as Email 1.
 
@@ -548,4 +548,4 @@ After Day 7, the contact takes one of three paths:
 2. **Not Now** → enters the long-tail nurture (monthly cadence, out of scope here).
 3. **Silent expiration** → gets this Email 6 recap, then enters the long-tail nurture.
 
-The SMS counterparts for each day live in **[sms.md](sms.md)**.
+The Email counterparts for each day live in **[]()**.
