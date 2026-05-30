@@ -1,6 +1,6 @@
 # #01 — Email Templates
 
-> Production-ready email copy. Each email has subject, preview text, full body, and merge fields. Paste into GHL email builder.
+> Production-ready email copy. Each email has subject, preview email, full body, and merge fields. Paste into GHL email builder.
 
 ---
 
@@ -19,14 +19,14 @@
 **Subject:**
 > Welcome, {{contact.first_name}} — your free 7-day pass is ready ☀️
 
-**Preview text (inbox snippet):**
+**Preview email (inbox snippet):**
 > 7 days, every class, no credit card. Here's how to claim it.
 
 ---
 
 ### Email Body
 
-**Header band:** Sunrise gradient (coral → gold). Logo centered. White text "SUNRISE WELLNESS STUDIO" small caps.
+**Header band:** Sunrise gradient (coral → gold). Logo centered. White email "SUNRISE WELLNESS STUDIO" small caps.
 
 ---
 
@@ -42,7 +42,7 @@
 
 > Welcome to Sunrise. I'm Morgan — the owner here — and I'm genuinely excited you're trying us out.
 > 
-> Quick heads up: I just texted you a booking link too, but here's the same thing in case the text got lost.
+> Quick heads up: I just emailed you a booking link too, but here's the same thing in case the email got lost.
 
 ---
 
@@ -93,7 +93,7 @@
 
 **Closing:**
 
-> If anything's confusing or you want a real human to text with — just reply to this email or text us at {{custom_values.business.sms_number}}. We mean it. A real person reads everything.
+> If anything's confusing or you want a real human to email with — just reply to this email or email us at {{custom_values.business.email}}. We mean it. A real person reads everything.
 > 
 > Looking forward to meeting you.
 > 
@@ -105,7 +105,7 @@
 
 **Footer band:** Cream background.
 
-- Studio: {{custom_values.business.address_line}} · {{custom_values.business.phone}}
+- Studio: {{custom_values.business.address_line}} · {{custom_values.business.email}}
 - Hours: {{custom_values.hours.full}}
 - Social icons: Instagram · Facebook · Google
 - Unsubscribe: {{unsubscribe_link}}
@@ -124,7 +124,7 @@
 **Subject:**
 > {{contact.first_name}}, did the link work?
 
-**Preview text:**
+**Preview email:**
 > Quick check-in. No pressure — just making sure you got everything.
 
 ---
@@ -137,7 +137,7 @@
 
 **Body:**
 
-> Morgan again. Just doing a quick check — sometimes our texts get lost in the void of crowded inboxes and notification panels.
+> Morgan again. Just doing a quick check — sometimes our emails get lost in the void of crowded inboxes and notification panels.
 > 
 > Your free 7-day pass is still active and ready whenever you are.
 
@@ -191,11 +191,11 @@ After 24hr soft follow-up, the contact exits the #01 workflow and is enrolled in
 - Single-column layout always.
 - CTA buttons minimum 44px tall.
 - Body font 16px minimum.
-- Header image: max 600px wide, but degrades gracefully (alt text required).
+- Header image: max 600px wide, but degrades gracefully (alt email required).
 
 **Deliverability:**
 - Avoid CAPS in subject, no excessive emoji (one is fine, three is spammy).
-- Include text version (GHL auto-generates from HTML).
+- Include email version (GHL auto-generates from HTML).
 - Verify SPF/DKIM/DMARC set on the sending domain.
 
 **Personalization fallbacks:**

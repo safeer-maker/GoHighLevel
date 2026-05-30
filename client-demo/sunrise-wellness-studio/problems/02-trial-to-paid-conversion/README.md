@@ -1,3 +1,13 @@
+# Demo Status Note
+
+**Status:** Built / ready for demo
+
+**How to present this file:** This section is treated as a completed conversion module. Use it to show the 7-day trial journey, conversion logic, and trial-to-member handoff.
+
+**Email-only adjustment:** This demo version assumes no GHL phone number is connected. Customer-facing communication should use email templates and email CTAs. SMS can be added later as a channel upgrade after a GHL number is connected.
+
+---
+
 # #02 — Trial-to-Paid Conversion
 
 > **The Problem:** A trial member is the single most expensive lead in the funnel — you've already paid the ad dollars, the front-desk hello, the trainer's tour. Most studios convert **25–35%** of trials. Every percentage point under 50% is recurring revenue you'll never get back.

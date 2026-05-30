@@ -1,3 +1,13 @@
+# Demo Status Note
+
+**Status:** Built / ready for demo
+
+**How to present this file:** This section is treated as a completed proof module. Use it to show the lead capture foundation, source tracking, instant email response, and pipeline entry.
+
+**Email-only adjustment:** This demo version assumes no GHL phone number is connected. Customer-facing communication should use email templates and email CTAs. SMS can be added later as a channel upgrade after a GHL number is connected.
+
+---
+
 # #01 — Build Playbook: Lead Capture & Instant Response
 
 > Step-by-step GHL build. Estimated time: **90 minutes** for a competent operator. Prerequisites listed first — do not skip them.
@@ -12,7 +22,7 @@ Confirm these exist before starting. If anything is missing, build it first.
 |---|---|---|
 | Lead Info custom fields (`lead_source`, `lead_source_detail`, `lead_captured_at`, `lead_first_response_at`, `lead_status`) | [../../shared-foundation/custom-fields.md](../../shared-foundation/custom-fields.md) | Stamping lead data |
 | Fitness Profile fields (`fitness_goal_primary`, `fitness_experience`, `preferred_workout_time`) | Same | Form captures goal data |
-| Communication Preferences (`sms_opt_in`, `email_opt_in`) | Same | Consent capture |
+| Communication Preferences (`email_opt_in`, `email_opt_in`) | Same | Consent capture |
 | Tags: `lead-new`, `lead-contacted`, `source-instagram`, `source-facebook`, `source-google`, `source-walkin`, `source-referral`, `source-web` | [../../shared-foundation/tags.md](../../shared-foundation/tags.md) | Source attribution |
 | Pipeline: **Membership Sales**, Stage: "New Lead" | [../../shared-foundation/pipelines.md](../../shared-foundation/pipelines.md) | Opportunity creation |
 | Custom values: `business.short_name`, `business.booking_url`, `team.owner_first`, `offer.free_trial`, `voice.greeting_warm`, `voice.signature_short` | [../../shared-foundation/custom-values.md](../../shared-foundation/custom-values.md) | Message copy |
@@ -60,7 +70,7 @@ Click **+ Add Step > Thank-You Page**. Name it `03 — Welcome`.
 
 Build:
 
-- **Section 1: Confirmation** — H1 "You're in! Check your phone." subhead "We just texted you a booking link."
+- **Section 1: Confirmation** — H1 "You're in! Check your email." subhead "We just emailed you a booking link."
 - **Section 2: While you're here** — embed Instagram feed widget (their @sunrisewellnessstudio handle).
 - **Section 3: Soft secondary CTA** — "Follow us so you don't miss class drops" with Instagram/Facebook icons.
 
@@ -86,13 +96,13 @@ Form fields (drag from the form builder sidebar). Full spec including labels, pl
 |---|---|---|---|---|
 | 1 | First Name | Text | Yes | (standard contact field) |
 | 2 | Last Name | Text | Yes | (standard contact field) |
-| 3 | Phone | Phone | Yes | (standard contact field) |
+| 3 | Email | Email | Yes | (standard contact field) |
 | 4 | Email | Email | Yes | (standard contact field) |
 | 5 | What's your primary goal? | Dropdown | Yes | `fitness_goal_primary` |
 | 6 | Best time to work out? | Dropdown | No | `preferred_workout_time` |
-| 7 | Hidden: source | Hidden text | — | `lead_source` (populated from URL param) |
-| 8 | Hidden: source detail | Hidden text | — | `lead_source_detail` (UTM campaign) |
-| 9 | Consent checkbox | Checkbox | Yes | `sms_opt_in` AND `email_opt_in` |
+| 7 | Hidden: source | Hidden email | — | `lead_source` (populated from URL param) |
+| 8 | Hidden: source detail | Hidden email | — | `lead_source_detail` (UTM campaign) |
+| 9 | Consent checkbox | Checkbox | Yes | `email_opt_in` AND `email_opt_in` |
 
 **Form settings:**
 
@@ -118,8 +128,8 @@ Add one form page; embed the `Lead Capture — Walk-In Tablet` form. Simple layo
 
 - Large logo header
 - H1: "Welcome to Sunrise — let's get you set up"
-- Form (4 fields visible: name, phone, email, goal)
-- Submit button text: "Get My Pass"
+- Form (4 fields visible: first name, last name, email, goal)
+- Submit button email: "Get My Pass"
 - Thank-you redirect: a simple page that says "You're in! We'll grab your tablet back."
 
 Bookmark the URL on the front-desk tablet's home screen.
@@ -174,8 +184,8 @@ Easier alternative if your GHL plan supports it: a single "Workflow Variable Map
 ### 4.6 Action: Send Email (the critical 5-minute response)
 
 - **Action:** Send Email
-- **From:** `{{custom_values.business.sms_number}}`
-- **To:** Contact phone
+- **From:** `{{custom_values.business.email}}`
+- **To:** Contact email
 - **Body:** Email body in [assets](assets) — message **A — Instant Response**
 - **Wait condition:** None (fires immediately on workflow entry)
 
@@ -186,7 +196,7 @@ Set quiet-hours **bypass = OFF** for this message — transactional/responsive, 
 - **Action:** Send Email
 - **Template:** Email "Welcome — Free 7-Day Pass" from [assets/emails.md](assets/emails.md)
 - **Send via:** Business email
-- **Wait before:** 2 minutes (let the Email land first, so they check their phone, then the email is waiting)
+- **Wait before:** 2 minutes (let the first email land, then send the secondary confirmation)
 
 ### 4.8 Action: Stamp first-response timestamp
 
@@ -204,7 +214,7 @@ Set quiet-hours **bypass = OFF** for this message — transactional/responsive, 
 - **Action:** Send Internal Notification
 - **To:** `{{custom_values.business.owner_email}}`
 - **Subject:** `New lead: {{contact.first_name}} {{contact.last_name}} from {{contact.lead_source}}`
-- **Body:** Brief — name, phone, email, goal, source. With a clickable contact link.
+- **Body:** Brief — name, email, goal, source. With a clickable contact link.
 
 Quiet hours for owner: send email only between 7AM–10PM owner-local time. If outside, queue for 7AM. (Use a Wait action with conditional release if your GHL supports it; otherwise, accept that the owner may get an off-hours email — they can choose to silence.)
 
@@ -268,10 +278,10 @@ Run this test sequence after publishing. **Do not declare done until all five pa
 ### Test 1 — Funnel form submission, generic source
 
 1. Open the funnel URL in an incognito browser.
-2. Fill the form with test data (use your own real phone number).
+2. Fill the form with test data (use your own real email address).
 3. Submit.
 4. **Expected within 5 minutes:**
-   - Email arrives on your phone (message A from [assets](assets)).
+   - Email arrives in your inbox (message A from [assets](assets)).
    - Welcome email arrives (2 minutes after Email).
    - Owner email lands in `{{custom_values.business.owner_email}}` inbox.
 5. **Expected in GHL:**
@@ -312,7 +322,7 @@ Run this test sequence after publishing. **Do not declare done until all five pa
 
 1. **Form not publishing.** If submissions don't trigger the workflow, confirm: the form is *published* (not draft), the workflow's trigger filter exactly matches the form name, and the workflow is *toggled on*.
 2. **Source tags not applying.** Hidden form fields default to `Web Search`, not blank. If you see `source-web` on Instagram traffic, your UTM isn't reaching the form — check the URL parameter name matches the hidden field name exactly.
-3. **Email not firing.** Confirm the GHL phone number is provisioned and the contact's phone is in valid format. Test by sending a manual Email first.
+3. **Email not firing.** Confirm the sender email/domain is verified and the contact email is valid. Test by sending a manual email first.
 4. **Owner getting flooded.** Confirm the owner notification fires only ONCE per lead (not once per workflow re-entry). Use the "Contact does not have tag `lead-contacted`" filter on the trigger.
 5. **Duplicate opportunities.** If a lead fills the form twice, you get two opportunities. Add a workflow filter: "If contact already has an open opportunity in Membership Sales, skip the Create Opportunity step."
 
@@ -324,6 +334,6 @@ Once this is live and verified:
 
 - Leads that book a trial are picked up by **[#02 Trial-to-Paid Conversion](../02-trial-to-paid-conversion/build.md)**.
 - Source attribution data flows into **[#10 Owner Reporting](../10-owner-reporting-and-visibility/build.md)**.
-- Referred leads (with `source-referral` and `referred_by_contact_id` populated) trigger reward credits via **[#08 Referral Engine](../08-referral-engine/build.md)**.
+- Referred leads (with `source-referral` and `referred_by_contact_id` populated) trigger reward credits via **Phase 2 Referral Engine (`PHASE-2-ROADMAP.md`)**.
 
 Full integration: [../../integration/master-automation-graph.md](../../integration/master-automation-graph.md)

@@ -1,3 +1,13 @@
+# Demo Status Note
+
+**Status:** Built / ready for demo
+
+**How to present this file:** This section is treated as a completed proof module. Use it to show the lead capture foundation, source tracking, instant email response, and pipeline entry.
+
+**Email-only adjustment:** This demo version assumes no GHL phone number is connected. Customer-facing communication should use email templates and email CTAs. SMS can be added later as a channel upgrade after a GHL number is connected.
+
+---
+
 # #01 — Lead Capture & Instant Response
 
 > **The Problem:** Leads from Instagram, Google, and walk-ins go cold before anyone responds. A lead contacted in 5 minutes is **10× more likely** to convert than one contacted an hour later — and most studios are taking hours.

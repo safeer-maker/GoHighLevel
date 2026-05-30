@@ -102,11 +102,11 @@ After the branches reconverge, continue to Action 3.
 | Property | Value |
 |---|---|
 | **Action type** | Send Email |
-| **From** | `{{custom_values.business.sms_number}}` |
-| **To** | `{{contact.phone}}` |
+| **From** | `{{custom_values.business.email}}` |
+| **To** | `{{contact.email}}` |
 | **Template** | `01 — Instant Lead Response` (from [](), message A) |
 | **Wait before** | None — fires immediately |
-| **Skip if** | Contact has tag `do-not-email` OR `sms_opt_in` ≠ "Yes" |
+| **Skip if** | Contact has tag `do-not-email` OR `email_opt_in` ≠ "Yes" |
 
 ---
 
@@ -179,7 +179,7 @@ After the branches reconverge, continue to Action 3.
 New lead just came in.
 
 Name: {{contact.first_name}} {{contact.last_name}}
-Phone: {{contact.phone}}
+Email: {{contact.email}}
 Email: {{contact.email}}
 Goal: {{contact.fitness_goal_primary}}
 Source: {{contact.lead_source}} ({{contact.lead_source_detail}})

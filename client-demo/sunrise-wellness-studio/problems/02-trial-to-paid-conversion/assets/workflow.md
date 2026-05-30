@@ -362,6 +362,6 @@ This workflow owns the first 7 days post-trial-claim. Adjacent systems own:
 - **Order detection** → `02 — Trial Conversion Detected` (companion workflow)
 - **Post-conversion** → [#04 New Member Onboarding](../../04-new-member-onboarding/)
 - **Silent expiration follow-up** → Long-Tail Lead Nurture (separate 30-day drip)
-- **Referral attribution on conversion** → [#08 Referral Engine](../../08-referral-engine/)
+- **Referral attribution on conversion** → Phase 2 Referral Engine (`PHASE-2-ROADMAP.md`)
 
 This workflow is the engine, but it's nothing without the companions and the downstream handoffs.

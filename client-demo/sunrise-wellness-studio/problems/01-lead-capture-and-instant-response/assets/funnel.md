@@ -9,7 +9,7 @@
 - **Funnel name:** `Sunrise — Free 7-Day Pass — Lead Capture`
 - **Domain:** book.sunrisewellness.com (or sub-path on main site)
 - **Brand colors:** Sunrise Coral `#FF6B4A`, Gold `#F4B860`, Cream `#FFF8F0`, Deep Slate `#2D3142`
-- **Primary CTA color:** Sunrise Coral, white text, 8px rounded corner, large mobile-tappable
+- **Primary CTA color:** Sunrise Coral, white email, 8px rounded corner, large mobile-tappable
 - **Font:** Heading: bold sans-serif (Poppins or Montserrat). Body: clean readable (Inter or Open Sans).
 
 ---
@@ -18,9 +18,9 @@
 
 ### Section 1: Hero (above-the-fold)
 
-**Background:** Full-width photo — bright morning shot of someone mid-stretch in a sun-drenched studio, warm coral/gold tones, smile visible. Light dark overlay for text contrast.
+**Background:** Full-width photo — bright morning shot of someone mid-stretch in a sun-drenched studio, warm coral/gold tones, smile visible. Light dark overlay for email contrast.
 
-**Eyebrow text (small, gold):**
+**Eyebrow email (small, gold):**
 > YOUR FIRST 7 DAYS — ON US
 
 **H1 (huge, white, bold):**
@@ -46,7 +46,7 @@
 **Text (left):**
 > Trusted by **240+** Springfield wellness lovers
 
-**Right side:** Five gold stars + small text "**4.9 / 5.0** on Google"
+**Right side:** Five gold stars + small email "**4.9 / 5.0** on Google"
 
 **Below:** Three small circular member photos (avatar style) with first names.
 
@@ -101,7 +101,7 @@
 | Step | Title | Description |
 |---|---|---|
 | **1** | **Claim your pass** | Tell us a tiny bit about you. Takes 30 seconds. |
-| **2** | **We text you a booking link** | Pick your first class or PT session — whatever fits your week. |
+| **2** | **We email you a booking link** | Pick your first class or PT session — whatever fits your week. |
 | **3** | **Walk in & start** | Show up. We'll take care of the rest. |
 
 ---
@@ -127,7 +127,7 @@
 ### Footer
 
 - Studio address: `{{custom_values.business.address_line}}`
-- Phone: `{{custom_values.business.phone}}`
+- Email: `{{custom_values.business.email}}`
 - Hours: `{{custom_values.hours.full}}`
 - Small links: Privacy · Terms · Contact
 - Icons: Instagram, Facebook, Google Maps
@@ -147,7 +147,7 @@
 > You're 30 seconds from your free 7 days.
 
 **Subhead:**
-> Tell us a little about you so we can text you a booking link.
+> Tell us a little about you so we can email you a booking link.
 
 ---
 
@@ -162,13 +162,13 @@
 > **Get My Free 7-Day Pass →**
 
 **Below button (small):**
-> By submitting, you agree to receive texts and emails from `{{custom_values.business.short_name}}`. We'll never spam, sell, or share your info. Reply STOP anytime.
+> By submitting, you agree to receive emails from `{{custom_values.business.short_name}}`. We'll never spam, sell, or share your info. Reply STOP anytime.
 
 ---
 
 ### Section 3: Trust Strip
 
-**3-icon row, small, gray text:**
+**3-icon row, small, gray email:**
 
 | Icon | Text |
 |---|---|
@@ -187,13 +187,13 @@
 **Large checkmark icon (gold)**
 
 **H1:**
-> You're in, `{{contact.first_name}}` — check your phone!
+> You're in, `{{contact.first_name}}` — check your email!
 
 **Subhead:**
-> We just texted you a booking link from `{{custom_values.business.short_name}}`. Tap it and you'll be set up in under a minute.
+> We just emailed you a booking link from `{{custom_values.business.short_name}}`. Tap it and you'll be set up in under a minute.
 
 **Below subhead — friendly note:**
-> *Didn't see the text within a couple minutes? Check your spam folder for the welcome email, or call us at `{{custom_values.business.phone}}` and we'll get you sorted.*
+> *Didn't see the email within a couple minutes? Check your spam folder for the welcome email, or email us at `{{custom_values.business.email}}` and we'll get you sorted.*
 
 ---
 
@@ -223,7 +223,7 @@
 
 **Numbered list:**
 
-1. **In the next 5 minutes** — You'll get a text with a link to book your first class or PT session.
+1. **In the next 5 minutes** — You'll get a email with a link to book your first class or PT session.
 2. **Day 1** — Show up. Front desk will greet you and give you the studio tour.
 3. **Day 7** — Your trainer follows up to see how it went and answer any questions.
 
@@ -260,5 +260,5 @@ Once the funnel is live and producing data, consider testing these variants. **D
 - 70%+ of traffic will be mobile. Optimize the form page for one-thumb completion.
 - CTA buttons must be at least 56px tall on mobile.
 - Hero image: ensure subject's face is visible above the fold even on small phones (use object-position: top).
-- Form: phone field with numeric keyboard, email field with email keyboard, dropdowns native (not custom-styled).
+- Form: email field with email keyboard, dropdowns native (not custom-styled).
 - Page load target: <2 seconds on 4G.

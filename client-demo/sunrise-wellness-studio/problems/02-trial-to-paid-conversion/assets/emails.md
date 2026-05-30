@@ -1,6 +1,6 @@
 # #02 — Email Templates
 
-> Production-ready email copy for the 7-day trial nurture. Each email has subject, preview text, full body, and merge fields. Paste into GHL email builder.
+> Production-ready email copy for the 7-day trial nurture. Each email has subject, preview email, full body, and merge fields. Paste into GHL email builder.
 
 ---
 
@@ -19,7 +19,7 @@
 **Subject:**
 > Your 7 days at Sunrise start now, {{contact.first_name}} ☀️
 
-**Preview text:**
+**Preview email:**
 > Welcome to the studio. Here's how to make the most of every day.
 
 ---
@@ -97,7 +97,7 @@
 
 **Closing:**
 
-> If anything's confusing — text us at {{custom_values.business.sms_number}} or reply to this email. A real person reads everything.
+> If anything's confusing — email us at {{custom_values.business.email}} or reply to this email. A real person reads everything.
 >
 > Excited to see you on the floor this week.
 >
@@ -126,7 +126,7 @@
 - **If `last_visit_date` is blank or < `lead_captured_at`:**
   > {{contact.first_name}}, your first class doesn't have to be perfect
 
-**Preview text (dynamic):**
+**Preview email (dynamic):**
 
 - Attended: "Here's what to do next."
 - Not attended: "Walking in the first time is the hardest part. Here's what to expect."
@@ -206,7 +206,7 @@
 **Subject:**
 > {{contact.first_name}}, what people don't tell you about the first month
 
-**Preview text:**
+**Preview email:**
 > Three real stories from members. The pattern surprised us.
 
 ---
@@ -294,7 +294,7 @@
 **Subject:**
 > {{contact.first_name}}, your member rate is ready ☀️
 
-**Preview text:**
+**Preview email:**
 > 20% off first month + waived enrollment. 48 hours only.
 
 ---
@@ -367,7 +367,7 @@
 | Can I pause if I travel? | Yes — pause up to 60 days/year, no fee. |
 | What if I don't use it? | Cancel anytime. We'd rather you stay because it's working than out of guilt. |
 | Is the offer different for the higher tiers? | Same 20% off + waived enrollment — just applied to a bigger base. The VIP discount is larger in absolute dollars. |
-| Can I bring a friend on the offer? | Refer them after you join — they get $20 off, you get a free PT session. (See [our referral page](../08-referral-engine/).) |
+| Can I bring a friend on the offer? | Refer them after you join — they get $20 off, you get a free PT session. (See the future Phase 2 referral page.) |
 
 ---
 
@@ -396,7 +396,7 @@
 **Subject:**
 > {{contact.first_name}}, last call (no pressure — just a heads up)
 
-**Preview text:**
+**Preview email:**
 > Your trial ends tonight. Here's the last reminder.
 
 ---
@@ -469,7 +469,7 @@
 **Subject:**
 > Your Sunrise trial wrapped — quick note
 
-**Preview text:**
+**Preview email:**
 > No pressure email. Just want you to know our door's still open.
 
 ---

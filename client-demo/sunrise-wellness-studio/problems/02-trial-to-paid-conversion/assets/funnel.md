@@ -10,7 +10,7 @@
 - **Domain:** `book.sunrisewellness.com/join` (sub-path)
 - **Brand colors:** Sunrise Coral `#FF6B4A`, Gold `#F4B860`, Cream `#FFF8F0`, Deep Slate `#2D3142`
 - **Custom value to set after publish:** `offer.conversion_funnel_url` = the published URL
-- **Pre-fill behavior:** When opened via the trial nurture emails/Email, URL includes `?contact_id={{contact.id}}` so name, email, phone auto-fill on the checkout step.
+- **Pre-fill behavior:** When opened via the trial nurture emails/Email, URL includes `?contact_id={{contact.id}}` so name and email auto-fill on the checkout step.
 
 ---
 
@@ -18,9 +18,9 @@
 
 ### Section 1: Hero (above-the-fold)
 
-**Background:** Wide photo of the studio mid-class, warm coral/gold tones. Light overlay for text contrast.
+**Background:** Wide photo of the studio mid-class, warm coral/gold tones. Light overlay for email contrast.
 
-**Eyebrow text (small, gold, all caps):**
+**Eyebrow email (small, gold, all caps):**
 > TRIAL CONVERSION OFFER — 48 HOURS ONLY
 
 **H1 (huge, white, bold):**
@@ -105,8 +105,8 @@
 | **What if I need to pause?** | You can pause your membership up to 60 days per year, no fee. Just email us or use the portal. |
 | **Is there a contract?** | No. Month-to-month. Cancel anytime — we'd rather you stay because it's working than out of guilt. |
 | **What if the auto-renewal date doesn't work for me?** | We can shift your billing date once after the first month — just ask. |
-| **Can I bring a friend?** | After you join, you get a personal referral link. Your friend gets $20 off their first month and you get a free PT session. (More: [#08 Referral](../08-referral-engine/)) |
-| **What if I want to bring it to my company for corporate rates?** | Reply to any of our emails or call {{custom_values.business.phone}} — Morgan handles corporate inquiries personally. |
+| **Can I bring a friend?** | After you join, you get a personal referral link. Your friend gets $20 off their first month and you get a free PT session. (More: Phase 2 Referral Engine (`PHASE-2-ROADMAP.md`)) |
+| **What if I want to bring it to my company for corporate rates?** | Reply to any of our emails or email {{custom_values.business.email}} — Morgan handles corporate inquiries personally. |
 | **What if my card declines?** | We retry once at 24hr, then email you. You have 7 days to update billing before any pause to access. |
 | **Coupon code doesn't work?** | The TRIAL2PAID code is single-use per contact and valid 48hr after your trial wraps. If it's expired or used, reply to your last email from Morgan and she'll extend it. |
 
@@ -132,11 +132,11 @@
 
 ### Footer
 
-- Studio: `{{custom_values.business.address_line}}` · `{{custom_values.business.phone}}`
+- Studio: `{{custom_values.business.address_line}}` · `{{custom_values.business.email}}`
 - Hours: `{{custom_values.hours.full}}`
 - Social icons: Instagram · Facebook · Google
 - Small links: Privacy · Terms · Contact
-- Footer text: `{{custom_values.legal.footer}}`
+- Footer email: `{{custom_values.legal.footer}}`
 
 ---
 
@@ -196,7 +196,7 @@
 | First name | `{{contact.first_name}}` |
 | Last name | `{{contact.last_name}}` |
 | Email | `{{contact.email}}` |
-| Phone | `{{contact.phone}}` |
+| Email | `{{contact.email}}` |
 
 **Below contact:** Stripe credit-card element (number, expiry, CVC, ZIP).
 
@@ -206,7 +206,7 @@
 
 > **Complete My Membership →**
 
-**Below submit, small text:**
+**Below submit, small email:**
 > By submitting you authorize {{custom_values.business.short_name}} to charge your card monthly. Cancel anytime in your member portal or by emailing {{custom_values.business.email}}.
 
 ---
@@ -244,7 +244,7 @@
 **H2:**
 > Your first 7 days as a member
 
-1. **In the next 5 minutes** — You'll get a welcome text and email with your member portal login and the app link.
+1. **In the next 5 minutes** — You'll get a welcome email and email with your member portal login and the app link.
 2. **Tomorrow morning** — Morgan will send you a personal "welcome to the team" message. Reply with anything.
 3. **Within 7 days** — Your onboarding kickoff: book your first as-a-member class and (if Premium/VIP) your first PT session.
 4. **Day 14** — Two-week check-in. We make sure you're getting what you came for.
@@ -288,7 +288,7 @@
 
 **Italic, deep slate, gold accent border:**
 
-> *"Welcome in, {{contact.first_name}}. I notice every single new member, and I take it personally that you chose us. Over the next 30 days I (or one of the team) will check in a couple of times to make sure you're getting what you came for. If at any point something isn't working, email me at {{custom_values.business.sms_number}} — I read everything."*
+> *"Welcome in, {{contact.first_name}}. I notice every single new member, and I take it personally that you chose us. Over the next 30 days I (or one of the team) will check in a couple of times to make sure you're getting what you came for. If at any point something isn't working, email me at {{custom_values.business.email}} — I read everything."*
 >
 > *— Morgan Riley, Owner*
 

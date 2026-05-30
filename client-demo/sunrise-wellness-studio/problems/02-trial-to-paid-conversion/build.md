@@ -1,3 +1,13 @@
+# Demo Status Note
+
+**Status:** Built / ready for demo
+
+**How to present this file:** This section is treated as a completed conversion module. Use it to show the 7-day trial journey, conversion logic, and trial-to-member handoff.
+
+**Email-only adjustment:** This demo version assumes no GHL phone number is connected. Customer-facing communication should use email templates and email CTAs. SMS can be added later as a channel upgrade after a GHL number is connected.
+
+---
+
 # #02 — Build Playbook: Trial-to-Paid Conversion
 
 > Step-by-step GHL build. Estimated time: **2.5 hours** for a competent operator. Prerequisites listed first — do not skip them. This build assumes [#01 Lead Capture](../01-lead-capture-and-instant-response/build.md) is already live.
@@ -53,7 +63,7 @@ Configure:
 - **Product picker:** Show Basic, Premium, VIP as toggleable selections. Default to Basic.
 - **Coupon:** Auto-apply `TRIAL2PAID`.
 - **Order bump (optional):** "Add a 5-pack of PT sessions for $375 (save $50)" — small, unobtrusive checkbox.
-- **Pre-fill contact:** Use URL parameter `?contact_id={{contact.id}}` so the funnel pre-fills name, email, phone from GHL.
+- **Pre-fill contact:** Use URL parameter `?contact_id={{contact.id}}` so the funnel pre-fills name and email from GHL.
 - **Submit button:** "Complete My Membership →"
 
 ### 1.4 Build Page 3 — Confirmation
@@ -327,7 +337,7 @@ Run this sequence after publishing. **Do not declare done until all six pass.**
 
 ### Test 5 — Not-now reply
 
-1. Test contact: at Day 4 of the workflow, reply to any Email with the text "not now thanks."
+1. Test contact: at Day 4 of the workflow, reply to any Email with the email "not now thanks."
 2. **Expected:**
    - Auto-reply from Morgan-voice script fires.
    - Tag `trial-not-now` applied.
@@ -362,6 +372,6 @@ Once this is live and verified:
 - Trials that convert flow into **[#04 New Member Onboarding](../04-new-member-onboarding/build.md)** automatically.
 - Trial-to-paid conversion rate appears on the **[#10 Owner Dashboard](../10-owner-reporting-and-visibility/build.md)**.
 - Silent expirations feed the long-tail "Trial Expired — 30 Day Drip" workflow, which pings monthly with class highlights, success stories, and the next seasonal offer.
-- For trials referred by an existing member (`source-referral`), the conversion event also fires the [#08 Referral Engine](../08-referral-engine/build.md) reward credit for the referrer.
+- For trials referred by an existing member (`source-referral`), the conversion event also fires the Phase 2 Referral Engine (`PHASE-2-ROADMAP.md`) reward credit for the referrer.
 
 Full integration: [../../integration/master-automation-graph.md](../../integration/master-automation-graph.md)
