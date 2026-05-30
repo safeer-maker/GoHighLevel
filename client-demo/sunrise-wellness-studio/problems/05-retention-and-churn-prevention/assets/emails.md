@@ -8,7 +8,7 @@
 
 **Template name:** `05 — At-Risk Personal from Morgan`
 
-**Send timing:** 4 hours after the At-Risk warm-hello SMS (Branch B, step 5)
+**Send timing:** 4 hours after the At-Risk warm-hello Email (Branch B, step 5)
 
 **From:**
 - Name: `Morgan from {{custom_values.business.short_name}}`
@@ -72,7 +72,7 @@
 > 
 > Morgan Riley · Owner, {{custom_values.business.name}}
 > 
-> P.S. If replying to an email feels like too much work, just text me back at {{custom_values.business.sms_number}}. Either works.
+> P.S. If replying to an email feels like too much work, just email me back at {{custom_values.business.sms_number}}. Either works.
 
 ---
 
@@ -90,7 +90,7 @@
 - No hero image, no sales banner — looks personal.
 - Three named possibilities ("life / studio / rethinking") give the reader a low-friction way to identify with one and reply.
 - No offer, no link, no urgency. The CTA is a reply, not a click.
-- P.S. with the SMS fallback handles inbox-resistant repliers.
+- P.S. with the Email fallback handles inbox-resistant repliers.
 - Replies route to Morgan's inbox directly — she actually answers them.
 
 ---
@@ -178,7 +178,7 @@
 
 **Template name:** `05 — Watching Soft Check-In`
 
-**Send timing:** Only used when SMS is suppressed (`do-not-sms` tag). Otherwise Branch A is SMS-only.
+**Send timing:** Only used when Email is suppressed (`do-not-email` tag). Otherwise Branch A is Email-only.
 
 **From:** Same as Email 1.
 

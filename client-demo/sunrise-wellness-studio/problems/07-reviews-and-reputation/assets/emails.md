@@ -1,6 +1,6 @@
 # #07 — Email Templates
 
-> One email template: the SMS-non-responder follow-up. The bulk of the review system runs on SMS + funnel; email is the backup for members who don't tap the SMS link within 3 days.
+> One email template: the Email-non-responder follow-up. The bulk of the review system runs on Email + funnel; email is the backup for members who don't tap the Email link within 3 days.
 
 ---
 
@@ -8,7 +8,7 @@
 
 **Template name:** `07 — Review Follow-Up Email`
 
-**Send timing:** 3 days after the post-class/post-PT review-ask SMS, IF member hasn't tapped the funnel link.
+**Send timing:** 3 days after the post-class/post-PT review-ask Email, IF member hasn't tapped the funnel link.
 
 **From:**
 - Name: `{{custom_values.team.owner_first}} from {{custom_values.business.short_name}}`
@@ -86,7 +86,7 @@
 
 **Why this email works:**
 
-- Acknowledges the prior SMS without scolding — "in case it got lost."
+- Acknowledges the prior Email without scolding — "in case it got lost."
 - Explains the routing transparently: high score → Google, low score → private. Removes the "what happens after I tap?" friction.
 - Gives **two honest reasons** (the studio benefits + Morgan personally benefits from feedback) — reads as authentic, not manipulative.
 - "Or just hit reply" P.S. handles members who hate clickthrough surveys.
@@ -98,7 +98,7 @@
 
 **Template name:** `07 — High-Score Thank You Email`
 
-**Send timing:** 1 day after a 5-star Google review submission (if the studio opts to send email instead of / in addition to the SMS variant).
+**Send timing:** 1 day after a 5-star Google review submission (if the studio opts to send email instead of / in addition to the Email variant).
 
 **From:** Same as Email 1.
 
@@ -138,7 +138,7 @@
 - Explains why the review matters in concrete terms ("you saved a future member hesitation").
 - No CTA — gratitude only. The next ask (a referral prompt) comes 7 days later via [#08](../../08-referral-engine/).
 
-**Why optional:** Some studios feel email is overkill on top of the SMS thank-you. Default: ON for studios that want full-loop gratitude; OFF for studios that prefer single-channel acknowledgment.
+**Why optional:** Some studios feel email is overkill on top of the Email thank-you. Default: ON for studios that want full-loop gratitude; OFF for studios that prefer single-channel acknowledgment.
 
 ---
 

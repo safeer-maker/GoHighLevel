@@ -51,9 +51,9 @@ graph TD
     Tag --> Pipe[Move Retention pipeline stage]
     Pipe --> Detect{Score crossed<br/>downward?}
     Detect -->|No| End1((End - all healthy or stable))
-    Detect -->|Watching| Watch[Trigger Watching nudge SMS]
+    Detect -->|Watching| Watch[Trigger Watching nudge Email]
     Detect -->|At-Risk| AtRisk[Trigger At-Risk Intervention Workflow]
-    Detect -->|Critical| Crit[Trigger Critical Save - owner alert + personal SMS]
+    Detect -->|Critical| Crit[Trigger Critical Save - owner alert + personal Email]
 
     AtRisk --> Action1[Personal email from Morgan]
     AtRisk --> Action2[Offer: free PT session]
@@ -61,7 +61,7 @@ graph TD
     AtRisk --> Action4[Wait 5 days, check re-engagement]
 
     Crit --> COwner[Owner gets a Slack-style alert]
-    Crit --> CSMS[Owner-personal SMS to member]
+    Crit --> CSMS[Owner-personal Email to member]
     Crit --> CCall[Task: owner calls within 48hr]
 
     classDef cron fill:#FFE082,stroke:#F57F17
@@ -83,9 +83,9 @@ graph TD
 
 1. **Engagement Scoring Workflow (nightly)** — computes a 0–100 score per member based on `visits_last_30_days`, days since `last_visit_date`, `noshow_count_90d`, and whether they've replied to recent marketing touches. Writes to `engagement_score`, updates `at_risk_flag`, swaps the `risk-*` tag, and moves the member's Retention pipeline opportunity. If the score crossed a threshold *downward* in the last 24 hours, it fires the intervention workflow.
 
-2. **At-Risk Intervention Workflow (triggered)** — listens for `at_risk_flag` field changes. Based on the new level (Watching, At-Risk, Critical), runs the appropriate save sequence: soft SMS check-in for Watching; personal email + free PT offer for At-Risk; owner-personal SMS + a task to call within 48hr for Critical. Saves are tracked in the Retention pipeline's "Save In Progress" stage.
+2. **At-Risk Intervention Workflow (triggered)** — listens for `at_risk_flag` field changes. Based on the new level (Watching, At-Risk, Critical), runs the appropriate save sequence: soft Email check-in for Watching; personal email + free PT offer for At-Risk; owner-personal Email + a task to call within 48hr for Critical. Saves are tracked in the Retention pipeline's "Save In Progress" stage.
 
-The Engagement Scoring formula is precisely defined in [build.md](build.md). The intervention copy is in [assets/emails.md](assets/emails.md) and [assets/sms.md](assets/sms.md). The full workflow specs are in [assets/workflow.md](assets/workflow.md).
+The Engagement Scoring formula is precisely defined in [build.md](build.md). The intervention copy is in [assets/emails.md](assets/emails.md) and [assets](assets). The full workflow specs are in [assets/workflow.md](assets/workflow.md).
 
 ---
 
@@ -99,7 +99,7 @@ Move these numbers within 90 days of launch:
 | At-risk save rate | 0% (no system) | **30–40%** | (Saved / (Saved + Lost-Cancelled)) from Retention pipeline |
 | Early-warning lead time | 0 days (warned at cancel) | **21+ days before cancel** | Days between `risk-at-risk` tag application and `member-cancelled` |
 | Owner intervention coverage | Ad hoc | **100% of Critical-stage members contacted in 48hr** | Task completion rate on owner call tasks |
-| Re-engagement after Watching SMS | Untracked | **35%+ of Watching members visit within 14 days** | `visits_last_30_days` delta post-SMS |
+| Re-engagement after Watching Email | Untracked | **35%+ of Watching members visit within 14 days** | `visits_last_30_days` delta post-Email |
 
 The owner sees these in the **Retention Health** widget on the [#10 Owner Reporting](../10-owner-reporting-and-visibility/) dashboard.
 
@@ -116,7 +116,7 @@ Before:
 After:
 
 - Owner opens GHL Monday morning. The Retention pipeline shows **3 Critical**, **7 At-Risk**, **18 Watching**. She knows exactly who to text personally before her first coffee.
-- A member who hasn't been in for 12 days gets a Morgan-from-Sunrise SMS that says "I noticed you've been quiet — everything good?" Half the time they reply with a real reason. Sometimes the reply is "I'm coming Tuesday, just busy." Sometimes it's "I tweaked my back, can I pause?" The save is *one human reply away* — and the system surfaces the moment to have it.
+- A member who hasn't been in for 12 days gets a Morgan-from-Sunrise Email that says "I noticed you've been quiet — everything good?" Half the time they reply with a real reason. Sometimes the reply is "I'm coming Tuesday, just busy." Sometimes it's "I tweaked my back, can I pause?" The save is *one human reply away* — and the system surfaces the moment to have it.
 - Owner gets a weekly digest: "**4 saves this week** (Sarah, Marcus, Diane, Raj). **2 losses** (one moved, one cost). Net retention: +97%." She knows whether her intervention is working.
 - The owner spends her relationship time on the **20 members who actually need her this month**, not the 230 who are happily on autopilot.
 
@@ -129,7 +129,7 @@ Full step-by-step build in **[build.md](build.md)** — every workflow step, the
 Production copy for every asset:
 
 - **[assets/emails.md](assets/emails.md)** — At-Risk personal email from Morgan, win-them-back free PT offer, soft Watching check-in
-- **[assets/sms.md](assets/sms.md)** — Watching nudge, At-Risk warm hello, Critical-stage owner-personal SMS
+- **[assets](assets)** — Watching nudge, At-Risk warm hello, Critical-stage owner-personal Email
 - **[assets/workflow.md](assets/workflow.md)** — both workflow specs (Engagement Scoring + At-Risk Intervention) with mermaid diagrams
 
 ---

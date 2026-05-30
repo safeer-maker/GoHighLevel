@@ -139,7 +139,7 @@
 
 > **Share My Link →**
 
-(Links to a pre-filled SMS share intent: `sms:?&body=Hey%20—%20I%27ve%20been%20going%20to%20Sunrise%20Wellness%20and%20it%27s%20genuinely%20the%20best%20studio%20I%27ve%20found.%20Use%20my%20link%20for%20%2420%20off%20your%20first%20month%20%2B%20a%20free%20week%3A%20{{contact.referral_share_url}}`)
+(Links to a pre-filled Email share intent: `sms:?&body=Hey%20—%20I%27ve%20been%20going%20to%20Sunrise%20Wellness%20and%20it%27s%20genuinely%20the%20best%20studio%20I%27ve%20found.%20Use%20my%20link%20for%20%2420%20off%20your%20first%20month%20%2B%20a%20free%20week%3A%20{{contact.referral_share_url}}`)
 
 ---
 
@@ -304,7 +304,7 @@
 
 > **Keep Sharing My Link →**
 
-(Links to a pre-filled SMS share intent with their referral URL.)
+(Links to a pre-filled Email share intent with their referral URL.)
 
 ---
 

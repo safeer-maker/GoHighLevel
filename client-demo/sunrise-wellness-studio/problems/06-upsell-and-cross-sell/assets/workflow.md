@@ -12,7 +12,7 @@
 | **Folder** | `06 - Upsell` |
 | **Status** | Published / On |
 | **Re-entry** | **Enabled** — re-runs weekly, may re-evaluate same contact |
-| **Quiet hours respected** | Yes — SMS limited to 9 AM – 7 PM contact-local, weekdays preferred |
+| **Quiet hours respected** | Yes — Email limited to 9 AM – 7 PM contact-local, weekdays preferred |
 
 ---
 
@@ -94,14 +94,14 @@ This build defaults to Option A, falling back to Option C if needed. Option B is
 | A.2 | Add Tag | `upsell-recent` |
 | A.3 | Update Field | `upsell_offer_active` = `Basic to Premium` |
 | A.4 | Update Field | `upsell_offer_started_at` = `{{now}}` |
-| A.5 | Send SMS | Template `06 — Basic to Premium Nudge` from [sms.md](sms.md). From: general sender. Skip if `do-not-sms` OR `sms_opt_in` ≠ Yes. |
+| A.5 | Send Email | Template `06 — Basic to Premium Nudge` from [](). From: general sender. Skip if `do-not-email` OR `sms_opt_in` ≠ Yes. |
 | A.6 | Wait | 1 day, respecting 9 AM – 7 PM contact-local |
 | A.7 | Send Email | Template `06 — Basic to Premium Pitch` from [emails.md](emails.md). Skip if `do-not-email` OR `email_opt_in` ≠ Yes. |
 | A.8 | Wait | 4 days |
 | A.9 | If/Else | Did contact upgrade? (tag `tier-premium` applied in last 5 days OR purchase event for SKU `MEM-PREMIUM`) |
 | A.9 YES | → Conversion Path |
 | A.9 NO | Continue |
-| A.10 | Send SMS | Template `06 — Basic to Premium Last Nudge`. Skip per opt-out rules. |
+| A.10 | Send Email | Template `06 — Basic to Premium Last Nudge`. Skip per opt-out rules. |
 | A.11 | Wait | 3 days |
 | A.12 | If/Else | Did contact upgrade? |
 | A.12 YES | → Conversion Path |
@@ -117,14 +117,14 @@ This build defaults to Option A, falling back to Option C if needed. Option B is
 | B.2 | Add Tag | `upsell-recent` |
 | B.3 | Update Field | `upsell_offer_active` = `Premium to VIP` |
 | B.4 | Update Field | `upsell_offer_started_at` = `{{now}}` |
-| B.5 | Send SMS | Template `06 — Premium to VIP Personal SMS` from [sms.md](sms.md). **From: Morgan's personal cell number** (not general sender). Skip if `do-not-sms`. |
+| B.5 | Send Email | Template `06 — Premium to VIP Personal Email` from [](). **From: Morgan's personal cell number** (not general sender). Skip if `do-not-email`. |
 | B.6 | Wait | 1 day |
 | B.7 | Send Email | Template `06 — Premium to VIP Math Email` from [emails.md](emails.md). Skip per opt-out. |
 | B.8 | Wait | 5 days |
 | B.9 | If/Else | Did contact upgrade to VIP? |
 | B.9 YES | → Conversion Path |
 | B.9 NO | Continue |
-| B.10 | Send SMS | Template `06 — Premium to VIP Soft Follow-Up`. From: Morgan's number (same thread). |
+| B.10 | Send Email | Template `06 — Premium to VIP Soft Follow-Up`. From: Morgan's number (same thread). |
 | B.11 | Wait | 4 days |
 | B.12 | If/Else | Did contact upgrade? |
 | B.12 YES | → Conversion Path |
@@ -141,7 +141,7 @@ This build defaults to Option A, falling back to Option C if needed. Option B is
 | C.3 | Update Field | `upsell_offer_active` = `Nutrition Starter` |
 | C.4 | Send Email | Template `06 — Nutrition Starter Offer` from [emails.md](emails.md). From: Sam. Skip per opt-out. |
 | C.5 | Wait | 2 days |
-| C.6 | Send SMS | Template `06 — Nutrition Starter SMS Nudge`. From: general sender. Skip per opt-out. |
+| C.6 | Send Email | Template `06 — Nutrition Starter Email Nudge`. From: general sender. Skip per opt-out. |
 | C.7 | Wait | 5 days |
 | C.8 | If/Else | Did contact book a nutrition consult (calendar = "Nutrition Starter" or purchase SKU `NUT-STARTER`)? |
 | C.8 YES | → Conversion Path |
@@ -158,7 +158,7 @@ This build defaults to Option A, falling back to Option C if needed. Option B is
 | D.3 | Update Field | `upsell_offer_active` = `4-Week Plan` |
 | D.4 | Send Email | Template `06 — 4-Week Plan Offer` from [emails.md](emails.md). From: Sam. |
 | D.5 | Wait | 2 days |
-| D.6 | Send SMS | Template `06 — 4-Week Plan SMS Nudge`. |
+| D.6 | Send Email | Template `06 — 4-Week Plan Email Nudge`. |
 | D.7 | Wait | 5 days |
 | D.8 | If/Else | Purchase of SKU `NUT-PLAN-4WK`? |
 | D.8 YES | → Conversion Path |
@@ -177,7 +177,7 @@ This build defaults to Option A, falling back to Option C if needed. Option B is
 | CV.5 | Remove Tag | `campaign-upsell-*` (clear active campaign tag) |
 | CV.6 | Notify Owner | Internal email. Subject: `Upsell Win — {{contact.first_name}} {{contact.last_name}} converted on {{upsell_offer_active}}`. Body includes member name, offer type, new MRR, lifetime conversion count. |
 | CV.7 | Wait | 1 hour (gives the new tier/product time to provision in Stripe, gives the member breathing room) |
-| CV.8 | Send SMS | Template `06 — Upgrade Celebration` (variant matching offer type) from [sms.md](sms.md). Owner-warm tone. |
+| CV.8 | Send Email | Template `06 — Upgrade Celebration` (variant matching offer type) from [](). Owner-warm tone. |
 | CV.9 | Enroll in Workflow | Tier-specific onboarding: Premium Member Onboarding / VIP Member Onboarding / Nutrition Customer Onboarding (these are out of scope for this file but referenced). |
 | CV.10 | Wait | 30 days |
 | CV.11 | Add Tag | `referral-prompt-ready` (consumed by [#08 Referral Engine](../../08-referral-engine/)) |
@@ -198,32 +198,32 @@ graph TD
     Eval -->|day 21+ + nutrition not no| C1[Branch C: Nutrition Starter]
     Eval -->|No match| ExitNo((Exit no offer))
 
-    A1 --> A_SMS[SMS Day 0]
+    A1 --> A_SMS[Email Day 0]
     A_SMS --> A_Email[Email Day 1]
     A_Email --> A_Check1{Upgraded?}
     A_Check1 -->|Yes| CV[Conversion Path]
-    A_Check1 -->|No| A_LastSMS[Last SMS Day 5]
+    A_Check1 -->|No| A_LastSMS[Last Email Day 5]
     A_LastSMS --> A_Check2{Upgraded?}
     A_Check2 -->|Yes| CV
     A_Check2 -->|No| A_Decline[Tag decline-30d, exit]
 
-    B1 --> B_SMS[Personal SMS from Morgan]
+    B1 --> B_SMS[Personal Email from Morgan]
     B_SMS --> B_Email[Math Email Day 1]
     B_Email --> B_Check1{Upgraded?}
     B_Check1 -->|Yes| CV
-    B_Check1 -->|No| B_Soft[Soft SMS Day 6]
+    B_Check1 -->|No| B_Soft[Soft Email Day 6]
     B_Soft --> B_Check2{Upgraded?}
     B_Check2 -->|Yes| CV
     B_Check2 -->|No| B_Decline[Tag decline-30d, exit]
 
     C1 --> C_Email[Sam Email]
-    C_Email --> C_SMS[SMS Day 2]
+    C_Email --> C_SMS[Email Day 2]
     C_SMS --> C_Check{Booked?}
     C_Check -->|Yes| CV
     C_Check -->|No| C_Decline[Tag decline-30d, exit]
 
     D1 --> D_Email[4-Week Plan Email]
-    D_Email --> D_SMS[SMS Day 2]
+    D_Email --> D_SMS[Email Day 2]
     D_SMS --> D_Check{Purchased?}
     D_Check -->|Yes| CV
     D_Check -->|No| D_Decline[Tag decline-30d, exit]
@@ -231,7 +231,7 @@ graph TD
     CV --> CV_Tag[Add upsell-converted-*]
     CV_Tag --> CV_Notify[Notify owner]
     CV_Notify --> CV_Wait[Wait 1hr]
-    CV_Wait --> CV_SMS[Celebration SMS to member]
+    CV_Wait --> CV_SMS[Celebration Email to member]
     CV_SMS --> CV_Onboard[Enroll in tier onboarding]
     CV_Onboard --> CV_Wait30[Wait 30 days]
     CV_Wait30 --> CV_Refer[Add referral-prompt-ready]
@@ -262,11 +262,11 @@ graph TD
 | Member transitions to `risk-at-risk` mid-sequence | No mid-sequence eject — the workflow doesn't re-check the trigger filters between steps. Acceptable since the contact won't re-trigger until at-risk clears. Add a safety check at each Wait step: "If contact has `risk-at-risk` or `risk-critical`, exit cleanly." |
 | Member cancels mid-sequence | `member-cancelled` tag added. Add safety check: "If contact has `member-cancelled`, exit immediately." |
 | Member is in two campaigns simultaneously | Should not happen — `upsell-recent` blocks re-entry. But if it does (e.g., manual workflow add), the second sequence collides with the first. Solve via re-entry disabled + tag check at each step. |
-| Premium → VIP SMS fails because Morgan's number isn't provisioned | SMS action errors. Workflow continues to email step. Owner should set up Morgan's number as a sending identity in GHL before launch. |
-| Purchase event missed by the workflow (race condition) | Conversion path doesn't fire automatically. Manual fix: owner sees the purchase in Payments, manually tags `upsell-converted-*` to trigger the celebration SMS and downstream. |
+| Premium → VIP Email fails because Morgan's number isn't provisioned | Email action errors. Workflow continues to email step. Owner should set up Morgan's number as a sending identity in GHL before launch. |
+| Purchase event missed by the workflow (race condition) | Conversion path doesn't fire automatically. Manual fix: owner sees the purchase in Payments, manually tags `upsell-converted-*` to trigger the celebration Email and downstream. |
 | Member books nutrition consult without using the offered link | C.8 still detects via calendar event. Conversion path fires correctly. |
 | Member with `vip-do-not-disturb` tag | Most upsell sequences are too intrusive for this segment. Add to trigger filter: NOT `vip-do-not-disturb`. Owner handles upsells manually for these members. |
-| Wait step extending past quiet hours | GHL respects send-window settings — if Wait completes at 11 PM, SMS queues for 9 AM next morning. |
+| Wait step extending past quiet hours | GHL respects send-window settings — if Wait completes at 11 PM, Email queues for 9 AM next morning. |
 
 ---
 
@@ -328,7 +328,7 @@ Build these in **Contacts > Smart Lists**:
 
 ### Trigger
 
-**Type:** Inbound SMS OR Inbound Email
+**Type:** Inbound Email OR Inbound Email
 
 **Filter:** Contact has any tag matching `campaign-upsell-*`
 
@@ -339,7 +339,7 @@ Build these in **Contacts > Smart Lists**:
 | 1 | If/Else | Reply content (keyword detection) |
 | 1a | Contains "yes", "interested", "tell me more" | Add `upsell-interest-confirmed`. Notify owner: "Member confirmed interest — engage personally." Pause active campaign workflow. |
 | 1b | Contains "no", "not now", "not interested", "later" | Add `upsell-decline-explicit`. Add appropriate `upsell-declined-*-30d` tag matching active campaign. Exit campaign workflow. |
-| 1c | Contains "stop", "unsubscribe", "remove" | Add `do-not-market`. Per SMS opt-out rules, `do-not-sms` may also be added by GHL. Halt all marketing. Notify owner. |
+| 1c | Contains "stop", "unsubscribe", "remove" | Add `do-not-market`. Per Email opt-out rules, `do-not-email` may also be added by GHL. Halt all marketing. Notify owner. |
 | 1d | Any other reply | Notify owner / staff in Conversations. Pause campaign workflow pending personal handling. |
 | 2 | Exit |
 

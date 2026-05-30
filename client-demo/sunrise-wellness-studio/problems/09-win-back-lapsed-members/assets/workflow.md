@@ -88,7 +88,7 @@ The 90-day reactivation campaign. The centerpiece of the win-back system.
 | **Folder** | `09 - Win-Back` |
 | **Status** | Published / On |
 | **Re-entry** | Disabled (one cancel = one win-back run) |
-| **Quiet hours respected** | Yes (SMS lands in business hours) |
+| **Quiet hours respected** | Yes (Email lands in business hours) |
 
 ### Trigger
 
@@ -111,7 +111,7 @@ The 90-day reactivation campaign. The centerpiece of the win-back system.
 | **Wait before** | None |
 | **Skip if** | `do-not-email` |
 
-No SMS on Day 1 — voluntary cancels get a quiet day-1, not a notification cascade.
+No Email on Day 1 — voluntary cancels get a quiet day-1, not a notification cascade.
 
 ---
 
@@ -146,13 +146,13 @@ No SMS on Day 1 — voluntary cancels get a quiet day-1, not a notification casc
 
 ---
 
-#### Action 5 — Day 30: Send Light Check-In SMS
+#### Action 5 — Day 30: Send Light Check-In Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
-| **Template** | `09 — Day-30 Light Check-In` (from [sms.md](sms.md), SMS A) |
-| **Skip if** | `do-not-sms` |
+| **Action type** | Send Email |
+| **Template** | `09 — Day-30 Light Check-In` (from [](), Email A) |
+| **Skip if** | `do-not-email` |
 
 ---
 
@@ -197,12 +197,12 @@ No SMS on Day 1 — voluntary cancels get a quiet day-1, not a notification casc
 
 ---
 
-#### Action 10 — Day 60: Send Comeback Offer SMS
+#### Action 10 — Day 60: Send Comeback Offer Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
-| **Template** | `09 — Day-60 Comeback Offer` (SMS B) |
+| **Action type** | Send Email |
+| **Template** | `09 — Day-60 Comeback Offer` (Email B) |
 
 ---
 
@@ -246,12 +246,12 @@ No SMS on Day 1 — voluntary cancels get a quiet day-1, not a notification casc
 
 ---
 
-#### Action 15 — Day 90: Send Last-Call SMS
+#### Action 15 — Day 90: Send Last-Call Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
-| **Template** | `09 — Day-90 Last Call` (SMS C) |
+| **Action type** | Send Email |
+| **Template** | `09 — Day-90 Last Call` (Email C) |
 
 ---
 
@@ -301,21 +301,21 @@ graph TD
     C3 -->|Yes| EX1((Exit — saved))
     C3 -->|No| A4[Add member-lapsed + winback-d30 tags]
     A4 --> A4b[Move pipeline to Win-Back D30]
-    A4b --> A5[Send Day-30 SMS]
+    A4b --> A5[Send Day-30 Email]
     A5 --> A6[Wait 30 min + Day-30 Email]
     A6 --> W2[Wait 30 days]
     W2 --> C8{Reactivated?}
     C8 -->|Yes| EX2((Exit — saved))
     C8 -->|No| A9[Swap to winback-d60 tag]
     A9 --> A9b[Move pipeline to Win-Back D60]
-    A9b --> A10[Send Day-60 SMS]
+    A9b --> A10[Send Day-60 Email]
     A10 --> A11[Wait 30 min + Day-60 Email]
     A11 --> W3[Wait 30 days]
     W3 --> C13{Reactivated?}
     C13 -->|Yes| EX3((Exit — saved))
     C13 -->|No| A14[Swap to winback-d90 tag]
     A14 --> A14b[Move pipeline to Win-Back D90]
-    A14b --> A15[Send Day-90 SMS]
+    A14b --> A15[Send Day-90 Email]
     A15 --> A16[Wait 30 min + Day-90 Email]
     A16 --> W4[Wait 30 days]
     W4 --> C18{Reactivated?}
@@ -345,9 +345,9 @@ graph TD
 | Scenario | Workflow behavior |
 |---|---|
 | Member reactivates at Day 15 (mid-wait) | Workflow `09d` applies `member-reactivated`. Next branch check (Day 30) catches it, exits cleanly. The Day-30 messages don't fire. |
-| Member has `do-not-sms` only | SMS actions skip. Email actions fire normally. Sequence continues. |
-| Member has `do-not-email` only | Email actions skip. SMS actions fire. Sequence continues. |
-| Member has both `do-not-sms` AND `do-not-email` | All message actions skip. Workflow runs silently — tags + pipeline transitions still happen. (Owner can manually outreach if they choose.) |
+| Member has `do-not-email` only | Email actions skip. Email actions fire normally. Sequence continues. |
+| Member has `do-not-email` only | Email actions skip. Email actions fire. Sequence continues. |
+| Member has both `do-not-email` AND `do-not-email` | All message actions skip. Workflow runs silently — tags + pipeline transitions still happen. (Owner can manually outreach if they choose.) |
 | Member tags `do-not-market` mid-sequence | Trigger filter blocks future enrollment but doesn't auto-exit a running workflow. Add an explicit check before each send: if `do-not-market`, skip the send. |
 | Member dies / GDPR delete | Contact deletion removes them from the workflow. No special handling needed. |
 | Member cancels twice within 30 days (manual re-cancellation) | Trigger blocks re-entry (workflow re-entry disabled). The original sequence continues. |
@@ -435,17 +435,17 @@ The 60-min wait is to avoid spamming a member if Stripe issues a transient decli
 
 ---
 
-#### Action 4 — Send Intervention SMS
+#### Action 4 — Send Intervention Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
-| **Template** | `09 — Failed Payment Intervention` (from [sms.md](sms.md), SMS D) |
-| **Skip if** | `do-not-sms` |
+| **Action type** | Send Email |
+| **Template** | `09 — Failed Payment Intervention` (from [](), Email D) |
+| **Skip if** | `do-not-email` |
 
 ---
 
-#### Action 5 — Send Intervention Email (within minutes of SMS)
+#### Action 5 — Send Intervention Email (within minutes of Email)
 
 | Property | Value |
 |---|---|
@@ -453,7 +453,7 @@ The 60-min wait is to avoid spamming a member if Stripe issues a transient decli
 | **Action 5b** | Send Email — `09 — Failed Payment Intervention` (Email 5) |
 | **Skip if** | `do-not-email` |
 
-**Critical fallback:** If BOTH `do-not-sms` AND `do-not-email`, send internal alert to owner: "URGENT: {{contact.first_name}} {{contact.last_name}} failed payment but both channels suppressed. Call manually: {{contact.phone}}."
+**Critical fallback:** If BOTH `do-not-email` AND `do-not-email`, send internal alert to owner: "URGENT: {{contact.first_name}} {{contact.last_name}} failed payment but both channels suppressed. Call manually: {{contact.phone}}."
 
 ---
 
@@ -465,7 +465,7 @@ The 60-min wait is to avoid spamming a member if Stripe issues a transient decli
 | **Action 6b** | If/Else: `payment-failed-pending` tag still present? |
 | **YES (not recovered)** | Continue to Action 7 |
 | **NO (recovered)** | Continue to Action 6c |
-| **Action 6c** | Add Tag `payment-recovered`, send SMS "{{contact.first_name}} — fixed! Card updated, you're good to go ☀️ Thanks for sorting that out fast.", exit workflow |
+| **Action 6c** | Add Tag `payment-recovered`, Send Email "{{contact.first_name}} — fixed! Card updated, you're good to go ☀️ Thanks for sorting that out fast.", exit workflow |
 
 ---
 
@@ -473,7 +473,7 @@ The 60-min wait is to avoid spamming a member if Stripe issues a transient decli
 
 | # | Action | Value |
 |---|---|---|
-| 7a | Send SMS | "{{contact.first_name}}, quick heads up — your card's still declining. One more tap to fix: {{contact.payment_update_url}} (after 48h we'll pause your account, but it's recoverable)" |
+| 7a | Send Email | "{{contact.first_name}}, quick heads up — your card's still declining. One more tap to fix: {{contact.payment_update_url}} (after 48h we'll pause your account, but it's recoverable)" |
 | 7b | Wait — 2 minutes |
 | 7c | Send Email | Longer-form version of same message — see Email 5 variant |
 
@@ -486,7 +486,7 @@ The 60-min wait is to avoid spamming a member if Stripe issues a transient decli
 | **Action 8a** | Wait — 24 hours (total 48 hours since failure) |
 | **Action 8b** | If/Else: `payment-failed-pending` still present? |
 | **YES** | Continue to Action 9 (transition to voluntary cancel) |
-| **NO** | Add `payment-recovered`, send recovery SMS, exit |
+| **NO** | Add `payment-recovered`, send recovery Email, exit |
 
 ---
 
@@ -517,16 +517,16 @@ graph TD
     A1 --> W1[Wait 60 min - business hours]
     W1 --> C3{Still pending?}
     C3 -->|No, auto-recovered| EX1((Exit))
-    C3 -->|Yes| A4[Send Intervention SMS]
+    C3 -->|Yes| A4[Send Intervention Email]
     A4 --> A5[Wait 2 min + Email]
     A5 --> W2[Wait 24h]
     W2 --> C6{Still pending?}
-    C6 -->|No, recovered| REC1[Send Recovery SMS]
+    C6 -->|No, recovered| REC1[Send Recovery Email]
     REC1 --> EX2((Exit — saved))
-    C6 -->|Yes| A7[Day-2 Reminder SMS + Email]
+    C6 -->|Yes| A7[Day-2 Reminder emails]
     A7 --> W3[Wait 24h]
     W3 --> C8{Still pending?}
-    C8 -->|No, recovered| REC2[Send Recovery SMS]
+    C8 -->|No, recovered| REC2[Send Recovery Email]
     REC2 --> EX3((Exit — saved))
     C8 -->|Yes, 48h elapsed| A9[Transition to voluntary cancel<br/>Apply member-cancelled<br/>Enroll in 09b at Day 30]
     A9 --> EX4((Exit — handed off))
@@ -552,11 +552,11 @@ graph TD
 
 | Scenario | Workflow behavior |
 |---|---|
-| Stripe auto-retries successfully within 60 min | Webhook removes `payment-failed-pending`. Action 3 sees the missing tag, exits without sending intervention SMS. (Member never knows there was a failure.) |
-| Member updates card via the link, payment succeeds | Same as above — webhook clears the tag, branch checks at 24h and 48h catch it, recovery SMS sent. |
+| Stripe auto-retries successfully within 60 min | Webhook removes `payment-failed-pending`. Action 3 sees the missing tag, exits without sending intervention Email. (Member never knows there was a failure.) |
+| Member updates card via the link, payment succeeds | Same as above — webhook clears the tag, branch checks at 24h and 48h catch it, recovery Email sent. |
 | Stripe webhook misses the recovery (rare bug) | Member fixed the card but tag wasn't removed. Action 9 fires incorrectly — member gets "you've been cancelled" treatment despite paying. Mitigation: at Action 9, double-check via Stripe API "is this subscription active?" before applying `member-cancelled`. |
-| Failed payment is a fraud alert (member's bank declined unfamiliar transaction) | The member usually receives a text from their bank simultaneously. Our SMS + their bank alert combine to a clean recovery. Most common scenario. |
-| Member has `vip-do-not-disturb` | Send the email but skip the SMS. Owner calls personally instead. |
+| Failed payment is a fraud alert (member's bank declined unfamiliar transaction) | The member usually receives a text from their bank simultaneously. Our Email + their bank alert combine to a clean recovery. Most common scenario. |
+| Member has `vip-do-not-disturb` | Send the email but skip the Email. Owner calls personally instead. |
 | Member's `payment_update_url` merge field is empty | Fallback to generic URL `{{custom_values.business.website}}/billing/update`. Add to test plan: verify URL is populated for every active member at workflow trigger time. |
 
 ---
@@ -615,7 +615,7 @@ Detects when a lapsed member completes the comeback checkout and updates all the
 | 5 | Update Contact Field | `membership_start_date` = `{{now}}` (fresh start) |
 | 6 | Move Pipeline Stage | Retention → "Reactivated" (Won) |
 | 7 | Create Opportunity | Onboarding pipeline → "Welcome Sent (Day 0)" |
-| 8 | Send SMS | `09 — Reactivation Welcome` (from [sms.md](sms.md), bonus section) |
+| 8 | Send Email | `09 — Reactivation Welcome` (from [](), bonus section) |
 | 9 | Wait 5 min, Send Email | `09 — Welcome Back (Reactivation)` (Email 6) |
 | 10 | Send Internal Notification | Owner: "REACTIVATION: {{contact.first_name}} {{contact.last_name}} just came back. Tier: {{contact.membership_tier}}. Save them a personal hello next time they're in." |
 | 11 | Enroll in Workflow | `04 — New Member Onboarding` (treated as fresh) |
@@ -632,7 +632,7 @@ graph TD
     A4 --> A5[Stamp new membership_start_date]
     A5 --> A6[Move Retention pipeline to Reactivated/Won]
     A6 --> A7[Create new Onboarding opportunity]
-    A7 --> A8[Send Welcome Back SMS]
+    A7 --> A8[Send Welcome Back Email]
     A8 --> A9[Wait 5 min + Welcome Back Email]
     A9 --> A10[Notify owner: personal hello]
     A10 --> A11[Enroll in 04 Onboarding]

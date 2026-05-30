@@ -33,7 +33,7 @@ Fields populated when a lead first enters GHL. Used by [problems/01](../problems
 | Lead Source Detail | `lead_source_detail` | Single Line | Free text — e.g., campaign name, friend's name |
 | Lead Campaign | `lead_campaign` | Single Line | UTM-derived campaign name |
 | Lead Captured At | `lead_captured_at` | Date & Time | Auto-set on form submission |
-| Lead First Response At | `lead_first_response_at` | Date & Time | Set when first SMS/email sent |
+| Lead First Response At | `lead_first_response_at` | Date & Time | Set when first Email/email sent |
 | Lead Status | `lead_status` | Single Option | New, Contacted, Responded, Trial Booked, Trial Active, Converted, Lost |
 | Referred By Contact ID | `referred_by_contact_id` | Single Line | GHL contact ID of referrer (used by #08) |
 | Referral Code Used | `referral_code_used` | Single Line | The unique code the referrer shared |
@@ -103,14 +103,14 @@ Behavioral data driving retention, upsell, reviews, referral. Used by [#03](../p
 
 ## Folder 5: Communication Preferences
 
-Channel preferences and consent. Used by every problem that sends SMS or email.
+Channel preferences and consent. Used by every problem that sends Email or email.
 
 | Field Name | Field Key | Type | Options / Notes |
 |---|---|---|---|
-| SMS Opt-In | `sms_opt_in` | Single Option | Yes, No |
+| Email Opt-In | `sms_opt_in` | Single Option | Yes, No |
 | Email Opt-In | `email_opt_in` | Single Option | Yes, No |
 | Marketing Opt-In | `marketing_opt_in` | Single Option | Yes, No (separate from transactional) |
-| Preferred Contact Channel | `preferred_channel` | Single Option | SMS, Email, App Push, Call |
+| Preferred Contact Channel | `preferred_channel` | Single Option | emails, App Push, Call |
 | Quiet Hours Start | `quiet_hours_start` | Single Line | e.g., 21:00 |
 | Quiet Hours End | `quiet_hours_end` | Single Line | e.g., 08:00 |
 
@@ -181,7 +181,7 @@ The following fields are introduced by individual problem `build.md` files when 
 | Field Name | Field Key | Type | Folder | Notes |
 |---|---|---|---|---|
 | PT Credit Balance | `pt_credit_balance` | Number | Engagement & Activity | Counts unredeemed PT session credits earned via referrals |
-| Referral Share URL | `referral_share_url` | Single Line | Engagement & Activity | Pre-built share URL — pasted into invite SMS/email |
+| Referral Share URL | `referral_share_url` | Single Line | Engagement & Activity | Pre-built share URL — pasted into invite Email/email |
 
 ### From #09 Win-Back Lapsed Members
 

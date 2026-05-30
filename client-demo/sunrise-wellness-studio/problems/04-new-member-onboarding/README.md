@@ -47,11 +47,11 @@ graph TD
 
     WF --> Pipeline[Create Opportunity:<br/>Onboarding Pipeline → Welcome Sent]
 
-    WF --> D0[Day 0: Welcome email + SMS<br/>book first class]
-    D0 --> D1[Day 1 morning: book check SMS<br/>conditional on attended/not]
-    D1 --> D3[Day 3: if no visit yet → personal SMS]
+    WF --> D0[Day 0: Welcome emails<br/>book first class]
+    D0 --> D1[Day 1 morning: book check Email<br/>conditional on attended/not]
+    D1 --> D3[Day 3: if no visit yet → personal Email]
     D3 --> D7[Day 7: Week-1 check-in email]
-    D7 --> D14[Day 14: Milestone email + SMS<br/>celebrate 2-week mark]
+    D7 --> D14[Day 14: Milestone emails<br/>celebrate 2-week mark]
     D14 --> D21[Day 21: Goal review invite<br/>book PT or consult]
     D21 --> D30[Day 30: Graduation email<br/>+ tier-appropriate next-step]
 
@@ -75,7 +75,7 @@ graph TD
 
 **Four components:**
 
-1. **30-Day Onboarding Workflow** — fires the moment `member-active` + `member-onboarding` are applied (handoff from [#02 Trial Conversion](../02-trial-to-paid-conversion/) or direct new-member signup). Six emails + five SMS across days 0, 1, 3, 7, 14, 21, 30.
+1. **30-Day Onboarding Workflow** — fires the moment `member-active` + `member-onboarding` are applied (handoff from [#02 Trial Conversion](../02-trial-to-paid-conversion/) or direct new-member signup). Six emails + five Email across days 0, 1, 3, 7, 14, 21, 30.
 2. **Onboarding Pipeline** — opportunity created in the **Onboarding** pipeline at "Welcome Sent" stage. Moves through stages as milestones hit. Owner watches this pipeline daily.
 3. **Early Churn Risk Branch** — at Day 14, attendance is checked. Zero-visit members get tagged `risk-critical`, moved to "Early Churn Risk" stage, and Morgan is notified for a personal save call.
 4. **Day-30 Handoff** — successful onboarding fires `onboarding_completed = Yes`, opportunity moves to "Onboarded — Won", and the contact enters [#05 Retention](../05-retention-and-churn-prevention/) at "Healthy" stage.
@@ -112,9 +112,9 @@ After:
 
 - The moment a member converts, the 30-day machine fires.
 - Day 0: welcome + book-your-first-class CTA.
-- Day 3: if they haven't been in, a personal-tone SMS lands ("I noticed you haven't booked yet — anything I can help with?")
+- Day 3: if they haven't been in, a personal-tone Email lands ("I noticed you haven't booked yet — anything I can help with?")
 - Day 7: a personalized check-in email referencing their stated goal.
-- Day 14: a milestone email celebrating the two-week mark — and a *branch in the system* that flags zero-visit members to the owner with a one-button "send save SMS" prompt.
+- Day 14: a milestone email celebrating the two-week mark — and a *branch in the system* that flags zero-visit members to the owner with a one-button "send save Email" prompt.
 - Day 21: invitation to book a 30-min goal review with Morgan or their trainer.
 - Day 30: graduation email + tier-specific next-step (Basic gets a soft upgrade nudge, Premium gets a "use your PT credit," VIP gets a recovery suite reminder).
 
@@ -124,12 +124,12 @@ The owner spends 5 minutes a day on the Onboarding pipeline kanban. Anything in 
 
 ## Build It
 
-Full step-by-step build in **[build.md](build.md)** — workflow, pipeline configuration, every email and SMS.
+Full step-by-step build in **[build.md](build.md)** — workflow, pipeline configuration, every emails.
 
 Production copy for every asset:
 
 - **[assets/emails.md](assets/emails.md)** — 6 emails across the 30-day series
-- **[assets/sms.md](assets/sms.md)** — 5 SMS templates with attendance branching
+- **[assets](assets)** — 5 Email templates with attendance branching
 - **[assets/workflow.md](assets/workflow.md)** — full workflow spec with mermaid diagram
 
 ---

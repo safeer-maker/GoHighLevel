@@ -113,7 +113,7 @@ If fewer than 3 actions exist this week, fill with positive-action items:
 
 > 💡 *{{weekly_insight}}*
 >
-> Example: "Conversion offer step is dropping 18% — worth A/B testing the day-7 SMS subject."
+> Example: "Conversion offer step is dropping 18% — worth A/B testing the day-7 Email subject."
 
 ---
 
@@ -401,7 +401,7 @@ If a category has 0, skip the line entirely (don't render empty bullets).
 > | LTV to date | ${{contact.ltv_to_date}} |
 > | Phone | {{contact.phone}} |
 >
-> Automated SMS + email both sent. Day-2 reminder fires today.
+> Automated emails both sent. Day-2 reminder fires today.
 >
 > **Suggested action:** Personal text or call. Most failed-payment members fix it within 48h if reminded — but a personal touch from you closes the rest.
 >

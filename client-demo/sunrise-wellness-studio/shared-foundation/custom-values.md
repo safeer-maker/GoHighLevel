@@ -1,6 +1,6 @@
 # Shared Foundation — Custom Values
 
-> Global variables reused everywhere — emails, SMS, funnels, workflow messages. Set them once here. When the studio's phone number changes (or the trial offer changes, or the owner's name changes), you update **one place** and every template propagates automatically.
+> Global variables reused everywhere — emails, funnels, workflow messages. Set them once here. When the studio's phone number changes (or the trial offer changes, or the owner's name changes), you update **one place** and every template propagates automatically.
 
 ---
 
@@ -17,14 +17,14 @@ Reference syntax in templates: `{{custom_values.value_name}}` — GHL's editor w
 | Custom Value | Value | Notes |
 |---|---|---|
 | `business.name` | Sunrise Wellness Studio | The studio's full name |
-| `business.short_name` | Sunrise | Used in casual SMS ("Hey Sarah, it's Sunrise!") |
+| `business.short_name` | Sunrise | Used in casual Email ("Hey Sarah, it's Sunrise!") |
 | `business.tagline` | Rise. Move. Glow. | Brand tagline |
 | `business.phone` | (555) 723-1900 | Main number — replace with real |
-| `business.sms_number` | (555) 723-1901 | GHL number for outbound SMS |
+| `business.sms_number` | (555) 723-1901 | GHL number for outbound Email |
 | `business.email` | hello@sunrisewellness.com | General inbox |
 | `business.owner_email` | morgan@sunrisewellness.com | Owner inbox for high-priority alerts |
 | `business.address_line` | 123 Wellness Way, Springfield, IL 62701 | Street address |
-| `business.address_short` | 123 Wellness Way | For SMS where space matters |
+| `business.address_short` | 123 Wellness Way | For Email where space matters |
 | `business.website` | https://sunrisewellness.com | Public site URL |
 | `business.booking_url` | https://book.sunrisewellness.com | Main booking funnel |
 | `business.google_review_url` | https://g.page/r/SunriseWellnessStudio/review | Direct link to Google review form |
@@ -76,7 +76,7 @@ Reference syntax in templates: `{{custom_values.value_name}}` — GHL's editor w
 | `offer.upgrade_basic_to_premium` | Upgrade to Premium for $70/mo more — gets you 2 PT sessions + nutrition |
 | `offer.spring_launch` | Spring Reset: 30-day challenge + meal plan + 2 PT sessions, $99 |
 
-When the studio runs a new campaign, the *only* place that updates is the `offer.*` value here. Every email, SMS, and funnel pulling `{{custom_values.offer.spring_launch}}` updates instantly.
+When the studio runs a new campaign, the *only* place that updates is the `offer.*` value here. Every emails, and funnel pulling `{{custom_values.offer.spring_launch}}` updates instantly.
 
 ---
 
@@ -93,7 +93,7 @@ When the studio runs a new campaign, the *only* place that updates is the `offer
 | `voice.cta_book` | Book your spot in 30 seconds 👉 {{custom_values.business.booking_url}} |
 | `voice.cta_reply` | Reply to this text anytime — a real human reads it. |
 
-The voice values are *prewritten brand-voice snippets*. Including them by reference means every welcome email, every SMS, every reminder, every win-back uses the **same** tone — even when written by different people across different problems.
+The voice values are *prewritten brand-voice snippets*. Including them by reference means every welcome email, every Email, every reminder, every win-back uses the **same** tone — even when written by different people across different problems.
 
 ---
 

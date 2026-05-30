@@ -262,7 +262,7 @@ The calculator shows:
 
 **Centered, cream panel:**
 
-> **Questions? Text Morgan at {{custom_values.business.sms_number}} or reply to your welcome SMS.**
+> **Questions? Text Morgan at {{custom_values.business.sms_number}} or reply to your welcome Email.**
 >
 > Your Premium benefits never expire as long as your membership is active. Welcome to the next chapter. 🎉
 
@@ -368,6 +368,6 @@ After successful checkout:
 
 - Tag `tier-premium` (or `tier-vip`) added, `tier-basic` removed.
 - `monthly_rate` field updated.
-- Workflow `06 — Behavior-Triggered Upsell` detects the conversion via the tag → fires the celebration SMS + owner notification.
+- Workflow `06 — Behavior-Triggered Upsell` detects the conversion via the tag → fires the celebration Email + owner notification.
 - Member is enrolled in **Premium Member Onboarding** (or **VIP Member Onboarding**) mini-flow — a 7-day "make the most of your tier" sequence (out of scope for this file).
 - 30 days later, member receives `referral-prompt-ready` tag — surfaces to [#08 Referral Engine](../../08-referral-engine/) as a high-promoter.

@@ -120,7 +120,7 @@ Full action-by-action spec in **[assets/workflow.md](assets/workflow.md)**. Buil
 - **Template:** Email 1 "Day-1 Gentle Goodbye" from [assets/emails.md](assets/emails.md)
 - **Wait before:** None — fires immediately on enrollment
 
-No SMS on Day 1. Voluntary cancels need a *quiet* day-1, not a notification cascade.
+No Email on Day 1. Voluntary cancels need a *quiet* day-1, not a notification cascade.
 
 ### 3.3 Wait: 30 days (the silent period)
 
@@ -139,11 +139,11 @@ No SMS on Day 1. Voluntary cancels need a *quiet* day-1, not a notification casc
 - **Action:** Add Tag — `campaign-winback-d30`
 - **Action:** Move Retention pipeline opportunity — to stage "Win-Back D30"
 
-### 3.6 Day 30 — Send Check-In SMS
+### 3.6 Day 30 — Send Check-In Email
 
-- **Action:** Send SMS
-- **Template:** SMS A "Day-30 Light Check-In" from [assets/sms.md](assets/sms.md)
-- **Skip if:** Contact has `do-not-sms`
+- **Action:** Send Email
+- **Template:** Email A "Day-30 Light Check-In" from [assets](assets)
+- **Skip if:** Contact has `do-not-email`
 
 ### 3.7 Day 30 — Wait 30 min, Send Check-In Email
 
@@ -167,7 +167,7 @@ No SMS on Day 1. Voluntary cancels need a *quiet* day-1, not a notification casc
 
 ### 3.10 Day 60 — Send Comeback Offer
 
-- **Action:** Send SMS — SMS B "Day-60 Comeback Offer" from [assets/sms.md](assets/sms.md)
+- **Action:** Send Email — Email B "Day-60 Comeback Offer" from [assets](assets)
 - **Action:** Wait — 30 minutes
 - **Action:** Send Email — Email 3 "Day-60 Comeback Offer" from [assets/emails.md](assets/emails.md)
 
@@ -189,7 +189,7 @@ Both messages include a link to the Comeback Offer Funnel with `?wb=60` paramete
 
 ### 3.13 Day 90 — Send Last-Call Offer
 
-- **Action:** Send SMS — SMS C "Day-90 Last Call" from [assets/sms.md](assets/sms.md)
+- **Action:** Send Email — Email C "Day-90 Last Call" from [assets](assets)
 - **Action:** Wait — 30 minutes
 - **Action:** Send Email — Email 4 "Day-90 Last Call" from [assets/emails.md](assets/emails.md)
 
@@ -224,12 +224,12 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 - **Action:** Update Contact Field — `cancel_reason` = `Failed Payment`
 - **Action:** Update Contact Field — Custom field `payment_failed_at` (new field — Date & Time, Engagement folder) = `{{now}}`
 
-### 4.3 Action: Send Intervention SMS Within 1 Hour
+### 4.3 Action: Send Intervention Email Within 1 Hour
 
 - **Action:** Wait — until 60 minutes elapsed (use 1-hour wait, respect 8 AM – 9 PM contact-local; if outside window, hold until 8 AM)
-- **Action:** Send SMS
-- **Template:** SMS D "Failed Payment Immediate Intervention" from [assets/sms.md](assets/sms.md)
-- **Skip if:** `do-not-sms` (rare for an active member, but check)
+- **Action:** Send Email
+- **Template:** Email D "Failed Payment Immediate Intervention" from [assets](assets)
+- **Skip if:** `do-not-email` (rare for an active member, but check)
 
 ### 4.4 Action: Send Intervention Email Same Time
 
@@ -240,12 +240,12 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 
 - **Action:** Wait — 24 hours
 - **Action:** If/Else — has contact tag `payment-failed-pending` been removed (by successful Stripe retry)?
-  - **Yes (recovered):** Add Tag `payment-recovered`, send "thanks for fixing that" SMS, exit workflow
+  - **Yes (recovered):** Add Tag `payment-recovered`, send "thanks for fixing that" Email, exit workflow
   - **No:** Continue
 
 ### 4.6 Action: Day 2 Reminder
 
-- **Action:** Send SMS — "Quick heads up — your card's still declining. One tap to fix: [funnel link with `?wb=update`]"
+- **Action:** Send Email — "Quick heads up — your card's still declining. One tap to fix: [funnel link with `?wb=update`]"
 - **Action:** Send Email — same message, longer
 
 ### 4.7 Action: Wait 24 Hours, Final Check
@@ -343,7 +343,7 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 4. **Update Contact Field** — `membership_status` = `Active`, `membership_start_date` = `{{now}}` (fresh start)
 5. **Move Retention pipeline** — to "Reactivated" (Won) stage
 6. **Create new Onboarding pipeline opportunity** — at "Welcome Sent (Day 0)" stage
-7. **Send celebration SMS** to member — "{{contact.first_name}} — welcome back ☀️ Book your first class: {{custom_values.business.booking_url}}"
+7. **Send celebration Email** to member — "{{contact.first_name}} — welcome back ☀️ Book your first class: {{custom_values.business.booking_url}}"
 8. **Send celebration email** — "Welcome back. Genuinely glad you're here."
 9. **Owner internal notification** — "REACTIVATION: {{contact.first_name}} {{contact.last_name}} just came back. Tier: {{contact.membership_tier}}. Save them a personal hello next time they're in."
 
@@ -365,7 +365,7 @@ Run this complete test sequence. **Do not declare done until all six pass.**
    - Retention pipeline moves to "Lost — Cancelled"
    - Workflow `09b` triggers
    - Day-1 goodbye email arrives within 60 seconds
-4. Fast-forward: in test mode, set the Day-30 wait to 1 minute. Verify SMS A + Email 2 arrive after the wait.
+4. Fast-forward: in test mode, set the Day-30 wait to 1 minute. Verify Email A + Email 2 arrive after the wait.
 
 ### Test 2 — Quiet track for "Moved" reason
 
@@ -382,7 +382,7 @@ Run this complete test sequence. **Do not declare done until all six pass.**
 2. **Expected:**
    - `payment-failed-pending` tag applied
    - `cancel_reason` = `Failed Payment`
-   - Within 60 minutes: SMS D + Email 5 arrive with one-tap card-update link
+   - Within 60 minutes: Email D + Email 5 arrive with one-tap card-update link
    - `member-cancelled` is NOT applied yet (member is still active, in recovery window)
 
 ### Test 4 — Failed-payment recovery exits workflow
@@ -391,7 +391,7 @@ Run this complete test sequence. **Do not declare done until all six pass.**
 2. **Expected:**
    - `payment-failed-pending` tag removed
    - `payment-recovered` tag applied
-   - "Thanks for fixing that" SMS arrives
+   - "Thanks for fixing that" Email arrives
    - Member stays `member-active`
    - No further win-back messages
 
@@ -418,7 +418,7 @@ Run this complete test sequence. **Do not declare done until all six pass.**
    - All campaign-winback-* tags removed
    - Retention pipeline moves to "Reactivated" (Won)
    - New Onboarding pipeline opportunity created
-   - Welcome-back SMS + email arrive
+   - Welcome-back emails arrive
    - Owner internal notification fires
    - Workflow `09b` exits cleanly at next branch check
 
@@ -427,7 +427,7 @@ Run this complete test sequence. **Do not declare done until all six pass.**
 ## Common Build Mistakes
 
 1. **Day-1 message too aggressive.** Voluntary cancels get a *gentle* goodbye on Day 1 — no offer, no "we'd love to win you back" pitch. Just acknowledge they're leaving, wish them well. Pitching too early breeds resentment and damages reactivation odds at Day 30.
-2. **Failed-payment SMS goes to `do-not-sms` contacts.** The SMS workflow skips them — but the email *must* still fire. Failed payment is operationally critical; the contact will be silently cancelled if neither channel works. Add a fallback: if both `do-not-sms` AND `do-not-email`, fire an owner-internal alert for manual phone call.
+2. **Failed-payment Email goes to `do-not-email` contacts.** The Email workflow skips them — but the email *must* still fire. Failed payment is operationally critical; the contact will be silently cancelled if neither channel works. Add a fallback: if both `do-not-email` AND `do-not-email`, fire an owner-internal alert for manual phone call.
 3. **`cancel_reason = Moved` still gets win-back offers.** Common bug: the workflow trigger filter is on tag presence (`member-cancelled`), not on `cancel_reason`. Result: someone who said "I moved away" gets a "first month back at 50% off!" message — disrespectful and tone-deaf. Always filter on `cancel_reason` at trigger time.
 4. **Coupon auto-apply silently fails.** If the URL is `?wb=60` but coupon `WB60` isn't applied at checkout, member sees full price and bounces. Test every coupon URL after launch. Set up a smart list "Comeback Checkouts Without Coupon" to catch silent failures.
 5. **Reactivation re-enrolls in voluntary win-back workflow.** When a member reactivates mid-sequence, the workflow's branch checks (Step 3.4, 3.9, 3.12, 3.14) catch it and exit. If those checks are missing, the reactivated member keeps getting "we miss you" messages until day 120. Always include the `member-reactivated` check at every wait-block exit point.

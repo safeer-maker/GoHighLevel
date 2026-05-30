@@ -83,7 +83,7 @@ The centerpiece. Runs every Monday at 7 AM and sends the formatted digest email.
   "retention_drop_stage": "At-Risk → Save In Progress",
   "retention_save_pct": 34,
 
-  "weekly_insight": "Conversion offer step is dropping 18% — worth A/B testing the day-7 SMS subject.",
+  "weekly_insight": "Conversion offer step is dropping 18% — worth A/B testing the day-7 Email subject.",
   "attribution_insight": "Referral converts at 67% vs Instagram's 42%. Doubling referral attention pays back faster than scaling IG spend.",
 
   "source_breakdown": [
@@ -180,7 +180,7 @@ graph TD
 | Webhook returns null/empty fields | Email template uses fallbacks: "N/A — insufficient data" instead of blank merge fields. |
 | Owner is on vacation (snoozed alerts) | Weekly digest still fires — it's not an alert, it's a scheduled report. Owner can ignore. |
 | Daylight savings transition week | Verify schedule respects `America/Chicago` daylight savings. If timezone shifts the email 1 hour, OK — still arrives during the owner-friendly window. |
-| Owner email bounces (typo, mailbox full) | GHL surfaces the bounce in send logs. Add a meta-alert: if 2 consecutive digests bounce, alert via SMS to owner phone. |
+| Owner email bounces (typo, mailbox full) | GHL surfaces the bounce in send logs. Add a meta-alert: if 2 consecutive digests bounce, alert via Email to owner phone. |
 
 ---
 
@@ -387,7 +387,7 @@ This prevents alert floods during initial enablement and during owner vacations.
 #### Trigger B → VIP At-Risk Alert
 
 1. **Send Email** — Template `10 — Alert · VIP At-Risk` (Email 4)
-2. **Send SMS to owner** (in addition to email — this is operationally critical): "VIP at-risk: {{contact.first_name}} {{contact.last_name}}. Check email for details + suggested action."
+2. **Send Email to owner** (in addition to email — this is operationally critical): "VIP at-risk: {{contact.first_name}} {{contact.last_name}}. Check email for details + suggested action."
 3. **Add Tag** (audit): `alert-fired-vip-at-risk-{date}`
 
 #### Trigger C → Pattern Alert
@@ -403,7 +403,7 @@ This prevents alert floods during initial enablement and during owner vacations.
 #### Trigger E → High-Value Cancellation
 
 1. **Send Email** — Template `10 — Alert · High-Value Cancellation` (Email 7)
-2. **Send SMS to owner**: "High-value cancellation: {{contact.first_name}} {{contact.last_name}}, ${{contact.monthly_rate}}/mo. Personal call within 24h recommended. Check email."
+2. **Send Email to owner**: "High-value cancellation: {{contact.first_name}} {{contact.last_name}}, ${{contact.monthly_rate}}/mo. Personal call within 24h recommended. Check email."
 3. **Add Tag** (audit): `alert-fired-hv-cancel-{date}`
 
 ---
@@ -420,13 +420,13 @@ graph TD
 
     CheckA -->|No| AlertA[Send Trial Day-6 alert email]
     CheckA -->|Yes| EX1((Skip))
-    CheckB -->|No| AlertB[Send VIP At-Risk alert email + SMS]
+    CheckB -->|No| AlertB[Send VIP At-Risk alert emails]
     CheckB -->|Yes| EX2((Skip))
     CheckC -->|No| AlertC[Send Pattern alert email]
     CheckC -->|Yes| EX3((Skip))
     CheckD -->|No| AlertD[Send Failed Payment alert email]
     CheckD -->|Yes| EX4((Skip))
-    CheckE -->|No| AlertE[Send HV Cancellation alert email + SMS]
+    CheckE -->|No| AlertE[Send HV Cancellation alert emails]
     CheckE -->|Yes| EX5((Skip))
 
     AlertA --> Tag1[Audit tag: alert-fired-trial-day6]
@@ -463,7 +463,7 @@ graph TD
 | Same member triggers VIP at-risk twice in 30 days | Each fires an alert. Mitigation: filter on "no `alert-fired-vip-at-risk-*` tag in last 30 days" to prevent re-spam. |
 | Trial day-6 check fires at 3 AM | Wait action respects 8 AM – 9 PM contact-local. Owner's local time may differ from contact's; use OWNER's quiet hours for the alert send time. |
 | Owner re-enables alerts after long snooze | All triggers fire normally going forward. Past events that occurred during snooze are NOT re-fired (acceptable — that data is on the dashboard). |
-| All 5 triggers fire on the same day (chaotic week) | Owner gets 5 emails + 2 SMS. Acceptable — these are all real signals. If consistently noisy, raise the at-risk pattern threshold from 3 to 5. |
+| All 5 triggers fire on the same day (chaotic week) | Owner gets 5 emails + 2 Email. Acceptable — these are all real signals. If consistently noisy, raise the at-risk pattern threshold from 3 to 5. |
 | Webhook for Trigger C fails | No alert sent. Add fallback: send a meta-alert "Pattern check webhook failed — review at-risk count manually." |
 
 ---

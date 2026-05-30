@@ -18,7 +18,7 @@ Then show [diagrams/problem-map.md](diagrams/problem-map.md).
 
 **Cost of inaction:** A lead contacted within 5 minutes is **10x more likely** to convert than one contacted in an hour. If you're getting 80 leads/month and losing even 30% to slow follow-up, that's **24 lost trials** — at a 30% trial-to-paid rate and $79/mo over 14 months, that's **$7,900/month** of LTV walking out the door.
 
-**What we built:** A 2-step lead capture funnel, a form that drops every lead into GHL within 60 seconds, and an automation that sends an SMS in under 5 minutes — even at 2AM — with a booking link.
+**What we built:** A 2-step lead capture funnel, a form that drops every lead into GHL within 60 seconds, and an automation that sends an Email in under 5 minutes — even at 2AM — with a booking link.
 
 **What changes for you:** Every lead, every channel, every time of day — auto-greeted, auto-tagged by source, and routed straight into the trial funnel without you doing anything.
 
@@ -32,7 +32,7 @@ Then show [diagrams/problem-map.md](diagrams/problem-map.md).
 
 **Cost of inaction:** A trial that doesn't convert is the most expensive miss in the funnel — you've already spent the ad dollars to acquire them. At 60% non-conversion on 30 trials/month, that's **18 lost members each month**, or **$1,400+ in lost MRR every 30 days, compounding**.
 
-**What we built:** A 7-day automated nurture across email and SMS that hits every concern a trial has — first class anxiety, "is this the right fit," the awkward "do I commit" moment — culminating in a personal-attention offer call on day 6 and a discounted-first-month CTA on day 7.
+**What we built:** A 7-day automated nurture across emails that hits every concern a trial has — first class anxiety, "is this the right fit," the awkward "do I commit" moment — culminating in a personal-attention offer call on day 6 and a discounted-first-month CTA on day 7.
 
 **What changes for you:** Trials no longer drift into silence. By day 7, every trial has either bought or formally said "not now" (which puts them in a longer-term nurture).
 
@@ -46,7 +46,7 @@ Then show [diagrams/problem-map.md](diagrams/problem-map.md).
 
 **Cost of inaction:** At 18% no-shows on 200 PT slots/month, that's **36 wasted hours**. At $85 a slot, that's **$3,060 in lost revenue every month** — plus trainer frustration, plus the member who feels too guilty to rebook.
 
-**What we built:** A reminder sequence (48hr email, 24hr SMS, 2hr SMS), a no-show detection that fires the moment status changes, and a recovery sequence with a soft "we missed you, here's a one-click rebook link" SMS. No guilt, no friction.
+**What we built:** A reminder sequence (48hr email, 24hr Email, 2hr Email), a no-show detection that fires the moment status changes, and a recovery sequence with a soft "we missed you, here's a one-click rebook link" Email. No guilt, no friction.
 
 **What changes for you:** No-show rate drops to 6–8% (typical), and the no-shows that *do* happen rebook themselves within 48 hours.
 
@@ -60,7 +60,7 @@ Then show [diagrams/problem-map.md](diagrams/problem-map.md).
 
 **Cost of inaction:** The first 30 days predict 90-day retention. Members who don't attend in week 1 churn at **3x the rate**. Lose 4 of every 10 new members to early-stage drop-off, and at 20 new members/month, you've **silently lost $19,000+ in projected annual LTV** every single month.
 
-**What we built:** A 30-day onboarding pipeline (Welcome → First Class → Two-Week Check-in → Month-1 Goal Review), with automated check-ins by email and SMS at days 1, 3, 7, 14, and 30, plus a triggered intervention if the member hasn't attended in 7 days.
+**What we built:** A 30-day onboarding pipeline (Welcome → First Class → Two-Week Check-in → Month-1 Goal Review), with automated check-ins by emails at days 1, 3, 7, 14, and 30, plus a triggered intervention if the member hasn't attended in 7 days.
 
 **What changes for you:** Day-30 retention climbs from ~60% to 80%+. New members feel *seen* — not just billed.
 
@@ -88,7 +88,7 @@ Then show [diagrams/problem-map.md](diagrams/problem-map.md).
 
 **Cost of inaction:** The average member's LTV **doubles** with even one add-on (PT package or nutrition). If 15% of your Basic members would upgrade and you're not asking, you're leaving **~$1,500/mo per 100 members** on the table.
 
-**What we built:** Behavior-triggered upsell offers — Basic members who attend 12+ classes/month get a "you'd love Premium" email; Premium members hitting 4+ PT sessions/month get a "VIP saves you money" SMS; new members get a soft nutrition consult offer at day 21.
+**What we built:** Behavior-triggered upsell offers — Basic members who attend 12+ classes/month get a "you'd love Premium" email; Premium members hitting 4+ PT sessions/month get a "VIP saves you money" Email; new members get a soft nutrition consult offer at day 21.
 
 **What changes for you:** Upsells stop being awkward in-person asks and become automated, well-timed nudges that feel like service, not selling.
 
@@ -102,7 +102,7 @@ Then show [diagrams/problem-map.md](diagrams/problem-map.md).
 
 **Cost of inaction:** Every month without new reviews, your Google ranking decays. Competitors with 200+ reviews outrank you. Studios with 4.7+ stars and 100+ reviews get **42% more cold leads from Google search** than studios with 4.3 and 25 reviews.
 
-**What we built:** A post-class SMS asking for a review at the **peak moment** (the endorphin high after class), routed through a smart funnel: 5-star feeders go straight to Google; lower scores route to a private feedback form — so we capture the complaint privately, not publicly.
+**What we built:** A post-class Email asking for a review at the **peak moment** (the endorphin high after class), routed through a smart funnel: 5-star feeders go straight to Google; lower scores route to a private feedback form — so we capture the complaint privately, not publicly.
 
 **What changes for you:** Steady inflow of authentic 5-star Google reviews, and bad experiences caught privately so you can fix them before they go public.
 

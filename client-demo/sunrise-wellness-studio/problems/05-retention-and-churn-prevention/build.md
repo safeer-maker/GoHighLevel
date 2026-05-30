@@ -12,7 +12,7 @@ Confirm these exist before starting.
 |---|---|---|
 | Engagement & Activity fields (`last_visit_date`, `visits_last_30_days`, `visits_last_90_days`, `noshow_count_90d`, `engagement_score`, `at_risk_flag`) | [../../shared-foundation/custom-fields.md](../../shared-foundation/custom-fields.md) | Score inputs and outputs |
 | Membership fields (`membership_status`, `membership_tier`, `monthly_rate`, `days_as_member`) | Same | Gate scoring to active members only |
-| Tags: `member-active`, `member-paused`, `risk-healthy`, `risk-watching`, `risk-at-risk`, `risk-critical`, `do-not-sms`, `do-not-email`, `vip-do-not-disturb` | [../../shared-foundation/tags.md](../../shared-foundation/tags.md) | Risk segmentation and suppression |
+| Tags: `member-active`, `member-paused`, `risk-healthy`, `risk-watching`, `risk-at-risk`, `risk-critical`, `do-not-email`, `do-not-email`, `vip-do-not-disturb` | [../../shared-foundation/tags.md](../../shared-foundation/tags.md) | Risk segmentation and suppression |
 | Pipeline: **Retention** with stages Healthy / Watching / At-Risk / Critical / Save In Progress / Saved / Lost-Cancelled | [../../shared-foundation/pipelines.md](../../shared-foundation/pipelines.md) | Owner-facing kanban |
 | Custom values: `team.owner_first`, `business.short_name`, `business.sms_number`, `business.booking_url`, `offer.first_pt_session`, `voice.signature_owner` | [../../shared-foundation/custom-values.md](../../shared-foundation/custom-values.md) | Message copy |
 | Product: **Personal Training — Single Session** (SKU `PT-SINGLE`) — referenced in save offer | [../../shared-foundation/products-and-pricing.md](../../shared-foundation/products-and-pricing.md) | Free PT redemption credit |
@@ -182,7 +182,7 @@ Full spec in [assets/workflow.md](assets/workflow.md) under "Workflow B".
 - **Trigger:** Tag Added
 - **Filter — Tag is:** `transition-to-watching` OR `transition-to-at-risk` OR `transition-to-critical`
 - **Filter — Contact has tag:** `member-active`
-- **Filter — Contact does NOT have tag:** `do-not-sms` AND `do-not-email` (if both blocked, owner-call task is the only option — handled in Critical branch)
+- **Filter — Contact does NOT have tag:** `do-not-email` AND `do-not-email` (if both blocked, owner-call task is the only option — handled in Critical branch)
 
 ### 3.2 Action — Branch by Severity
 
@@ -196,7 +196,7 @@ Full spec in [assets/workflow.md](assets/workflow.md) under "Workflow B".
 The lightest touch. We're letting them know we noticed.
 
 1. **Wait:** 0 (immediate)
-2. **Send SMS:** Template `05 — Watching Soft Check-In` from [assets/sms.md](assets/sms.md). Skip if `do-not-sms` or `sms_opt_in` ≠ Yes.
+2. **Send Email:** Template `05 — Watching Soft Check-In` from [assets](assets). Skip if `do-not-email` or `sms_opt_in` ≠ Yes.
 3. **Add tag:** `campaign-retention-watching`
 4. **Remove tag:** `transition-to-watching`
 5. **Wait:** 7 days
@@ -210,11 +210,11 @@ This is the real save attempt.
 
 1. **Wait:** 0
 2. **Create opportunity / move existing:** Retention pipeline → **Save In Progress** stage.
-3. **Send SMS:** Template `05 — At-Risk Warm Hello` from [assets/sms.md](assets/sms.md). Skip if `do-not-sms`.
+3. **Send Email:** Template `05 — At-Risk Warm Hello` from [assets](assets). Skip if `do-not-email`.
 4. **Wait:** 4 hours
 5. **Send Email:** Template `05 — At-Risk Personal from Morgan` from [assets/emails.md](assets/emails.md). Skip if `do-not-email`.
 6. **Wait:** 2 days
-7. **If/Else:** Has contact replied to SMS OR visited in last 48 hours?
+7. **If/Else:** Has contact replied to Email OR visited in last 48 hours?
    - Yes → Add tag `save-at-risk-engaged`, notify owner ("Good news — Sarah just replied / showed up"), proceed to step 10.
    - No → Continue.
 8. **Send Email:** Template `05 — Win-Them-Back Free PT Offer` from [assets/emails.md](assets/emails.md). The offer in `{{custom_values.offer.first_pt_session}}` is the lever. Skip if `do-not-email`.
@@ -233,11 +233,11 @@ The member is hours-to-days from cancelling. Owner gets involved.
 2. **Move Retention opportunity:** to **Critical** stage (if not already there).
 3. **Send Internal Notification (owner):** High-priority alert. Subject: `URGENT — {{contact.first_name}} {{contact.last_name}} is Critical retention risk`. Body includes: name, phone, last visit date, total months as member, monthly rate, recent attendance pattern. CTA: "Call within 48 hours."
 4. **Create Task:** Assigned to Owner. Title: `Call {{contact.first_name}} {{contact.last_name}} — Critical retention`. Due: 48 hours.
-5. **Wait:** 2 hours (let the owner see the alert before the auto-SMS goes)
+5. **Wait:** 2 hours (let the owner see the alert before the auto-Email goes)
 6. **If/Else:** Contact has tag `vip-do-not-disturb`?
-   - Yes → Skip auto-SMS. Owner handles 100%. Proceed to step 9.
+   - Yes → Skip auto-Email. Owner handles 100%. Proceed to step 9.
    - No → Continue.
-7. **Send SMS:** Template `05 — Critical Owner-Personal SMS` from [assets/sms.md](assets/sms.md). Sent **from the owner's number**, not the general SMS number. This is a "I'm reaching out personally" moment.
+7. **Send Email:** Template `05 — Critical Owner-Personal Email` from [assets](assets). Sent **from the owner's number**, not the general Email number. This is a "I'm reaching out personally" moment.
 8. **Wait:** 5 days
 9. **If/Else:** Contact replied OR visited in last 5 days?
    - Yes → Notify owner: "Saved — {{contact.first_name}} re-engaged after Critical." Add tag `save-critical-success-pending`. Move Retention opp to **Save In Progress**.
@@ -326,7 +326,7 @@ If you don't have history, set a default:
 2. Manually trigger Workflow 05a on yourself (right-click contact → Add to Workflow).
 3. Confirm `engagement_score` = 100, `at_risk_flag` = `No`, tag `risk-healthy` applied.
 4. Now change `visits_last_30_days` to 1 and re-run. Expect score = 30, flag = `At-Risk`, tag updated.
-5. Confirm Workflow 05b fires (look for SMS in your inbox if your number is on the contact).
+5. Confirm Workflow 05b fires (look for Email in your inbox if your number is on the contact).
 
 ### 6.3 Turn ON the scoring workflow
 
@@ -376,27 +376,27 @@ Run this test sequence after publishing all workflows. **Do not declare done unt
 
 1. Create test contact `test-healthy@example.com` with `member-active` tag, `visits_last_30_days` = 14, `last_visit_date` = today, `noshow_count_90d` = 0.
 2. Add to workflow `05a — Engagement Scoring` manually.
-3. **Expected:** `engagement_score` = 100, `at_risk_flag` = No, tag `risk-healthy` applied. No SMS sent. Retention opportunity in **Healthy** stage.
+3. **Expected:** `engagement_score` = 100, `at_risk_flag` = No, tag `risk-healthy` applied. No Email sent. Retention opportunity in **Healthy** stage.
 
 ### Test 2 — Watching transition
 
 1. Same contact. Change `visits_last_30_days` to 5, `last_visit_date` to 5 days ago.
 2. Re-run workflow 05a.
 3. **Expected:** Score = 60. Flag = Watching. Tag swapped to `risk-watching`. Tag `transition-to-watching` applied.
-4. **Within 60 sec:** Workflow 05b fires Branch A. SMS arrives at test phone. `campaign-retention-watching` tag applied.
+4. **Within 60 sec:** Workflow 05b fires Branch A. Email arrives at test phone. `campaign-retention-watching` tag applied.
 
 ### Test 3 — At-Risk transition
 
 1. Same contact. Change `visits_last_30_days` to 2, `last_visit_date` to 16 days ago, `noshow_count_90d` to 3.
 2. Re-run.
 3. **Expected:** Score = 30 − 20 − 15 = −5 → floored to 0… wait, let me recompute: visits 2 = 30, − 20 recency = 10, − 15 noshow = −5 → floor 0. Actually that scores too low — verify the score calc. The expected is **At-Risk band (30–49)** OR Critical depending on exact numbers; design intent is that 2 visits + 16d gap + 3 noshows is solidly at-risk-or-worse. Adjust the test inputs to land cleanly in 30–49 if needed (try visits=2, last_visit=10d ago, noshow=2 → score = 30 − 0 − 0 = 30 → At-Risk).
-4. **Expected workflow:** Branch B fires. SMS in 0 min, email in 4 hours, follow-up offer email in 2 days.
+4. **Expected workflow:** Branch B fires. Email in 0 min, email in 4 hours, follow-up offer email in 2 days.
 
 ### Test 4 — Critical transition + owner notification
 
 1. Same contact. Set `visits_last_30_days` = 0, `last_visit_date` = 25 days ago.
 2. Re-run.
-3. **Expected:** Score = 0 − 35 = floored to 0. Flag = Critical. Owner gets alert email. Owner task created. After 2-hour wait, SMS goes out from owner number.
+3. **Expected:** Score = 0 − 35 = floored to 0. Flag = Critical. Owner gets alert email. Owner task created. After 2-hour wait, Email goes out from owner number.
 
 ### Test 5 — Save success path
 
@@ -406,13 +406,13 @@ Run this test sequence after publishing all workflows. **Do not declare done unt
 
 ### Test 6 — Suppression respected
 
-1. Create contact with `do-not-sms` tag. Trigger At-Risk transition.
-2. **Expected:** Email sends, SMS skipped. No errors.
+1. Create contact with `do-not-email` tag. Trigger At-Risk transition.
+2. **Expected:** Email sends, Email skipped. No errors.
 
 ### Test 7 — VIP do-not-disturb
 
 1. Create contact with `vip-do-not-disturb` AND trigger Critical.
-2. **Expected:** Owner alert + task fires. Auto-SMS to member skipped. Owner is the sole contact channel.
+2. **Expected:** Owner alert + task fires. Auto-Email to member skipped. Owner is the sole contact channel.
 
 ### Test 8 — Paused member ignored
 
@@ -427,7 +427,7 @@ Run this test sequence after publishing all workflows. **Do not declare done unt
 1. **Math operations not supported.** If your GHL plan doesn't support `field = field - 20`-style math in Update Contact Field, you must expand every branch into explicit final-value computations. Tedious but works. The full expanded version is in [assets/workflow.md](assets/workflow.md) appendix.
 2. **Forgot to backfill `visits_last_30_days`.** First night fires, every member flags Critical, owner gets 250 alerts, owner cancels you. Backfill first.
 3. **Re-entry settings wrong on 05a.** Must be **enabled** — the workflow needs to re-run nightly on the same contact. If disabled, it fires once and never again.
-4. **Re-entry settings wrong on 05b.** Must use tag-based re-entry blocks — otherwise a member who transitions from Watching → At-Risk same week gets the Watching SMS, then the At-Risk SMS, in close succession. Solution: each branch removes its trigger tag at start; transition tags should never both be present.
+4. **Re-entry settings wrong on 05b.** Must use tag-based re-entry blocks — otherwise a member who transitions from Watching → At-Risk same week gets the Watching Email, then the At-Risk Email, in close succession. Solution: each branch removes its trigger tag at start; transition tags should never both be present.
 5. **Recency decay double-counts.** If you use cumulative If/Else (`> 14` then separately `> 21`), a member 22 days idle gets −20 AND −35 = −55. Decay should be a single branch: use mutually exclusive conditions (else-if chain), not separate ifs.
 6. **Owner gets 250 nightly emails.** The Owner alert in Branch C should fire **only on transition** to Critical, not every night a member stays Critical. The `transition-to-critical` tag-based trigger guards this — confirm it's working.
 7. **Stage moves create duplicate opportunities.** If you "Create" instead of "Move," you get a new opportunity every night. Always use "Move existing opportunity if present; create only if absent."

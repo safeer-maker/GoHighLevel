@@ -14,7 +14,7 @@
 | **Folder** | `07 - Reviews` |
 | **Status** | Published / On |
 | **Re-entry** | Tag-based — blocked within 90 days via `campaign-review-ask` tag |
-| **Quiet hours respected** | Yes — SMS limited to 10 AM – 7 PM contact-local |
+| **Quiet hours respected** | Yes — Email limited to 10 AM – 7 PM contact-local |
 
 ### Trigger
 
@@ -63,7 +63,7 @@ The endorphin window. Sending immediately after class feels mechanical; 30 minut
 | **Action type** | Add Tag |
 | **Tag** | `campaign-review-ask` |
 
-This locks the 90-day cooldown. Even if the SMS fails to send or the member doesn't respond, they won't be re-asked for 90 days.
+This locks the 90-day cooldown. Even if the Email fails to send or the member doesn't respond, they won't be re-asked for 90 days.
 
 #### Action 4 — Stamp the Ask Time
 
@@ -82,15 +82,15 @@ This locks the 90-day cooldown. Even if the SMS fails to send or the member does
 | **YES** | Use template `07 — Post-PT Review Ask` |
 | **NO** | Use template `07 — Post-Class Review Ask` |
 
-#### Action 6 — Send Review-Ask SMS
+#### Action 6 — Send Review-Ask Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
+| **Action type** | Send Email |
 | **From** | `{{custom_values.business.sms_number}}` |
 | **To** | `{{contact.phone}}` |
-| **Template** | Matched in Action 5 from [sms.md](sms.md) |
-| **Skip if** | Contact has tag `do-not-sms` OR `sms_opt_in` ≠ Yes |
+| **Template** | Matched in Action 5 from []() |
+| **Skip if** | Contact has tag `do-not-email` OR `sms_opt_in` ≠ Yes |
 
 #### Action 7 — Wait 3 Days, Check Response
 
@@ -139,8 +139,8 @@ graph TD
     Wait30 --> TagLock[Apply campaign-review-ask tag]
     TagLock --> Stamp[Stamp review_ask_sent_at]
     Stamp --> AptType{PT or Class?}
-    AptType -->|PT| SmsB[Send Post-PT Review Ask SMS]
-    AptType -->|Class| SmsA[Send Post-Class Review Ask SMS]
+    AptType -->|PT| SmsB[Send Post-PT Review Ask Email]
+    AptType -->|Class| SmsA[Send Post-Class Review Ask Email]
     SmsB --> Wait3d[Wait 3 days]
     SmsA --> Wait3d
     Wait3d --> Check1{Submitted?}
@@ -175,11 +175,11 @@ graph TD
 | Scenario | Behavior |
 |---|---|
 | Member has multiple "Showed" appointments same day | First one triggers; second is blocked by `campaign-review-ask` tag applied in Action 3. |
-| Member's appointment is corrected from "No-Show" to "Showed" days later | Trigger fires based on status change to "Showed" — even if late. Workflow runs as normal but the 30-min endorphin window has long passed. Acceptable; the SMS still goes out and works reasonably. To avoid: add a filter "Appointment ended within last 4 hours" if your GHL supports it. |
-| Member transitions to `risk-at-risk` between Action 6 (SMS) and Action 8 (email) | The follow-up email still fires (no mid-sequence eject). Acceptable — the email is sent from Morgan and is conversational; harms little. Add a check at Action 8: "Skip if `risk-at-risk` or `risk-critical`." |
-| Member's `assigned_trainer` is null for Post-PT SMS | Template should have fallback: "Hope today's session crushed it. How'd it feel?" Implement via {{contact.assigned_trainer | default: "today's session"}} merge field. |
-| Member already submitted feedback before SMS lands (e.g., they walked in and complained at front desk, owner manually tagged) | Action 7b detects existing tag and exits. No follow-up email. |
-| Member taps SMS link but doesn't complete the rating (closes Page 1) | No tag applied. Member is "in cooldown" via `campaign-review-ask` for 90 days but no record of their actual rating. Acceptable trade-off. |
+| Member's appointment is corrected from "No-Show" to "Showed" days later | Trigger fires based on status change to "Showed" — even if late. Workflow runs as normal but the 30-min endorphin window has long passed. Acceptable; the Email still goes out and works reasonably. To avoid: add a filter "Appointment ended within last 4 hours" if your GHL supports it. |
+| Member transitions to `risk-at-risk` between Action 6 (Email) and Action 8 (email) | The follow-up email still fires (no mid-sequence eject). Acceptable — the email is sent from Morgan and is conversational; harms little. Add a check at Action 8: "Skip if `risk-at-risk` or `risk-critical`." |
+| Member's `assigned_trainer` is null for Post-PT Email | Template should have fallback: "Hope today's session crushed it. How'd it feel?" Implement via {{contact.assigned_trainer | default: "today's session"}} merge field. |
+| Member already submitted feedback before Email lands (e.g., they walked in and complained at front desk, owner manually tagged) | Action 7b detects existing tag and exits. No follow-up email. |
+| Member taps Email link but doesn't complete the rating (closes Page 1) | No tag applied. Member is "in cooldown" via `campaign-review-ask` for 90 days but no record of their actual rating. Acceptable trade-off. |
 
 ---
 
@@ -222,7 +222,7 @@ graph TD
 | 3 | Add Tag | `review-submitted-google` |
 | 4 | Remove Tag | `campaign-review-ask` (workflow done; this also opens immediate re-eligibility — but `review_submitted_date` check still enforces 90 days) |
 | 5 | Notify Owner | Internal notification — email. Subject: `Review Win — {{contact.first_name}} just tapped {{rating}} stars`. Body: includes member name, rating, time, contact link. |
-| 6 | (Optional) Send SMS | Template `07 — High-Score Thank You` from [sms.md](sms.md). 1 hour delay before send. Skip if `do-not-sms`. |
+| 6 | (Optional) Send Email | Template `07 — High-Score Thank You` from [](). 1 hour delay before send. Skip if `do-not-email`. |
 | 7 | Wait | 7 days |
 | 8 | If/Else | Member rating was 5? |
 | 8 YES | Add Tag `referral-prompt-ready` — feeds [#08 Referral Engine](../../08-referral-engine/) |
@@ -240,7 +240,7 @@ graph TD
     A2 --> A3[Add tag review-submitted-google]
     A3 --> A4[Remove campaign-review-ask]
     A4 --> A5[Notify owner]
-    A5 --> A6[Wait 1hr, send Thank You SMS]
+    A5 --> A6[Wait 1hr, send Thank You Email]
     A6 --> A7[Wait 7 days]
     A7 --> A8{Rating = 5?}
     A8 -->|Yes| A9[Add referral-prompt-ready]
@@ -298,9 +298,9 @@ graph TD
 | 11 | Notify Owner | **HIGH PRIORITY** email. Subject: `URGENT: {{contact.first_name}} {{contact.last_name}} left a {{rating}}-star private feedback`. Body template below. |
 | 12 | Create Task | Assigned to: Owner. Title: `Follow up with {{contact.first_name}} {{contact.last_name}} — private feedback`. Due: 48 hours from now. Description: includes full feedback text. |
 | 13 | Wait | 1 hour (gives owner first-look window) |
-| 14 | If/Else | `feedback_phone_ok` ≠ Yes AND no `do-not-sms`? |
-| 14 YES | Send SMS from Morgan's personal number — template `07 — Private Feedback Owner SMS` from [sms.md](sms.md) |
-| 14 NO | Skip auto-SMS (owner will call directly if `feedback_phone_ok` = Yes, or skip if `do-not-sms`) |
+| 14 | If/Else | `feedback_phone_ok` ≠ Yes AND no `do-not-email`? |
+| 14 YES | Send Email from Morgan's personal number — template `07 — Private Feedback Owner Email` from []() |
+| 14 NO | Skip auto-Email (owner will call directly if `feedback_phone_ok` = Yes, or skip if `do-not-email`) |
 | 15 | Wait | 48 hours |
 | 16 | If/Else | Owner has completed the task? |
 | 16 YES | Add tag `feedback-owner-resolved`. Exit. |
@@ -353,9 +353,9 @@ graph TD
     A5n --> A6
     A6 --> A7[Create Owner Task 48hr]
     A7 --> A8[Wait 1hr]
-    A8 --> A9{Phone OK<br/>and not do-not-sms?}
-    A9 -->|Yes| A10[Send personal SMS<br/>from Morgan number]
-    A9 -->|No| A11[Skip SMS]
+    A8 --> A9{Phone OK<br/>and not do-not-email?}
+    A9 -->|Yes| A10[Send personal Email<br/>from Morgan number]
+    A9 -->|No| A11[Skip Email]
     A10 --> A12[Wait 48hr]
     A11 --> A12
     A12 --> A13{Task complete?}
@@ -390,8 +390,8 @@ graph TD
 | Member submits form without the `campaign-review-ask` tag (manually visits funnel) | Trigger filter blocks. Owner does NOT get an alert. Acceptable — these submissions are rare and likely spam. Add manual review path if it becomes common. |
 | Owner ignores the task for 48hr | Reminder alert fires. Task remains open. Owner should still follow up — the contact is still tagged `feedback-received-private` indefinitely as a "needs attention" flag. |
 | Member submits private feedback then writes a public Google review anyway | Both tags applied (`feedback-received-private` and `review-submitted-google`). Owner gets both alerts. Owner addresses the underlying issue regardless. |
-| `vip-do-not-disturb` member submits low-score feedback | Auto-SMS in Action 14 should be skipped — owner handles 100% via personal call or email. Add filter check at Action 14. |
-| `feedback_phone_ok` = Yes but `do-not-sms` is also set | Owner is notified to *call directly* (preferred channel beats SMS). No SMS attempted. |
+| `vip-do-not-disturb` member submits low-score feedback | Auto-Email in Action 14 should be skipped — owner handles 100% via personal call or email. Add filter check at Action 14. |
+| `feedback_phone_ok` = Yes but `do-not-email` is also set | Owner is notified to *call directly* (preferred channel beats Email). No Email attempted. |
 | Member submits with rating=4 or 5 (URL tampering) | Form validation should reject. If it gets through, Workflow C treats it as low-score regardless — the form was filled, the member had a complaint, treat it seriously. |
 
 ---

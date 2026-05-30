@@ -47,9 +47,9 @@ graph TD
     AptDone[Appointment Status: Showed] --> Filter{Eligible?<br/>member tag<br/>not asked in 90d<br/>not in retention/upsell sequence}
     Filter -->|No| Skip((Skip))
     Filter -->|Yes| Delay[Wait 30 min<br/>let endorphins settle]
-    Delay --> SMS[Send Review-Ask SMS<br/>with single link to Router Funnel]
+    Delay --> Email[Send Review-Ask Email<br/>with single link to Router Funnel]
 
-    SMS --> Land[Member taps link]
+    Email --> Land[Member taps link]
     Land --> Page1[Funnel Page 1<br/>How was your session?<br/>1-5 emoji buttons]
 
     Page1 -->|4 or 5 stars| HighScore[Page 2: Thanks!<br/>Brief redirect to Google]
@@ -77,7 +77,7 @@ graph TD
 
     class AptDone trigger
     class Filter filter
-    class Delay,SMS,EmailFollow msg
+    class Delay,Email,EmailFollow msg
     class Page1,HighScore,LowScore page
     class Google,GoogleSubmit,TagWin good
     class FormSubmit,OwnerAlert,TagFeedback bad
@@ -88,17 +88,17 @@ graph TD
 
 1. **Post-class trigger** — fires when an appointment's status is set to "Showed" for a member, with eligibility gates (not asked in 90 days, not in retention/upsell sequence, opt-in clear).
 
-2. **Review-ask SMS** — sent 30 minutes after class/PT completion (endorphin window). One link, owner-personal voice, single CTA.
+2. **Review-ask Email** — sent 30 minutes after class/PT completion (endorphin window). One link, owner-personal voice, single CTA.
 
 3. **The Smart Review Router Funnel** — the critical mechanic. Page 1: "How was it?" with 1-5 emoji buttons. Branches:
    - **4 or 5 selected** → Page 2: "Thanks! Mind sharing on Google?" then auto-redirect to the studio's Google review URL.
    - **1, 2, or 3 selected** → Page 3: Private feedback form. "What could we have done better?" Submit goes only to the owner — never to public review channels.
 
-4. **Email follow-up** — sent once, 3 days later, if the SMS link wasn't tapped. Last attempt before giving up for 90 days.
+4. **Email follow-up** — sent once, 3 days later, if the Email link wasn't tapped. Last attempt before giving up for 90 days.
 
 5. **Owner alerts** — high-priority notification on any low-score private feedback, with a 48-hour task to follow up personally. The complaint is caught before it would have hit Google.
 
-Full mechanic in [build.md](build.md). Funnel copy in [assets/funnel.md](assets/funnel.md). SMS and emails in [assets/sms.md](assets/sms.md) / [assets/emails.md](assets/emails.md). Form spec in [assets/forms.md](assets/forms.md). Workflow spec in [assets/workflow.md](assets/workflow.md).
+Full mechanic in [build.md](build.md). Funnel copy in [assets/funnel.md](assets/funnel.md). emails in [assets](assets) / [assets/emails.md](assets/emails.md). Form spec in [assets/forms.md](assets/forms.md). Workflow spec in [assets/workflow.md](assets/workflow.md).
 
 ---
 
@@ -110,7 +110,7 @@ Move these numbers within 90 days of launch:
 |---|---|---|---|
 | New Google reviews / month | 1–3 | **15–25** | Count of new reviews on Google Business profile |
 | Average Google rating | 4.3 | **4.7+** | Google Business profile rating |
-| Review-ask SMS click-through rate | N/A (no system) | **35%+** | Funnel page visits ÷ SMS sent |
+| Review-ask Email click-through rate | N/A (no system) | **35%+** | Funnel page visits ÷ Email sent |
 | % high-score routes (4 or 5) | N/A | **80%+** | Page 2 visits ÷ total Page 1 selections |
 | % low-score routes (1-3) caught privately | N/A (would have hit Google) | **100% of low scores caught privately** | Page 3 submissions counted |
 | Owner response time to private complaint | Days/weeks | **<48 hours** | Owner task completion time |
@@ -131,7 +131,7 @@ Before:
 
 After:
 
-- Every member who shows up to class or PT gets a single, well-timed SMS asking how it went. The link goes to a router. Happy members route to Google; unhappy members route to the owner's inbox privately.
+- Every member who shows up to class or PT gets a single, well-timed Email asking how it went. The link goes to a router. Happy members route to Google; unhappy members route to the owner's inbox privately.
 - The Google review count climbs steadily — 15-25 new reviews/month, mostly 5-star, because the only people landing on Google are the people who tapped 4 or 5.
 - Private complaints reach the owner within minutes. She can apologize, fix the issue, sometimes save the member — before any of it would have hit public review channels.
 - The owner has a real signal: **the ratio of high-score (4-5) routes to low-score (1-3) routes is her studio's actual NPS.** Tracked weekly, she can see trends.
@@ -146,8 +146,8 @@ Production copy for every asset:
 
 - **[assets/funnel.md](assets/funnel.md)** — Smart Review Router funnel, page-by-page
 - **[assets/forms.md](assets/forms.md)** — Private feedback form spec for the low-score route
-- **[assets/sms.md](assets/sms.md)** — post-class and post-PT review-ask SMS, plus the high-score thank-you
-- **[assets/emails.md](assets/emails.md)** — follow-up review request email for SMS non-responders
+- **[assets](assets)** — post-class and post-PT review-ask Email, plus the high-score thank-you
+- **[assets/emails.md](assets/emails.md)** — follow-up review request email for Email non-responders
 - **[assets/workflow.md](assets/workflow.md)** — Post-Class Review Ask Workflow spec with mermaid diagram
 
 ---

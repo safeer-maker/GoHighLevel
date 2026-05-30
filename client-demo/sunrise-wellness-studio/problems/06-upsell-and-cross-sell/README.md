@@ -57,10 +57,10 @@ graph TD
     O3 --> Gate3{Gates pass?<br/>interest-nutrition NOT no<br/>day 21+}
     O4 --> Gate4{Gates pass?<br/>same plus nutrition open}
 
-    Gate1 -->|Pass| Seq1[Sequence: SMS day 0 → Email day 1 → Funnel checkout]
-    Gate2 -->|Pass| Seq2[Sequence: Personal SMS from Morgan → Math-showing email]
-    Gate3 -->|Pass| Seq3[Email + SMS soft offer, calendar link]
-    Gate4 -->|Pass| Seq4[Email + SMS, Sam-the-nutritionist intro]
+    Gate1 -->|Pass| Seq1[Sequence: Email day 0 → Email day 1 → Funnel checkout]
+    Gate2 -->|Pass| Seq2[Sequence: Personal Email from Morgan → Math-showing email]
+    Gate3 -->|Pass| Seq3[emails soft offer, calendar link]
+    Gate4 -->|Pass| Seq4[emails, Sam-the-nutritionist intro]
 
     Gate1 -->|Fail| Skip((Skip - try next cycle))
     Gate2 -->|Fail| Skip
@@ -110,7 +110,7 @@ graph TD
 - ✅ Opt-in flags clear (`sms_opt_in`, `email_opt_in`)
 - ✅ NOT `do-not-market`
 
-Full sequence logic in [build.md](build.md). Copy in [assets/emails.md](assets/emails.md) and [assets/sms.md](assets/sms.md). Premium upgrade checkout funnel — with a real savings-calculator widget — in [assets/funnel.md](assets/funnel.md).
+Full sequence logic in [build.md](build.md). Copy in [assets/emails.md](assets/emails.md) and [assets](assets). Premium upgrade checkout funnel — with a real savings-calculator widget — in [assets/funnel.md](assets/funnel.md).
 
 ---
 
@@ -142,7 +142,7 @@ Before:
 
 After:
 
-- Every Friday, the system identifies Basic members who attended 12+ classes that week. Saturday morning, they get a Morgan-style SMS: "Sarah, you've been crushing it — 14 classes this month. Want to see what Premium would look like for you?" Half of them tap. A quarter convert.
+- Every Friday, the system identifies Basic members who attended 12+ classes that week. Saturday morning, they get a Morgan-style Email: "Sarah, you've been crushing it — 14 classes this month. Want to see what Premium would look like for you?" Half of them tap. A quarter convert.
 - VIP-ready Premium members get a personalized email showing them the *actual math* — "you've spent $404/mo on average for 3 months. VIP is $249 unlimited. You'd save $155/mo." Most upgrade within 7 days.
 - The nutritionist's calendar fills. The owner gets a "you upsold $XYZ this month" digest. Upsell becomes a number, not an awkward conversation.
 - The vibe stays warm — because the offers are **specific, well-timed, and earned**. The system never pushes; it surfaces what the member would have asked for if the asking weren't socially weird.
@@ -156,7 +156,7 @@ Full step-by-step build in **[build.md](build.md)** — every workflow, every ga
 Production copy for every asset:
 
 - **[assets/emails.md](assets/emails.md)** — 4 upsell emails (Basic→Premium with attendance proof, Premium→VIP with savings math, nutrition starter, 4-week plan)
-- **[assets/sms.md](assets/sms.md)** — 4 timed nudge SMS variants
+- **[assets](assets)** — 4 timed nudge Email variants
 - **[assets/funnel.md](assets/funnel.md)** — Premium upgrade checkout funnel with savings calculator
 - **[assets/workflow.md](assets/workflow.md)** — Behavior-Triggered Upsell Workflow with all 4 branches, gates, and conversion tracking
 

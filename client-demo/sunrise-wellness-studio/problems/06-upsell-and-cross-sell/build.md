@@ -53,17 +53,17 @@ Structure:
 - **Body:** "Your new tier is active starting now. Here's what to do this week..."
 - **3-card layout:** (1) Book your first PT session (calendar link); (2) Book your nutrition starter consult (calendar link); (3) Try one new class style this week.
 - **CTA:** Book PT (primary), Book Nutrition (secondary).
-- **Footer:** "Questions? Reply to your welcome SMS or text Morgan at {{custom_values.business.sms_number}}."
+- **Footer:** "Questions? Reply to your welcome Email or text Morgan at {{custom_values.business.sms_number}}."
 
 ### 1.3 Publish
 
-Click **Publish**. Note the URL — used as the destination for the Basic→Premium SMS and email CTA buttons. Save as `business.upgrade_url` in **Settings > Custom Values** if not already present (otherwise reference via the published funnel URL directly).
+Click **Publish**. Note the URL — used as the destination for the Basic→Premium emails CTA buttons. Save as `business.upgrade_url` in **Settings > Custom Values** if not already present (otherwise reference via the published funnel URL directly).
 
 ### 1.4 Build a similar funnel for VIP
 
 Duplicate the Premium funnel: **Sunrise — VIP Upgrade Checkout**. Modify copy/calculator to compare Premium vs VIP (and Basic vs VIP for the rare direct skip-tier). Same structure.
 
-> Nutrition consult and 4-Week Plan don't need a dedicated funnel — they book through the existing calendar/checkout flow, with the upsell email/SMS providing the booking link directly.
+> Nutrition consult and 4-Week Plan don't need a dedicated funnel — they book through the existing calendar/checkout flow, with the upsell email/Email providing the booking link directly.
 
 ---
 
@@ -117,7 +117,7 @@ Steps for matched contact:
 
 1. **Add tag:** `campaign-upsell-basic-premium` and `upsell-recent` (the latter prevents re-evaluation for 30 days)
 2. **Set custom field:** `upsell_offer_active` = `Basic to Premium`
-3. **Send SMS:** Template `06 — Basic to Premium Nudge` from [assets/sms.md](assets/sms.md). Skip if `do-not-sms`.
+3. **Send Email:** Template `06 — Basic to Premium Nudge` from [assets](assets). Skip if `do-not-email`.
 4. **Wait:** 1 day, respecting 9 AM – 7 PM contact-local
 5. **Send Email:** Template `06 — Basic to Premium Pitch` from [assets/emails.md](assets/emails.md). Skip if `do-not-email`.
 6. **Wait:** 4 days
@@ -125,7 +125,7 @@ Steps for matched contact:
    - Check via tag `tier-premium` added in last 5 days OR purchase event for SKU `MEM-PREMIUM`.
    - YES → Branch to "Conversion" path (see 2.8).
    - NO → Continue to step 8.
-8. **Send SMS:** Template `06 — Basic to Premium Last Nudge` from [assets/sms.md](assets/sms.md). Skip if `do-not-sms`.
+8. **Send Email:** Template `06 — Basic to Premium Last Nudge` from [assets](assets). Skip if `do-not-email`.
 9. **Wait:** 3 days
 10. **If/Else:** Did contact upgrade?
     - YES → Conversion path.
@@ -137,14 +137,14 @@ Steps:
 
 1. **Add tag:** `campaign-upsell-premium-vip` and `upsell-recent`
 2. **Set:** `upsell_offer_active` = `Premium to VIP`
-3. **Send SMS:** Template `06 — Premium to VIP Personal SMS` from [assets/sms.md](assets/sms.md). **From Morgan's number** for this offer (personal, high-value).
+3. **Send Email:** Template `06 — Premium to VIP Personal Email` from [assets](assets). **From Morgan's number** for this offer (personal, high-value).
 4. **Wait:** 1 day
 5. **Send Email:** Template `06 — Premium to VIP Math Email` from [assets/emails.md](assets/emails.md). The email *shows the math* — "you spent $404/mo last 3 months on Premium + PT singles. VIP is $249 unlimited PT."
 6. **Wait:** 5 days
 7. **If/Else:** Did contact upgrade to VIP (tag `tier-vip` OR SKU `MEM-VIP` purchase)?
    - YES → Conversion path.
    - NO → Continue.
-8. **Send SMS:** Template `06 — Premium to VIP Soft Follow-Up`. Optional reply path: "want to talk it through?"
+8. **Send Email:** Template `06 — Premium to VIP Soft Follow-Up`. Optional reply path: "want to talk it through?"
 9. **Wait:** 4 days
 10. **If/Else:** Upgrade?
     - YES → Conversion path.
@@ -157,7 +157,7 @@ Steps:
 1. **Add tag:** `campaign-upsell-nutrition-starter` and `upsell-recent`
 2. **Send Email:** Template `06 — Nutrition Starter Offer` from [assets/emails.md](assets/emails.md). Includes intro to the nutritionist (Sam Rivera) and direct calendar link.
 3. **Wait:** 2 days
-4. **Send SMS:** Template `06 — Nutrition Starter SMS Nudge`. Short, conversational, single calendar link.
+4. **Send Email:** Template `06 — Nutrition Starter Email Nudge`. Short, conversational, single calendar link.
 5. **Wait:** 5 days
 6. **If/Else:** Did contact book a nutrition consult (calendar event with calendar = "Nutrition Starter")?
    - YES → Conversion path. Add tag `upsell-converted-nutrition-starter`.
@@ -170,7 +170,7 @@ Steps:
 1. **Add tag:** `campaign-upsell-nutrition-plan` and `upsell-recent`
 2. **Send Email:** Template `06 — 4-Week Plan Offer` from [assets/emails.md](assets/emails.md). Includes Sam's bio, plan structure, success quote.
 3. **Wait:** 2 days
-4. **Send SMS:** Template `06 — 4-Week Plan SMS Nudge`.
+4. **Send Email:** Template `06 — 4-Week Plan Email Nudge`.
 5. **Wait:** 5 days
 6. **If/Else:** Purchase of SKU `NUT-PLAN-4WK`?
    - YES → Conversion path.
@@ -185,7 +185,7 @@ When any branch detects a conversion:
 3. **Update field:** `total_upsell_conversions` = `total_upsell_conversions + 1`
 4. **Remove tag:** `campaign-upsell-*` for this offer
 5. **Notify owner:** Internal notification — "Win! {{contact.first_name}} just converted on {{upsell_offer_active}}. New MRR: ${{contact.monthly_rate}}."
-6. **Send celebration SMS** (member-facing, 1 hour after purchase): Template `06 — Upgrade Celebration` from [assets/sms.md](assets/sms.md). Owner-warm tone, sets up next steps.
+6. **Send celebration Email** (member-facing, 1 hour after purchase): Template `06 — Upgrade Celebration` from [assets](assets). Owner-warm tone, sets up next steps.
 7. **Add to Workflow:** Reroute to relevant follow-up — for membership tier upgrades, enter "Premium Member Onboarding" mini-flow (a 7-day "now make the most of Premium" sequence — out of scope for this file but referenced). For nutrition products, route to "Nutrition Customer Onboarding."
 8. **Wait 30 days, then:** Add tag `referral-prompt-ready` — surfaces this contact to [#08 Referral Engine](../08-referral-engine/) as a high-promoter (recently happy + recently upgraded = perfect referrer).
 
@@ -248,7 +248,7 @@ Run a bulk update:
 1. **Smart list:** All `member-active`, NOT `interest-nutrition`, joined > 90 days ago.
 2. **Bulk action:** Set `nutrition_interest` = `Yes — Curious` (the soft default — allows offer through gate without overpromising interest).
 
-Members who actively reply "not interested" to the first nutrition email will get `nutrition_interest` = `No` set on their record by an inbound-SMS-handler workflow.
+Members who actively reply "not interested" to the first nutrition email will get `nutrition_interest` = `No` set on their record by an inbound-email-handler workflow.
 
 ---
 
@@ -288,13 +288,13 @@ Run this test sequence. **Do not declare done until all pass.**
 
 1. Create test contact with: `tier-basic` tag, `member-active` tag, `risk-healthy` tag, `visits_last_30_days` = 14.
 2. Manually trigger workflow `06 — Behavior-Triggered Upsell` on contact.
-3. **Expected within 1 minute:** SMS arrives. Tags applied: `campaign-upsell-basic-premium`, `upsell-recent`.
+3. **Expected within 1 minute:** Email arrives. Tags applied: `campaign-upsell-basic-premium`, `upsell-recent`.
 4. **Expected after 1 day wait:** Email lands.
 
 ### Test 2 — Conversion path fires
 
 1. After Test 1, manually add tag `tier-premium` to contact (simulating purchase).
-2. **Expected:** Within the next workflow execution cycle, conversion path fires. Tag `upsell-converted-basic-premium` applied. Owner notification sent. Celebration SMS arrives 1 hour later.
+2. **Expected:** Within the next workflow execution cycle, conversion path fires. Tag `upsell-converted-basic-premium` applied. Owner notification sent. Celebration Email arrives 1 hour later.
 
 ### Test 3 — Decline cooldown applies
 
@@ -302,7 +302,7 @@ Run this test sequence. **Do not declare done until all pass.**
 2. Let workflow run to end (no conversion).
 3. **Expected:** Tag `upsell-declined-basic-premium-30d` applied. Tag `upsell-recent` retained.
 4. Try to re-trigger workflow.
-5. **Expected:** Trigger filter blocks (because `upsell-recent`). No new SMS.
+5. **Expected:** Trigger filter blocks (because `upsell-recent`). No new Email.
 6. Wait 30 days (or manually remove `upsell-declined-basic-premium-30d` for fast testing).
 7. **Expected:** Contact becomes eligible again.
 
@@ -310,13 +310,13 @@ Run this test sequence. **Do not declare done until all pass.**
 
 1. Create test contact with: `tier-basic`, `member-active`, `risk-at-risk`, `visits_last_30_days` = 14.
 2. Trigger workflow.
-3. **Expected:** Trigger filter blocks. No SMS or email.
+3. **Expected:** Trigger filter blocks. No Email or email.
 
 ### Test 5 — Premium → VIP fires from Morgan's number
 
 1. Create test contact: `tier-premium`, `member-active`, `risk-healthy`, simulate 4+ PT in 30d.
 2. Trigger workflow.
-3. **Expected:** SMS arrives **from Morgan's personal number** (not the general SMS number). Confirm sender.
+3. **Expected:** Email arrives **from Morgan's personal number** (not the general Email number). Confirm sender.
 
 ### Test 6 — Nutrition starter at day 21
 
@@ -352,11 +352,11 @@ Run this test sequence. **Do not declare done until all pass.**
 ## Common Build Mistakes (avoid these)
 
 1. **Offering the wrong tier.** A VIP member with high PT usage shouldn't get the Premium → VIP offer — they're already there. The tier filter (`tier-premium`) on Branch B is critical. Test with a VIP test contact.
-2. **Re-offering immediately after decline.** The `upsell-recent` tag is the safety net. If it's not getting applied, the contact will re-enter the workflow next Friday and get the same SMS again, fast path to unsubscribe.
+2. **Re-offering immediately after decline.** The `upsell-recent` tag is the safety net. If it's not getting applied, the contact will re-enter the workflow next Friday and get the same Email again, fast path to unsubscribe.
 3. **Counting visits wrong.** `visits_last_30_days` is a *rolling* count. It must be updated nightly by the attendance pipeline. If it's stale, you'll under-offer (members who attended yesterday won't be counted until tomorrow's update).
-4. **Funnel checkout doesn't update tags.** Without the product-purchase automation in Step 4, the workflow never sees the conversion, never fires the celebration SMS, never notifies the owner.
+4. **Funnel checkout doesn't update tags.** Without the product-purchase automation in Step 4, the workflow never sees the conversion, never fires the celebration Email, never notifies the owner.
 5. **At-risk members getting upsold.** The trigger filter exclusion list is critical. A member who's at-risk should be left alone — pushing an upsell makes them cancel faster.
-6. **Morgan's number not provisioned.** Branch B's SMS sends from a different number than the general sender. Confirm Morgan's number is set up as a sending identity in GHL. If not, fall back to the general number but adjust the SMS copy to say "Hey it's Morgan" explicitly (since the number won't tell the story).
+6. **Morgan's number not provisioned.** Branch B's Email sends from a different number than the general sender. Confirm Morgan's number is set up as a sending identity in GHL. If not, fall back to the general number but adjust the Email copy to say "Hey it's Morgan" explicitly (since the number won't tell the story).
 7. **Savings calculator returns wrong math.** The calculator on the Premium funnel must use accurate Basic + add-on cost vs Premium price. Test with edge cases — what if the member says "0 PT, 0 nutrition"? (Show: "You wouldn't save money on Premium yet — but here's what changes when you start using it.") Don't claim savings when there aren't any.
 
 ---

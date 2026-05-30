@@ -358,6 +358,6 @@ Run each test for 4 weeks, 100+ responses per variant minimum.
 
 After funnel interaction:
 
-- **High score (4 or 5):** Workflow 07b fires. Tag `review-submitted-google`. Field updates. Thank-you SMS lands 1 hour later. Tag `referral-prompt-ready` added 7 days later → consumed by [#08 Referral Engine](../../08-referral-engine/).
+- **High score (4 or 5):** Workflow 07b fires. Tag `review-submitted-google`. Field updates. Thank-you Email lands 1 hour later. Tag `referral-prompt-ready` added 7 days later → consumed by [#08 Referral Engine](../../08-referral-engine/).
 - **Low score (1, 2, 3):** Workflow 07c fires. Tag `feedback-received-private`. Owner notification HIGH PRIORITY. Owner task created with 48hr deadline. Tag `do-not-ask-reviews` applied for 180 days. Tag `risk-watching` applied — surfaces to [#05 retention monitoring](../../05-retention-and-churn-prevention/).
 - **No interaction (member doesn't tap):** Email follow-up sent 3 days later. If still no engagement after 7 days, member left alone for 90 days.

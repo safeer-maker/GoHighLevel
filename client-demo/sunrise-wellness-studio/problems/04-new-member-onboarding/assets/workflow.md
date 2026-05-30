@@ -38,7 +38,7 @@
 | 1c | Create Opportunity | Pipeline `Onboarding`, Stage `Welcome Sent (Day 0)`, Value = `monthly_rate × 12` |
 | 1d | Send Email | Template `04 — Day 0 — Welcome to the Studio` |
 
-(No Day 0 SMS — the conversion-confirmation SMS from #02 already fired within the hour.)
+(No Day 0 Email — the conversion-confirmation Email from #02 already fired within the hour.)
 
 ---
 
@@ -50,12 +50,12 @@
 
 ---
 
-### Action 3 — Day 1 Personal SMS
+### Action 3 — Day 1 Personal Email
 
 | Property | Value |
 |---|---|
-| **Skip if** | Contact has `do-not-sms` |
-| **Template** | `04 — Day 1 — Personal Welcome SMS` (Message A from sms.md) |
+| **Skip if** | Contact has `do-not-email` |
+| **Template** | `04 — Day 1 — Personal Welcome Email` (Message A from) |
 
 ---
 
@@ -74,7 +74,7 @@
 | **Action type** | If / Else |
 | **Condition** | `last_visit_date` >= `membership_start_date` AND `total_visits_lifetime` > [count at start] |
 | **YES branch** | Add Tag `onboarding-attended-week1`. Continue. |
-| **NO branch** | Send SMS `04 — Day 3 — No Visit Yet (gentle)` (Message B). Add Tag `onboarding-needs-nudge`. |
+| **NO branch** | Send Email `04 — Day 3 — No Visit Yet (gentle)` (Message B). Add Tag `onboarding-needs-nudge`. |
 
 ---
 
@@ -101,7 +101,7 @@
 |---|---|---|
 | 8a | Wait Until | `membership_start_date + 8 days` at 6:00 PM contact-local |
 | 8b | If/Else | `membership_tier` IN (`Premium`, `VIP`) AND `last_pt_session_date` is empty? |
-| 8b-YES | Send SMS | `04 — Day 8 — PT Booking Nudge` (Message C) |
+| 8b-YES | Send Email | `04 — Day 8 — PT Booking Nudge` (Message C) |
 | 8b-NO | Skip | |
 
 ---
@@ -130,7 +130,7 @@
 | 10a-1 | Add Tag | `risk-healthy` |
 | 10a-2 | Update Opportunity Stage | `Two-Week Milestone` |
 | 10a-3 | Send Email | `04 — Day 14 — Two-Week Milestone` (healthy variant) |
-| 10a-4 | Send SMS | `04 — Day 14 — Milestone Celebrate` (Message D) |
+| 10a-4 | Send Email | `04 — Day 14 — Milestone Celebrate` (Message D) |
 
 #### Branch B — Watching (1-2 visits)
 
@@ -140,7 +140,7 @@
 | 10b-2 | Update Opportunity Stage | `Two-Week Milestone` (still on track) |
 | 10b-3 | Send Email | `04 — Day 14 — Two-Week Milestone` (watching variant — encouraging more frequency) |
 
-(No SMS on watching branch — let the email do the work without doubling up.)
+(No Email on watching branch — let the email do the work without doubling up.)
 
 #### Branch C — Early Churn Risk (0 visits)
 
@@ -165,7 +165,7 @@ Total visits: 0
 Day 14 at-risk email already sent. Recommend: personal call or DM this week. Member options offered include pause and cancel-without-drama — be ready for either.
 
 Open contact: {{contact_url}}
-Quick send save SMS: add tag `owner-save-sms`
+Quick send save Email: add tag `owner-save-sms`
 ```
 
 ---
@@ -176,7 +176,7 @@ Quick send save SMS: add tag `owner-save-sms`
 |---|---|---|
 | 11a | Wait Until | `membership_start_date + 17 days` at 2:00 PM contact-local |
 | 11b | If/Else | `risk-critical` AND still `total_visits_lifetime == 0` since signup? |
-| 11b-YES | Send SMS | `04 — Day 17 — Owner Escalation SMS` (Message H) |
+| 11b-YES | Send Email | `04 — Day 17 — Owner Escalation Email` (Message H) |
 | 11b-NO | Skip | |
 
 ---
@@ -196,7 +196,7 @@ Quick send save SMS: add tag `owner-save-sms`
 | 13a | Update Opportunity Stage | `Goal Review (Day 21)` |
 | 13b | Send Email | `04 — Day 21 — Goal Review Invite` |
 | 13c | Wait | 6 hours |
-| 13d | Send SMS | `04 — Day 21 — Goal Review Reminder` (Message E) |
+| 13d | Send Email | `04 — Day 21 — Goal Review Reminder` (Message E) |
 
 ---
 
@@ -207,7 +207,7 @@ Quick send save SMS: add tag `owner-save-sms`
 | 14a | Wait Until | `membership_start_date + 25 days` at noon contact-local |
 | 14b | If/Else | Has the contact booked any appointment on the Goal Review calendar between days 21-30? |
 | 14b-YES | Skip | |
-| 14b-NO | Send SMS | `04 — Day 25 — Goal Review Final Nudge` (Message F) |
+| 14b-NO | Send Email | `04 — Day 25 — Goal Review Final Nudge` (Message F) |
 
 ---
 
@@ -225,7 +225,7 @@ Quick send save SMS: add tag `owner-save-sms`
 |---|---|---|
 | 16a | Send Email | `04 — Day 30 — Graduation` |
 | 16b | Wait | 1 hour |
-| 16c | Send SMS | `04 — Day 30 — Graduation` (Message G) |
+| 16c | Send Email | `04 — Day 30 — Graduation` (Message G) |
 | 16d | Update Contact Field | `onboarding_completed` = `Yes` |
 | 16e | Update Contact Field | `onboarding_completed_date` = `{{today}}` |
 | 16f | Update Contact Field | `days_as_member` = 30 |
@@ -281,37 +281,37 @@ Quick send save SMS: add tag `owner-save-sms`
 graph TD
     T[Tag Added: member-onboarding] --> A1[Day 0: Setup + Welcome Email<br/>Create Onboarding Opp]
     A1 --> W1[Wait until Day 1, 10 AM]
-    W1 --> A3[Day 1: Personal SMS from Morgan]
+    W1 --> A3[Day 1: Personal Email from Morgan]
     A3 --> W2[Wait until Day 3, 11 AM]
     W2 --> A5{Has visited?}
     A5 -->|Yes| A5y[Tag: onboarding-attended-week1]
-    A5 -->|No| A5n[SMS: No visit yet gentle nudge<br/>Tag: needs-nudge]
+    A5 -->|No| A5n[Email: No visit yet gentle nudge<br/>Tag: needs-nudge]
     A5y --> W3
     A5n --> W3[Wait until Day 7, 9 AM]
     W3 --> A7[Day 7: Week-1 Check-In Email<br/>Opp → Week 1 Check-In]
     A7 --> W4[Wait until Day 8, 6 PM]
     W4 --> A8{Premium/VIP no PT?}
-    A8 -->|Yes| A8y[SMS: PT booking nudge]
+    A8 -->|Yes| A8y[Email: PT booking nudge]
     A8 -->|No| W5
     A8y --> W5[Wait until Day 14, 8 AM]
     W5 --> A10{Visits in 14 days?}
-    A10 -->|3+ Healthy| BA[Tag risk-healthy<br/>Email + SMS Milestone<br/>Opp → Two-Week Milestone]
+    A10 -->|3+ Healthy| BA[Tag risk-healthy<br/>emails Milestone<br/>Opp → Two-Week Milestone]
     A10 -->|1-2 Watching| BB[Tag risk-watching<br/>Email Milestone variant<br/>Opp → Two-Week Milestone]
     A10 -->|0 Critical| BC[Tag risk-critical<br/>Email At-Risk<br/>Opp → Early Churn Risk<br/>Notify Morgan]
     BA --> W6
     BB --> W6
     BC --> W6[Wait until Day 17]
     W6 --> A11{Still 0 visits + critical?}
-    A11 -->|Yes| A11y[SMS: Owner escalation from Morgan]
+    A11 -->|Yes| A11y[Email: Owner escalation from Morgan]
     A11 -->|No| W7
     A11y --> W7[Wait until Day 21, 9 AM]
-    W7 --> A13[Day 21: Goal Review Email + SMS<br/>Opp → Goal Review]
+    W7 --> A13[Day 21: Goal Review emails<br/>Opp → Goal Review]
     A13 --> W8[Wait until Day 25]
     W8 --> A14{Goal review booked?}
     A14 -->|Yes| W9
-    A14 -->|No| A14n[SMS: Final goal review nudge]
+    A14 -->|No| A14n[Email: Final goal review nudge]
     A14n --> W9[Wait until Day 30, 10 AM]
-    W9 --> A16[Day 30: Graduation Email + SMS<br/>Set onboarding_completed=Yes<br/>Remove member-onboarding tag]
+    W9 --> A16[Day 30: Graduation emails<br/>Set onboarding_completed=Yes<br/>Remove member-onboarding tag]
     A16 --> A17{Outcome?}
     A17 -->|3+ visits| OA[Opp → Onboarded Won<br/>Create Retention Opp at Healthy]
     A17 -->|1-2 visits| OB[Opp → Onboarded Won<br/>Create Retention Opp at Watching]
@@ -361,9 +361,9 @@ Updates engagement fields every time a member checks in.
 3. Recompute `visits_last_30_days` (count Showed appointments in last 30 days for this contact)
 4. Update `last_class_attended` = `{{appointment.calendar_name}} on {{today_short}}`
 
-### Companion 2: `04 — Onboarding Save SMS (Owner-Triggered)`
+### Companion 2: `04 — Onboarding Save Email (Owner-Triggered)`
 
-Lets Morgan fire a tailored save SMS from the contact card by adding a tag.
+Lets Morgan fire a tailored save Email from the contact card by adding a tag.
 
 | Property | Value |
 |---|---|
@@ -371,7 +371,7 @@ Lets Morgan fire a tailored save SMS from the contact card by adding a tag.
 | **Filter** | Contact has `member-onboarding` AND `risk-critical` |
 
 **Actions:**
-1. Send SMS `04 — Owner Save SMS` (Message I from sms.md)
+1. Send Email `04 — Owner Save Email` (Message I from)
 2. Remove tag `owner-save-sms` (so it can be re-fired)
 3. Add tag `onboarding-save-attempted`
 4. Exit
@@ -384,12 +384,12 @@ Lets Morgan fire a tailored save SMS from the contact card by adding a tag.
 |---|---|
 | Member cancels on Day 5 | Cancel workflow (out of scope here) flips `membership_status` to `Cancelled`, adds `member-cancelled`. Onboarding workflow's next gate checks `member-active` and exits if missing. Add a global filter on every wait-then-send step: "Contact has tag `member-active`". |
 | Member pauses on Day 10 | Tag `member-paused` applied. Pause workflow (out of scope) handles. Onboarding workflow's gates should also check NOT `member-paused` and pause sends. Resume when un-paused (separate logic). |
-| Member misses Day 7 check-in email (inbox filter) | Email still sent. SMS Day 8 PT nudge (if Premium/VIP) is independent. Day 14 branching uses field data, not email engagement, so works either way. |
+| Member misses Day 7 check-in email (inbox filter) | Email still sent. Email Day 8 PT nudge (if Premium/VIP) is independent. Day 14 branching uses field data, not email engagement, so works either way. |
 | Member's visits_last_30_days is stale (Companion 1 not built) | Day 14 branch reads 0 for everyone → false At-Risk routing → over-triggering. **Critical:** build Companion 1 before publishing main workflow. |
 | Member's `assigned_trainer` is "Unassigned" | Templates use fallback "one of our trainers." Build a separate small workflow to auto-assign trainer on Day 1 if unassigned (round-robin from available trainers). |
 | Member already has open opportunity in Onboarding pipeline | Action 1c will create a duplicate. Add filter: "Skip if open opportunity exists in Onboarding." |
 | Member converts on multiple tiers in 30 days (rare — tier upgrade) | Tier change fires its own workflow (#06 Upsell). Onboarding sequence continues based on original join. Day 30 graduation uses *current* tier for the next-step section. |
-| Member texts "STOP" on Day 4 | Tag `do-not-sms` applied. All future SMS skip. Email sequence continues. Day 14 branch still evaluates correctly. Personal owner-save SMS won't fire (suppression). Recommend: flag for Morgan personal email outreach as fallback. |
+| Member texts "STOP" on Day 4 | Tag `do-not-email` applied. All future Email skip. Email sequence continues. Day 14 branch still evaluates correctly. Personal owner-save Email won't fire (suppression). Recommend: flag for Morgan personal email outreach as fallback. |
 | Member already member-active before tag added (re-enrollment of an old member) | Trigger filter "Contact does NOT have `campaign-onboarding`" prevents. To intentionally re-enroll, manually remove `campaign-onboarding` first. |
 | Workflow build error mid-sequence (e.g., merge field not found) | GHL workflow will halt at that step. Build smart list "Onboarding — Workflow Failures" to surface stuck members (members with `campaign-onboarding` tag but no recent activity in workflow history). Owner reviews weekly. |
 

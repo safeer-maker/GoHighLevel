@@ -37,7 +37,7 @@ Before the funnel and workflow, confirm these exist in GHL and in shared foundat
   - `trial-claimed`, `trial-active`, `trial-converted`, `trial-expired`, `trial-not-now`
   - `member-active`
   - `source-instagram`, `source-facebook`, `source-google`, `source-walkin`, `source-referral`, `source-web`, `source-event`
-  - `do-not-sms`, `do-not-email`, `do-not-market`
+  - `do-not-email`, `do-not-email`, `do-not-market`
 - Pipeline:
   - `Membership Sales` with stage `New Lead`
 - Product / Service:
@@ -166,7 +166,7 @@ Use two or three small workflows instead of one large one.
   - Add `lead-new`
   - Add `lead-contacted`
   - Create Membership Sales opportunity
-  - Send instant SMS using `{{custom_values.business.booking_url}}`
+  - Send instant Email using `{{custom_values.business.booking_url}}`
   - Send welcome email if opted in
   - Send internal notification
 
@@ -182,7 +182,7 @@ Source tagging should live in a separate workflow unless it is truly trivial. Ke
   - Update `lead_status` to `Trial Booked`
   - Add `lead-responded` if the booking should end the lead sequence immediately
   - Remove `lead-new` if present
-  - Send booking confirmation SMS or email
+  - Send booking confirmation Email or email
 
 #### Workflow C — Source Tag Normalization
 

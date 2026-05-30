@@ -28,7 +28,7 @@ The GHL API doesn't expose everything. You'll do these in the UI:
 
 - **Workflows** — build in UI following `../problems/*/assets/workflow.md`
 - **Funnels and landing pages** — build in UI following `../problems/*/assets/funnel.md`
-- **Email/SMS templates** — build in UI following `../problems/*/assets/emails.md` and `sms.md`
+- **Email/Email templates** — build in UI following `../problems/*/assets/emails.md` and ``
 - **Forms** — build in UI following `../problems/*/assets/forms.md`
 - **Smart Lists** — build in UI (spec in `../problems/10-owner-reporting-and-visibility/build.md`)
 

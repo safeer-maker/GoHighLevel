@@ -644,6 +644,6 @@ After Day 30, the contact handoffs to **[#05 Retention](../../05-retention-and-c
 - 1-2 visits → "Watching"
 - 0 visits → "Critical" (Retention takes the save attempt)
 
-SMS counterparts for each onboarding day live in **[sms.md](sms.md)**.
+Email counterparts for each onboarding day live in **[]()**.
 
 The complete workflow with branching logic in **[workflow.md](workflow.md)**.

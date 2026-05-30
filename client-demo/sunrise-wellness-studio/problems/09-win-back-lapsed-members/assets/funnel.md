@@ -345,7 +345,7 @@ And tag each headline/subhead/savings element with the matching `data-dynamic=".
 
 ## Mobile-First Notes
 
-- 70%+ of comeback traffic is mobile (members tap from the SMS link).
+- 70%+ of comeback traffic is mobile (members tap from the Email link).
 - Stripe checkout component must render cleanly on mobile — verify card field auto-focuses to numeric keyboard.
 - Coupon-applied indicator (green checkmark + "WB60 applied") must be visible above the fold on mobile — this is the trust signal that the offer is real.
 - Tier-upgrade buttons (Section 3) stack vertically on mobile.
@@ -377,5 +377,5 @@ After creating the funnel:
    - `member-reactivated` tag applies (via Workflow `09d`)
    - All campaign-winback-* tags removed
    - Retention pipeline moves to "Reactivated" stage
-   - Welcome-back SMS + email arrive
+   - Welcome-back emails arrive
    - Owner internal notification fires

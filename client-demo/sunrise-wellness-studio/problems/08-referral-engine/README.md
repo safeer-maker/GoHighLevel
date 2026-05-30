@@ -40,7 +40,7 @@ A two-sided referral system: a personalized landing page for the referred friend
 ```mermaid
 graph LR
     M[Active Member<br/>Sarah gets member-active tag] --> W1[Workflow 1: Generate Code<br/>Creates SARAH-42<br/>Builds shareable link]
-    W1 --> Share[Sarah shares link<br/>via SMS, IG DM, in-person]
+    W1 --> Share[Sarah shares link<br/>via Email, IG DM, in-person]
     Share --> Land[Referral Landing Funnel<br/>'Sarah sent you $20 off']
     Land --> Form[Referral Form<br/>hidden: referred_by + code]
     Form --> Lead[New Contact<br/>source-referral tag]
@@ -111,7 +111,7 @@ Production copy for every asset:
 - **[assets/funnel.md](assets/funnel.md)** — referral landing funnel page-by-page with dynamic referrer-name personalization
 - **[assets/forms.md](assets/forms.md)** — referral capture form (with hidden referrer fields)
 - **[assets/emails.md](assets/emails.md)** — referrer-notification, referee welcome, quarterly top-referrer recognition
-- **[assets/sms.md](assets/sms.md)** — member referral-invite SMS, referrer-notification SMS, referee welcome SMS
+- **[assets](assets)** — member referral-invite Email, referrer-notification Email, referee welcome Email
 - **[assets/workflow.md](assets/workflow.md)** — both workflows (Code Generation + Referral Conversion) plus the quarterly recognition
 
 ---

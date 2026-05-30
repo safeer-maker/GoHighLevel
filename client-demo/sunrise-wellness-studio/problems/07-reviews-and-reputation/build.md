@@ -9,7 +9,7 @@
 | Foundation Asset | Where Defined | Used For |
 |---|---|---|
 | Engagement & Activity fields (`review_submitted_date`, `review_star_rating`) | [../../shared-foundation/custom-fields.md](../../shared-foundation/custom-fields.md) | Stamping review history |
-| Tags: `member-active`, `campaign-review-ask`, `review-submitted-google`, `feedback-received-private`, `do-not-ask-reviews`, `risk-*`, `do-not-sms`, `do-not-email` | [../../shared-foundation/tags.md](../../shared-foundation/tags.md) | Eligibility + state |
+| Tags: `member-active`, `campaign-review-ask`, `review-submitted-google`, `feedback-received-private`, `do-not-ask-reviews`, `risk-*`, `do-not-email`, `do-not-email` | [../../shared-foundation/tags.md](../../shared-foundation/tags.md) | Eligibility + state |
 | Custom values: `business.google_review_url`, `business.short_name`, `team.owner_first`, `business.sms_number`, `voice.signature_owner` | [../../shared-foundation/custom-values.md](../../shared-foundation/custom-values.md) | Message and funnel copy |
 | Output of [#03 Appointment No-Show Recovery](../03-appointment-no-show-recovery/) — appointment status changes accurately set "Showed" | [#03](../03-appointment-no-show-recovery/) | Trigger source |
 | Output of [#05 Retention](../05-retention-and-churn-prevention/) — `risk-*` tags populated nightly | [#05](../05-retention-and-churn-prevention/) | Eligibility gate |
@@ -203,18 +203,18 @@ Full spec in **[assets/workflow.md](assets/workflow.md)**. Build order:
 
 ### 4.5 Action — Branch by Appointment Type
 
-The SMS copy differs slightly for class vs PT. Use If/Else on calendar name:
+The Email copy differs slightly for class vs PT. Use If/Else on calendar name:
 
 - **Action:** If/Else
-  - Appointment calendar = "PT" → use SMS template `07 — Post-PT Review Ask`
-  - Else (group class) → use SMS template `07 — Post-Class Review Ask`
+  - Appointment calendar = "PT" → use Email template `07 — Post-PT Review Ask`
+  - Else (group class) → use Email template `07 — Post-Class Review Ask`
 
-### 4.6 Action — Send Review-Ask SMS
+### 4.6 Action — Send Review-Ask Email
 
-- **Action:** Send SMS
-- **Template:** matched above from [assets/sms.md](assets/sms.md)
+- **Action:** Send Email
+- **Template:** matched above from [assets](assets)
 - **From:** `{{custom_values.business.sms_number}}`
-- **Skip if:** `do-not-sms` OR `sms_opt_in` ≠ Yes
+- **Skip if:** `do-not-email` OR `sms_opt_in` ≠ Yes
 
 ### 4.7 Action — Stamp the Ask Time
 
@@ -373,30 +373,30 @@ Run this test sequence. **Do not declare done until all pass.**
 
 1. Set test contact: tag `member-active`, tag `risk-healthy`, no recent review.
 2. Create an appointment for the contact, mark status = "Showed".
-3. **Expected within 30 minutes:** Review-ask SMS arrives at test phone.
+3. **Expected within 30 minutes:** Review-ask Email arrives at test phone.
 4. **Expected in GHL:** Tag `campaign-review-ask` applied.
 
 ### Test 4 — Cooldown blocks repeat asks
 
 1. Same test contact from Test 3. Create another appointment within 90 days. Mark "Showed".
-2. **Expected:** Workflow filter blocks. No SMS fires. Tag `review-skipped-cooldown` applied for visibility.
+2. **Expected:** Workflow filter blocks. No Email fires. Tag `review-skipped-cooldown` applied for visibility.
 
 ### Test 5 — At-Risk member excluded
 
 1. Test contact with tag `risk-at-risk`. Create appointment, mark "Showed".
-2. **Expected:** Filter blocks. No SMS.
+2. **Expected:** Filter blocks. No Email.
 
 ### Test 6 — Follow-up email fires after no response
 
-1. Test contact, fresh, eligible. Workflow fires SMS.
+1. Test contact, fresh, eligible. Workflow fires Email.
 2. Wait 3 days (or fast-forward by manually advancing the wait step).
 3. **Expected:** Follow-up email arrives.
 
 ### Test 7 — Suppression respected
 
-1. Test contact with `do-not-sms` tag.
+1. Test contact with `do-not-email` tag.
 2. Workflow fires.
-3. **Expected:** SMS skipped. Email step still fires after 3-day wait (since `do-not-email` not set).
+3. **Expected:** Email skipped. Email step still fires after 3-day wait (since `do-not-email` not set).
 
 ### Test 8 — Referral prompt 7 days after Google review
 
@@ -418,7 +418,7 @@ Run this test sequence. **Do not declare done until all pass.**
 ## Common Build Mistakes (avoid these)
 
 1. **Asking the wrong people.** If the filter `NOT risk-at-risk` isn't in place, you'll send review asks to members who are about to cancel — guaranteed 1-star territory. Verify the filter rigorously.
-2. **Sending the SMS too fast.** The 30-minute wait is intentional. Sending the SMS immediately after class feels mechanical; the endorphin window 30 min later is when the member is most positive.
+2. **Sending the Email too fast.** The 30-minute wait is intentional. Sending the Email immediately after class feels mechanical; the endorphin window 30 min later is when the member is most positive.
 3. **Page 2 redirect too fast.** If the redirect is instant, members feel railroaded. The 5-second delay shows the thank-you and gives a graceful exit. Keep it.
 4. **No `do-not-ask-reviews` 180-day cooldown after a complaint.** Without this, a member who left private feedback could get re-asked in 90 days and leave more frustrated feedback. The 180-day cooldown gives time to fix the underlying issue.
 5. **Funnel button URLs missing `contact_id`.** Without the contact_id, the rating handler workflow can't match the rating back to the right contact. Test the URL renders correctly with the merge field substituted.

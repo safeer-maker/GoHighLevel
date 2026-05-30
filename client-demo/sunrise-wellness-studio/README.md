@@ -1,6 +1,6 @@
 # Sunrise Wellness Studio — Complete GoHighLevel Business Build
 
-> A full, client-ready GoHighLevel build for a wellness studio / gym — funnels, emails, SMS, automations, pipelines, calendars, products, and reporting — organized around **10 real business problems**, each with a pitch page and a step-by-step build playbook.
+> A full, client-ready GoHighLevel build for a wellness studio / gym — funnels, emails, automations, pipelines, calendars, products, and reporting — organized around **10 real business problems**, each with a pitch page and a step-by-step build playbook.
 
 ---
 
@@ -12,7 +12,7 @@ The build is organized **by business problem**, not by GHL feature. That means:
 
 - A studio owner can flip open `problems/03-appointment-no-show-recovery/README.md` and see exactly what we're solving and why.
 - A GHL operator can flip to the same folder's `build.md` and rebuild the entire system click-by-click in a clean sub-account.
-- Every funnel page, email, SMS, and workflow has the **production-ready copy** sitting in the `assets/` subfolder — no placeholders to fill in.
+- Every funnel page, emails, and workflow has the **production-ready copy** sitting in the `assets/` subfolder — no placeholders to fill in.
 
 ---
 
@@ -100,7 +100,7 @@ client-demo/sunrise-wellness-studio/
 │       Each contains:
 │         README.md      ← client-pitch layer
 │         build.md       ← step-by-step GHL build
-│         assets/        ← funnel.md, emails.md, sms.md, workflow.md, forms.md
+│         assets/        ← funnel.md, emails.md, workflow.md, forms.md
 └── integration/
     ├── master-automation-graph.md     ← how all 10 systems interconnect
     ├── build-order.md                 ← what to build first → last
@@ -115,7 +115,7 @@ A typical GHL setup is a pile of disconnected pieces — a funnel here, a workfl
 
 - **Every system maps to a real customer pain.** No "let's set up a workflow because GHL has workflows." Every automation has a target persona and a measurable outcome.
 - **The ten systems compose into one engine.** Lead capture feeds trial conversion. Trial conversion feeds onboarding. Onboarding feeds retention. Retention forks into upsell, reviews, and referrals. Churn fires win-back. The owner sees all of it in one dashboard. See [integration/master-automation-graph.md](integration/master-automation-graph.md).
-- **Production-ready, not template-shaped.** Funnel copy is written for *this* business, in *this* tone. Email subject lines, SMS bodies, button microcopy — all real, all on-brand.
+- **Production-ready, not template-shaped.** Funnel copy is written for *this* business, in *this* tone. Email subject lines, Email bodies, button microcopy — all real, all on-brand.
 - **Replicable by any operator.** Every `build.md` is precise enough that a competent GHL operator can replicate the system in a fresh sub-account in 30–90 minutes per problem.
 
 ---
@@ -125,7 +125,7 @@ A typical GHL setup is a pile of disconnected pieces — a funnel here, a workfl
 | Phase | What | Time |
 |---|---|---|
 | Shared foundation | Custom fields, tags, pipelines, products, custom values | 3–4 hours |
-| Problems 01–10 | Funnels, emails, SMS, workflows for each | 30–90 min each = 8–14 hours |
+| Problems 01–10 | Funnels, emails, workflows for each | 30–90 min each = 8–14 hours |
 | Integration | Connecting workflows, dashboard, reporting digest | 2–3 hours |
 | **Total** | **Complete sub-account ready for the studio to start using** | **15–20 hours** |
 

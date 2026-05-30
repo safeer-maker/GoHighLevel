@@ -174,17 +174,17 @@ GHL's templating supports basic string functions in many accounts. If `| upper` 
 {{custom_values.business.website}}/refer/?ref_name={{contact.first_name | upper}}&ref_id={{contact.id}}&ref_code={{contact.referral_code}}&lead_source=Referral
 ```
 
-### 3.4 Action: Send Referral-Invite SMS to Member
+### 3.4 Action: Send Referral-Invite Email to Member
 
-After a 24-hour wait (let them settle in as a member first), send the "here's your link" SMS.
+After a 24-hour wait (let them settle in as a member first), send the "here's your link" Email.
 
 - **Action:** Wait — 24 hours
-- **Action:** Send SMS
-- **Template:** SMS A from [assets/sms.md](assets/sms.md) — "Member Referral Invite"
+- **Action:** Send Email
+- **Template:** Email A from [assets](assets) — "Member Referral Invite"
 
 ### 3.5 Action: Send Referral-Invite Email to Member
 
-Sent the same day as the SMS, ~30 min after.
+Sent the same day as the Email, ~30 min after.
 
 - **Action:** Wait — 30 minutes
 - **Action:** Send Email
@@ -237,23 +237,23 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 - **Field:** `pt_credit_balance`
 - **Value:** `{{referrer.pt_credit_balance + 1}}`
 
-### 4.6 Action: Send Referrer Notification SMS
+### 4.6 Action: Send Referrer Notification Email
 
-- **Action:** Send SMS — *to referrer*
-- **Template:** SMS B from [assets/sms.md](assets/sms.md) — "Referrer Got A Conversion"
-- **Skip if:** Referrer has tag `do-not-sms`
+- **Action:** Send Email — *to referrer*
+- **Template:** Email B from [assets](assets) — "Referrer Got A Conversion"
+- **Skip if:** Referrer has tag `do-not-email`
 
 ### 4.7 Action: Send Referrer Notification Email
 
-- **Action:** Wait — 5 minutes (give the SMS a head start)
+- **Action:** Wait — 5 minutes (give the Email a head start)
 - **Action:** Send Email — *to referrer*
 - **Template:** Email "Your friend just signed up!" from [assets/emails.md](assets/emails.md)
 - **Skip if:** Referrer has tag `do-not-email`
 
-### 4.8 Action: Send Referee Welcome SMS (to the new member)
+### 4.8 Action: Send Referee Welcome Email (to the new member)
 
-- **Action:** Send SMS — *to triggering contact (the new member)*
-- **Template:** SMS C from [assets/sms.md](assets/sms.md) — "Referee Welcome"
+- **Action:** Send Email — *to triggering contact (the new member)*
+- **Template:** Email C from [assets](assets) — "Referee Welcome"
 
 ### 4.9 Action: Send Referee Welcome Email
 
@@ -356,8 +356,8 @@ Run this complete test sequence after publishing. **Do not declare done until al
    - `referral_code` populated (e.g., `TEST-XX`)
    - `referral_share_url` populated with the full URL
 4. **Expected after 24 hours:**
-   - SMS arrives with the share link.
-   - Email arrives ~30 min after SMS.
+   - Email arrives with the share link.
+   - Email arrives ~30 min after Email.
 
 (For testing speed: temporarily set the Wait to 1 min instead of 24 hours; reset to 24 hours after test.)
 
@@ -381,15 +381,15 @@ Run this complete test sequence after publishing. **Do not declare done until al
 4. **Expected in GHL on Test Referee One:**
    - All four hidden fields populated correctly.
    - Tag `source-referral` applied by the #01 Instant Response workflow.
-   - Welcome SMS + email from the #01 workflow arrives (not yet a referral-conversion notification — that fires only on trial conversion).
+   - Welcome emails from the #01 workflow arrives (not yet a referral-conversion notification — that fires only on trial conversion).
 
 ### Test 5 — Referral conversion credit fires
 
 1. On `Test Referee One`, manually apply tag `trial-converted`.
 2. **Expected within 60 seconds:**
    - On `Test Referrer One`: `referrals_made_count` and `referrals_converted_count` both increment by 1; `pt_credit_balance` increments by 1.
-   - Referrer receives the "your friend joined!" SMS, then email.
-   - Referee receives the "welcome from Sarah's referral" SMS, then email.
+   - Referrer receives the "your friend joined!" Email, then email.
+   - Referee receives the "welcome from Sarah's referral" Email, then email.
    - Owner receives internal notification email.
 
 ### Test 6 — Code uniqueness
@@ -403,7 +403,7 @@ Run this complete test sequence after publishing. **Do not declare done until al
 ## Common Build Mistakes
 
 1. **URL params not reaching form hidden fields.** Hidden form field "default value" must be configured as **"Read from URL parameter"** with the parameter name matching exactly (`ref_id`, `ref_code`, `ref_name`). If GHL's form builder doesn't expose this option, use a hidden text field with the default value set via JS snippet on the form-page load.
-2. **Referrer field `referred_by_contact_id` empty.** Most common cause: members are sharing the raw landing URL without the query params (they typed it into the browser, or stripped the params when copying). Solution: always have members share via the **Send My Link** SMS — the link in that SMS is pre-built with their params.
+2. **Referrer field `referred_by_contact_id` empty.** Most common cause: members are sharing the raw landing URL without the query params (they typed it into the browser, or stripped the params when copying). Solution: always have members share via the **Send My Link** Email — the link in that Email is pre-built with their params.
 3. **PT credit balance not incrementing.** If `pt_credit_balance` shows 0 after a conversion, the arithmetic merge `{{referrer.pt_credit_balance + 1}}` isn't being evaluated by GHL. Switch Step 4.5 to a Webhook that calls the GHL API to add 1 to the field.
 4. **Referrer notification fires for the referrer themself.** Bug: the workflow updates the *triggering* contact's fields instead of the *referrer's*. Fix: every action in Workflow 2 that targets the referrer must explicitly use the `referrer` lookup variable, not implicit "contact."
 5. **Code collisions on same-first-name members.** If you used the simpler Approach B in Step 3.2 and two contacts have contact IDs ending in the same 2 chars, you get duplicate codes. Approach A (webhook with rejection-on-collision logic) is more robust at scale. Acceptable for studios under 500 members; rebuild as Approach A above that.

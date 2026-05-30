@@ -84,7 +84,7 @@ Total estimated revenue left on the table: **$8,000–$15,000 / month** in lost 
 
 After the full build:
 
-- A lead from any source (web, IG, Google, walk-in) is in GHL within 60 seconds, tagged by source, and getting an SMS within 5 minutes.
+- A lead from any source (web, IG, Google, walk-in) is in GHL within 60 seconds, tagged by source, and getting an Email within 5 minutes.
 - Every trial member is in a 7-day nurture sequence that ends with a paid-conversion offer.
 - Every appointment sends three reminders and triggers a rebooking sequence if missed.
 - Every new member goes through a 30-day onboarding pipeline with check-ins at day 3, 7, 14, and 30.

@@ -8,7 +8,7 @@
 
 **Template name:** `06 — Basic to Premium Pitch`
 
-**Send timing:** 1 day after the Basic→Premium nudge SMS (Branch A, step 5)
+**Send timing:** 1 day after the Basic→Premium nudge Email (Branch A, step 5)
 
 **From:**
 - Name: `{{custom_values.team.owner_first}} from {{custom_values.business.short_name}}`
@@ -117,7 +117,7 @@
 
 **Template name:** `06 — Premium to VIP Math Email`
 
-**Send timing:** 1 day after the Premium→VIP personal SMS from Morgan (Branch B, step 5)
+**Send timing:** 1 day after the Premium→VIP personal Email from Morgan (Branch B, step 5)
 
 **From:** Same as Email 1.
 
@@ -182,7 +182,7 @@
 
 **Soft alternative:**
 
-> If you want to talk it through before committing, just hit reply or text me. I can also pull up your full PT history and we can look at it together — sometimes the math looks different on paper than what feels right.
+> If you want to talk it through before committing, just hit reply or email me. I can also pull up your full PT history and we can look at it together — sometimes the math looks different on paper than what feels right.
 > 
 > No urgency on this one. VIP will be here when you're ready.
 
@@ -427,7 +427,7 @@
 
 **Suppression honored:**
 - `do-not-market` tag suppresses all upsell emails system-wide.
-- `do-not-email` blocks emails specifically; SMS branch can still fire.
+- `do-not-email` blocks emails specifically; Email branch can still fire.
 - A contact who replies "stop sending upsell offers" gets tagged `do-not-market` automatically by the inbound-handler workflow.
 
 ---
@@ -436,6 +436,6 @@
 
 After the email sequence:
 
-- **Member converts:** Tag `upsell-converted-*` applied. Workflow 06 conversion path fires. Celebration SMS lands 1 hour after purchase. Owner gets a Win notification. Member enters relevant onboarding mini-flow.
+- **Member converts:** Tag `upsell-converted-*` applied. Workflow 06 conversion path fires. Celebration Email lands 1 hour after purchase. Owner gets a Win notification. Member enters relevant onboarding mini-flow.
 - **Member declines or ignores:** Tag `upsell-declined-*-30d` applied. 30-day cooldown enforced. Workflow re-evaluates after cooldown clears.
 - **Member replies:** Reply routes to studio inbox. Owner / specialist handles personally. Auto-workflow pauses to avoid stepping on the conversation.

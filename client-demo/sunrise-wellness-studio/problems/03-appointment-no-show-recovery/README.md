@@ -44,8 +44,8 @@ graph LR
     BOOK[Appointment Booked<br/>PT / Consult / Class] --> WF1[Reminder Cadence Workflow]
 
     WF1 --> R48[48hr Email Reminder<br/>calendar add + prep tips]
-    WF1 --> R24[24hr SMS Reminder<br/>1-tap confirm or reschedule]
-    WF1 --> R2[2hr SMS Reminder<br/>directions + parking note]
+    WF1 --> R24[24hr Email Reminder<br/>1-tap confirm or reschedule]
+    WF1 --> R2[2hr Email Reminder<br/>directions + parking note]
 
     R24 --> Confirm{Confirms?}
     Confirm -->|Yes| Tagged[Tag: apt-confirmed]
@@ -53,12 +53,12 @@ graph LR
 
     BOOK -.-> APT[Appointment Time]
     APT --> Status{Show or No-Show?}
-    Status -->|Showed| Done[apt-completed<br/>thanks + book-next SMS]
+    Status -->|Showed| Done[apt-completed<br/>thanks + book-next Email]
     Status -->|No-show| WF2[No-Show Recovery Workflow]
 
-    WF2 --> N1[T+2hr: We-missed-you SMS<br/>warm, no guilt]
+    WF2 --> N1[T+2hr: We-missed-you Email<br/>warm, no guilt]
     N1 --> N2[T+24hr: Rebook email<br/>one-click reschedule link]
-    N2 --> N3[T+72hr: Final personal SMS<br/>from Morgan]
+    N2 --> N3[T+72hr: Final personal Email<br/>from Morgan]
 
     N1 -.->|Rebooks| Rebook[apt-rescheduled<br/>exit recovery]
 
@@ -75,9 +75,9 @@ graph LR
 
 **Three components:**
 
-1. **Reminder Cadence Workflow** — fires on every appointment booking. Sends 48hr email + 24hr SMS + 2hr SMS. 24hr SMS lets the member confirm or reschedule in one tap.
+1. **Reminder Cadence Workflow** — fires on every appointment booking. Sends 48hr email + 24hr Email + 2hr Email. 24hr Email lets the member confirm or reschedule in one tap.
 2. **No-Show Detection** — triggered by appointment status changing to "no-show" in GHL Calendar (manual flip by trainer, or automatic 15-min-after-start rule).
-3. **No-Show Recovery Workflow** — runs T+2hr (we-missed-you SMS), T+24hr (rebook email), T+72hr (final personal SMS from Morgan). One-click rebook link in every message.
+3. **No-Show Recovery Workflow** — runs T+2hr (we-missed-you Email), T+24hr (rebook email), T+72hr (final personal Email from Morgan). One-click rebook link in every message.
 
 ---
 
@@ -89,7 +89,7 @@ Move these numbers within 60 days of launch:
 |---|---|---|---|
 | PT no-show rate | 18% | **<8%** | `apt-noshow` count ÷ total PT appointments, rolling 30-day |
 | Class no-show rate | 12% | **<5%** | Same for class appointments |
-| Confirmation rate (24hr SMS reply) | n/a (no reminders) | **70%+** | `apt-confirmed` count ÷ total reminders sent |
+| Confirmation rate (24hr Email reply) | n/a (no reminders) | **70%+** | `apt-confirmed` count ÷ total reminders sent |
 | Rebook-after-noshow rate | ~25% | **60%+** | Rebooked within 72hr ÷ total no-shows |
 | Repeat no-show rate (member with 2+ in 30 days) | ~8% | **<3%** | `apt-noshow-repeat` count ÷ active members |
 
@@ -108,7 +108,7 @@ Before:
 After:
 
 - Every appointment has 3 reminders going out automatically. No-show rate drops 60%+ from reminders alone.
-- The instant a no-show is marked, the member gets a warm SMS in 2 hours. About half rebook within 72 hours — automatically, no front-desk effort.
+- The instant a no-show is marked, the member gets a warm Email in 2 hours. About half rebook within 72 hours — automatically, no front-desk effort.
 - Repeat no-shows (2+ in 30 days) get auto-tagged `apt-noshow-repeat` and surface in the owner's Monday digest. She makes one personal call. That single call saves the member 30% of the time.
 - Trainers stop venting about no-shows because there are far fewer, and the ones that happen have a system handling them.
 
@@ -121,7 +121,7 @@ Full step-by-step build in **[build.md](build.md)** — calendar configuration, 
 Production copy for every asset:
 
 - **[assets/emails.md](assets/emails.md)** — 48hr reminder + post-noshow rebook email
-- **[assets/sms.md](assets/sms.md)** — 5 SMS templates (24hr reminder, 2hr reminder, 2hr post-noshow, 72hr final, rebook-confirmation)
+- **[assets](assets)** — 5 Email templates (24hr reminder, 2hr reminder, 2hr post-noshow, 72hr final, rebook-confirmation)
 - **[assets/workflow.md](assets/workflow.md)** — both workflows specified, with mermaid diagrams
 
 ---

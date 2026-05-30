@@ -28,7 +28,7 @@ Conservative math for a studio with **240 active members** and **12 cancellation
 
 Without this system: $4,840/mo walks out the door **and is never recovered**. Over 12 months: **$58,000+ in lost LTV** for a single 240-member studio.
 
-The failed-payment intervention alone — sending a "your payment didn't go through, here's a one-tap fix" SMS within 60 minutes — typically recovers 60–80% of involuntary cancels. It's the highest-leverage automation in this entire build.
+The failed-payment intervention alone — sending a "your payment didn't go through, here's a one-tap fix" Email within 60 minutes — typically recovers 60–80% of involuntary cancels. It's the highest-leverage automation in this entire build.
 
 ---
 
@@ -44,7 +44,7 @@ graph TD
     Why -->|Cost / Time / Switched / Not Using| Vol[Voluntary Track<br/>gentle, paced]
     Why -->|Moved / Injury| Quiet[Quiet Track<br/>day-1 goodbye only]
 
-    Inv --> InvSMS[Within 1hr: 'card declined' SMS + email<br/>one-tap fix link]
+    Inv --> InvSMS[Within 1hr: 'card declined' emails<br/>one-tap fix link]
     InvSMS --> InvRecover{Recovered?}
     InvRecover -->|Yes| InvSave[Saved: member-active stays]
     InvRecover -->|No, 48hr| VolEnter[Enters voluntary track]
@@ -80,7 +80,7 @@ graph TD
 **Four components:**
 
 1. **Win-Back Sequence Workflow (voluntary)** — runs across 90 days, walks the Retention pipeline through Win-Back D30 → D60 → D90, sends progressively warmer offers (50% off → $39 → $29). Branches on `cancel_reason` so we don't pitch reactivation to "I moved away."
-2. **Failed-Payment Intervention (involuntary)** — fires within 1 hour of a payment failure, sends a "quick fix" SMS + email with a one-tap update-card link. Aggressive but warm. If 48 hours pass without recovery, transitions to the voluntary track at D30.
+2. **Failed-Payment Intervention (involuntary)** — fires within 1 hour of a payment failure, sends a "quick fix" emails with a one-tap update-card link. Aggressive but warm. If 48 hours pass without recovery, transitions to the voluntary track at D30.
 3. **Comeback Offer Funnel** — a checkout page that reads `?wb=30|60|90` from the URL and auto-applies the matching coupon (`WB30`, `WB60`, `WB90LAST`). No code entry, no friction — they click, see "first month $39, already applied," and convert in 30 seconds.
 4. **Reactivation Detection** — when a lapsed member completes the checkout, `member-reactivated` tag fires; the Retention pipeline moves to "Reactivated" stage; the workflow exits cleanly; the member enters the standard #04 onboarding flow (treated as a fresh start, not a "welcome back").
 
@@ -113,7 +113,7 @@ Before:
 After:
 
 - Diane cancels. Day 1: gentle goodbye email from Morgan ("you mattered here — door's always open"). Day 30: warm check-in + 50% off her first month back. She doesn't click. Day 60: stronger offer, $39 first month. She clicks, checks out in 30 seconds, gets the same "you're back!" reception Morgan gives every reactivation. Net win.
-- Marcus's card declines. Within 45 minutes he gets a SMS: "Hey Marcus, your card on file just declined — one tap to update: [link]. No urgency, you've got 5 days." He fixes it from his phone in the Uber. Membership uninterrupted.
+- Marcus's card declines. Within 45 minutes he gets a Email: "Hey Marcus, your card on file just declined — one tap to update: [link]. No urgency, you've got 5 days." He fixes it from his phone in the Uber. Membership uninterrupted.
 - Morgan opens her Monday digest. "**3 reactivations this week. $3,300 recovered LTV.**" The win-back system is now a line item, not a hope.
 
 ---
@@ -126,7 +126,7 @@ Production copy for every asset:
 
 - **[assets/funnel.md](assets/funnel.md)** — Comeback Offer Funnel with auto-coupon-by-URL logic
 - **[assets/emails.md](assets/emails.md)** — 5 emails (Day-1 goodbye, Day-30 check-in, Day-60 offer, Day-90 last call, Failed-payment intervention)
-- **[assets/sms.md](assets/sms.md)** — 4 SMS (Day-30 light, Day-60 reminder, Day-90 urgency, Failed-payment immediate)
+- **[assets](assets)** — 4 Email (Day-30 light, Day-60 reminder, Day-90 urgency, Failed-payment immediate)
 - **[assets/workflow.md](assets/workflow.md)** — both workflows: Win-Back Sequence (voluntary, 90d) + Failed-Payment Intervention (involuntary, 48hr)
 
 ---

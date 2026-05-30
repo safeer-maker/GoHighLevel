@@ -148,7 +148,7 @@ Production assets:
 - **[assets/emails.md](assets/emails.md)** — Monday digest email template (the centerpiece), daily summary email, alert email templates
 - **[assets/workflow.md](assets/workflow.md)** — Weekly Digest workflow, Daily Summary workflow, Alerts workflow
 
-No funnel, no SMS, no forms — this system is owner-facing only.
+No funnel, no Email, no forms — this system is owner-facing only.
 
 ---
 

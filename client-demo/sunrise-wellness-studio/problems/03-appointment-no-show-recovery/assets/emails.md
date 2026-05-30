@@ -213,6 +213,6 @@
 
 The reminder cadence finishes when the appointment ends. The post-no-show recovery picks up automatically when status flips to `No-Show`.
 
-For SMS counterparts (24hr confirm, 2hr reminder, post-noshow 2hr, post-noshow 72hr final, rebook confirmation), see **[sms.md](sms.md)**.
+For Email counterparts (24hr confirm, 2hr reminder, post-noshow 2hr, post-noshow 72hr final, rebook confirmation), see **[]()**.
 
-For the workflow that orchestrates both emails alongside the SMS, see **[workflow.md](workflow.md)**.
+For the workflow that orchestrates both emails alongside the Email, see **[workflow.md](workflow.md)**.

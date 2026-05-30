@@ -21,7 +21,7 @@ Prefixes group tags by purpose:
 | `apt-` | Appointment state | `apt-noshow`, `apt-rescheduled`, `apt-completed` |
 | `interest-` | Behavioral interest signal | `interest-pt`, `interest-nutrition`, `interest-vip` |
 | `campaign-` | Active in a campaign | `campaign-winback-d30`, `campaign-spring-launch` |
-| `do-not-` | Suppression flags | `do-not-sms`, `do-not-email`, `do-not-call` |
+| `do-not-` | Suppression flags | `do-not-email`, `do-not-email`, `do-not-call` |
 
 Tags are **additive** — a contact can have many. A single member could simultaneously have `member-active`, `tier-premium`, `interest-nutrition`, and `risk-watching`.
 
@@ -34,8 +34,8 @@ Tags are **additive** — a contact can have many. A single member could simulta
 | Tag | When applied | When removed | Used by |
 |---|---|---|---|
 | `lead-new` | Form submission (any source) | When `lead-contacted` is added | #01 |
-| `lead-contacted` | First SMS or email sent | When `trial-active` or `member-active` is added | #01 |
-| `lead-responded` | Contact replies to SMS/email | When `trial-active` is added | #01 |
+| `lead-contacted` | First Email or email sent | When `trial-active` or `member-active` is added | #01 |
+| `lead-responded` | Contact replies to Email/email | When `trial-active` is added | #01 |
 | `lead-cold` | 14 days with no response | When contact replies | #01 |
 | `lead-lost` | 60 days no engagement | (manual cleanup) | #01 |
 
@@ -121,14 +121,14 @@ Tags are **additive** — a contact can have many. A single member could simulta
 | `campaign-winback-d30` | In day-30 win-back step | After day 30 step fires | #09 |
 | `campaign-winback-d60` | In day-60 win-back step | After day 60 step fires | #09 |
 | `campaign-winback-d90` | In day-90 win-back step | After day 90 step fires | #09 |
-| `campaign-review-ask` | Sent review-ask SMS | 30 days after | #07 |
+| `campaign-review-ask` | Sent review-ask Email | 30 days after | #07 |
 | `campaign-referral-promoter` | Tagged as a top referrer (quarterly) | Next quarter | #08 |
 
 ### Suppression / consent
 
 | Tag | Meaning | Used by |
 |---|---|---|
-| `do-not-sms` | Hard block on SMS sends | Every SMS-sending workflow checks |
+| `do-not-email` | Hard block on Email sends | Every Email-sending workflow checks |
 | `do-not-email` | Hard block on email sends | Every email-sending workflow checks |
 | `do-not-call` | Hard block on outbound calls | Owner / staff awareness |
 | `do-not-market` | Suppresses all marketing (keeps transactional) | All marketing workflows |

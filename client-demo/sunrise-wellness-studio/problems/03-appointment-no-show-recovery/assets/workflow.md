@@ -55,13 +55,13 @@
 | **Wait Until** | `appointment.start_time - 24 hours` |
 | **Quiet hour rule** | If 9 PM – 8 AM, shift to 8 AM |
 
-#### Action 5 — Send 24hr SMS
+#### Action 5 — Send 24hr Email
 
 | Property | Value |
 |---|---|
 | **Skip if** | Appointment status is `Cancelled` |
-| **Skip if** | Contact has tag `do-not-sms` |
-| **Template** | `03 — 24hr Confirm SMS` (Message A) |
+| **Skip if** | Contact has tag `do-not-email` |
+| **Template** | `03 — 24hr Confirm Email` (Message A) |
 
 #### Action 6 — Wait until T-2hr
 
@@ -70,14 +70,14 @@
 | **Wait Until** | `appointment.start_time - 2 hours` |
 | **Quiet hour rule** | None — 2hr reminder fires whenever (catches early morning, late evening appts) |
 
-#### Action 7 — Send 2hr SMS
+#### Action 7 — Send 2hr Email
 
 | Property | Value |
 |---|---|
 | **Skip if** | Appointment status is `Cancelled` |
 | **Skip if** | Contact has tag `apt-rescheduled` for this appointment |
-| **Skip if** | Contact has tag `do-not-sms` |
-| **Template** | `03 — 2hr Reminder SMS` (Message B) |
+| **Skip if** | Contact has tag `do-not-email` |
+| **Template** | `03 — 2hr Reminder Email` (Message B) |
 
 #### Action 8 — Exit Workflow
 
@@ -91,9 +91,9 @@ graph TD
     A1 --> W1[Wait until T-48hr]
     W1 --> A2[Send 48hr Email]
     A2 --> W2[Wait until T-24hr]
-    W2 --> A3[Send 24hr SMS<br/>C to confirm / R to reschedule]
+    W2 --> A3[Send 24hr Email<br/>C to confirm / R to reschedule]
     A3 --> W3[Wait until T-2hr]
-    W3 --> A4[Send 2hr SMS<br/>directions + parking]
+    W3 --> A4[Send 2hr Email<br/>directions + parking]
     A4 --> EX1((Exit Workflow))
 
     classDef trigger fill:#FFE082,stroke:#F57F17
@@ -171,11 +171,11 @@ Open contact: {{contact_url}}
 | **Wait** | 2 hours |
 | **Why** | Sending instantly reads as automated guilt-trip. 2hr buffer reads as human concern. |
 
-#### Action 4 — Send T+2hr SMS
+#### Action 4 — Send T+2hr Email
 
 | Property | Value |
 |---|---|
-| **Skip if** | Contact has `do-not-sms` |
+| **Skip if** | Contact has `do-not-email` |
 | **Skip if** | Contact rebooked already (tag `apt-rescheduled` post-noshow) |
 | **Template** | `03 — Post No-Show — 2hr` (Message C) |
 
@@ -200,13 +200,13 @@ Open contact: {{contact_url}}
 |---|---|
 | **Wait** | 48 hours |
 
-#### Action 8 — Send T+72hr personal SMS (if not rebooked)
+#### Action 8 — Send T+72hr personal Email (if not rebooked)
 
 | Property | Value |
 |---|---|
 | **If/Else** | Contact has `apt-rescheduled`? |
 | **YES** | Exit workflow |
-| **NO** | Send SMS `03 — Post No-Show — 72hr Final` (Message D) |
+| **NO** | Send Email `03 — Post No-Show — 72hr Final` (Message D) |
 | **Quiet hour rule** | Send between 10 AM – 4 PM contact-local. |
 
 #### Action 9 — Exit Workflow
@@ -220,7 +220,7 @@ graph TD
     C1 -->|Yes| A1y[Tag apt-noshow-repeat<br/>Notify Morgan]
     C1 -->|No| W1
     A1y --> W1[Wait 2 hours]
-    W1 --> A2[Send T+2hr SMS:<br/>We missed you, rebook link]
+    W1 --> A2[Send T+2hr Email:<br/>We missed you, rebook link]
     A2 --> W2[Wait 22 hours = T+24hr]
     W2 --> C2{Rebooked?}
     C2 -->|Yes| EX1((Exit))
@@ -228,7 +228,7 @@ graph TD
     A3 --> W3[Wait 48 hours = T+72hr]
     W3 --> C3{Rebooked?}
     C3 -->|Yes| EX2((Exit))
-    C3 -->|No| A4[Send 72hr Personal SMS<br/>from Morgan, no link]
+    C3 -->|No| A4[Send 72hr Personal Email<br/>from Morgan, no link]
     A4 --> EX3((Exit))
 
     classDef trigger fill:#FFE082,stroke:#F57F17
@@ -254,7 +254,7 @@ graph TD
 |---|---|
 | **Workflow Name** | `03 — Appointment Reply Handler` |
 | **Folder** | `03 - Appointments` |
-| **Trigger** | Inbound SMS Received |
+| **Trigger** | Inbound Email Received |
 | **Filter** | Contact has any of: `apt-pending`, `apt-noshow` |
 
 ### Actions
@@ -270,7 +270,7 @@ graph TD
 | "cancel" / "can't make it" / "X" | Mark appointment Cancelled (via internal action or front-desk notification) | "Got it — cancelled. Reply BOOK when you're ready for the next one." |
 | Day/time text (e.g., "thursday 5pm") | Add tag `apt-front-desk-action` | Internal notification to front desk. No auto-reply. |
 | General question | Add tag `apt-needs-response` | Internal notification to Morgan. No auto-reply. |
-| "STOP" | GHL auto-handles. Add tag `do-not-sms`. | (system message) |
+| "STOP" | GHL auto-handles. Add tag `do-not-email`. | (system message) |
 
 ---
 
@@ -292,10 +292,10 @@ graph TD
 | 1 | Add Tag | `apt-completed` |
 | 2 | Update Contact Field (PT only) | `last_pt_session_date` = today; `total_pt_sessions` += 1 |
 | 3 | Wait | 1 hour |
-| 4 | Send SMS | Template `03 — Post-Appointment Thank You` (Message F from sms.md) |
+| 4 | Send Email | Template `03 — Post-Appointment Thank You` (Message F from) |
 | 5 | Exit | |
 
-**SMS body (already in sms.md as Message F):**
+**Email body (already in as Message F):**
 
 > Hey {{first_name}}, great work today 👏 {{contact.assigned_trainer}} said you crushed it. Want to lock in next week? {{custom_values.business.booking_url}}
 
@@ -309,8 +309,8 @@ graph TD
 | Member reschedules — does old workflow run end? | Yes — the new appointment booking creates a new workflow run. The old run's actions check status and skip if status != Booked/Confirmed. |
 | Member no-shows but trainer forgets to mark | If "auto mark no-show" calendar setting is enabled (15 min after start), it fires automatically. Otherwise, trainer-manual flip is required. Best practice: enable auto. |
 | Two no-shows in 30 minutes (e.g., back-to-back appointments) | Each no-show triggers Workflow 2 separately. The debounce filter (no `apt-noshow` tag in last 30 min) prevents the second trigger. Result: only the first no-show fires the recovery. The second updates `noshow_count_90d` only. **Adjust if your studio wants both to fire independently.** |
-| Member rebooks via the T+2hr SMS link | New appointment is booked → reminder workflow fires for new appt. Recovery workflow's next check (Action 6 or 8) sees `apt-rescheduled` and exits. |
-| Member has `do-not-sms` | All SMS actions skip. Recovery still sends the T+24hr email. T+72hr personal SMS skipped — no human-touch attempt. (Recommend: front-desk personal call as fallback for these contacts.) |
+| Member rebooks via the T+2hr Email link | New appointment is booked → reminder workflow fires for new appt. Recovery workflow's next check (Action 6 or 8) sees `apt-rescheduled` and exits. |
+| Member has `do-not-email` | All Email actions skip. Recovery still sends the T+24hr email. T+72hr personal Email skipped — no human-touch attempt. (Recommend: front-desk personal call as fallback for these contacts.) |
 | Member is mid-vacation (`member-paused`) | Reminders skip — no appointments should be on the calendar anyway. Add filter to trigger: NOT `member-paused`. |
 | Trainer is the no-show (not the member) | Different workflow. This is a trainer-management issue, not member-recovery. Out of scope. Build a separate "Trainer Late/No-Show Alert" workflow for that. |
 

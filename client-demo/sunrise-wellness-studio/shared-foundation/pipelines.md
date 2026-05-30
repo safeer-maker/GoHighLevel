@@ -29,10 +29,10 @@ The same contact can have an opportunity in multiple pipelines simultaneously. T
 | Order | Stage Name | Enter Condition | Exit Condition | Won/Lost? |
 |---|---|---|---|---|
 | 1 | **New Lead** | Form submitted, walk-in logged, or referral signup | Contact replies OR trial booked | — |
-| 2 | **Contacted** | First outbound SMS or email sent | Contact replies OR 14 days elapsed | — |
+| 2 | **Contacted** | First outbound Email or email sent | Contact replies OR 14 days elapsed | — |
 | 3 | **Trial Booked** | Trial appointment exists on calendar | Trial start date | — |
 | 4 | **Trial Active** | Trial start date passes | Day 7 of trial | — |
-| 5 | **Conversion Offer Sent** | Day 5–7 of trial, offer email/SMS fires | Member pays OR declines | — |
+| 5 | **Conversion Offer Sent** | Day 5–7 of trial, offer email/Email fires | Member pays OR declines | — |
 | 6 | **Won — Paid Member** | Successful first payment | (terminal — opportunity status "Won") | ✅ Won |
 | 7 | **Lost — Trial Expired** | Day 7 with no conversion | (terminal — status "Lost") | ❌ Lost |
 | 8 | **Lost — Never Engaged** | 30 days no engagement from "Contacted" | (terminal — status "Lost") | ❌ Lost |
@@ -59,7 +59,7 @@ Set opportunity value = `monthly_rate × 12` so the kanban total reflects projec
 
 | Order | Stage Name | Enter Condition | Exit Condition | Won/Lost? |
 |---|---|---|---|---|
-| 1 | **Welcome Sent (Day 0)** | First payment processed | Day 1 SMS/email fires | — |
+| 1 | **Welcome Sent (Day 0)** | First payment processed | Day 1 Email/email fires | — |
 | 2 | **First Visit Confirmed** | `last_visit_date` populated | 7 days from join | — |
 | 3 | **Week 1 Check-In** | Day 7 reached | Member replies or day 14 | — |
 | 4 | **Two-Week Milestone** | Day 14, member has visited 2+ times | Day 21 | — |

@@ -250,7 +250,7 @@ Build these in **Contacts > Smart Lists** for owner visibility:
 | **Folder** | `05 - Retention` |
 | **Status** | Published / On |
 | **Re-entry** | **Disabled** — but trigger-tag mechanism allows the same contact to run again on a *new* downward transition |
-| **Quiet hours respected** | Yes — SMS sends limited to 9 AM – 6 PM contact-local |
+| **Quiet hours respected** | Yes — Email sends limited to 9 AM – 6 PM contact-local |
 
 ### Trigger
 
@@ -280,8 +280,8 @@ Severity wins — if a contact somehow has both `transition-to-watching` AND `tr
 
 | Step | Action | Property |
 |---|---|---|
-| A.1 | Send SMS | Template: `05 — Watching Soft Check-In`. Skip if `do-not-sms` OR `sms_opt_in` ≠ Yes. |
-| A.2 | (Fallback) Send Email | Only IF `do-not-sms`. Template: `05 — Watching Soft Check-In` email version. Skip if `do-not-email`. |
+| A.1 | Send Email | Template: `05 — Watching Soft Check-In`. Skip if `do-not-email` OR `sms_opt_in` ≠ Yes. |
+| A.2 | (Fallback) Send Email | Only IF `do-not-email`. Template: `05 — Watching Soft Check-In` email version. Skip if `do-not-email`. |
 | A.3 | Add Tag | `campaign-retention-watching` |
 | A.4 | Remove Tag | `transition-to-watching` |
 | A.5 | Wait | 7 days |
@@ -296,7 +296,7 @@ Severity wins — if a contact somehow has both `transition-to-watching` AND `tr
 | Step | Action | Property |
 |---|---|---|
 | B.1 | Move Pipeline | Retention → **Save In Progress** stage |
-| B.2 | Send SMS | Template: `05 — At-Risk Warm Hello`. Skip if `do-not-sms` OR `sms_opt_in` ≠ Yes. |
+| B.2 | Send Email | Template: `05 — At-Risk Warm Hello`. Skip if `do-not-email` OR `sms_opt_in` ≠ Yes. |
 | B.3 | Wait | 4 hours, respecting 9 AM – 6 PM contact-local |
 | B.4 | Send Email | Template: `05 — At-Risk Personal from Morgan`. Skip if `do-not-email` OR `email_opt_in` ≠ Yes. |
 | B.5 | Wait | 2 days |
@@ -324,7 +324,7 @@ Severity wins — if a contact somehow has both `transition-to-watching` AND `tr
 | C.5 | If/Else | Has tag `vip-do-not-disturb`? |
 | C.5 YES | Skip C.6 (owner handles 100%). Jump to C.7. |
 | C.5 NO | Continue to C.6. |
-| C.6 | Send SMS | **From: Owner's personal number** (not the general SMS number). Template: `05 — Critical Owner-Personal SMS`. Skip if `do-not-sms`. |
+| C.6 | Send Email | **From: Owner's personal number** (not the general Email number). Template: `05 — Critical Owner-Personal Email`. Skip if `do-not-email`. |
 | C.7 | Wait | 5 days |
 | C.8 | If/Else | Has `retention-reply-received` tag OR `last_visit_date` within 5 days? |
 | C.8 YES | Add Tag `save-critical-success-pending`. Notify Owner: "Saved — {{contact.first_name}} re-engaged after Critical." |
@@ -341,7 +341,7 @@ graph TD
     T[Tag Added:<br/>transition-to-*] --> Sev{Severity branch}
     Sev -->|Critical| C1[Move pipeline to Critical]
     Sev -->|At-Risk| B1[Move pipeline to Save In Progress]
-    Sev -->|Watching| A1[Send Watching SMS]
+    Sev -->|Watching| A1[Send Watching Email]
 
     A1 --> A2[Add campaign-retention-watching]
     A2 --> A3[Wait 7 days]
@@ -349,7 +349,7 @@ graph TD
     AC -->|Yes| AS[Add save-watching-success]
     AC -->|No| AE((Exit - next night re-evaluates))
 
-    B1 --> B2[Send At-Risk SMS]
+    B1 --> B2[Send At-Risk Email]
     B2 --> B3[Wait 4hr]
     B3 --> B4[Send Personal Email from Morgan]
     B4 --> B5[Wait 2 days]
@@ -365,7 +365,7 @@ graph TD
     C2 --> C3[Wait 2hr]
     C3 --> CC1{VIP-do-not-disturb?}
     CC1 -->|Yes| C7[Wait 5 days]
-    CC1 -->|No| C6[Owner-Personal SMS]
+    CC1 -->|No| C6[Owner-Personal Email]
     C6 --> C7
     C7 --> CC2{Re-engaged?}
     CC2 -->|Yes| CSP[Add save-critical-success-pending]
@@ -399,12 +399,12 @@ graph TD
 
 | Scenario | Behavior |
 |---|---|
-| Contact transitions Watching → At-Risk before A.5 wait completes | Branch A's wait continues. Meanwhile Branch B fires from new transition tag. Member gets both Watching SMS and At-Risk SMS. **Acceptable** but spacing matters — the 4-hour wait in B.3 protects against same-minute double-send. If concerned, add a "frequency cap" check at B.2: skip SMS if any retention SMS sent in last 48 hours. |
+| Contact transitions Watching → At-Risk before A.5 wait completes | Branch A's wait continues. Meanwhile Branch B fires from new transition tag. Member gets both Watching Email and At-Risk Email. **Acceptable** but spacing matters — the 4-hour wait in B.3 protects against same-minute double-send. If concerned, add a "frequency cap" check at B.2: skip Email if any retention Email sent in last 48 hours. |
 | Contact transitions At-Risk → Critical mid-sequence | Branch B is in progress. New transition-to-critical tag triggers Branch C in parallel. **This is the intended escalation behavior** — Critical gets owner intervention even if B is still running. |
-| Contact replies during waits | `retention-reply-received` tag applied by inbound-SMS handler. B.6 / C.8 If/Else checks pick it up. |
+| Contact replies during waits | `retention-reply-received` tag applied by inbound-email handler. B.6 / C.8 If/Else checks pick it up. |
 | Contact cancels mid-sequence | `member-cancelled` tag added. Workflow 05d fires (separate workflow) and moves contact to Lost-Cancelled. Workflow B continues but its messages will mostly be no-ops since the contact already cancelled. Add a top-level filter: "Skip remaining steps if `member-cancelled`." |
-| `vip-do-not-disturb` contact hits At-Risk | Branch B's automated email + SMS may still feel intrusive. **Modification:** B.2 and B.7 should check the VIP flag and skip messaging — only owner notification in B.6's YES branch fires. |
-| Owner doesn't complete the Critical task in 48hr | Task overdue alert auto-fires (GHL native). The auto-SMS in C.6 already went out, so the member has had contact. Owner gets a follow-up alert in 7 days as a reminder. |
+| `vip-do-not-disturb` contact hits At-Risk | Branch B's automated emails may still feel intrusive. **Modification:** B.2 and B.7 should check the VIP flag and skip messaging — only owner notification in B.6's YES branch fires. |
+| Owner doesn't complete the Critical task in 48hr | Task overdue alert auto-fires (GHL native). The auto-Email in C.6 already went out, so the member has had contact. Owner gets a follow-up alert in 7 days as a reminder. |
 
 ---
 
@@ -432,7 +432,7 @@ graph TD
 | 2 | Notify owner | Email template `05 — Save Win Celebration` |
 | 3 | Remove tags | `save-at-risk-success-pending`, `save-critical-success-pending`, `campaign-retention-watching` |
 | 4 | Add tag | `member-saved` (permanent badge) |
-| 5 | (Optional) Send SMS | Template `05 — Save Confirmed Thank You`. Toggle off if studio prefers no acknowledgment. |
+| 5 | (Optional) Send Email | Template `05 — Save Confirmed Thank You`. Toggle off if studio prefers no acknowledgment. |
 | 6 | Wait | 30 days |
 | 7 | Add tag | `save-mature-30d` — opens upsell readiness in [#06](../../06-upsell-and-cross-sell/) |
 | 8 | Exit |

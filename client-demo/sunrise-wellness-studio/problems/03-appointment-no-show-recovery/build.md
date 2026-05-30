@@ -54,14 +54,14 @@ Confirm merge fields resolve: `{{appointment.start_time}}`, `{{appointment.train
 
 ---
 
-## Step 3 — Build All SMS Templates (15 min)
+## Step 3 — Build All Email Templates (15 min)
 
-Navigate to **Marketing > Templates > SMS > + New Template**.
+Navigate to **Marketing > Templates > Email > + New Template**.
 
-| Template Name | When Used | From [sms.md](assets/sms.md) |
+| Template Name | When Used | From [](assets) |
 |---|---|---|
-| `03 — 24hr Confirm SMS` | Reminder workflow, T-24hr | Message A |
-| `03 — 2hr Reminder SMS` | Reminder workflow, T-2hr | Message B |
+| `03 — 24hr Confirm Email` | Reminder workflow, T-24hr | Message A |
+| `03 — 2hr Reminder Email` | Reminder workflow, T-2hr | Message B |
 | `03 — Post No-Show — 2hr` | Recovery workflow, T+2hr after no-show | Message C |
 | `03 — Post No-Show — 72hr Final` | Recovery workflow, T+72hr after no-show | Message D |
 | `03 — Rebook Confirmation` | Reply handler, when member rebooks | Message E |
@@ -101,22 +101,22 @@ Full spec in **[assets/workflow.md](assets/workflow.md)**. Build order:
 
 - **Wait Until:** `appointment.start_time - 24 hours`
 
-### 4.6 Action: Send 24hr SMS (the confirm/reschedule message)
+### 4.6 Action: Send 24hr Email (the confirm/reschedule message)
 
-- **Skip if:** Appointment status is `Cancelled` OR contact has `do-not-sms`
-- **Send SMS:** Template `03 — 24hr Confirm SMS`
+- **Skip if:** Appointment status is `Cancelled` OR contact has `do-not-email`
+- **Send Email:** Template `03 — 24hr Confirm Email`
 
-The SMS asks them to reply **C** to confirm or **R** to reschedule. See companion workflow Step 6 for handling.
+The Email asks them to reply **C** to confirm or **R** to reschedule. See companion workflow Step 6 for handling.
 
 ### 4.7 Action: Wait until 2 hours before start
 
 - **Wait Until:** `appointment.start_time - 2 hours`
 
-### 4.8 Action: Send 2hr SMS
+### 4.8 Action: Send 2hr Email
 
-- **Skip if:** Appointment status is `Cancelled` OR contact has `do-not-sms`
+- **Skip if:** Appointment status is `Cancelled` OR contact has `do-not-email`
 - **Skip if:** Contact has tag `apt-rescheduled` for *this* appointment (they already moved it)
-- **Send SMS:** Template `03 — 2hr Reminder SMS`
+- **Send Email:** Template `03 — 2hr Reminder Email`
 
 ### 4.9 Action: Exit Workflow
 
@@ -155,12 +155,12 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 
 - **Wait:** 2 hours (gives the member time to settle — sending instantly reads guilt-trippy)
 
-### 5.5 Action: Send "we missed you" SMS
+### 5.5 Action: Send "we missed you" Email
 
-- **Skip if:** Contact has `do-not-sms` OR `apt-rescheduled` already set on this appointment.
-- **Send SMS:** Template `03 — Post No-Show — 2hr` (Message C from [sms.md](assets/sms.md))
+- **Skip if:** Contact has `do-not-email` OR `apt-rescheduled` already set on this appointment.
+- **Send Email:** Template `03 — Post No-Show — 2hr` (Message C from [](assets))
 
-This SMS includes a **one-click rebook link** (`{{appointment.reschedule_url}}` if GHL supports per-appointment, else `{{custom_values.business.booking_url}}`).
+This Email includes a **one-click rebook link** (`{{appointment.reschedule_url}}` if GHL supports per-appointment, else `{{custom_values.business.booking_url}}`).
 
 ### 5.6 Action: Wait 22 hours (= T+24hr from noshow)
 
@@ -176,11 +176,11 @@ This SMS includes a **one-click rebook link** (`{{appointment.reschedule_url}}` 
 
 - **Wait:** 48 hours
 
-### 5.9 Action: Final personal SMS from Morgan
+### 5.9 Action: Final personal Email from Morgan
 
 - **If/Else:** Contact has tag `apt-rescheduled`?
   - **Yes:** Exit workflow
-  - **No:** Send SMS `03 — Post No-Show — 72hr Final` (Message D — written as personal SMS from Morgan)
+  - **No:** Send Email `03 — Post No-Show — 72hr Final` (Message D — written as personal Email from Morgan)
 
 ### 5.10 Action: Exit
 
@@ -192,12 +192,12 @@ Click **Save** then **Publish**.
 
 ---
 
-## Step 6 — Build SMS Reply Handler Workflow (15 min)
+## Step 6 — Build Email Reply Handler Workflow (15 min)
 
 Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 
 - **Workflow Name:** `03 — Appointment Reply Handler`
-- **Trigger:** Inbound SMS Received
+- **Trigger:** Inbound Email Received
 - **Filter:** Contact has any of: `apt-pending`, `apt-noshow`
 
 ### 6.1 Action: Parse message body
@@ -205,7 +205,7 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 - **If/Else:** Body matches "C" / "Confirm" / "yes" / "y" (case-insensitive)
   - **Yes:** Add Tag `apt-confirmed`. Send auto-reply: *"Confirmed, {{first_name}}! See you {{appointment.start_time_short}} ☀️"*
 - **Else If:** Body matches "R" / "Reschedule" / "move" / "change time"
-  - **Yes:** Send SMS `03 — Rebook Confirmation` (Message E — includes the rebook link). Add Tag `apt-needs-reschedule`.
+  - **Yes:** Send Email `03 — Rebook Confirmation` (Message E — includes the rebook link). Add Tag `apt-needs-reschedule`.
 - **Else If:** Body matches "cancel" / "can't make it" / "X"
   - **Yes:** Mark appointment Cancelled (via API or front-desk notification). Send reply: *"Got it — cancelled. Reply BOOK when you want to set up the next one."*
 - **Else (general question):**
@@ -217,7 +217,7 @@ Navigate to **Automation > Workflows > + Create Workflow > Start from Scratch**.
 
 ## Step 7 — Build Post-Show "Thank You" Micro-Workflow (10 min) — optional but recommended
 
-When an appointment status flips to `Showed`, fire a quick thank-you SMS (especially after PT). This builds momentum and creates the natural rebook moment.
+When an appointment status flips to `Showed`, fire a quick thank-you Email (especially after PT). This builds momentum and creates the natural rebook moment.
 
 - **Workflow Name:** `03 — Post-Appointment Thank You`
 - **Trigger:** Appointment Status Changed → `Showed`
@@ -228,7 +228,7 @@ When an appointment status flips to `Showed`, fire a quick thank-you SMS (especi
 1. Add Tag `apt-completed`.
 2. Update contact field: `last_pt_session_date` = today (only for PT calendar); `total_pt_sessions` += 1.
 3. Wait 1 hour (let them shower, get a coffee).
-4. Send SMS: *"Hey {{first_name}}, great work today 👏 {{contact.assigned_trainer}} said you crushed it. Want to lock in next week's slot? Tap here: {{custom_values.business.booking_url}}"*
+4. Send Email: *"Hey {{first_name}}, great work today 👏 {{contact.assigned_trainer}} said you crushed it. Want to lock in next week's slot? Tap here: {{custom_values.business.booking_url}}"*
 
 This is the highest-rebook-rate touchpoint in the whole system. Members are still in the endorphin high.
 
@@ -240,27 +240,27 @@ This is the highest-rebook-rate touchpoint in the whole system. Members are stil
 
 1. Book a test appointment on the PT-60 calendar for 50 hours from now.
 2. **Expected at T-48hr:** 48hr reminder email arrives.
-3. **Expected at T-24hr:** 24hr confirm SMS arrives.
-4. **Expected at T-2hr:** 2hr reminder SMS arrives.
+3. **Expected at T-24hr:** 24hr confirm Email arrives.
+4. **Expected at T-2hr:** 2hr reminder Email arrives.
 5. (For testing, manually shift wait durations to minutes.)
 
 ### Test 2 — Confirm via reply
 
-1. Book a test appointment. At T-24hr SMS reply with "C".
+1. Book a test appointment. At T-24hr Email reply with "C".
 2. **Expected:** Tag `apt-confirmed` applied. Auto-reply received.
 
 ### Test 3 — Reschedule via reply
 
-1. Book test appt. At T-24hr SMS reply with "R".
-2. **Expected:** Rebook SMS with link arrives. Tag `apt-needs-reschedule` applied.
+1. Book test appt. At T-24hr Email reply with "R".
+2. **Expected:** Rebook Email with link arrives. Tag `apt-needs-reschedule` applied.
 
 ### Test 4 — No-show recovery (single)
 
 1. Book a test appt. Let the time pass without checking in.
 2. After 15 min, auto-no-show fires (or manually mark).
-3. **Expected at T+2hr:** Post-noshow SMS arrives ("we missed you").
+3. **Expected at T+2hr:** Post-noshow Email arrives ("we missed you").
 4. **Expected at T+24hr:** Rebook email arrives.
-5. **Expected at T+72hr:** Final personal SMS from Morgan arrives.
+5. **Expected at T+72hr:** Final personal Email from Morgan arrives.
 6. `noshow_count_90d` = 1.
 
 ### Test 5 — Repeat no-show
@@ -271,13 +271,13 @@ This is the highest-rebook-rate touchpoint in the whole system. Members are stil
 
 ### Test 6 — Rebook stops recovery cadence
 
-1. Book + no-show. At T+2hr SMS, click the rebook link, book a new appt.
-2. **Expected:** Tag `apt-rescheduled` applied. T+24hr email does NOT fire. T+72hr SMS does NOT fire.
+1. Book + no-show. At T+2hr Email, click the rebook link, book a new appt.
+2. **Expected:** Tag `apt-rescheduled` applied. T+24hr email does NOT fire. T+72hr Email does NOT fire.
 
 ### Test 7 — Post-show thank you
 
 1. Book PT-60 appt. Mark `Showed`.
-2. **Expected at T+1hr:** Thank-you SMS arrives with rebook link.
+2. **Expected at T+1hr:** Thank-you Email arrives with rebook link.
 
 ---
 
@@ -285,7 +285,7 @@ This is the highest-rebook-rate touchpoint in the whole system. Members are stil
 
 1. **Reminder fires for cancelled appointments.** Forgot the "Appointment status is not Cancelled" filter on each reminder send. Add it.
 2. **`noshow_count_90d` keeps growing forever.** Field doesn't auto-reset. Build a nightly cleanup workflow: for any contact, decrement `noshow_count_90d` by 1 each time a no-show is > 90 days old. (Or run a weekly recompute from appointment history.)
-3. **24hr SMS goes out at 3 AM.** GHL doesn't auto-respect quiet hours for appointment-time-relative sends. Add a check: if T-24hr falls between 9 PM and 8 AM contact-local, send at 8 AM instead.
+3. **24hr Email goes out at 3 AM.** GHL doesn't auto-respect quiet hours for appointment-time-relative sends. Add a check: if T-24hr falls between 9 PM and 8 AM contact-local, send at 8 AM instead.
 4. **Rebook link doesn't pre-fill member info.** Use `{{appointment.reschedule_url}}` if GHL exposes it; otherwise use the contact's deep-link booking URL.
 5. **Group-class no-shows trigger PT-style recovery.** Build the no-show recovery filter to either include or exclude group classes deliberately — over-messaging on group classes is more annoying than valuable; PT/consult messaging is the high-value version. Recommend: exclude group classes from full T+24hr/T+72hr cadence, send only the T+2hr soft note.
 6. **Trainer notified twice.** If the auto-no-show fires AND the trainer manually marks, the workflow may double-fire. Use the "Status changed to No-Show" trigger with a debounce: skip if `apt-noshow` tag was added in last 30 min.

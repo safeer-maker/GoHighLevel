@@ -14,7 +14,7 @@
 | **Folder** | `08 - Referral Engine` |
 | **Status** | Published / On |
 | **Re-entry** | Disabled (one contact = one workflow run) |
-| **Quiet hours respected** | Yes (the 24hr-later SMS lands in late-morning local time) |
+| **Quiet hours respected** | Yes (the 24hr-later Email lands in late-morning local time) |
 
 ---
 
@@ -82,15 +82,15 @@ This tag is purely an audit marker — lets you build a smart list of members wh
 
 ---
 
-#### Action 5 — Send Member Referral Invite SMS
+#### Action 5 — Send Member Referral Invite Email
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS |
+| **Action type** | Send Email |
 | **From** | `{{custom_values.business.sms_number}}` |
 | **To** | `{{contact.phone}}` |
-| **Template** | `08 — Member Referral Invite` (from [sms.md](sms.md), message A) |
-| **Skip if** | Contact has tag `do-not-sms` OR `sms_opt_in` ≠ "Yes" |
+| **Template** | `08 — Member Referral Invite` (from [](), message A) |
+| **Skip if** | Contact has tag `do-not-email` OR `sms_opt_in` ≠ "Yes" |
 
 ---
 
@@ -135,7 +135,7 @@ graph TD
     A1 --> A2[Build share URL]
     A2 --> A3[Add tag: referral-code-generated]
     A3 --> A4[Wait 24 hours]
-    A4 --> A5[Send Member Invite SMS]
+    A4 --> A5[Send Member Invite Email]
     A5 --> A6[Wait 30 min]
     A6 --> A7[Send Member Invite Email]
     A7 --> EX1((Exit))
@@ -157,8 +157,8 @@ graph TD
 
 | Scenario | Workflow behavior |
 |---|---|
-| Member has `do-not-sms` | Action 5 skips. Email still sends. |
-| Member has `do-not-email` | Action 7 skips. SMS still sends. |
+| Member has `do-not-email` | Action 5 skips. Email still sends. |
+| Member has `do-not-email` | Action 7 skips. Email still sends. |
 | Member has both | Workflow runs silently. Code is generated and stored, just not shared. Front desk can hand them the link in person. |
 | Webhook for code generation fails | Workflow halts at Action 1. GHL retries once. On second failure: send internal alert "code generation failed for {{contact.first_name}}." Owner manually generates code in contact detail. |
 | Member's first name contains special characters (e.g., `José`) | Webhook should sanitize to ASCII (`JOSE-XX`). Fallback approach: store code as-is and let URL encoding handle it. |
@@ -254,17 +254,17 @@ If GHL templating doesn't support arithmetic: Webhook to GHL API endpoint `POST 
 
 ---
 
-#### Action 5 — Send Referrer SMS Notification
+#### Action 5 — Send Referrer Email Notification
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS (to `referrer`) |
-| **Template** | `08 — Referrer Conversion Notification` (from [sms.md](sms.md), message B) |
-| **Skip if** | Referrer has `do-not-sms` |
+| **Action type** | Send Email (to `referrer`) |
+| **Template** | `08 — Referrer Conversion Notification` (from [](), message B) |
+| **Skip if** | Referrer has `do-not-email` |
 
 ---
 
-#### Action 6 — Wait 5 Minutes (let SMS land)
+#### Action 6 — Wait 5 Minutes (let Email land)
 
 | Property | Value |
 |---|---|
@@ -284,13 +284,13 @@ If GHL templating doesn't support arithmetic: Webhook to GHL API endpoint `POST 
 
 ---
 
-#### Action 8 — Send Referee SMS Welcome
+#### Action 8 — Send Referee Email Welcome
 
 | Property | Value |
 |---|---|
-| **Action type** | Send SMS (to triggering contact / referee) |
-| **Template** | `08 — Referee Welcome (post-conversion)` (from [sms.md](sms.md), message C) |
-| **Skip if** | Contact has `do-not-sms` |
+| **Action type** | Send Email (to triggering contact / referee) |
+| **Template** | `08 — Referee Welcome (post-conversion)` (from [](), message C) |
+| **Skip if** | Contact has `do-not-email` |
 
 ---
 
@@ -364,10 +364,10 @@ graph TD
     F1 -->|Yes| A2[Increment referrals_made_count]
     A2 --> A3[Increment referrals_converted_count]
     A3 --> A4[Increment pt_credit_balance +1]
-    A4 --> A5[Send Referrer SMS]
+    A4 --> A5[Send Referrer Email]
     A5 --> A6[Wait 5 min]
     A6 --> A7[Send Referrer Email]
-    A7 --> A8[Send Referee SMS]
+    A7 --> A8[Send Referee Email]
     A8 --> A9[Wait 10 min]
     A9 --> A10[Send Referee Email]
     A10 --> A11[Notify Owner]

@@ -137,7 +137,7 @@ The form's downstream is handled by Workflow 07c (defined in [workflow.md](workf
 
 1. **Within 1 minute:** Owner gets HIGH PRIORITY email with full feedback details.
 2. **Within 1 minute:** Owner sees task in their GHL task list, due in 48hr.
-3. **Within 1 hour:** If `feedback_phone_ok` ≠ Yes AND `do-not-sms` not set, member gets the personal-from-Morgan SMS asking to talk it through (template `07 — Private Feedback Owner SMS` from [sms.md](sms.md)).
+3. **Within 1 hour:** If `feedback_phone_ok` ≠ Yes AND `do-not-email` not set, member gets the personal-from-Morgan Email asking to talk it through (template `07 — Private Feedback Owner Email` from []()).
 4. **Within 48 hours:** Owner has personally replied via email or called the member.
 5. **Tag persistence:** `do-not-ask-reviews` stays for 180 days. `risk-watching` stays until the retention scoring workflow moves it. `feedback-received-private` persists for owner reference.
 
